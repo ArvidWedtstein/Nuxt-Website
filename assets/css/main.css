@@ -6702,11 +6702,11 @@ a.close.disabled {
 }
 
 .carousel-control-prev-icon {
-  background-image: url("../images/Prev.png");
+  background-image: url("~static/images/Prev.png");
 }
 
 .carousel-control-next-icon {
-  background-image: url("../images/Next.png");
+  background-image: url("~static/images/Next.png");
 }
 
 .carousel-indicators {

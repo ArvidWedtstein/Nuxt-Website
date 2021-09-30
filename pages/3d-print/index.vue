@@ -1,6 +1,6 @@
 <template>
     <div id="3d-print">
-        <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="~assets/images/ArvidLogo.png" alt="logo"></a>
+        <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="/ArvidLogo.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                 <ul class="navbar-nav mr-auto">
@@ -81,7 +81,7 @@
         <li class="col-md-4 card filterDiv pc">
         <div class="card-body">
             <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/PCIbracketHexagon.png" alt="PCI Bracket">
+                <img class="card-img-top" src="/3D-Icons/PCIbracketHexagon.png" alt="PCI Bracket">
                 <h5 class="card-title">PCI Bracket</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/PCIbracketHexagon.stl" class="pixelbutton" download><i class="fas fa-download"></i> Last Ned</a></div>
@@ -90,7 +90,7 @@
         <li class="card col-md-4 filterDiv pc">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/PCIbracketSquare.png" alt="PCI Bracket">
+                <img class="card-img-top" src="/3D-Icons/PCIbracketSquare.png" alt="PCI Bracket">
                 <h5 class="card-title">PCI Bracket</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/PCIbracketSquare.stl" class="pixelbutton"><i class="fas fa-download"></i> Last ned</a></div>
@@ -99,7 +99,7 @@
         <li class="card col-md-4 filterDiv pc">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/PCIbracketSquare2.png" alt="PCI Bracket">
+                <img class="card-img-top" src="/3D-Icons/PCIbracketSquare2.png" alt="PCI Bracket">
                 <h5 class="card-title">PCI Bracket</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/PCIbracketSquare2.stl" class="pixelbutton"><i class="fas fa-download"></i> Last ned</a> </div>
@@ -108,7 +108,7 @@
         <li class="card col-md-4 filterDiv other">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Koppunderlag.png" alt="Koppunderlag">
+                <img class="card-img-top" src="/3D-Icons/Koppunderlag.png" alt="Koppunderlag">
                 <h5 class="card-title">Koppunderlag</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/KoppUnderlag.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -117,7 +117,7 @@
             <li class="card col-md-4 filterDiv other">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Sjakkbrikke.png" alt="Sjakkbrikker">
+                <img class="card-img-top" src="/3D-Icons/Sjakkbrikke.png" alt="Sjakkbrikker">
                 <h5 class="card-title">Sjakkbrikker</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/Sjakkbrikke.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -126,7 +126,7 @@
             <li class="card col-md-4 filterDiv other">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/WoWkeychain.png" alt="WoW nøkkelanheng">
+                <img class="card-img-top" src="/3D-Icons/WoWkeychain.png" alt="WoW nøkkelanheng">
                 <h5 class="card-title">WoW Nøkkelanheng</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/WoWkeychain.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -135,7 +135,7 @@
             <li class="card col-md-4 filterDiv pc">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/CDromCover.PNG" alt="CD rom cover">
+                <img class="card-img-top" src="/3D-Icons/CDromCover.PNG" alt="CD rom cover">
                 <h5 class="card-title">CD rom cover</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/CDromCover.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -144,7 +144,7 @@
             <li class="card col-md-4 filterDiv steampunk">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/SteampunkGear.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/SteampunkGear.PNG" alt="Card image cap">
                 <h5 class="card-title">Steampunk Tannhjul</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/SteampunkGear.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -153,7 +153,7 @@
             <li class="card col-md-4 filterDiv other">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/PepperkakeformUnity.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/PepperkakeformUnity.PNG" alt="Card image cap">
                 <h5 class="card-title">Pepperkakeform Unity</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/PepperkakeformUnity.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -162,7 +162,7 @@
             <li class="card col-md-4 filterDiv pc">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/headsett.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/headsett.PNG" alt="Card image cap">
                 <h5 class="card-title">Headsett Holder vegg</h5>
                 <p class="card-text"></p>
                 <a href="~assets/3D-Object/headsett.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -171,7 +171,7 @@
             <li class="card col-md-4 filterDiv pc fancover 14cm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/AsusROG140mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/AsusROG140mm.PNG" alt="Card image cap">
                 <h5 class="card-title">Asus ROG</h5>
                 <p class="card-text">Størrelse: 140mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/AsusROG140mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -180,7 +180,7 @@
             <li class="card col-md-4 filterDiv pc fancover 40mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/Jagermeister40mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/Jagermeister40mm.PNG" alt="Card image cap">
                 <h5 class="card-title">Jagermeister</h5>
                 <p class="card-text">Størrelse: 40mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/Jagermeister40mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -189,7 +189,7 @@
             <li class="card col-md-4 filterDiv pc fancover 120mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/Jagermeister120mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/Jagermeister120mm.PNG" alt="Card image cap">
                 <h5 class="card-title">Jagermeister</h5>
                 <p class="card-text">Størrelse: 120mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/Jagermeister120mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -198,7 +198,7 @@
             <li class="card col-md-4 filterDiv pc fancover 80mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/Hexagon80mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/Hexagon80mm.PNG" alt="Card image cap">
                 <h5 class="card-title">Hexagon</h5>
                 <p class="card-text">Størrelse: 80mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/Hexagon80mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -207,7 +207,7 @@
             <li class="card col-md-4 filterDiv pc fancover 120mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/AsusROG120mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/AsusROG120mm.PNG" alt="Card image cap">
                 <h5 class="card-title">Asus ROG</h5>
                 <p class="card-text">Størrelse: 120mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/AsusROG120mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -216,7 +216,7 @@
             <li class="card col-md-4 filterDiv pc fancover 120mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/Mercedes120mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/Mercedes120mm.PNG" alt="Card image cap">
                 <h5 class="card-title">Mercedes</h5>
                 <p class="card-text">Størrelse: 120mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/Mercedes120mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -225,7 +225,7 @@
             <li class="card col-md-4 filterDiv pc fancover 120mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/MSI120mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/MSI120mm.PNG" alt="Card image cap">
                 <h5 class="card-title">MSI</h5>
                 <p class="card-text">Størrelse: 120mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/MSI120mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -234,7 +234,7 @@
             <li class="card col-md-4 filterDiv pc fancover 120mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/MSI120mmV2.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/MSI120mmV2.PNG" alt="Card image cap">
                 <h5 class="card-title">MSI</h5>
                 <p class="card-text">Størrelse: 120mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/MSI120mmV2.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -243,7 +243,7 @@
             <li class="card col-md-4 filterDiv pc fancover 120mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/WoW120mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/WoW120mm.PNG" alt="Card image cap">
                 <h5 class="card-title">WoW</h5>
                 <p class="card-text">Størrelse: 120mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/WoW120mm.stl" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>
@@ -252,7 +252,7 @@
             <li class="card col-md-4 filterDiv pc fancover 200mm">
             <div class="card-body">
                 <div class="card2">
-                <img class="card-img-top" src="~assets/images/3D-Icons/Fan-Cover/MSI200mm.PNG" alt="Card image cap">
+                <img class="card-img-top" src="/3D-Icons/Fan-Cover/MSI200mm.PNG" alt="Card image cap">
                 <h5 class="card-title">MSI</h5>
                 <p class="card-text">Størrelse: 200mm</p>
                 <a href="~assets/3D-Object/Fan-Cover/MSI200mm.STL" class="pixelbutton"><i class="fas fa-download"></i> Last Ned</a> </div>

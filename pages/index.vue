@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-      <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="~assets/images/ArvidLogo.png" alt="logo"></a>
+      <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="~static/images/ArvidLogo.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                 <ul class="navbar-nav mr-auto">
@@ -56,7 +56,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Photoshop/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Photoshop/photoshop1.jpg);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Photoshop/photoshop1.jpg);"></div>
                         <h1 class="hexTxtTitle">Star Wars</h1>
                         <p class="hexTxtDesc">Photoshop Prosjekt</p>
                       </a>
@@ -65,7 +65,7 @@
                   <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="Spill/">
-                            <div class="hexImg" style="background-image: url(~assets/images/Unity/Unity1.PNG);"></div>
+                            <div class="hexImg" style="background-image: url(~static/images/Unity/Unity1.PNG);"></div>
                             <h1 class="hexTxtTitle">By</h1>
                             <p class="hexTxtDesc">Spill Prosjekt</p>
                         </a>
@@ -74,7 +74,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Unity/Unity7.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity7.PNG);"></div>
                         <h1 class="hexTxtTitle">By</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -83,7 +83,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Unity/Unity4.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity4.PNG);"></div>
                         <h1 class="hexTxtTitle">Lyktestolpe</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -92,7 +92,7 @@
                 <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Unity/Unity2.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity2.PNG);"></div>
                         <h1 class="hexTxtTitle">Elv</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -101,7 +101,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                    <div class="hexImg" style="background-image: url(~assets/images/Blender/Start2.png);"></div>
+                    <div class="hexImg" style="background-image: url(~static/images/Blender/Start2.png);"></div>
                         <h1 class="hexTxtTitle">Mynt</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -110,7 +110,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Blender/Start1.png);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start1.png);"></div>
                         <h1 class="hexTxtTitle">Ovn</h1>
                         <p class="hexTxtDesc">Unity Spill Prosjekt</p>
                       </a>
@@ -119,7 +119,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Blender/Start3.png);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start3.png);"></div>
                         <h1 class="hexTxtTitle">Gjerde</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -128,7 +128,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Blender/Start4.png);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start4.png);"></div>
                         <h1 class="hexTxtTitle">Kiste</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -137,7 +137,7 @@
                 <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image:url(~assets/images/Blender/Start5.png);"></div>
+                        <div class="hexImg" style="background-image:url(~static/images/Blender/Start5.png);"></div>
                         <h1 class="hexTxtTitle">Ambolt</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -146,7 +146,7 @@
                     <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Blender/Start6.png);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start6.png);"></div>
                         <h1 class="hexTxtTitle">Flagg</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -155,7 +155,7 @@
                       <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                            <div class="hexImg" style="background-image: url(~assets/images/Unity/Unity10.PNG);"></div>
+                            <div class="hexImg" style="background-image: url(~static/images/Unity/Unity10.PNG);"></div>
                         <h1 class="hexTxtTitle">Bro</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -164,7 +164,7 @@
                     <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Photoshop/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Photoshop/photoshop2.jpg);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Photoshop/photoshop2.jpg);"></div>
                         <h1 class="hexTxtTitle">Space</h1>
                         <p class="hexTxtDesc">Photoshop Prosjekt</p>
                       </a>
@@ -173,7 +173,7 @@
                 <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~assets/images/Unity/Unity9.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity9.PNG);"></div>
                         <h1 class="hexTxtTitle">Tårn</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -190,7 +190,7 @@
                     <div class="card col-xl-12">
                         <div class="card-body">
                             <div class="card-inner">
-                                <a class="spill" href="Spill/"><img class="card-img-top" src="~assets/images/Wolf.svg" alt="Spill"></a>
+                                <a class="spill" href="Spill/"><img class="card-img-top" src="~static/images/Wolf.svg" alt="Spill"></a>
                                 <h5 class="card-title">Spill</h5>
                                 <a class="spill" href="Spill/"><p class="card-text">Et spill jeg holder på å programmere og designe for tiden</p></a>
                             </div> 
@@ -199,7 +199,7 @@
                       <div class="card col-xl-12"> 
                             <div class="card-body">
                     <div class="card-inner">
-                    <a class="spill" href="IMcity/"><img class="card-img-top" src="~assets/images/IMcity/imcity5.jpg" alt="IM city"></a>
+                    <a class="spill" href="IMcity/"><img class="card-img-top" src="~static/images/IMcity/imcity5.jpg" alt="IM city"></a>
                             <h5 class="card-title">IM City</h5>
                             <a class="modell" href="IMcity/"><p class="card-text">Prosjekt i YFF</p></a>
                         </div> 
@@ -208,7 +208,7 @@
                     <div class="card col-xl-12">
                     <div class="card-body">
                     <div class="card-inner">
-                    <a class="spill" href="3D-Print/"><img class="card-img-top" src="~assets/images/3dprint.png" alt="3D"></a>
+                    <a class="spill" href="3D-Print/"><img class="card-img-top" src="~static/images/3dprint.png" alt="3D"></a>
                             <h5 class="card-title">3D Print</h5>
                             <a class="modell" href="3D-Print/"><p class="card-text">3D Modeller</p></a>
                         </div> 
@@ -217,7 +217,7 @@
                   <div class="card col-xl-12">
                     <div class="card-body">
                     <div class="card-inner">
-                    <a class="spill" href="Photoshop/"><img class="card-img-top" src="~assets/images/Photoshop/photoshop3.jpg" alt="Photoshop"></a>
+                    <a class="spill" href="Photoshop/"><img class="card-img-top" src="~static/images/Photoshop/photoshop3.jpg" alt="Photoshop"></a>
                             <h5 class="card-title">Photoshop</h5>
                             <a class="modell" href="Photoshop/"><p class="card-text">Photoshop bilder</p></a>
                         </div> 

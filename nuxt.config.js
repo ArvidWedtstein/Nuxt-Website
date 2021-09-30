@@ -1,7 +1,30 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Website",
+    title: "Arvid's Website",
+    script: [
+      {  
+          type: 'text/javascript', 
+          src: '~assets/js/jquery-3.4.1.min.js',
+          'data-account': 'XXXXX',
+          'data-user': 'XXXXX',
+          async: true
+      },
+      {  
+          type: 'text/javascript', 
+          src: '~assets/js/bootstrap-4.4.1.js',
+          'data-account': 'XXXXX',
+          'data-user': 'XXXXX',
+          async: true
+      },
+      {  
+          type: 'text/javascript', 
+          src: '~assets/js/popper.min.js',
+          'data-account': 'XXXXX',
+          'data-user': 'XXXXX',
+          async: true
+      }
+    ],
     htmlAttrs: {
       lang: "en"
     },
