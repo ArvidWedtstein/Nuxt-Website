@@ -22,7 +22,14 @@ export default {
           src: '~assets/js/popper.min.js',
           'data-account': 'XXXXX',
           'data-user': 'XXXXX',
-          async: true
+          async: true,
+          defer: true
+      },
+      {
+          type: 'text/javascript',
+          src: 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js',
+          async: true,
+          defer: true
       }
     ],
     htmlAttrs: {
@@ -34,7 +41,15 @@ export default {
       { hid: "description", name: "description", content: "Arvids nettside" },
       { name: "format-detection", content: "telephone=no" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Julius Sans One"},
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Trade Winds"},
+      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.core.min.css", type: "text/css"},
+      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.theme.min.css", type: "text/css"},
+      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.dialog.min.css", type: "text/css"},
+      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.resizable.min.css", type: "text/css"}
+    ]
   },
   //'@/assets/css/bootstrap-4.4.1.css'
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -56,5 +71,19 @@ export default {
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+  loading: {
+    color: 'DodgerBlue',
+    height: '10px',
+    continuous: true,
+    duration: 3000
+  },
+  ssr: false,
+
+
+  loadingIndicator: {
+    name: 'chasing-dots',
+    color: 'purple',
+    background: 'green'
+  }
 };

@@ -1,22 +1,26 @@
 
 <template>
   <div id="app">
-      <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="~static/images/ArvidLogo.png" alt="logo"></a>
+      <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <a class="nav-link active" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a> 
+                        <NuxtLink class="nav-link active" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
+                        <!--<a class="nav-link active" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a>--> 
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href="about/">Om Meg</a> 
+                        <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
+                        <!--<a class="nav-link" href="about/">Om Meg</a> -->
                     </li>
                     <!-- Dropdown -->
                     <li class="nav-item dropdown"> 
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false">Prosjekter</a>
+                        <NuxtLink class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false" to="./">Projects</NuxtLink>
+                        <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false">Prosjekter</a>-->
                         <div class="dropdown-menu"> 
-                            <a class="dropdown-header" href="./Project/">Alle Prosjekter</a>
+                            <NuxtLink class="dropdown-header" to="./Project/">All Projects</NuxtLink>
+                            <!--<a class="dropdown-header" href="./Project/">Alle Prosjekter</a>-->
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="./Spill/">Spill</a>
                             <!--<a class="dropdown-item" href="../IMcity/">IM City</a>-->
@@ -27,7 +31,8 @@
                     
                     <!--Kontaktside-->
                     <li class="nav-item"> 
-                        <a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a> 
+                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="./contact">Contact</NuxtLink>
+                        <!--<a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
                     </li>
                 </ul>
             </div>
@@ -56,7 +61,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Photoshop/">
-                        <div class="hexImg" style="background-image: url(~static/images/Photoshop/photoshop1.jpg);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Photoshop/photoshop1.jpg);"></div>
                         <h1 class="hexTxtTitle">Star Wars</h1>
                         <p class="hexTxtDesc">Photoshop Prosjekt</p>
                       </a>
@@ -65,7 +70,7 @@
                   <li class="hex">
                     <div class="hexIn">
                         <a class="hexLink" href="Spill/">
-                            <div class="hexImg" style="background-image: url(~static/images/Unity/Unity1.PNG);"></div>
+                            <div class="hexImg" style="background-image: url(/images/Unity/Unity1.PNG);"></div>
                             <h1 class="hexTxtTitle">By</h1>
                             <p class="hexTxtDesc">Spill Prosjekt</p>
                         </a>
@@ -74,7 +79,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity7.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Unity/Unity7.PNG);"></div>
                         <h1 class="hexTxtTitle">By</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -83,7 +88,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity4.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Unity/Unity4.PNG);"></div>
                         <h1 class="hexTxtTitle">Lyktestolpe</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -92,7 +97,7 @@
                 <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity2.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Unity/Unity2.PNG);"></div>
                         <h1 class="hexTxtTitle">Elv</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -101,7 +106,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                    <div class="hexImg" style="background-image: url(~static/images/Blender/Start2.png);"></div>
+                    <div class="hexImg" style="background-image: url(/images/Blender/Start2.png);"></div>
                         <h1 class="hexTxtTitle">Mynt</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -110,7 +115,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start1.png);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Blender/Start1.png);"></div>
                         <h1 class="hexTxtTitle">Ovn</h1>
                         <p class="hexTxtDesc">Unity Spill Prosjekt</p>
                       </a>
@@ -119,7 +124,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start3.png);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Blender/Start3.png);"></div>
                         <h1 class="hexTxtTitle">Gjerde</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -128,7 +133,7 @@
                   <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start4.png);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Blender/Start4.png);"></div>
                         <h1 class="hexTxtTitle">Kiste</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -137,7 +142,7 @@
                 <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image:url(~static/images/Blender/Start5.png);"></div>
+                        <div class="hexImg" style="background-image:url(/images/Blender/Start5.png);"></div>
                         <h1 class="hexTxtTitle">Ambolt</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -146,7 +151,7 @@
                     <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Blender/Start6.png);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Blender/Start6.png);"></div>
                         <h1 class="hexTxtTitle">Flagg</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -155,7 +160,7 @@
                       <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                            <div class="hexImg" style="background-image: url(~static/images/Unity/Unity10.PNG);"></div>
+                            <div class="hexImg" style="background-image: url(/images/Unity/Unity10.PNG);"></div>
                         <h1 class="hexTxtTitle">Bro</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -164,7 +169,7 @@
                     <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Photoshop/">
-                        <div class="hexImg" style="background-image: url(~static/images/Photoshop/photoshop2.jpg);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Photoshop/photoshop2.jpg);"></div>
                         <h1 class="hexTxtTitle">Space</h1>
                         <p class="hexTxtDesc">Photoshop Prosjekt</p>
                       </a>
@@ -173,7 +178,7 @@
                 <li class="hex">
                     <div class="hexIn">
                       <a class="hexLink" href="Spill/">
-                        <div class="hexImg" style="background-image: url(~static/images/Unity/Unity9.PNG);"></div>
+                        <div class="hexImg" style="background-image: url(/images/Unity/Unity9.PNG);"></div>
                         <h1 class="hexTxtTitle">Tårn</h1>
                         <p class="hexTxtDesc">Spill Prosjekt</p>
                       </a>
@@ -190,7 +195,7 @@
                     <div class="card col-xl-12">
                         <div class="card-body">
                             <div class="card-inner">
-                                <a class="spill" href="Spill/"><img class="card-img-top" src="~static/images/Wolf.svg" alt="Spill"></a>
+                                <a class="spill" href="Spill/"><img class="card-img-top" src="/images/Wolf.svg" alt="Spill"></a>
                                 <h5 class="card-title">Spill</h5>
                                 <a class="spill" href="Spill/"><p class="card-text">Et spill jeg holder på å programmere og designe for tiden</p></a>
                             </div> 
@@ -199,7 +204,7 @@
                       <div class="card col-xl-12"> 
                             <div class="card-body">
                     <div class="card-inner">
-                    <a class="spill" href="IMcity/"><img class="card-img-top" src="~static/images/IMcity/imcity5.jpg" alt="IM city"></a>
+                    <a class="spill" href="IMcity/"><img class="card-img-top" src="/images/IMcity/imcity5.jpg" alt="IM city"></a>
                             <h5 class="card-title">IM City</h5>
                             <a class="modell" href="IMcity/"><p class="card-text">Prosjekt i YFF</p></a>
                         </div> 
@@ -208,7 +213,7 @@
                     <div class="card col-xl-12">
                     <div class="card-body">
                     <div class="card-inner">
-                    <a class="spill" href="3D-Print/"><img class="card-img-top" src="~static/images/3dprint.png" alt="3D"></a>
+                    <a class="spill" href="3D-Print/"><img class="card-img-top" src="/images/3dprint.png" alt="3D"></a>
                             <h5 class="card-title">3D Print</h5>
                             <a class="modell" href="3D-Print/"><p class="card-text">3D Modeller</p></a>
                         </div> 
@@ -217,7 +222,7 @@
                   <div class="card col-xl-12">
                     <div class="card-body">
                     <div class="card-inner">
-                    <a class="spill" href="Photoshop/"><img class="card-img-top" src="~static/images/Photoshop/photoshop3.jpg" alt="Photoshop"></a>
+                    <a class="spill" href="Photoshop/"><img class="card-img-top" src="/images/Photoshop/photoshop3.jpg" alt="Photoshop"></a>
                             <h5 class="card-title">Photoshop</h5>
                             <a class="modell" href="Photoshop/"><p class="card-text">Photoshop bilder</p></a>
                         </div> 
@@ -228,11 +233,10 @@
             <div id="particles-js"></div>
     </div>
 </template>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script src="~assets/js/jquery-3.4.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/popper.min.js"></script> 
-<script src="js/bootstrap-4.4.1.js"></script>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+<script src="~assets/js/popper.min.js"></script> 
+<script src="~assets/js/bootstrap-4.4.1.js"></script>
 <script type="text/javascript">
 
 particlesJS("particles-js", {
@@ -402,10 +406,12 @@ function getLocation() {
 }
 </script>
 
-<script lang="javascript">
+<script lang="text/javascript">
 
 export default {
-    template: '<App/>'
+  
+    template: '<App/>',
+    transition: 'slide-bottom'
 }
 </script>
 

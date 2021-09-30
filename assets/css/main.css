@@ -5404,8 +5404,10 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .jumbotron {
   padding: 2rem 1rem;
-  margin-bottom: 2rem;
-  background-color: rgba(0,0,0,0);
+  background: none;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0rem;
   border-radius: 0.3rem;
 }
 
@@ -11109,7 +11111,8 @@ input:-webkit-autofill:active  {
 .RGBborder span:nth-child(1) {
 	top: 0;
 	left: -100%;
-	border-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+	border-top-left-radius: 50%;
 	width: 100%;
 	height: 3px;
 	background: linear-gradient(90deg, transparent, #03e9f4);
@@ -11119,7 +11122,8 @@ input:-webkit-autofill:active  {
 .RGBborder span:nth-child(2) {
 	top: -100%;
 	right: 0;
-	border-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	border-top-left-radius: 50%;
 	width: 3px;
 	height: 100%;
 	background: linear-gradient(180deg, transparent, #03e9f4);
@@ -11130,7 +11134,8 @@ input:-webkit-autofill:active  {
 .RGBborder span:nth-child(3) {
 	bottom: 0;
 	right: -100%;
-	border-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	border-top-left-radius: 50%;
 	width: 100%;
 	height: 3px;
 	background: linear-gradient(270deg, transparent, #03e9f4);
@@ -11141,7 +11146,8 @@ input:-webkit-autofill:active  {
 .RGBborder span:nth-child(4) {
 	bottom: -100%;
 	left: 0;
-	border-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	border-top-left-radius: 50%;
 	width: 3px;
 	height: 100%;
 	background: linear-gradient(360deg, transparent, #03e9f4);
@@ -11250,6 +11256,7 @@ input:-webkit-autofill:active  {
   outline:1px solid transparent;
   transition: all 0.5s;
   backface-visibility: hidden;
+  
   will-change: transform;
 }
 .hex::after{
@@ -11266,6 +11273,7 @@ input:-webkit-autofill:active  {
   overflow: hidden;
   visibility: hidden;
   outline:1px solid transparent;
+  
   -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
       -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
           transform: rotate3d(0,0,1,-60deg) skewY(30deg);
@@ -11298,7 +11306,7 @@ input:-webkit-autofill:active  {
 .hex h1, .hex p {
   width: 100%;
   padding: 5%;
-  box-sizing:border-box;
+  box-sizing: border-box;
   font-weight: 300;
   opacity: 0;
 }
@@ -11341,6 +11349,7 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
   background-position: center center;
   background-size: cover;
   overflow: hidden;
+  
   -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
@@ -11353,18 +11362,18 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
   left: 0;
   content: '';
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .hexImg:before {
-  background: rgba(22, 103, 137, 0.3)
+  background: rgba(22, 103, 137, 0.3);
 }
 .hexImg:after {
   background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.5), transparent);
 }
 .hexLink:hover h1, .hexLink:focus h1,
 .hexLink:hover p, .hexLink:focus p{
-opacity:1;
-transition: 0.8s;
+  opacity:1;
+  transition: 0.8s;
 }
 .hexIn:hover .hexImg:before,
 .hexIn:hover .hexImg:after,
@@ -11445,4 +11454,288 @@ canvas {
   height: 100%;
   top: 0;
   z-index: -1;
+}
+
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+.layout-enter,
+.layout-leave-to {
+  opacity: 0;
+}
+
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.slide-bottom-enter,
+.slide-bottom-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
+}
+.bounce-enter-active {
+  transform-origin: top;
+  animation: bounce-in 0.8s;
+}
+.bounce-leave-active {
+  transform-origin: top;
+  animation: bounce-out 0.5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+
+.printcard {
+	/*display: -ms-flexbox;*/
+	-ms-flex: 1 1 auto;
+  	flex: 1 1 auto;
+	min-width: 1px;
+	word-wrap: break-word;
+	text-align: center;
+	padding: 10px;
+	background-clip: border-box;
+	border-radius: 0.25rem;
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+	align-content: center;
+	align-items: center;
+}
+
+.printcard-body {
+  -ms-flex: 1 1 auto;
+  	flex: 1 1 auto;
+  /*background: linear-gradient(#000000, #333333);*/
+  background: linear-gradient(0deg, #e5e5e5, #a8a8a8);
+  min-height: 1px;
+  border-radius: 0.7rem;
+  padding: 1rem;
+  align-content: center;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
+		rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+  font-family: 'Julius Sans One';
+  transition: 0.3s;
+}
+
+.printcard2 {
+  -ms-flex: 1 1 auto;
+  	flex: 1 1 auto;
+  background: linear-gradient(0deg, #000000, #333333);
+  min-height: 1px;
+  padding: 1.25rem;
+  bottom: 0px;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: -10px 10px 10px rgba(0,0,0,.5), 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
+		rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+}
+
+.printcard-title {
+  margin-bottom: 0.75rem;
+  border-top: 1px solid #ffffff;
+  padding-top: 30px;
+  color: #ffffff;
+}
+
+
+
+.printcard-subtitle {
+  margin-top: -0.375rem;
+  margin-bottom: 0;
+}
+
+
+
+.printcard-text:last-child {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+
+
+.printcard-text:hover {
+  text-decoration: none;
+}
+
+.printcard-link + .printcard-link {
+  margin-left: 1.25rem;
+}
+
+
+
+.printcard-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #333333;
+	color: #ffffff;
+	font-size: auto;
+	text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+
+
+#searchbar {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  color: #ffffff;
+  background: rgba(0,0,0,0.5);
+  outline: none;
+  border: none;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(255, 255, 255, 1);
+}
+
+.pixelbutton {
+	position: relative;
+	bottom: 0;
+	border-radius: 0.5rem;
+	width: 50%;
+	font-size: 1rem;
+	background: rgba(255,255,255,0.3);
+	text-decoration: none;
+	padding: 1rem 1rem;
+	color: #ffffff;
+	transition: 0.5s;
+}
+.pixelbutton:hover {
+	background: #ec0b36 url("/images/pixel.png");
+	background-size: 180px;
+	text-decoration: none;
+	transition-delay: 0.8s;
+	color: #ffffff;
+	animation: pixel 0.4s steps(8) forwards;
+}
+@keyframes pixel {
+	0% {
+		background-position-y: 0px;
+	}
+	100% {
+		background-position-y: -480px;
+	}
+}
+
+/*.filterDiv {
+  display: none;
+}*/
+.knapp {
+
+	-ms-flex-wrap: wrap;
+
+	flex-wrap: wrap;
+
+	-ms-flex-align: center;
+
+	align-items: center;
+
+	-ms-flex-pack: justify;
+
+	justify-content: space-between;
+
+	padding: 0.5rem 1rem;
+
+	color: #FFFFFF;
+
+	background-color: #000000;
+
+	background-image: -webkit-linear-gradient(0deg,rgba(51,51,51,1.00) 0%,rgba(0,0,0,1.00) 100%);
+
+	background-image: -moz-linear-gradient(0deg,rgba(51,51,51,1.00) 0%,rgba(0,0,0,1.00) 100%);
+
+	background-image: -o-linear-gradient(0deg,rgba(51,51,51,1.00) 0%,rgba(0,0,0,1.00) 100%);
+
+	background-image: linear-gradient(90deg,rgba(51,51,51,1.00) 0%,rgba(0,0,0,1.00) 100%);
+
+	text-shadow: none;
+
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+}
+
+
+.knapp:hover {
+	background-image: -webkit-linear-gradient(0deg,rgba(51,51,51,1.00) 0%,rgba(25,25,25,1.00) 100%);
+	background-image: -moz-linear-gradient(0deg,rgba(51,51,51,1.00) 0%,rgba(25,25,25,1.00) 100%);
+	background-image: -o-linear-gradient(0deg,rgba(51,51,51,1.00) 0%,rgba(25,25,25,1.00) 100%);
+	background-image: linear-gradient(90deg,rgba(51,51,51,1.00) 0%,rgba(100,100,100,1.00) 100%);
+}
+
+.knapp.active {
+	background: rgba(0,0,0,0.5);
+	border: 0.5rem solid #00ff00;
+}
+
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #555;
+}
+
+/*Utseende til knappene som velger hvordan 3D-Objektene skal vises*/
+.btnView {
+  outline: none;
+  padding: 12px 16px;
+  background-color: transparent;
+  color: #969696;
+  cursor: pointer;
+  border: 0.01rem solid rgba(255,255,255,0.3);
+}
+
+.btnView:hover {
+  background-color: #000000;
+}
+
+.btnView.active {
+  background: #464646;
+  color: white;
+}
+
+#items {
+  list-style: none;
 }

@@ -1,20 +1,22 @@
 
 <template>
     <div id="about">
-        <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="~static/images/ArvidLogo.png" alt="logo"></a>
+        <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <a class="nav-link" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a> 
+                        <!--<a class="nav-link" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a>-->
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link active" href="./">Om Meg</a> 
+                        <!--<a class="nav-link active" href="./">About Me</a>--> 
+                        <NuxtLink class="nav-link active" to="../about">About Me</NuxtLink>
                     </li>
                     <!-- Dropdown -->
                     <li class="nav-item dropdown"> 
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false"><i class="fas fa-briefcase"></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false">Projects</a>
                         <div class="dropdown-menu"> 
                             <a class="dropdown-header" href="../Project/">Alle Prosjekter</a>
                             <div class="dropdown-divider"></div>
@@ -27,7 +29,8 @@
                     
                     <!--Kontaktside-->
                     <li class="nav-item"> 
-                        <a class="nav-link" href="../Contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a> 
+                        <NuxtLink class="nav-link" id="contact" to="../contact">Contact</NuxtLink>
+                        <!--<a class="nav-link" href="../Contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
                     </li>
                 </ul>
             </div>
@@ -35,8 +38,8 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./index.vue">Hjem</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a>Om Meg</a></li>
+                <li class="breadcrumb-item"><a href="./index.vue">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a>About Me</a></li>
             </ol>
         </nav>
         
@@ -46,10 +49,10 @@
                         <div class="text">
                             <!--<p class="aboutMe">Hei, <br> mitt navn er <br> Arvid Wedtstein</p>-->
                         <div class="jumbotron">
-                            <h1 class="display-4">Hei!</h1>
-                            <p class="lead">Mitt navn er Arvid Wedtstein</p>
+                            <h1 class="display-4">Well, hello there</h1>
+                            <p class="lead">MY name is Arvid Wedtstein</p>
                             <hr class="my-4">
-                            <p>Skole: Haugaland VGS<br>Linje: Informasjonsteknologi og Media<br>Alder: 16<br>Interesser: 3D-Design, Spillutvikling<br>Programmeringsspråk: JS, C#, Python, VB, HTML, CSS</p>
+                            <p>I currently study: Informationteknology and Media<br>Alder: 17<br>I'm interested in: 3D-Design, Game development<br>Programmeringsspråk: JS, C#, Python, VB, HTML, CSS</p>
                                 <div class="icon-bar a">
                                     <!--<a id="text0" href="https://www.facebook.com/profile.php?id=100022120962542" target="_blank animate__bounceIn" class="facebook"><i class="fa fa-facebook"></i></a>--> 
                                     <a id="text1" href="https://github.com/ArvidWedtstein" target="_blank" class="github animate__bounceIn"><i class="fab fa-github"></i></a> 
@@ -75,10 +78,11 @@
 </template>
 
 
-<script lang="javascript">
+<script lang="text/javascript">
 
 export default {
-  template: '<App/>'
+    template: '<about/>',
+    transition: 'slide-bottom'
 }
 </script>
 
