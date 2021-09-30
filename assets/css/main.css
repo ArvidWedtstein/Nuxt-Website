@@ -11085,3 +11085,364 @@ input:-webkit-autofill:active  {
 	animation: animate 8s linear infinite;
 
 }
+
+.RGBborder {
+	display: inline-block;
+	position: relative;
+	padding: 12px;
+	overflow: hidden;
+	list-style-type: none;
+	justify-content: center;
+	box-shadow: inset 5px 5px 5px rgba(0,0,0,0.2), 
+	  inset -5px -5px 15px rgba(255,255,255,0.1), 
+	  5px 5px 15px rgba(0,0,0,0.3),
+	  -5px -5px 15px rgba(255,255,255,0.1);
+	background: #232427;
+	border-radius: 5px;
+}
+.RGBborder span {
+	position: absolute;
+	display: block;
+	overflow: hidden;
+}
+/*Posisjonen og animasjonsdelayen til 1. streken*/
+.RGBborder span:nth-child(1) {
+	top: 0;
+	left: -100%;
+	border-left-radius: 50%;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(90deg, transparent, #03e9f4);
+	animation: NeonBtn1 2s linear infinite;
+}
+/*Posisjonen og animasjonsdelayen til 2. streken*/
+.RGBborder span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	border-left-radius: 50%;
+	width: 3px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #03e9f4);
+	animation: NeonBtn2 2s linear infinite;
+	animation-delay: 0.50s;
+}
+/*Posisjonen og animasjonsdelayen til 3. streken*/
+.RGBborder span:nth-child(3) {
+	bottom: 0;
+	right: -100%;
+	border-left-radius: 50%;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(270deg, transparent, #03e9f4);
+	animation: NeonBtn3 2s linear infinite;
+	animation-delay: 1s;
+}
+/*Posisjonen og animasjonsdelayen til 4. streken*/
+.RGBborder span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	border-left-radius: 50%;
+	width: 3px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #03e9f4);
+	animation: NeonBtn4 2s linear infinite;
+	animation-delay: 1.50s;
+}
+/*Animasjonen til 1. rgbstripen*/
+@keyframes NeonBtn1 {
+	0% {left: -100%;
+		filter: hue-rotate(0deg);}
+	50%,100% {left: 100%;
+			  filter: hue-rotate(90deg);}
+}
+/*Animasjonen til 2. rgbstripen*/
+@keyframes NeonBtn2 {
+	0% {top: -100%;
+		filter: hue-rotate(90deg);}
+	50%,100% {top: 100%;
+			  filter: hue-rotate(180deg);}
+}
+/*Animasjonen til 3. rgbstripen*/
+@keyframes NeonBtn3 {
+	0% {right: -100%;
+		filter: hue-rotate(180deg);}
+	50%,100% {right: 100%;
+			  filter: hue-rotate(270deg);}
+}
+/*Animasjonen til 4. rgbstripen*/
+@keyframes NeonBtn4 {
+	0% {bottom: -100%;
+		filter: hue-rotate(270deg);}
+	50%,100% {bottom: 100%;
+			  filter: hue-rotate(360deg);}
+}
+
+/*Selve prosjektpanelet*/
+.QuickAccessProsjektPanel {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: #111111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+/*Teksten i prosjektpanelet*/
+.QuickAccessProsjektPanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+/*Når teksten i prosjektpanelet får cursoren over seg*/
+.QuickAccessProsjektPanel a:hover {
+  color: #f1f1f1;
+}
+/*Stylen til lukkeknappen på prosjektpanelet*/
+.QuickAccessProsjektPanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+/*main id'en sørger for at hele innholdet i startsiden blir skjøvet til siden når funksjonen aktiveres i javascript delen under body seksjonen*/
+#main {
+  transition: margin-left .5s;
+  padding: 0px;
+}
+
+@media screen and (max-height: 450px) {
+  .QuickAccessProsjektPanel {padding-top: 15px;}
+  .QuickAccessProsjektPanel a {font-size: 18px;}
+}
+/*Denne css klassen gjør at tekst ikke kan markeres*/
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/*Hex Layouten på startsiden*/
+#hexGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  z-index: -1;
+  font-family: sans-serif;
+  list-style-type: none;
+}
+/*Hexagon bildene*/
+.hex {
+  position: relative;
+  visibility:hidden;
+  outline:1px solid transparent;
+  transition: all 0.5s;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.hex::after{
+  content:'';
+  display:block;
+  padding-bottom: 86.602%;
+}
+/*Formen av hexagonene*/
+.hexIn{
+  position: absolute;
+  width:96%;
+  padding-bottom: 110.851%; 
+  margin: 2%;
+  overflow: hidden;
+  visibility: hidden;
+  outline:1px solid transparent;
+  -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+      -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+          transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+    transition: all 0.5s;
+}
+.hexIn * {
+  position: absolute;
+  visibility: visible;
+  outline:1px solid transparent; 
+}
+.hexLink {
+    display:block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+        -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+            transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+/*posisjonen til bildene i hexagonene*/
+.hex hexImg {
+  left: -100%;
+  right: -100%;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+.hex h1, .hex p {
+  width: 100%;
+  padding: 5%;
+  box-sizing:border-box;
+  font-weight: 300;
+  opacity: 0;
+}
+/*Posisjonen til bildetittel teksten når man går over bildene med cursoren*/
+.hexTxtTitle {
+  color: #F5CE95;
+  text-transform: capitalize;
+    text-align: center;
+  bottom: 50%;
+  padding-top:50%;
+  font-size: 1.5em;
+  z-index: 1;
+}
+.hex h1:before, .hex h1:after {
+  display: inline-block;
+  margin: 0 0.5em;
+  width: 0.25em;
+  height: 0.03em;
+  background: #ffffff;
+  content: '';
+  vertical-align: middle;
+  transition: all 0.3s;
+  text-align:center;
+}
+/*Posisjonen til underteksten*/
+.hexTxtDesc {
+top: 50%;
+text-align: center;
+text-transform: uppercase;
+    
+}
+/*Bestemmer selve formen av hexagonene. Her har jeg bestemt formen av hexagonen ved hjelp av en clip path
+webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funker i blant annet Internet Explorer, Opera og Edge*/
+.hexImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hexImg:before, .hexImg:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.hexImg:before {
+  background: rgba(22, 103, 137, 0.3)
+}
+.hexImg:after {
+  background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.5), transparent);
+}
+.hexLink:hover h1, .hexLink:focus h1,
+.hexLink:hover p, .hexLink:focus p{
+opacity:1;
+transition: 0.8s;
+}
+.hexIn:hover .hexImg:before,
+.hexIn:hover .hexImg:after,
+.hexIn:hover .hexLink {
+  opacity: 1;
+}
+/*Media funksjonene til hex bilde layouten. Dette er funksjonene som gjør dem responsive når skjermstørrelsen blir mindre eller større*/
+@media (min-width:1201px) { 
+  #hexGrid{
+    padding-bottom: 4.4%
+  }
+  .hex {
+    width: 20%;
+  }
+  .hex:nth-child(9n+6){ 
+    margin-left:10%; 
+  }
+}
+
+@media (max-width: 1200px) and (min-width:901px) {
+  #hexGrid{
+    padding-bottom: 5.5%;
+    font-size: 13px;
+  }
+  .hex {
+    width: 25%;
+  }
+  .hex:nth-child(7n+5){ 
+    margin-left:12.5%; 
+  }
+}
+
+@media (max-width: 900px) and (min-width:601px) { 
+  #hexGrid{
+    padding-bottom: 7.4%;
+    font-size: 14px;
+  }
+  .hex {
+    width: 33.333%; 
+  }
+  .hex:nth-child(5n+4){ 
+    margin-left:16.666%; 
+  }
+}
+
+@media (max-width: 600px) { 
+  #hexGrid{
+    padding-bottom: 11.2%;
+    font-size: 12px;
+  }
+  .hex {
+    width: 50%;
+  }
+  .hex:nth-child(3n+3){ 
+    margin-left:25%; 
+  }
+}
+
+@media (max-width: 400px) {
+    #hexGrid {
+        font-size: 8px;
+    }
+}
+
+
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+/*particles.js container*/
+/*Dette er css delen som markerer området hvor particle.js partiklene skal vises*/
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: -1;
+}
