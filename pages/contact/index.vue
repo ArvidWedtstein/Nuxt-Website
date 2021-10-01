@@ -6,7 +6,7 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="../">Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="../about">About Me</NuxtLink>
@@ -46,7 +46,7 @@
                         <h5></h5>
                         <div class="inputBox">
                             <input type="text" id="name" name="name" required="required">
-                            <span class="kontakt" for="name">Navn</span>
+                            <span class="kontakt" for="name">Name</span>
                         </div>
                         <div class="inputBox">
                             <span class="indicator"></span>
@@ -54,13 +54,13 @@
                             <span class="kontakt" for="name">Email</span>
                         </div>
                         <div class="inputBox2">
-                                <h5 class="kontakt2">Få tilsendt en kopi</h5>
+                                <h5 class="kontakt2">Get a copy of the mail</h5>
                             <input type="checkbox" name="test" class="copy check" value="value1">
                         </div>
                         <br>
                         <div class="inputBox">
                             <input type="text" id="subject" name="subject" required="required">
-                            <span class="kontakt" for="name">Emne</span>
+                            <span class="kontakt" for="name">Subject</span>
                         </div>
                         <div class="inputBox">
                             <span class="indicator2"></span>
