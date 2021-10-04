@@ -36,8 +36,12 @@ export default {
         {
             src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
             defer: true
+        },
+        {
+            src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+            integrity: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
+            crossorigin: "anonymous"
         }
-      
     ],
     htmlAttrs: {
       lang: "en"
@@ -55,12 +59,13 @@ export default {
       { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.core.min.css", type: "text/css"},
       { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.theme.min.css", type: "text/css"},
       { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.dialog.min.css", type: "text/css"},
-      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.resizable.min.css", type: "text/css"}
+      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.resizable.min.css", type: "text/css"},
+      { rel: "stylesheet", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", crossorigin: "anonymous", integrity: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"}
     ]
   },
   //'@/assets/css/bootstrap-4.4.1.css'
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/css/main.css"],
+  css: ["~/assets/css/style.css", "~/assets/css/main.css"],
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
