@@ -63,7 +63,7 @@
                 </div>
                     <div class="col-xl-6">
                         <div class="aboutMe col-md-10">
-                            <img id="profile" class="card-img" src="~/static/images/profilePicture.png" alt="Profil">
+                            <img id="profile" class="card-img" src="/images/profilePicture.png" alt="Profil">
                         </div>
                     </div>
             </div>

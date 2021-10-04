@@ -3,21 +3,6 @@ export default {
   head: {
     title: "Arvid's Website",
     script: [
-        {  
-            type: 'text/javascript', 
-            src: '~assets/js/jquery-3.4.1.min.js',
-            defer: true
-        },
-        {  
-            type: 'text/javascript', 
-            src: '~assets/js/bootstrap-4.4.1.js',
-            defer: true
-        },
-        {  
-            type: 'text/javascript', 
-            src: '~assets/js/popper.min.js',
-            defer: true
-        },
         {
             type: 'text/javascript',
             rel: "preload",
