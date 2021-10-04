@@ -16,7 +16,7 @@
                         <!--<a class="nav-link" href="about/">Om Meg</a> -->
                     </li>
                     <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
-                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
+                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="./">All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider"></b-dropdown-divider>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./game">Spill</NuxtLink></b-dropdown-item>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="3dprint">3D-Print</NuxtLink></b-dropdown-item>
@@ -46,27 +46,27 @@
 			    <div class="card col-md-4 project">
   	                <div class="card-body">
 			            <div class="card-inner">
-			                <a class="spill" href="game"><img id="wolf" class="card-img-top" src="/images/Wolf.svg" alt="Spill"></a>
+                            <NuxtLink to="./game"><img id="wolf" class="card-img-top" src="/images/Wolf.svg" alt="Spill"/></NuxtLink>
 				  	        <h5 class="card-title">Spill</h5>
-				  	        <a class="spill" href="./game"><p class="card-text">A wacky game. . .</p></a>
+                            <NuxtLink to="./game" title="A wacky game"><p class="card-text">A wacky game. . .</p></NuxtLink>
 				        </div>
 			  	    </div>
                 </div>
 		        <div class="card col-md-4 project">
 				    <div class="card-body">
 			            <div class="card-inner">
-			                <a class="spill" href="3dprint"><img class="card-img-top" src="/images/3dprint.png" alt="3D Print"></a>
+                            <NuxtLink to="./3dprint"><img class="card-img-top" src="/images/3dprint.png" alt="3D Print"></NuxtLink>
                             <h5 class="card-title">3D Print</h5>
-                            <a class="modell" href="3dprint"><p class="card-text">3D Modeller</p></a>
+                            <NuxtLink to="3dprint"><p class="card-text">3D Modeller</p></NuxtLink>
 					    </div> 
 				    </div>
 			  	</div>
 			    <div class="card col-md-4 project">
 				    <div class="card-body">
                         <div class="card-inner">
-                            <a class="spill" href="photoshop"><img class="card-img-top" src="/images/Photoshop/photoshop1.jpg" alt="card image cap"></a>
+                            <NuxtLink to="./photoshop"><img class="card-img-top" src="/images/Photoshop/photoshop1.jpg" alt="Photoshop"></NuxtLink>
 				  	        <h5 class="card-title">Photoshop</h5>
-				  	        <a class="modell" href="photoshop"><p class="card-text">Photoshop Images</p></a>
+                            <NuxtLink to="./photoshop"><p class="card-text">Photoshop Images</p></NuxtLink>
 					    </div> 
 				    </div>
 			  	</div>
