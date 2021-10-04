@@ -56,10 +56,6 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/images/ArvidLogoFavIcon.png" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Julius Sans One"},
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Trade Winds"},
-      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.core.min.css", type: "text/css"},
-      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.theme.min.css", type: "text/css"},
-      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.dialog.min.css", type: "text/css"},
-      { rel: "stylesheet", href: "~assets/jQueryAssets/jquery.ui.resizable.min.css", type: "text/css"},
       { rel: "stylesheet", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", crossorigin: "anonymous", integrity: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"}
     ]
   },
