@@ -54,7 +54,7 @@
                             <span class="kontakt" for="name">Email</span>
                         </div>
                         <div class="inputBox2">
-                                <h5 class="kontakt2">Get a copy of the mail</h5>
+                                <h5 class="kontakt2">Get a copy</h5>
                             <input type="checkbox" name="test" class="copy check" value="value1">
                         </div>
                         <br>

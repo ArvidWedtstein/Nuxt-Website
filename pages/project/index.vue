@@ -8,24 +8,24 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="../">Home</NuxtLink>
                         <!--<a class="nav-link active" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a>--> 
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
                         <!--<a class="nav-link" href="about/">Om Meg</a> -->
                     </li>
-                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdown"> 
-                        <b-dropdown-header><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
+                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
+                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-item"><NuxtLink to="/game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-item"><NuxtLink to="/3d-print">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-item"><NuxtLink to="/photoshop">Photoshop</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./game">Spill</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="3dprint">3D-Print</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="photoshop">Photoshop</NuxtLink></b-dropdown-item>
                     </b-dropdown>
                     
                     <!--Kontaktside-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="./contact">Contact</NuxtLink>
+                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="../contact">Contact</NuxtLink>
                         <!--<a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
                     </li>
                     <li class="navbar-text">
@@ -42,30 +42,31 @@
         </nav>
         <div class="container-fluid">  
             <div class="row">
-			    <div class="projcard col-md-4">
-  	                <div class="projcard-body">
-			            <div class="projcard-inner">
-			                <a class="spill" href="./game"><img id="wolf" class="projcard-img-top" src="/images/Wolf.svg" alt="projcard image cap"></a>
-				  	            <h5 class="projcard-title">Spill</h5>
-				  	            <a class="spill" href="./game"><p class="projcard-text">Et spill jeg holder på å programmere og designe for tiden</p></a>
-					        </div> 
+
+			    <div class="card col-md-4 project">
+  	                <div class="card-body">
+			            <div class="card-inner">
+			                <a class="spill" href="game"><img id="wolf" class="card-img-top" src="/images/Wolf.svg" alt="Spill"></a>
+				  	        <h5 class="card-title">Spill</h5>
+				  	        <a class="spill" href="./game"><p class="card-text">A wacky game. . .</p></a>
 				        </div>
 			  	    </div>
-		        <div class="projcard col-md-4">
-				    <div class="projcard-body">
-			            <div class="projcard-inner">
-			                <a class="spill" href="../3d-print/"><img class="projcard-img-top" src="/images/3dprint.png" alt="projcard image cap"></a>
-                            <h5 class="projcard-title">3D Print</h5>
-                            <a class="modell" href="../3d-print/"><p class="projcard-text">3D Modeller</p></a>
+                </div>
+		        <div class="card col-md-4 project">
+				    <div class="card-body">
+			            <div class="card-inner">
+			                <a class="spill" href="3dprint"><img class="card-img-top" src="/images/3dprint.png" alt="3D Print"></a>
+                            <h5 class="card-title">3D Print</h5>
+                            <a class="modell" href="3dprint"><p class="card-text">3D Modeller</p></a>
 					    </div> 
 				    </div>
 			  	</div>
-			    <div class="projcard col-md-4">
-				    <div class="projcard-body">
-                        <div class="projcard-inner">
-                            <a class="spill" href="../Photoshop/"><img class="projcard-img-top" src="/images/Photoshop/photoshop1.jpg" alt="projcard image cap"></a>
-				  	        <h5 class="projcard-title">Photoshop</h5>
-				  	        <a class="modell" href="../Photoshop/"><p class="projcard-text">Photoshop Images</p></a>
+			    <div class="card col-md-4 project">
+				    <div class="card-body">
+                        <div class="card-inner">
+                            <a class="spill" href="photoshop"><img class="card-img-top" src="/images/Photoshop/photoshop1.jpg" alt="card image cap"></a>
+				  	        <h5 class="card-title">Photoshop</h5>
+				  	        <a class="modell" href="photoshop"><p class="card-text">Photoshop Images</p></a>
 					    </div> 
 				    </div>
 			  	</div>
@@ -73,13 +74,7 @@
         </div>
     </div>
 </template>
-<script src="~assets/js/jquery-3.4.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="~assets/js/popper.min.js"></script> 
-<script src="~assets/js/bootstrap-4.4.1.js"></script>
-<script type="text/javascript">
 
-</script>
 
 <script lang="text/javascript">
 

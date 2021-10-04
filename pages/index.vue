@@ -7,30 +7,28 @@
             <b-collapse class="collapse navbar-collapse" id="nav-collapse" is-nav>
                 <b-navbar-nav class="mr-auto">
                     <b-nav-item>
-                        <NuxtLink class="nav-link active" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
+                        <NuxtLink class="nav-link navlinkarvid active" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
                     </b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>-->
-        <nav class="navbar navbar-expand-lg navbar-light"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"></NuxtLink>
+        <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"></NuxtLink>
             <button class="navbar-toggler" target="navbarSupportedContent" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link active" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
-                        <!--<a class="nav-link active" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a>--> 
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
-                        <!--<a class="nav-link" href="about/">Om Meg</a> -->
                     </li>
-                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdown"> 
-                        <b-dropdown-header><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
+                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
+                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-item"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-item"><NuxtLink to="/3d-print">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-item"><NuxtLink to="/photoshop">Photoshop</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/game">Spill</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
                     </b-dropdown>
                     
                     <!--Kontaktside-->
@@ -51,7 +49,7 @@
         </nav>
         <div class="container-fluid">  
             <!--Jumbotron-->
-            <div class="jumbotron">
+            <div class="jumbotron jumbotroncustom">
             <!--RGB firkanten som går rundt "Velkommen" boksen-->
                 <div class="RGBborder">
                     <span></span>

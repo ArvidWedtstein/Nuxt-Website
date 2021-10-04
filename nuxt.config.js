@@ -65,7 +65,7 @@ export default {
   },
   //'@/assets/css/bootstrap-4.4.1.css'
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/css/style.css", "~/assets/css/main.css"],
+  css: ["~/assets/css/style.scss", "~/assets/css/main.scss"],
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
