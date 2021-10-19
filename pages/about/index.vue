@@ -1,44 +1,7 @@
 
 <template>
     <div id="about">
-        <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"></NuxtLink>
-            <button class="navbar-toggler" target="navbarSupportedContent" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <!-- Hjem knapp i navigeringslinjen på toppen-->
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
-                    </li>
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link active" to="/about">About Me</NuxtLink>
-                    </li>
-                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
-                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
-                            <b-dropdown-divider class="dropdown-divider"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/3d-print">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/photoshop">Photoshop</NuxtLink></b-dropdown-item>
-                    </b-dropdown>
-                    
-                    <!--Kontaktside-->
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="./contact">Contact</NuxtLink>
-                        <!--<a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
-                    </li>
-                    <li class="navbar-text">
-			            <h1 class="navbarbox"></h1>
-		            </li>
-                </ul>
-            </div>
-        </nav>
-
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="./">Home</NuxtLink></li>
-              <li class="breadcrumb-item active"><NuxtLink to="./about">About Me</NuxtLink></li>
-          </ol>
-        </nav>
-        
+        <Navbar/>
         <div class="container-fluid">	
             <div class="row">
                 <div class="col-xl-6">

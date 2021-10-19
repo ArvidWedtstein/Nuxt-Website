@@ -24,42 +24,55 @@ a:hover {
 .navbar {
     background: var(--navbarcolor);
     padding: 0;
+    .navbar-nav {
+        .nav-link {
+            color: rgba(255, 255, 255, 1);
+            padding: 1rem 2rem;
+            transition: 0.2s;
+            height: 100%;
+        }
+    }
+    .nav-link {
+        display: block;
+        font-size: 1.25rem;
+        color: #ffffff;
+        padding: 1rem 2rem;
+        text-align: center;
+        margin-left: 0rem;
+        &:hover &:focus {
+            color: #ff0000 !important;
+            font-weight: bolder;
+            box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
+                inset 3px 3px 10px rgba(0,0,0,0.3),
+                inset -3px -3px 10px rgba(0,0,0,0.1);
+        }
+        &.active, .nuxt-link-exact-active {
+            color: #ff0000 !important;
+            border-bottom: 0.1rem solid #ff0000;
+            box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
+              inset 3px 3px 10px rgba(0,0,0,0.3),
+              inset -3px -3px 10px rgba(0,0,0,0.1);
+        }
+    }
 }
-.nav-link {
-    display: block;
-    font-size: 1.25rem;
-    color: #ffffff;
-    padding: 1rem 2rem;
-    text-align: center;
-    margin-left: 0rem;
-}
 
 
-.navbar .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 1);
-    padding: 1rem 2rem;
-    transition: 0.2s;
-    height: 100%;
 
-}
-
-
-.nav-link:hover, .nav-link:focus {
-    width: 100%;
-    height: 100%;
+.nav-link.active, .nuxt-link-exact-active {
     color: #ff0000 !important;
+    border-bottom: 0.1rem solid #ff0000;
     box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
-        inset 3px 3px 10px rgba(0,0,0,0.3),
-        inset -3px -3px 10px rgba(0,0,0,0.1);
+      inset 3px 3px 10px rgba(0,0,0,0.3),
+      inset -3px -3px 10px rgba(0,0,0,0.1);
+      
 }
-.nav-link.active {
+.nav-link .nuxt-link-exact-active {
     color: #ff0000 !important;
     border-bottom: 0.1rem solid #ff0000;
     box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
       inset 3px 3px 10px rgba(0,0,0,0.3),
       inset -3px -3px 10px rgba(0,0,0,0.1);
 }
-
 /* dropdown */
 .dropdown-headercustom, .dropdown-headercustom a {
     font-size: 1.2rem;
@@ -132,7 +145,10 @@ a:hover {
     color: #00ffff;
     content: '/';
 }
-.breadcrumb-item.active .nuxt-link-active {
+.breadcrumb-item.active {
+    color: #ff0000;
+}
+.breadcrumb-item .nuxt-link-exact-active {
     color: #ff0000;
 }
 
@@ -359,6 +375,9 @@ div.desc {
   backface-visibility: hidden;
   
   will-change: transform;
+  p {
+      color: #ffffff;
+  }
 }
 .hex::after{
   content:'';
@@ -380,6 +399,7 @@ div.desc {
       -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
           transform: rotate3d(0,0,1,-60deg) skewY(30deg);
     transition: all 0.5s;
+    animation: shapeshift 5s linear infinite;
 }
 .hexIn * {
   position: absolute;
@@ -397,6 +417,7 @@ div.desc {
         -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
             transform: skewY(-30deg) rotate3d(0,0,1,60deg);
 }
+
 /*posisjonen til bildene i hexagonene*/
 .hex hexImg {
   left: -100%;
@@ -414,24 +435,24 @@ div.desc {
 }
 /*Posisjonen til bildetittel teksten når man går over bildene med cursoren*/
 .hexTxtTitle {
-  color: #F5CE95;
-  text-transform: capitalize;
+    color: #F5CE95;
+    text-transform: capitalize;
     text-align: center;
-  bottom: 50%;
-  padding-top:50%;
-  font-size: 1.5em;
-  z-index: 1;
+    bottom: 50%;
+    padding-top:50%;
+    font-size: 1.5em;
+    z-index: 1;
 }
 .hex h1:before, .hex h1:after {
-  display: inline-block;
-  margin: 0 0.5em;
-  width: 0.25em;
-  height: 0.03em;
-  background: #ffffff;
-  content: '';
-  vertical-align: middle;
-  transition: all 0.3s;
-  text-align:center;
+    display: inline-block;
+    margin: 0 0.5em;
+    width: 0.25em;
+    height: 0.03em;
+    background: #ffffff;
+    content: '';
+    vertical-align: middle;
+    transition: all 0.3s;
+    text-align:center;
 }
 /*Posisjonen til underteksten*/
 .hexTxtDesc {
@@ -451,9 +472,10 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
   background-position: center center;
   background-size: cover;
   overflow: hidden;
-  
-  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  /*-webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%, 0% 75%, 0% 25%);*/
+
+
 }
 
 .hexImg:before, .hexImg:after {
@@ -475,13 +497,22 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
 .hexLink:hover h1, .hexLink:focus h1,
 .hexLink:hover p, .hexLink:focus p{
   opacity:1;
-  transition: 0.8s;
+  transition: 0.5s;
+  font-weight: 50;
 }
 .hexIn:hover .hexImg:before,
 .hexIn:hover .hexImg:after,
 .hexIn:hover .hexLink {
   opacity: 1;
 }
+.orange-fade {
+    font-family: Helvetica,Arial,sans-serif;
+    font-weight: 100; 
+    background: -webkit-linear-gradient(#ff9000,#F5CE95);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+  }
 /*Media funksjonene til hex bilde layouten. Dette er funksjonene som gjør dem responsive når skjermstørrelsen blir mindre eller større*/
 @media (min-width:1201px) { 
   #hexGrid{
@@ -539,8 +570,6 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
         font-size: 8px;
     }
 }
-
-
 /* Contact Me page form css*/
 .contactFormBx {
 	display: flex;
@@ -1095,7 +1124,7 @@ input:-webkit-autofill:active  {
             rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
 }
 .project .card-body:hover {
-    transform: scale(1.01);
+    
 }
 .project .card-inner {
     -ms-flex: 1 1 auto;
@@ -1128,3 +1157,65 @@ input:-webkit-autofill:active  {
     box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
           rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
 }
+
+/* Photoshop page cards */
+.psresponsive {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    box-shadow: inset 5px 5px 5px rgba(0,0,0,0.2), 
+        inset -5px -5px 15px rgba(255,255,255,0.1), 
+        5px 5px 15px rgba(0,0,0,0.3),
+        -5px -5px 15px rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    min-height: 1px;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    transition: 0.3s;
+    position: relative;
+    margin: 0 auto;
+}
+.psresponsive:hover {
+    transform: scale(1.01);
+}
+.psresponsive .contentBox {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    border-radius: 1rem;
+    padding: 0.5rem 0.5rem;
+}
+.psresponsive .contentBox .content {
+    position: absolute;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    transition: 0.3s;
+    bottom: 0;
+    left: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); 
+    color: #f1f1f1;
+    padding: 0.5rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.psresponsive .contentBox img {
+    height: 10;
+    border-radius: 1rem;
+    max-width: 100%;
+    align-content: center;
+    vertical-align: middle;
+}
+
+.psresponsive .contentBox .content .desc {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Julius Sans One';
+    font-weight: 800;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+

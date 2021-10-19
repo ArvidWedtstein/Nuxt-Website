@@ -57,7 +57,7 @@
 			            <div class="card-inner">
                             <NuxtLink to="./3dprint"><img class="card-img-top" src="/images/3dprint.png" alt="3D Print"></NuxtLink>
                             <h5 class="card-title">3D Print</h5>
-                            <NuxtLink to="3dprint"><p class="card-text">3D Modeller</p></NuxtLink>
+                            <NuxtLink to="3dprint"><p class="card-text">3D Models</p></NuxtLink>
 					    </div> 
 				    </div>
 			  	</div>
@@ -82,7 +82,19 @@
 export default {
   
     template: '<Project/>',
-    transition: 'slide-bottom'
+    transition: 'slide-bottom',
+    head() {
+        return {
+            title: 'Projects',
+            meta: [
+                {
+                    hid: "description",
+                    name: "project page",
+                    content: "Arvid's projects"
+                }
+            ]
+        }
+    }
 }
 
 

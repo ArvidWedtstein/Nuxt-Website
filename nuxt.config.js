@@ -1,6 +1,9 @@
+import fs from 'fs';
+import path from 'path';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
+    titleTemplate: "%s - Nuxt",
     title: "Arvid's Website",
     script: [
         {
@@ -46,14 +49,17 @@ export default {
   },
   //'@/assets/css/bootstrap-4.4.1.css'
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/css/style.scss", "~/assets/css/main.scss"],
+  css: ["~/assets/css/style.scss"],
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '~/components',
+    { path: '~/components', extensions: ['vue'] }
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
@@ -73,10 +79,21 @@ export default {
     duration: 3000
   },
   ssr: false,
-
+  
   loadingIndicator: {
     name: 'chasing-dots',
     color: 'red',
     background: 'black'
+  },
+  hooks: {
+    build: {
+      done(builder) {
+        /*const extraFilePath = path.join(
+          __dirname,
+          'settingstg.json'
+        )
+        fs.writeFileSync(extraFilePath, 'egg');*/
+      }
+    }
   }
 };

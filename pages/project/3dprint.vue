@@ -1,36 +1,6 @@
 <template>
     <div id="3d-print">
-        <nav class="navbar navbar-expand-lg navbar-light"> <a href="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px;filter: contrast(200%);" src="/images//ArvidLogo.png" alt="logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-                <ul class="navbar-nav mr-auto">
-                    <!-- Hjem knapp i navigeringslinjen på toppen-->
-                    <li class="nav-item"> 
-                        <a class="nav-link" href="../" id="hometab" aria-controls="home" aria-expanded="true">Home</a> 
-                    </li>
-                    <li class="nav-item"> 
-                        <a class="nav-link" href="../about/">Om Meg</a> 
-                    </li>
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown"> 
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false"><i class="fas fa-briefcase"></i></a>
-                        <div class="dropdown-menu"> 
-                            <a class="dropdown-header" href="../Project/">Alle Prosjekter</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../Spill/">Spill</a>
-                            <!--<a class="dropdown-item" href="../IMcity/">IM City</a>-->
-                            <a class="dropdown-item" href="../3D-Print/">3D</a>
-                            <a class="dropdown-item" href="../Photoshop/">Photoshop</a>
-                        </div>
-                    </li>
-                    
-                    <!--Kontaktside-->
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="contact" aria-controls="home" aria-expanded="true" to="../contact">Contact</NuxtLink>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <Navbar/>
         <div id="preview" class="container-fluid">
             <div class="jumbotron">
                 <h1 class="display-4">3D Print</h1>

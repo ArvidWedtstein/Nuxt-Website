@@ -93,3 +93,6 @@ sw.*
 # Package.json
 package.json
 package-lock.json
+
+#Environment variables
+.env
