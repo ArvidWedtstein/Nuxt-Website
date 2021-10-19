@@ -49,14 +49,15 @@
     <div class="container-fluid">
         <ul class="row" id="items">
         <li class="col-md-4 printcard filterDiv pc">
-        <div class="printcard-body">
-            <div class="printcard2">
-                <img class="printcard-img-top" src="/images/3D-Icons/PCIbracketHexagon.png" alt="PCI Bracket">
-                <h5 class="printcard-title">PCI Bracket</h5>
-                <p class="printcard-text"></p>
-                <a href="~assets/3D-Object/PCIbracketHexagon.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a></div>
-        </div>
-            </li>
+            <div class="printcard-body">
+                <div class="printcard2">
+                    <img class="printcard-img-top" src="/images/3D-Icons/PCIbracketHexagon.png" alt="PCI Bracket">
+                    <h5 class="printcard-title">PCI Bracket</h5>
+                    <p class="printcard-text"></p>
+                    <a href="~assets/3D-Object/PCIbracketHexagon.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
+                </div>
+            </div>
+        </li>
         <li class="printcard col-md-4 filterDiv pc">
             <div class="printcard-body">
                 <div class="printcard2">
@@ -228,6 +229,16 @@
                 <a href="~assets/3D-Object/Fan-Cover/MSI200mm.STL" class="pixelbutton" download><i class="fas fa-download"></i> Download</a> </div>
             </div>
                 </li>
+                <!--<li v-for="(item, index) in images" :key="item.images" class="col-md-4 printcard filterDiv pc">
+                <div class="printcard-body">
+                    <div class="printcard2">
+                        <img class="printcard-img-top" :src="images[index].pathShort" alt="PCI Bracket">
+                        <h5 class="printcard-title">PCI Bracket</h5>
+                        <p class="printcard-text"></p>
+                        <a href="~assets/3D-Object/PCIbracketHexagon.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
+                    </div>
+                </div>
+            </li>-->
             </ul>
     </div>
 	  <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top">Top</button>
@@ -238,6 +249,22 @@
 
 export default {
     template: '<3d-print/>',
-    transition: 'slide-bottom'
+    transition: 'slide-bottom',
+    name: '3dprint',
+    data() {
+        return {
+            images: [],
+            stl: []
+        }
+    },
+    mounted() {
+        this.importAll(require.context('~/static/images/3D-Icons/', true, /\.png$/))
+    },
+    methods: {
+        importAll(r) {
+            r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
+            console.log(this.images);
+        }
+    }
 }
 </script>

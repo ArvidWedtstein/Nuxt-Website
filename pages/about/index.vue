@@ -12,14 +12,14 @@
                             <hr class="my-4">
                             <p>I currently study: Informationteknology and Media<br>Age: 17<br>I'm interested in: 3D-Design, Game development<br>Programmeringsspråk: JS, C#, Python, VB, HTML, CSS</p>
                             <div class="icon-bar a">
-                                <!--<a id="text0" href="https://www.facebook.com/profile.php?id=100022120962542" target="_blank animate__bounceIn" class="facebook"><i class="fa fa-facebook"></i></a>--> 
-                                <a id="text1" href="https://github.com/ArvidWedtstein" target="_blank" class="github animate__bounceIn"><i class="fab fa-github"></i></a> 
-                                <!--<a id="text2" href="https://twitter.com/ArvidWedtstein" target="_blank" class="twitter animate__bounceIn"><i class="fa fa-twitter"></i></a> 
-                                <a id="text3" href="https://www.twitch.tv/bass_gamer03" target="_blank" class="twitch animate__bounceIn"><i class="fa fa-twitch"></i></a> 
-                                <a id="text4" href="https://steamcommunity.com/id/arviwed/" target="_blank" class="steam animate__bounceIn"><i class="fa fa-steam"></i></a>-->
-                                <a id="text5" href="https://discord.gg/5hMtxNW" target="_blank" class="discord animate__bounceIn"><i class="fab fa-discord"></i></a> 
-                                <a id="text6" href="https://www.linkedin.com/in/arvid-wedtstein-7498a21b7" target="_blank" class="linkedin animate__bounceIn"><i class="fa fa-linkedin"></i></a>
-                                <a id="text7" href="../CV/" class="cv animate__bounceIn">CV</a>
+                                <!--<a href="https://www.facebook.com/profile.php?id=100022120962542" target="_blank animate__bounceIn" class="facebook"><i class="fa fa-facebook"></i></a>--> 
+                                <a href="https://github.com/ArvidWedtstein" target="_blank" class="github animate__bounceIn"><i class="fab fa-github"></i></a> 
+                                <!--<a href="https://twitter.com/ArvidWedtstein" target="_blank" class="twitter animate__bounceIn"><i class="fa fa-twitter"></i></a> 
+                                <a href="https://www.twitch.tv/bass_gamer03" target="_blank" class="twitch animate__bounceIn"><i class="fa fa-twitch"></i></a> 
+                                <a href="https://steamcommunity.com/id/arviwed/" target="_blank" class="steam animate__bounceIn"><i class="fa fa-steam"></i></a>-->
+                                <a href="https://discord.gg/5hMtxNW" target="_blank" class="discord animate__bounceIn"><i class="fab fa-discord"></i></a> 
+                                <a href="https://www.linkedin.com/in/arvid-wedtstein-7498a21b7" target="_blank" class="linkedin animate__bounceIn"><i class="fa fa-linkedin"></i></a>
+                                <a href="../CV/" class="cv animate__bounceIn">CV</a>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,10 @@
 
 export default {
     template: '<about/>',
-    transition: 'slide-bottom'
+    transition: 'slide-bottom',
+    key(route) {
+        return route.fullPath
+    }
 }
 </script>
 

@@ -13,16 +13,16 @@ export default {
             defer: true
         },
         {
-            type: 'text/javascript',
-            src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js',
-            defer: true
-        },
-        {
             src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
             defer: true
         },
         {
             src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
+            defer: true
+        },
+        {
+            type: 'text/javascript',
+            src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js',
             defer: true
         },
         {
@@ -67,7 +67,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    "bootstrap-vue/nuxt"
+    "bootstrap-vue/nuxt",
+    "@nuxt/image"
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

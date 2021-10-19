@@ -24,16 +24,17 @@
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
                     </li>
                     <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
-                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
-                            <b-dropdown-divider class="dropdown-divider"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
+                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
+                            <b-dropdown-divider class="dropdown-divider rgbline"></b-dropdown-divider>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./game">Spill</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./3dprint">3D-Print</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./photoshop">Photoshop</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./php-login">PHP</NuxtLink></b-dropdown-item>
                     </b-dropdown>
                     
                     <!--Kontaktside-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="./contact">Contact</NuxtLink>
+                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/contact">Contact</NuxtLink>
                         <!--<a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
                     </li>
                     <li class="navbar-text">

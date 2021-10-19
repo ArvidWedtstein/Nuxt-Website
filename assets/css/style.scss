@@ -8,6 +8,7 @@
 body {
     background: var(--background);
     color: #ffffff;
+    --hl: calc(.5*var(--l));
 }
 
 a {
@@ -63,7 +64,7 @@ a:hover {
 
 .rgbline {
     background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    height: 1px;
+    height: 3px;
     border: 0;
     background-size: 200% 200%;
     box-shadow: 0px 1px 10px #23d5ab
@@ -98,19 +99,21 @@ a:hover {
     border-radius: 0;
     transition: 0.3s;
     background: none !important;
-    outline: none;
+    outline: none !important;
 }
 .dropdowncustom .btn:hover {
     @include hover;
     background: none;
     border: none;
     outline: none;
+    box-shadow: none;
 }
 .dropdowncustom.active, .dropdowncustom.active .btn {
     @include active;
 }
 .dropdown-menu {
     background: var(--dropdownbackground);
+    border: none;
 }
 
 
@@ -382,25 +385,24 @@ div.desc {
 }
 
 /*Formen av hexagonene*/
-.hexIn{
-  position: absolute;
-  width:96%;
-  padding-bottom: 110.851%; 
-  margin: 2%;
-  overflow: hidden;
-  visibility: hidden;
-  outline:1px solid transparent;
-  
-  -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
-      -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
-          transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+.hexIn {
+    
+    position: absolute;
+    width:96%;
+    padding-bottom: 110.851%; 
+    overflow: hidden;
+    visibility: hidden;
+    outline:1px solid transparent;
     transition: all 0.5s;
-    animation: shapeshift 5s linear infinite;
+    margin: calc(-1*var(--hl)) 0;
+   //transform: scale(.95);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 }
 .hexIn * {
   position: absolute;
   visibility: visible;
   outline:1px solid transparent; 
+  transition: all 0.5s;
 }
 .hexLink {
     display:block;
@@ -409,9 +411,7 @@ div.desc {
     text-align: center;
     color: #fff;
     overflow: hidden;
-    -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
-        -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
-            transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+    
 }
 
 /*posisjonen til bildene i hexagonene*/
@@ -421,6 +421,7 @@ div.desc {
   width: auto;
   height: 100%;
   margin: 0 auto;
+  
 }
 .hex h1, .hex p {
   width: 100%;
@@ -452,9 +453,9 @@ div.desc {
 }
 /*Posisjonen til underteksten*/
 .hexTxtDesc {
-top: 50%;
-text-align: center;
-text-transform: uppercase;
+    top: 50%;
+    text-align: center;
+    text-transform: uppercase;
     
 }
 /*Bestemmer selve formen av hexagonene. Her har jeg bestemt formen av hexagonen ved hjelp av en clip path
@@ -468,10 +469,10 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
   background-position: center center;
   background-size: cover;
   overflow: hidden;
-  /*-webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%, 0% 75%, 0% 25%);*/
-
-
+  --hl: 0;
+  width: 100%; height: 100%;
+  filter: brightness(1);
+  transition: 0.7s;
 }
 
 .hexImg:before, .hexImg:after {
@@ -482,8 +483,8 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
   left: 0;
   content: '';
   opacity: 0;
-  transition: opacity 0.3s;
-  filter: drop-shadow(2px 2px 5px);
+  transition: all 0.3s;
+
 }
 .hexImg:before {
   background: rgba(2, 65, 92, 0.3);
@@ -501,7 +502,9 @@ webkit clip path kommandoen er der fordi standard clip path kommandoen ikke funk
 .hexIn:hover .hexImg:after,
 .hexIn:hover .hexLink {
   opacity: 1;
+  transform: scale(1.1);
 }
+
 .orange-fade {
     font-family: Helvetica,Arial,sans-serif;
     font-weight: 100; 
@@ -971,75 +974,76 @@ input:-webkit-autofill:active  {
 
  /* About Me link bar */
 .icon-bar a {
-  display: inline-flex;
-  align-items: center;
-  align-content: center;
-  -webkit-transition: all 0.5s ease-in-out;
-  text-align: center;
-  border: 1px solid transparent;
-  border-radius: 0%;
-  padding: 1rem;
-  width: 60px;
-  height: 60px;
-  transition: all 0.3s ease;
-  margin: 5px 2px;
-  color: white;
-  opacity: 0.7;
-  font-size: 1.3rem;
-  position: relative;
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 0%;
+    padding: 1rem;
+    width: 60px;
+    height: 60px;
+    transition: all 0.3s ease;
+    margin: 5px 2px;
+    color: white;
+    opacity: 0.7;
+    font-size: 1.3rem;
+    position: relative;
+    &.facebook {
+        background: #3B5998;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.twitter {
+        background: #55ACEE;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.twitch {
+        background: rgba(145, 71, 255, 0.9);
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.discord {
+        background: #8697F6;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.github {
+        background: #333333;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.steam {
+        background: #173e58;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.linkedin {
+        background: #007bb5;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &.cv {
+        background: #009bb5;
+        color: white;
+        transition: .5s;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
+    &:hover {
+        opacity: 1;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+    }
 }
-.icon-bar a:hover {
-  opacity: 1;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.facebook {
-  background: #3B5998;
-  color: white;
-	transition: .5s;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.twitter {
-  background: #55ACEE;
-  color: white;
-	transition: .5s;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.twitch {
-  background: rgba(145, 71, 255, 0.9);
-  color: white;
-	transition: .5s;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.discord {
-  background: #8697F6;
-  color: white;
-	transition: .5s;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.github {
-	background: #333333;
-	color: white;
-	transition: .5s;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.steam {
-	background: #173e58;
-	color: white;
-	transition: .5s;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.linkedin {
-  background: #007bb5;
-  color: white;
-  transition: .5s;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
-.cv {
-  background: #009bb5;
-  color: white;
-  transition: .5s;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-}
+
 
 
 /*Egen Scrollbar*/
@@ -1120,9 +1124,6 @@ input:-webkit-autofill:active  {
     box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
             rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
 }
-.project .card-body:hover {
-    
-}
 .project .card-inner {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -1137,7 +1138,7 @@ input:-webkit-autofill:active  {
     align-content: center;
     border-radius: 0.25rem;
     font-family: "Julius Sans One";
-    transition: 0.3s;
+    transition: 0.1s;
 }
 
 .project .card-title {
@@ -1151,8 +1152,12 @@ input:-webkit-autofill:active  {
 .project .card-img-top {
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
-    box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
-          rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+    filter: drop-shadow(2px 2px 5px black);
+    transition: 0.3s;
+    &:hover {
+        filter: drop-shadow(4px 4px 10px black);
+        transform: translateY(-6px);
+    }
 }
 
 /* Photoshop page cards */
@@ -1191,7 +1196,6 @@ input:-webkit-autofill:active  {
     transition: 0.3s;
     bottom: 0;
     left: 0;
-    background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5); 
     color: #f1f1f1;
     padding: 0.5rem;
@@ -1216,3 +1220,57 @@ input:-webkit-autofill:active  {
     letter-spacing: 1px;
 }
 
+div.photoset {
+    padding: 2px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    max-width: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .photo {
+       position: relative;
+       flex-grow: 1; //They will fill space but actually want to take up the smallest space possible doing it, so you just need to stop it getting too small with min-width (otherwise they all bunch on the same line)
+       min-width: calc(100% / 3); //This is the maximum number (3) in a row bit
+       background-size: cover;
+       background-position: center;
+       
+       @media screen and (max-width: 700px) {
+          min-width: calc(100% / 2); //As simple as this for responsiveness without a delay you would get with JavaScript
+       }
+       @media screen and (max-width: 460px) {
+          min-width: 100%;
+       }
+       &:after {
+          //Aspect Ratio
+          padding-top: 83.33333%; //For 5:6 height to width ratio
+          display: block;
+          content: "";
+       }
+       &:before {
+          //Gaps
+          z-index: 2;
+          position: absolute;
+          content: "";
+          top: 0px;
+          right: 0px;
+          bottom: 0px;
+          left: 0px;
+          box-shadow: inset 0 0 0 2px #ffffff; //Cheaty way to make it look like there are gaps 😜
+       }
+       &:nth-child(1) {
+          //Make first image big
+          width: 100%;
+       }
+    }
+ 
+    &.square .photo:after {
+       padding-top: 100%;
+    }
+    &.portrait .photo:after {
+       padding-top: 120%;
+    }
+ }
