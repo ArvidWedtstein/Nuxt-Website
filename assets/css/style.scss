@@ -34,9 +34,24 @@ a:hover {
         inset 3px 3px 10px rgba(0,0,0,0.3),
         inset -3px -3px 10px rgba(0,0,0,0.1);
 }
+@mixin shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@keyframes hover {
+    0% {
+        box-shadow: 0.0px 0.0px 0.0px hsl(0deg 0% 0% / 0.50);
+    }
+    50% {
+        box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
+    }
+    100% {
+        box-shadow: 0.0px 0.0px 0.0px hsl(0deg 0% 0% / 0.50);
+    }
+}
 /* Navbar */
 .navbar {
     background: var(--navbarcolor);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 0;
     .navbar-nav {
         .nav-link {
@@ -48,9 +63,10 @@ a:hover {
             color: #ffffff;
             text-align: center;
             margin-left: 0rem;
-            
+            transition: all 300ms ease;
             &:hover, &:focus {
                 @include hover;
+                animation: hover 2s forwards infinite;
             }
             &.active {
                 @include active;
@@ -68,6 +84,31 @@ a:hover {
     border: 0;
     background-size: 200% 200%;
     box-shadow: 0px 1px 10px #23d5ab
+}
+.rgb-link {
+    background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    background-position: left bottom;
+    text-decoration: none;
+    font-weight: 900;
+    transition: background-size 600ms ease;
+    &:hover {
+        background-size: 300% 3px;
+        -webkit-animation: rgb-link 10s ease infinite;
+        animation: rgb-link 3s linear infinite;
+    }
+}
+@keyframes rgb-link {
+    0% {
+        background-position-x: left;
+    }
+    50% {
+        background-position-x: right;
+    }
+    100% {
+        background-position-x: left;
+    }
 }
 /* dropdown */
 .dropdown-headercustom, .dropdown-headercustom a {

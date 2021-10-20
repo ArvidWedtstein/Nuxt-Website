@@ -247,10 +247,11 @@
 
 <script lang="text/javascript">
 
+const axios = require('axios');
+const path = require('path');
 export default {
     template: '<3d-print/>',
     transition: 'slide-bottom',
-    name: '3dprint',
     data() {
         return {
             images: [],
@@ -259,8 +260,15 @@ export default {
     },
     mounted() {
         this.importAll(require.context('~/static/images/3D-Icons/', true, /\.png$/))
+        //this.loadStl()
     },
     methods: {
+        async loadStl() {
+            const images = (await axios.$get('~/api/carousel/images')).data
+
+            this.stl.push(images)
+            console.log(this.stl);
+        },
         importAll(r) {
             r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
             console.log(this.images);

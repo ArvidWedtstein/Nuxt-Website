@@ -9,8 +9,7 @@
                 <p class="lead"></p>
                 <hr class="my-4">
             </div>
-            <div class="photoset"> <!--Can also do portrait or square, remove the "-" prefix-->
-                <!--Add or remove some of these-->
+            <!--<div class="photoset">
                 <a href="/images/Photoshop/photoshop1.jpg" target="_blank" class="photo" style="background-image:url(/images/Photoshop/photoshop1.jpg)" ></a>
                 <a href="/images/Photoshop/photoshop2.jpg" target="_blank" class="photo" style="background-image:url(/images/Photoshop/photoshop2.jpg)"></a>
                 <a href="/images/Photoshop/photoshop3.jpg" target="_blank" class="photo" style="background-image:url(/images/Photoshop/photoshop3.jpg)"></a>
@@ -20,21 +19,22 @@
                 <a href="https://blog.tumblr.com/image/0000000000" target="_blank" class="photo" style="background-image:url(https://78.media.tumblr.com/ea9fe77f480a5328eb81335847cb711f/tumblr_p773r1ugkd1wd32uro7_400.jpg)"></a>
                 <a href="https://blog.tumblr.com/image/0000000000" target="_blank" class="photo" style="background-image:url(https://78.media.tumblr.com/470e6d187709ee3ecd0b1c71a287adc6/tumblr_p773r1ugkd1wd32uro8_400.png)"></a>
                 <a href="https://blog.tumblr.com/image/0000000000" target="_blank" class="photo" style="background-image:url(https://78.media.tumblr.com/b5f5d5705000bf45b6f8903222bcba8d/tumblr_p773r1ugkd1wd32uro9_400.jpg)"></a>
-            </div>
+            </div>-->
             <div class="row">
-                <div class="col-xl-4">
+                <div class="col-xl-4" v-for="(value) in object" :key="value">
                     <div class="psresponsive">
                         <div class="contentBox">
                             <a target="_blank" href="/images/Photoshop/photoshop1.jpg">
                             <img src="/images/Photoshop/photoshop1.jpg" alt="Photoshop1" class="img-fluid">
                             </a>
                             <div class="content">
-                                <p class="desc">Star Wars</p>
+                                <p class="desc">{{value}}</p>
                             </div>
                         </div>
                     </div>
                 </div>   
-                <div class="col-xl-4">
+
+                <!--<div class="col-xl-4">
                     <div class="psresponsive">
                         <div class="contentBox">
                             <a target="_blank" href="/images/Photoshop/photoshop2.jpg">
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -94,7 +94,21 @@
 export default {
   
     template: '<Photoshop/>',
-    transition: 'slide-bottom'
+    transition: 'slide-bottom',
+    data() {
+        return {
+            images: []
+        }
+    },
+    mounted() {
+        this.importAll(require.context('~/static/images/Photoshop/', true, /\.jpg$/))
+    },
+    methods: {
+        importAll(r) {
+            r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
+            console.log(this.images);
+        }
+    }
 }
 
 

@@ -11,7 +11,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    <p class="display-4 unselectable">Welcome</p>
+                    <p class="display-4 rgb-link unselectable">Welcome</p>
                     <p id="pos" class="lead unselectable">to my website</p>
                 </div>
             </div>
@@ -150,6 +150,7 @@
         <div id="particles-js"></div>
     </div>
 </template>
+
 <script src="~assets/js/jquery-3.4.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="~assets/js/popper.min.js"></script> 
@@ -162,12 +163,25 @@ const axios = require('axios');
 
 /*const { data } = axios.get('http://localhost:8080/user/arvid');
 console.log(data)*/
+
+
+
 export default {
     template: '<App/>',
     transition: 'slide-bottom',
-    data: () => ({
-        posts: []
-    })
+    data() {
+        return {
+            images: []
+        }
+    },
+    mounted() {
+    },
+    methods: {
+        greet() {
+            var audio = new Audio("~/pages/speak.wav");
+            audio.play();
+        }
+    }
 }
 
 </script>

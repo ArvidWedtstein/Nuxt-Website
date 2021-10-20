@@ -7,6 +7,11 @@ export default {
     title: "Arvid's Website",
     script: [
         {
+          src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
+          defer: true,
+          rel: "preload"
+        },
+        {
             type: 'text/javascript',
             rel: "preload",
             src: 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js',
@@ -16,10 +21,7 @@ export default {
             src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
             defer: true
         },
-        {
-            src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
-            defer: true
-        },
+        
         {
             type: 'text/javascript',
             src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js',
@@ -94,7 +96,15 @@ export default {
           'settingstg.json'
         )
         fs.writeFileSync(extraFilePath, 'egg');*/
+        
+        
+      },
+      node: {
+        fs: 'empty'
       }
     }
-  }
+  },
+  serverMiddleware: [
+    '~/api/index.js'
+  ]
 };
