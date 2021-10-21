@@ -12,7 +12,7 @@
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>-->
-        <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><nuxt-img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"/></NuxtLink>
+        <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"/></NuxtLink>
             <button class="navbar-toggler" target="navbarSupportedContent" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -23,14 +23,14 @@
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
                     </li>
-                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
+                    <NuxtLink class="nav-item" to="/project/"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
                         <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider rgbline"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./3dprint">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./photoshop">Photoshop</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="./php-login">PHP</NuxtLink></b-dropdown-item>
-                    </b-dropdown>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/php-login">PHP</NuxtLink></b-dropdown-item>
+                    </b-dropdown></NuxtLink>
                     
                     <!--Kontaktside-->
                     <li class="nav-item"> 

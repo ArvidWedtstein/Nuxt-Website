@@ -7,30 +7,36 @@ export default {
     title: "Arvid's Website",
     script: [
         {
+          src: "https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js",
+          type: "module"
+        },
+        {
+          src: "https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+        },
+        {
           src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
           defer: true,
           rel: "preload"
         },
         {
-            type: 'text/javascript',
-            rel: "preload",
-            src: 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js',
-            defer: true
+          type: 'text/javascript',
+          rel: "preload",
+          src: 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js',
+          defer: true
         },
         {
-            src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
-            defer: true
-        },
-        
-        {
-            type: 'text/javascript',
-            src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js',
-            defer: true
+          src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
+          defer: true
         },
         {
-            src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
-            integrity: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
-            crossorigin: "anonymous"
+          type: 'text/javascript',
+          src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js',
+          defer: true
+        },
+        {
+          src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+          integrity: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
+          crossorigin: "anonymous"
         }
     ],
     htmlAttrs: {

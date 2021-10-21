@@ -44,11 +44,11 @@
         </div>
     </div>
 
-
+ <!--SEARCH FILTER: https://codepen.io/AndrewThian/pen/QdeOVa-->
 
     <div class="container-fluid">
         <ul class="row" id="items">
-        <li class="col-md-4 printcard filterDiv pc">
+        <li class="col-md-4 rgbcard filterDiv pc">
             <div class="printcard-body">
                 <div class="printcard2">
                     <img class="printcard-img-top" src="/images/3D-Icons/PCIbracketHexagon.png" alt="PCI Bracket">

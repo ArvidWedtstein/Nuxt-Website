@@ -3,9 +3,7 @@
     <div id="project">
         <Navbar/>
         <div class="container-fluid">  
-            <NuxtChild/>
             <div class="row">
-
 			    <div class="card col-md-4 project">
   	                <div class="card-body">
 			            <div class="card-inner">
@@ -45,6 +43,11 @@
                             </div> 
                         </div>
                     </NuxtLink>
+                    <iframe height="300" style="width: 100%;" scrolling="no" title="Solar System Explorer in CSS only" src="https://codepen.io/jcoulterdesign/embed/ZxXbeP?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/jcoulterdesign/pen/ZxXbeP">
+  Solar System Explorer in CSS only</a> by Jamie Coulter (<a href="https://codepen.io/jcoulterdesign">@jcoulterdesign</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 			  	</div>
 	        </div>
         </div>

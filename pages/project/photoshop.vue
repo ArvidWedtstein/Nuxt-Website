@@ -9,6 +9,8 @@
                 <p class="lead"></p>
                 <hr class="my-4">
             </div>
+            <!--https://codepen.io/william-goldsworthy/pen/JzVajj - cards -->
+            <!--https://codepen.io/lamchang/pen/PQGQyR - card -->
             <!--<div class="photoset">
                 <a href="/images/Photoshop/photoshop1.jpg" target="_blank" class="photo" style="background-image:url(/images/Photoshop/photoshop1.jpg)" ></a>
                 <a href="/images/Photoshop/photoshop2.jpg" target="_blank" class="photo" style="background-image:url(/images/Photoshop/photoshop2.jpg)"></a>
