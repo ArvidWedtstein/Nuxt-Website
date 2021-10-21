@@ -1,43 +1,7 @@
 
 <template>
     <div id="game">
-        <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"></NuxtLink>
-            <button class="navbar-toggler" target="navbarSupportedContent" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <!-- Hjem knapp i navigeringslinjen på toppen-->
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
-                    </li>
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
-                    </li>
-                    <b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
-                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="project/">All Projects</NuxtLink></b-dropdown-header>
-                            <b-dropdown-divider class="dropdown-divider"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
-                    </b-dropdown>
-                    
-                    <!--Kontaktside-->
-                    <li class="nav-item"> 
-                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="./contact">Contact</NuxtLink>
-                        <!--<a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
-                    </li>
-                    <li class="navbar-text">
-			            <h1 class="navbarbox"></h1>
-		            </li>
-                </ul>
-            </div>
-        </nav>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><NuxtLink to="../">Home</NuxtLink></li>
-              <li class="breadcrumb-item" aria-current="page"><NuxtLink to="./">Projects</NuxtLink></li>
-              <li class="breadcrumb-item active" aria-current="page"><NuxtLink to="./">Game</NuxtLink></li>
-          </ol>
-        </nav>
+        <Navbar/>
         <div id="preview" class="container-fluid">
             <div class="jumbotron">
                 <h1 class="display-4">Spill uten navn..</h1>
@@ -117,18 +81,19 @@
                     <p>Spillets 3D modeller har jeg laget i Blender. Nedenfor er en oversikt på noen av dem.</p>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3">
-                        <div class="responsive">
+                    <div v-for="(value) in images" :key="value" class="col-xl-3">
+                        <div class="gameresponsive">
                             <div class="gallery">
-                                <a target="_blank" href="/images/Blender/Blender1.png">
-                                <img src="/images/Blender/Blender1.png" alt="Hus" class="img-fluid 3Dimg" height="300">
+                                <a target="_blank" v-bind:alt="value.pathShort">
+                                <img v-bind:src="value.pathLong" v-bind:alt="value.pathShort" class="img-fluid 3Dimg" height="300">
                                 </a>
                                 <!--Tekst under bilde-->
-                                <div class="desc">Hus</div>
+                                <div class="desc">{{descriptions[value.pathShort]}}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3">
+                    <!--BEHOLD CODE TIL PRESENTASJON-->
+                    <!--<div class="col-xl-3">
                         <div class="responsive">
                             <div class="gallery">
                                 <a target="_blank" href="/images/Blender/Blender2.PNG">
@@ -257,7 +222,7 @@
                                 <div class="desc">Hammer</div>
                             </div>
                         </div>
-                    </div>	   
+                    </div>-->	   
                 </div>
             </div>
         </div>
@@ -276,7 +241,25 @@
 export default {
   
     template: '<game/>',
-    transition: 'slide-bottom'
+    transition: 'slide-bottom',
+    data() {
+        return {
+            images: null,
+            descriptions: null
+        }
+    },
+    mounted() {
+        this.importAll(require.context('~/static/images/Blender/', true, /\.PNG$/))
+    },
+    methods: {
+        async importAll(r) {
+            this.images = [];
+            this.descriptions = [];
+            r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
+            const content = await this.$content('game').fetch();
+            this.descriptions = content;
+        }
+    }
 }
 
 

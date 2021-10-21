@@ -21,67 +21,18 @@
                 <a href="https://blog.tumblr.com/image/0000000000" target="_blank" class="photo" style="background-image:url(https://78.media.tumblr.com/b5f5d5705000bf45b6f8903222bcba8d/tumblr_p773r1ugkd1wd32uro9_400.jpg)"></a>
             </div>-->
             <div class="row">
-                <div class="col-xl-4" v-for="(value) in object" :key="value">
+                <div class="col-xl-4" v-for="(value) in images" :key="value">
                     <div class="psresponsive">
                         <div class="contentBox">
-                            <a target="_blank" href="/images/Photoshop/photoshop1.jpg">
-                            <img src="/images/Photoshop/photoshop1.jpg" alt="Photoshop1" class="img-fluid">
+                            <a target="_blank" v-bind:href="value.pathShort">
+                            <img v-bind:src="value.pathLong" v-bind:alt="value.pathShort" class="img-fluid">
                             </a>
                             <div class="content">
-                                <p class="desc">{{value}}</p>
+                                <p class="desc">{{descriptions[value.pathShort]}}</p>
                             </div>
                         </div>
                     </div>
                 </div>   
-
-                <!--<div class="col-xl-4">
-                    <div class="psresponsive">
-                        <div class="contentBox">
-                            <a target="_blank" href="/images/Photoshop/photoshop2.jpg">
-                            <img src="/images/Photoshop/photoshop2.jpg" alt="Photoshop2" class="img-fluid">
-                            </a>
-                            <div class="content">
-                                <p class="desc">Space</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>  
-                <div class="col-xl-4">
-                    <div class="psresponsive">
-                        <div class="contentBox">
-                            <a target="_blank" href="/images/Photoshop/photoshop3.jpg">
-                            <img src="/images/Photoshop/photoshop3.jpg" alt="Photoshop3" class="img-fluid">
-                            </a>
-                            <div class="content">
-                                <p class="desc">Mars</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
-                <div class="col-xl-4">
-                    <div class="psresponsive">
-                        <div class="contentBox">
-                            <a target="_blank" href="/images/Photoshop/photoshop4.jpg">
-                            <img src="/images/Photoshop/photoshop4.jpg" alt="Photoshop4" class="img-fluid">
-                            </a>
-                            <div class="content">
-                                <p class="desc">Avatar</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> 	    
-                <div class="col-xl-4">
-                    <div class="psresponsive">
-                        <div class="contentBox">
-                            <a target="_blank" href="/images/Photoshop/photoshop5.png">
-                            <img src="/images/Photoshop/photoshop5.png" alt="Photoshop4" class="img-fluid">
-                            </a>
-                            <div class="content">
-                                <p class="desc">Stein</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>
@@ -97,16 +48,28 @@ export default {
     transition: 'slide-bottom',
     data() {
         return {
-            images: []
+            images: null,
+            descriptions: null
         }
     },
     mounted() {
         this.importAll(require.context('~/static/images/Photoshop/', true, /\.jpg$/))
     },
     methods: {
-        importAll(r) {
+        async importAll(r) {
+            this.images = [];
+            this.descriptions = [];
             r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
-            console.log(this.images);
+            let description = {
+                './photoshop1.jpg': {description: "Star Wars"},
+                './photoshop2.jpg': {description: "Space"},
+                './photoshop3.jpg': {description: "Mars"},
+                './photoshop4.jpg': {description: "Avatar"},
+                './photoshop5.jpg': {description: "Stein"}
+            };
+        
+            const content = await this.$content('photoshop').fetch();
+            this.descriptions = content;
         }
     }
 }

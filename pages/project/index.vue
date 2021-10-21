@@ -3,6 +3,7 @@
     <div id="project">
         <Navbar/>
         <div class="container-fluid">  
+            <NuxtChild/>
             <div class="row">
 
 			    <div class="card col-md-4 project">

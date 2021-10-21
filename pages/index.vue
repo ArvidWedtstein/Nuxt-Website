@@ -29,7 +29,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity1.PNG);"></div>
                                 <h1 class="hexTxtTitle orange-fade">By</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -38,7 +38,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity7.PNG);"></div>
                                 <h1 class="hexTxtTitle orange-fade">By</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -47,7 +47,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity4.PNG);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Lyktestolpe</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -56,7 +56,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity2.PNG);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Elv</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -65,7 +65,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Blender/Start2.png);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Mynt</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -74,7 +74,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Blender/Start1.png);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Ovn</h1>
                                 <p class="hexTxtDesc">Unity Spill Prosjekt</p>
@@ -83,7 +83,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Blender/Start3.png);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Gjerde</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -92,7 +92,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Blender/Start4.png);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Kiste</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -101,7 +101,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image:url(/images/Blender/Start5.png);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Ambolt</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -110,7 +110,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Blender/Start6.png);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Flagg</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -119,7 +119,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                     <div class="hexImg" style="background-image: url(/images/Unity/Unity10.PNG);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Bro</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
@@ -137,7 +137,7 @@
                     </li>
                     <li class="hex">
                         <div class="hexIn">
-                            <a class="hexLink" href="Spill/">
+                            <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity9.PNG);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Tårn</h1>
                                 <p class="hexTxtDesc">Spill Prosjekt</p>

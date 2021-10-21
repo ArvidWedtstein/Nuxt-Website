@@ -70,9 +70,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
-    "@nuxt/image"
+    "@nuxt/image",
+    "@nuxt/content"
   ],
+  content: {
 
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   loading: {
