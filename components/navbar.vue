@@ -18,12 +18,12 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./">Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./"><fa icon="coffee" />Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
                     </li>
-                    <NuxtLink class="nav-item" to="/project/"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
+                    <NuxtLink class="nav-item" to="/project"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
                         <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider rgbline"></b-dropdown-divider>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>

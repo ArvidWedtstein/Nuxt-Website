@@ -4,50 +4,46 @@
         <Navbar/>
         <div class="container-fluid">  
             <div class="row">
-			    <div class="card col-md-4 project">
-  	                <div class="card-body">
-			            <div class="card-inner">
-                            <NuxtLink to="./game"><img id="wolf" class="card-img-top" src="/images/Wolf.svg" alt="Spill"/></NuxtLink>
-				  	        <h5 class="card-title">Spill</h5>
+			    <div class="col-md-3 project d-flex">
+                    <div class="card text-center">
+                         <NuxtLink class="imgborder" to="./game"><img class="card-img-top" src="/images/Projects/game.png" alt="Spill"/></NuxtLink>
+                        <div class="card-body boxborder">
+                            <h5 class="card-title">Spill</h5>
                             <NuxtLink to="./game" title="A wacky game"><p class="card-text">A wacky game. . .</p></NuxtLink>
-				        </div>
-			  	    </div>
+                            <p class="card-text">Date: 22/10/21</p>
+                        </div>
+                    </div>
                 </div>
-		        <div class="card col-md-4 project">
-				    <div class="card-body">
-			            <div class="card-inner">
-                            <NuxtLink to="./3dprint"><img class="card-img-top" src="/images/3dprint.png" alt="3D Print"></NuxtLink>
+		        <div class="col-md-3 project d-flex">
+                    <div class="card text-center">
+                        <NuxtLink class="imgborder" to="./3dprint"><img class="card-img-top" src="/images/Projects/3dprint.jpg" alt="3D Print"/></NuxtLink>
+                        <div class="card-body boxborder">
                             <h5 class="card-title">3D Print</h5>
                             <NuxtLink to="3dprint"><p class="card-text">3D Models</p></NuxtLink>
-					    </div> 
-				    </div>
-			  	</div>
-			    <div class="card col-md-4 project">
-                    <NuxtLink to="./photoshop">
-                        <div class="card-body">
-                            <div class="card-inner">
-                                <nuxt-img class="card-img-top" src="/images/Photoshop/photoshop1.jpg" alt="Photoshop"/>
-                                <h5 class="card-title">Photoshop</h5>
-                                <p class="card-text">Photoshop Images</p>
-                            </div> 
+                            <p class="card-text">Date: 22/10/21</p>
                         </div>
-                    </NuxtLink>
+                    </div>
 			  	</div>
-                <div class="card col-md-4 project">
-                    <NuxtLink to="./php-login">
-                        <div class="card-body">
-                            <div class="card-inner">
-                                <nuxt-img class="card-img-top" src="/images/Photoshop/photoshop1.jpg"/>
-                                <h5 class="card-title">PHP Login</h5>
-                                <p class="card-text">PHP & SQL Login</p>
-                            </div> 
+			    <div class="col-md-3 project d-flex">
+                    <div class="card text-center">
+                        <NuxtLink class="imgborder" to="./photoshop"><img class="card-img-top" src="/images/Projects/photoshop.jpg" alt="Photoshop"/></NuxtLink>
+                        <div class="card-body boxborder">
+                            <h5 class="card-title">Photoshop</h5>
+                            <p class="card-text"><NuxtLink to="./photoshop">Photoshop Images</NuxtLink></p>
+                            <p class="card-text">Date: 22/10/21</p>
                         </div>
-                    </NuxtLink>
-                    <iframe height="300" style="width: 100%;" scrolling="no" title="Solar System Explorer in CSS only" src="https://codepen.io/jcoulterdesign/embed/ZxXbeP?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/jcoulterdesign/pen/ZxXbeP">
-  Solar System Explorer in CSS only</a> by Jamie Coulter (<a href="https://codepen.io/jcoulterdesign">@jcoulterdesign</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+                    </div>
+			  	</div>
+                <div class="col-md-3 project d-flex">
+                    <div class="card text-center">
+                        <NuxtLink class="imgborder" to="./php-login"><img class="card-img-top" src="/images/Projects/php.png"/>
+                        <div class="card-body boxborder">
+                            <h5 class="card-title">PHP Login</h5>
+                            <p class="card-text">PHP & SQL Login</p>
+                            <p class="card-text">Date: 22/10/21</p>
+                        </div>
+                        </NuxtLink>
+                    </div>
 			  	</div>
 	        </div>
         </div>

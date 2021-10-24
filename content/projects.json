@@ -1,0 +1,20 @@
+{
+    "projects": {
+        "photoshop": {
+            "description": "Photoshop images",
+            "image": "/images/Projects/photoshop.jpg"
+        },
+        "game": {
+            "description": "Et spill jeg holder på med",
+            "image": "/images/Projects/game.PNG"
+        },
+        "3dprint": {
+            "description": "3D Models",
+            "image": "/images/Projects/3dprint.jpg"
+        },
+        "php": {
+            "description": "PHP & SQL Login system",
+            "image": "/images/Projects/php.png"
+        }
+    }
+}
