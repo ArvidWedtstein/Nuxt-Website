@@ -23,7 +23,7 @@
                             <a class="hexLink" href="Photoshop/">
                                 <div class="hexImg" style="background-image: url(/images/Photoshop/photoshop1.jpg);"></div>
                                 <h1 class="hexTxtTitle orange-fade">Star Wars</h1>
-                                <p class="hexTxtDesc">Photoshop Prosjekt</p>
+                                <p class="hexTxtDesc">Photoshop Project</p>
                             </a>
                         </div>
                     </li>

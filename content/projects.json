@@ -2,19 +2,23 @@
     "projects": {
         "photoshop": {
             "description": "Photoshop images",
-            "image": "/images/Projects/photoshop.jpg"
+            "image": "/images/Projects/photoshop.jpg",
+            "category": "Programming"
         },
         "game": {
             "description": "Et spill jeg holder på med",
-            "image": "/images/Projects/game.PNG"
+            "image": "/images/Projects/game.PNG",
+            "category": "Programming"
         },
         "3dprint": {
             "description": "3D Models",
-            "image": "/images/Projects/3dprint.jpg"
+            "image": "/images/Projects/3dprint.jpg",
+            "category": "3D Print"
         },
         "php": {
             "description": "PHP & SQL Login system",
-            "image": "/images/Projects/php.png"
+            "image": "/images/Projects/php.png",
+            "category": "Programming"
         }
     }
 }

@@ -18,7 +18,7 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./"><fa icon="coffee" />Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./"><font-awesome-icon icon="fa-solid fa-home" />Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
