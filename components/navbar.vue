@@ -12,6 +12,9 @@
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>-->
+        <!-- https://codepen.io/YusukeNakaya/pen/ebLjde TABS NAVBAR -->
+
+        <!-- new navbar?!?!?? https://codepen.io/MitchES/pen/dRMQdx -->
         <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"/></NuxtLink>
             <button class="navbar-toggler" target="navbarSupportedContent" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
