@@ -1,24 +1,30 @@
 {
-    "projects": {
-        "photoshop": {
-            "description": "Photoshop images",
-            "image": "/images/Projects/photoshop.jpg",
-            "category": "Programming"
-        },
-        "game": {
+    "projects": [
+        {
+            "name": "Game",
             "description": "Et spill jeg holder på med",
             "image": "/images/Projects/game.PNG",
-            "category": "Programming"
+            "category": "Programming",
+            "language": ["C#"]
         },
-        "3dprint": {
+        {
+            "name": "3D Print",
             "description": "3D Models",
             "image": "/images/Projects/3dprint.jpg",
             "category": "3D Print"
         },
-        "php": {
+        {
+            "name": "Photoshop",
+            "description": "Photoshop images",
+            "image": "/images/Projects/photoshop.jpg",
+            "category": "Media"
+        },
+        {
+            "name": "Login System",
             "description": "PHP & SQL Login system",
             "image": "/images/Projects/php.png",
-            "category": "Programming"
+            "category": "Programming",
+            "language": ["PHP", "SQL"]
         }
-    }
+    ]
 }

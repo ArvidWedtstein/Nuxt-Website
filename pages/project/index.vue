@@ -4,9 +4,20 @@
         <Navbar/>
         <div class="container-fluid">  
             <div class="row">
-			    <div class="col-md-3 project d-flex">
+			    <div v-for="item in projects" :key="item" class="col-md-3 project d-flex">
                     <div class="card text-center">
-                        <NuxtLink class="imgborder" to="./game"><img class="card-img-top" src="/images/Projects/game.png" alt="Spill"/></NuxtLink>
+                        <NuxtLink class="imgborder" to="./game"><img class="card-img-top" v-bind:src="item.image" alt="Spill"/></NuxtLink>
+                        <div class="card-body boxborder">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <p class="card-text">Date: 22/10/21</p>
+                            <p v-if="item.category == 'Programming'" class="card-text">Language: {{ item.language.join(', ') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-md-3 project d-flex">
+                    <div class="card text-center">
+                        <NuxtLink class="imgborder" to="./game"><img class="card-img-top" src="/images/Projects/game.PNG" alt="Spill"/></NuxtLink>
                         <div class="card-body boxborder">
                             <h5 class="card-title">Spill</h5>
                             <p class="card-text">A wacky game...</p>
@@ -45,7 +56,7 @@
                             <p class="card-text">Language: PHP, SQL</p>
                         </div>
                     </div>
-			  	</div>
+			  	</div>-->
 	        </div>
         </div>
     </div>
@@ -69,6 +80,24 @@ export default {
                     content: "Arvid's projects"
                 }
             ]
+        }
+    },
+    data() {
+        return {
+            images: null,
+            projects: null
+        }
+    },
+    mounted() {
+        this.importAll(require.context('~/static/images/Blender/', true, /\.PNG$/))
+    },
+    methods: {
+        async importAll(r) {
+            this.images = [];
+            this.projects = [];
+            r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
+            const content = await this.$content('projects').fetch();
+            this.projects = content.projects;
         }
     }
 }
