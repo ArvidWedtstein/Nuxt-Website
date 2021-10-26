@@ -1,0 +1,83 @@
+{
+    "cdromcover": {
+        "description": "CD rom cover. Can be used to replace a cd drive.",
+        "path": "~/assets/3D-Object/CDromCover.stl",
+        "category": "pc"
+    },
+    "koppunderlag": {
+        "description": "Cup coaster",
+        "path": "~/assets/3D-Object/KoppUnderlag.stl"
+    },
+    "headsett": {
+        "description": "Headsett holder for wall. You'll need 2 screws.",
+        "path": "~/assets/3D-Object/headsett.stl"
+    },
+    "pcibracketsquare": {
+        "description": "PCI bracket. Can be used to replace a pci bracket in your computer",
+        "path": "~/assets/3D-Object/PCIbracketSquare.stl"
+    },
+    "pcibracketsquare2": {
+        "description": "PCI bracket. Can be used to replace a pci bracket in your computer",
+        "path": "~/assets/3D-Object/PCIbracketSquare2.stl"
+    },
+    "pcibrackethexagon": {
+        "description": "PCI bracket. Can be used to replace a pci bracket in your computer",
+        "path": "~/assets/3D-Object/PCIbracketHexagon.stl"
+    },
+    "pepperkakeformunity": {
+        "description": "This item allows your to make gingerbread in a unity shape! Should be printed in food safe filament",
+        "path": "~/assets/3D-Object/PepperkakeformUnity.stl"
+    },
+    "chesspiece": {
+        "description": "This is just a chesspiece",
+        "path": "~/assets/3D-Object/Chesspiece.stl"
+    },
+    "steampunkgear": {
+        "description": "This is a gear for decoration purposes",
+        "path": "~/assets/3D-Object/SteampunkGear.stl"
+    },
+    "wowkeychain": {
+        "description": "Keychain with a world of warcraft logo",
+        "path": "~/assets/3D-Object/WoWkeychain.stl"
+    },
+    "asusrog120mm": {
+        "description": "Fan Cover with Asus ROG Logo. Will fit 120mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/AsusROG120mm.stl"
+    },
+    "asusrog140mm": {
+        "description": "Fan Cover with Asus ROG Logo. Will fit 140mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/AsusROG140mm.stl"
+    },
+    "hexagon80mm": {
+        "description": "Fan Cover with hexagon pattern. Will fit 80mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/Hexagon80mm.stl"
+    },
+    "jagermeister40mm": {
+        "description": "Fan Cover with Jägermeister Logo. Will fit 40mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/Jagermeister40mm.stl"
+    },
+    "jagermeister120mm": {
+        "description": "Fan Cover with Jägermeister Logo. Will fit 40mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/Jagermeister120mm.stl"
+    },
+    "mercedes120mm": {
+        "description": "Fan Cover with Mercedes Benz Logo. Will fit 120mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/Mercedes120mm.stl"
+    },
+    "msi120mm": {
+        "description": "Fan Cover with MSI Logo. Will fit 120mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/MSI120mm.stl"
+    },
+    "msi120mmv2": {
+        "description": "Fan Cover with MSI Logo. Will fit 120mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/MSI120mmV2.stl"
+    },
+    "msi200mm": {
+        "description": "Fan Cover with MSI Logo. Will fit 200mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/MSI200mm.stl"
+    },
+    "wow120mm": {
+        "description": "Fan Cover with World Of Warcraft Logo. Will fit 120mm fans",
+        "path": "~/assets/3D-Object/Fan-Cover/WoW120mm.stl"
+    }
+}

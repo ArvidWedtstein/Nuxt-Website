@@ -48,13 +48,26 @@
 
     <div class="container-fluid">
         <ul class="row" id="items">
-            <li v-for="post in filteredList" :key="post" class="printcard col-md-4">
+            <li v-for="(object, index) in filteredList" v-bind:key="index" class="printcard col-md-4">
+                
+                <!--<div class="psresponsive">
+                    <div class="contentBox">
+                        <img v-bind:src="object.image" v-bind:alt="object.name" class="img-fluid">
+                        <div class="content">
+                            <p class="desc">{{ object.name }}</p>
+                            <p class="desc">{{ object.description }}</p>
+                            <a v-bind:href="object.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
+                            
+                        </div>
+                    </div>
+                </div>-->
+                
                 <div class="printcard-body">
                     <div class="printcard2">
-                    <img class="printcard-img-top" v-bind:src="post.image" alt="PCI Bracket">
-                    <h5 class="printcard-title">{{ post.name }}</h5>
-                    <p class="printcard-text">{{ post.category }}</p>
-                    <a href="~assets/3D-Object/PCIbracketSquare.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a></div>
+                    <img class="printcard-img-top" v-bind:src="object.image" alt="PCI Bracket">
+                    <h5 class="printcard-title">{{ object.name }}</h5>
+                    <p class="printcard-text">{{ object.description }}</p>
+                    <a v-bind:href="object.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a></div>
                 </div>
             </li>
             <!--<li class="col-md-4 rgbcard filterDiv pc">
@@ -249,35 +262,38 @@
                 </div>
             </li>-->
             </ul>
-    </div>
+        </div>
 	  <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top">Top</button>
     </div>
 </template>
 
 <script lang="text/javascript">
-
 const axios = require('axios');
+import Modal from '~/components/Modal.vue';
 const path = require('path');
 class Print {
-    constructor(name, category, image) {
+    constructor(name, description, stl, image) {
         this.name = name;
-        this.category = category;
+        this.description = description;
+        this.stl = stl;
         this.image = image;
     }
 }
 export default {
     template: '<3d-print/>',
+    components: { Modal },
     transition: 'slide-bottom',
     data() {
         return {
             images: null,
             stl: null,
             search: '',
-            printList: []
+            printList: null,
+            showModal: false
         }
     },
     mounted() {
-        this.loadImages(require.context('~/static/images/3D-Icons/', true, /\.PNG$/))
+        this.load3Dobjects(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
         //this.loadStl()
     },
     methods: {
@@ -288,40 +304,30 @@ export default {
             this.stl.push(images)
             console.log(this.stl);
         },
-        loadImages(r) {
-            this.images = [];
-            r.keys().forEach(key => {
+        async load3Dobjects(r) {
+            this.printList = [];
+            const content = await this.$content('3dprint').fetch();
+                
+            r.keys().forEach(async (key) => {
                 //this.images.push({ pathLong: r(key), pathShort: key, name: key.split('/') })
-                let category = '';
-                if (key.includes('PC')) {
-                    category == 'PC'
-                } else if (key.includes('40mm')) {
-                    category == '80mm'
-                } else if (key.includes('80mm')) {
-                    category == '80mm'
-                } else if (key.includes('120mm')) {
-                    category == '120mm'
-                } else if (key.includes('140mm')) {
-                    category == '140mm'
-                } else if (key.includes('200mm')) {
-                    category == '200mm'
-                }
+                let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
+                let stl = content[name.toLowerCase()].path;
+                let description = content[name.toLowerCase()].description;
+                //let stl = `~/assets/3D-Object/${name}.stl`
+                //name = name.replace('Fan-Cover/', '');
                 let print = new Print(
-                    key.split('./').join('').replace('.PNG', '').replace('Fan-Cover/', ''),
-                    category,
-                    r(key)
-                )
+                    name,
+                    description,
+                    stl,
+                    r(key),
+                );
                 this.printList.push(print);
             });
-        },
-        async filterData(category) {
-            console.log(category);
-            //return this.printList.filter(category);
-            
         }
     },
     computed: {
         filteredList() {
+            if (!this.printList) return;
             return this.printList.filter(post => {
                 return post.name.toLowerCase().includes(this.search.toLowerCase())
             })

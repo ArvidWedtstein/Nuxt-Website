@@ -1,4 +1,5 @@
 :root {
+    --border-radius: 0.25rem;
     --navbarcolor: #232323;
     --navitemcolor: #272727; 
     --dropdownbackground: #212529;
@@ -100,6 +101,22 @@ a:hover {
                 
             }
         }
+    }
+    .navbarbox {
+        position: absolute;
+        top: 0;
+        left: 70%;
+        width: 10%;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        border-left: 0.1rem solid #ffffff;
+        border-right: 0.1rem solid #ffffff;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab );
+        background-size: 400% 200%;
+        transform: skewX(25deg);
+        display: block;
+        animation: gradient 10s ease infinite;
     }
 }
 
@@ -232,17 +249,26 @@ model-viewer {
 /* gallery game page */
 .gameresponsive {
     padding: 0;
+    min-height: 1px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
     background: url("/images/background.jpg");
     background-size: cover;
     width: 100%;
     -ms-flex: 1 0 0%;
     flex: 1 0 0%;
+    box-shadow: inset 5px 5px 5px rgba(0,0,0,0.2), 
+        inset -5px -5px 15px rgba(255,255,255,0.1), 
+        5px 5px 15px rgba(0,0,0,0.3),
+        -5px -5px 15px rgba(255,255,255,0.1);
     .gallery {
         border: 1px solid #ccc;
         padding: 0rem;
         -ms-flex: 1 0 0%;
         flex: 1 0 0%;
-        transition: 0.3s;
+        transition: all 0.3s ease;
         &:hover {
             border: 1px solid #777;
             transform: scale(1.01);
@@ -252,14 +278,16 @@ model-viewer {
             width: 100%;
             height: 10;
         }
+        .desc {
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            font-family: Armata;
+            font-weight: 300;
+            background: rgba(0,0,0,0.3);
+        }
     }
-    .desc {
-        padding: 15px;
-        text-align: center;
-        font-family: Armata;
-        font-weight: 300;
-        background: rgba(0,0,0,0.3);
-    }
+    
 }
 .col-xl-3 {
     padding: 15px;
@@ -1189,22 +1217,6 @@ input:-webkit-autofill:active  {
 	box-shadow: 0px 0px 0px 100000vh black;
 }
 
-.navbarbox {
-	position: absolute;
-	top: 0;
-	left: 70%;
-	width: 10%;
-	height: 100%;
-	text-align: center;
-	vertical-align: middle;
-	border-left: 0.1rem solid #ffffff;
-	border-right: 0.1rem solid #ffffff;
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab );
-	background-size: 400% 200%;
-	transform: skewX(25deg);
-	display: block;
-	animation: gradient 10s ease infinite;
-}
 
 .login {
 	position: absolute;
@@ -1245,6 +1257,10 @@ input:-webkit-autofill:active  {
     .card {
         display: flex;
         flex-direction: column;
+        vertical-align: middle;
+        text-align: center;
+        align-content: center;
+        justify-content: center;
         //background: linear-gradient(#111111, #333333, #222222);
         background: url("/images/galaxy.jpg");
         background-size: 400%;
@@ -1258,16 +1274,12 @@ input:-webkit-autofill:active  {
         animation-iteration-count: infinite;
         min-height: 1px;
         padding: 0.5rem;
-        vertical-align: middle;
-        text-align: center;
-        align-content: center;
-        border-radius: 0.25rem;
+        border-radius: var(--border-radius);
         width: 100%;
-        align-content: space-between;
         height: 100%;
         border: 1px solid #000000;
         font-family: "Papyrus";
-        transition: all 0.5s ease !important;
+        transition: all 0.3s ease !important;
         box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
                 rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
         &::before {
@@ -1275,7 +1287,8 @@ input:-webkit-autofill:active  {
             background: rgba(0,0,0,0.2);
         }
         &:hover {
-            padding: 1rem;
+            transition: all 0.3s ease !important;
+            padding: 0.7rem;
             .card-body {
                 filter: drop-shadow(4px 4px 10px black);
                 //transform: translateY(-6px);
@@ -1288,25 +1301,27 @@ input:-webkit-autofill:active  {
     .card-body {
         -ms-flex: 1 1 auto;
         flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         background: url("/images/background.jpg");
         background-repeat: no-repeat;
         background-size: 100% 100%;
         position: relative;
+        object-fit: cover;
         width: 100%;
         height: 100%;
         text-align: center;
-        margin: 0rem;
-        bottom: 0;
-        border-radius: 0.25rem;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        transition: all 0.3s ease !important;
+        border-radius: var(--border-radius);
+        border: 1px solid #fff;
+        transition: all 0.3s ease;
+
         //-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
         //mask-image: linear-gradient(to top, rgba(0,0,0,1)95%,rgba(0,0,0,0));
-        //filter: drop-shadow(2px 2px 5px black);
-        &.boxborder {
-            border: 1px solid #fff;
-            border-top: none;
+        //filter: drop-shadow(2px 2px 5px black);   
+        &.card-body:not(.card-img-top) {
+            padding: 0;
+
         }
     }
     .card-title {
@@ -1320,21 +1335,23 @@ input:-webkit-autofill:active  {
     }
     .card-text {
         flex: 1 1 auto;
-        justify-content: flex-end;
         padding: 0rem;
         position: relative;
         color: #ffffff;
-        padding-bottom: 0rem;
+        padding-bottom: auto;
     }
     .card-img-top {
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
+        flex: 1 1 auto;
         position: relative;
         mix-blend-mode: normal;
-        width: 100% !important;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        top: 0;
+        right: 0;
         filter: grayscale(100);
-        transition: all 0.3s ease !important;
+
+        transition: all 0.1s ease !important;
         //clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
         object-position: 0% 0%;
         &.maskimage {
@@ -1342,13 +1359,22 @@ input:-webkit-autofill:active  {
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
         }
     }
-    .imgborder {
-        flex: 1 1 auto;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
-        border: 1px solid #ffffff;
-        position: relative;
+    .icons {
+        display: inline-flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        vertical-align: middle;
+        float: right;
+        & > * {
+            padding: 0.2rem;
+            margin: 0.1rem;
+            margin-bottom: 0.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
+        }
     }
+
 }
 
 
@@ -1363,53 +1389,52 @@ input:-webkit-autofill:active  {
     border-radius: 1rem;
     min-height: 1px;
     align-content: center;
+    display: flex;
     align-items: center;
     vertical-align: middle;
     text-align: center;
     transition: 0.3s;
     position: relative;
     margin: 0 auto;
-}
-.psresponsive:hover {
-    transform: scale(1.01);
-}
-.psresponsive .contentBox {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    border-radius: 1rem;
-    padding: 0.5rem 0.5rem;
-}
-.psresponsive .contentBox .content {
-    position: absolute;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    transition: 0.3s;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    color: #f1f1f1;
-    padding: 0.5rem;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.psresponsive .contentBox img {
-    height: 10;
-    border-radius: 1rem;
-    max-width: 100%;
-    align-content: center;
-    vertical-align: middle;
-}
-
-.psresponsive .contentBox .content .desc {
-    text-align: center;
-    text-transform: uppercase;
-    font-family: 'Julius Sans One';
-    font-weight: 800;
-    font-size: 1.3em;
-    letter-spacing: 1px;
+    &:hover {
+        transform: scale(1.01);
+    }
+    .contentBox {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        border-radius: 1rem;
+        padding: 0.5rem 0.5rem;
+        .content {
+            position: absolute;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            transition: 0.3s;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            color: #f1f1f1;
+            padding: 0.5rem;
+            margin: 0 auto;
+            width: 100%;
+            img {
+                height: 10;
+                border-radius: 1rem;
+                max-width: 100%;
+                align-content: center;
+                vertical-align: middle;
+            }
+            .desc {
+                text-align: center;
+                text-transform: uppercase;
+                font-family: 'Julius Sans One';
+                font-weight: 800;
+                font-size: 1.3em;
+                letter-spacing: 1px;
+            }
+        }
+    }
 }
 
 div.photoset {

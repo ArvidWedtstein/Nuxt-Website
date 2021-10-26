@@ -21,7 +21,7 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./"><font-awesome-icon icon="fa-solid fa-home" />Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./"><font-awesome-icon icon="fa-solid fa-home" /> Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
@@ -29,10 +29,11 @@
                     <NuxtLink class="nav-item" to="/project"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
                         <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider rgbline"></b-dropdown-divider>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>
+                            <!--<b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/php-login">PHP</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/php-login">PHP</NuxtLink></b-dropdown-item>-->
+                            <b-dropdown-item v-for="item in projects" :key="item" class="dropdown-itemcustom"><NuxtLink v-bind:to="item.path">{{ item.name }}</NuxtLink></b-dropdown-item>
                     </b-dropdown></NuxtLink>
                     
                     <!--Kontaktside-->
@@ -82,7 +83,11 @@ export default {
         default: null,
         },
     },
-
+    data() {
+        return {
+            projects: null
+        }
+    },
     computed: {
         crumbs() {
         const fullPath = this.$route.fullPath
@@ -109,6 +114,16 @@ export default {
         return crumbs
         },
     }, 
+    mounted() {
+        this.importAll();
+    },
+    methods: {
+        async importAll(r) {
+            this.projects = [];
+            const content = await this.$content('projects').fetch();
+            this.projects = content.projects;
+        }
+    }
 }
 
 </script>
