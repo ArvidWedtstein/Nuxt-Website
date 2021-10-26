@@ -14,17 +14,17 @@
         </b-navbar>-->
         <!-- https://codepen.io/YusukeNakaya/pen/ebLjde TABS NAVBAR -->
 
+        <!-- Hexagon Navbar https://codepen.io/web-tiki/full/WvNQpG/ -->
         <!-- new navbar?!?!?? https://codepen.io/MitchES/pen/dRMQdx -->
         <nav class="navbar navbar-expand-lg"> <NuxtLink to="./" class="navbar-brand animate__animated animate__backInLeft"><img style="width: 60px; filter: contrast(200%);" src="/images/ArvidLogo.png" alt="logo"/></NuxtLink>
             <button class="navbar-toggler" target="navbarSupportedContent" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <!-- Hjem knapp i navigeringslinjen på toppen-->
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="./"><font-awesome-icon icon="fa-solid fa-home" /> Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="/"><font-awesome-icon icon="fa-solid fa-home" /> Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" to="/about">About Me</NuxtLink>
+                        <NuxtLink class="nav-link" to="/about"><font-awesome-icon icon="fa-address-card"/> About Me</NuxtLink>
                     </li>
                     <NuxtLink class="nav-item" to="/project"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
                         <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
@@ -33,13 +33,11 @@
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
                             <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/php-login">PHP</NuxtLink></b-dropdown-item>-->
-                            <b-dropdown-item v-for="item in projects" :key="item" class="dropdown-itemcustom"><NuxtLink v-bind:to="item.path">{{ item.name }}</NuxtLink></b-dropdown-item>
+                            <b-dropdown-item v-for="item in projects" :key="item" v-bind:href="item.path" class="dropdown-itemcustom"><NuxtLink v-bind:to="item.path">{{ item.name }}</NuxtLink></b-dropdown-item>
                     </b-dropdown></NuxtLink>
                     
-                    <!--Kontaktside-->
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/contact">Contact</NuxtLink>
-                        <!--<a class="nav-link" href="contact/" id="contact1" aria-controls="contacttab" aria-expanded="true">Kontakt</a>--> 
                     </li>
                     <li class="navbar-text">
 			            <h1 class="navbarbox"></h1>
@@ -47,7 +45,6 @@
                 </ul>
             </div>
         </nav>
-            
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -85,7 +82,9 @@ export default {
     },
     data() {
         return {
-            projects: null
+            projects: null,
+            scene: 0,
+            maxScene: 8
         }
     },
     computed: {

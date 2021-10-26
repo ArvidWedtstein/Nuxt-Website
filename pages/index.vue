@@ -16,8 +16,9 @@
                 </div>
             </div>
             <!--Hexagon layouten med bildene-->
+
             <div class="grid">
-                <ul id="hexGrid">
+                <ul class="hexGrid">
                     <li class="hex">
                         <div class="hexIn">
                             <a class="hexLink" href="Photoshop/">
@@ -31,8 +32,8 @@
                         <div class="hexIn">
                             <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity1.PNG);"></div>
-                                <h1 class="hexTxtTitle orange-fade">By</h1>
-                                <p class="hexTxtDesc">Spill Prosjekt</p>
+                                <h1 class="hexTxtTitle orange-fade imgtext">By</h1>
+                                <p class="hexTxtDesc ">Spill Prosjekt</p>
                             </a>
                         </div>
                     </li>
@@ -148,6 +149,7 @@
                 </div>
             </div>
         <div id="particles-js"></div>
+        
     </div>
 </template>
 
