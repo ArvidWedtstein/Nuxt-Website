@@ -5,9 +5,8 @@ const app = express()
 
 // Require API routes
 const carousel = require('./routes/carousel')
-
-// Import API Routes
 app.use(carousel)
+// Import API Routes
 
 // Export the server middleware
 module.exports = {

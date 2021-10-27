@@ -17,9 +17,18 @@
             </div>
             <!--Hexagon layouten med bildene-->
 
-            <div class="grid">
+            <div class="hexContainer">
                 <ul class="hexGrid">
-                    <li class="hex">
+                    <li v-for="(img, i) in images" :key="i" class="hex">
+                        <div class="hexIn">
+                            <a class="hexLink" href="Photoshop/">
+                                <div class="hexImg" v-bind:style="{ backgroundImage: 'url('+ images[i].pathLong +')' }"></div>
+                                <h1 class="hexTxtTitle orange-fade">{{i}}</h1>
+                                <p class="hexTxtDesc">Photoshop Project</p>
+                            </a>
+                        </div>
+                    </li>
+                    <!--<li class="hex">
                         <div class="hexIn">
                             <a class="hexLink" href="Photoshop/">
                                 <div class="hexImg" style="background-image: url(/images/Photoshop/photoshop1.jpg);"></div>
@@ -32,7 +41,7 @@
                         <div class="hexIn">
                             <a class="hexLink" href="/project/game">
                                 <div class="hexImg" style="background-image: url(/images/Unity/Unity1.PNG);"></div>
-                                <h1 class="hexTxtTitle orange-fade imgtext">By</h1>
+                                <h1 class="hexTxtTitle orange-fade">By</h1>
                                 <p class="hexTxtDesc ">Spill Prosjekt</p>
                             </a>
                         </div>
@@ -144,7 +153,7 @@
                                 <p class="hexTxtDesc">Spill Prosjekt</p>
                             </a>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
                 </div>
             </div>
@@ -153,10 +162,6 @@
     </div>
 </template>
 
-<script src="~assets/js/jquery-3.4.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="~assets/js/popper.min.js"></script> 
-<script src="~assets/js/bootstrap-4.4.1.js"></script>
 
 
 <script lang="text/javascript">
@@ -167,21 +172,33 @@ const axios = require('axios');
 console.log(data)*/
 
 
-
 export default {
     template: '<App/>',
     transition: 'slide-bottom',
     data() {
         return {
-            images: []
+            images: null
         }
     },
     mounted() {
+        this.importImg();
     },
     methods: {
-        greet() {
-            var audio = new Audio("~/pages/speak.wav");
-            audio.play();
+        async importImg() {
+            this.images = [];
+            let img = [];
+            let r = require.context('~/static/images/Photoshop/', true, /\.(jpg|png|PNG)\b/);
+            let r2 = require.context('~/static/images/Unity/', true, /\.(jpg|png|PNG)\b/);
+            let r3 = require.context('~/static/images/Blender/', true, /\.(jpg|png|PNG)\b/);
+            await r.keys().forEach(key => (img.push({ pathLong: r(key), pathShort: key })));
+            await r2.keys().forEach(key => (img.push({ pathLong: r2(key), pathShort: key })));
+            await r3.keys().forEach(key => (img.push({ pathLong: r3(key), pathShort: key })));
+            for (let i = 0; i < 14; i++) {
+                const random = Math.floor(Math.random() * img.length);
+                this.images.push(img[random])
+                img.splice(random, 1);
+            }
+            console.log(this.images)
         }
     }
 }

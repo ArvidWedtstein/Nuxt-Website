@@ -11,6 +11,6 @@ config.autoAddCss = false
 // can add other styles or just individual icons.
 library.add(fas)
 //library.add(fab)
- console.log(library)
+ //console.log(library)
 // Register the component globally
 Vue.component('font-awesome-icon', FontAwesomeIcon)

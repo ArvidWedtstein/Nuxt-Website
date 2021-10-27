@@ -7,6 +7,9 @@ export default {
     title: "Arvid's Website",
     script: [
         {
+          src: "https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        },
+        {
           src: "https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js",
           type: "module"
         },
@@ -26,11 +29,6 @@ export default {
         },
         {
           src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
-          defer: true
-        },
-        {
-          type: 'text/javascript',
-          src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js',
           defer: true
         },
         {
