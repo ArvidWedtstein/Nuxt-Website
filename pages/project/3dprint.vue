@@ -22,6 +22,13 @@
                 <a class="nav-link" onclick="filterSelection('steampunk')">Steampunk</a>
             </li>
             <!-- Dropdown -->
+            <!-- Sort Icons: -->
+            <!--
+            <i class="fa-solid fa-arrow-down-a-z"></i>
+            <i class="fa-solid fa-arrow-down-z-a"></i>
+
+
+            -->   
             <li class="nav-item dropdown"> 
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Fan Cover</a>
             <div class="dropdown-menu"> 
