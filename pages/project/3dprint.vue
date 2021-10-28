@@ -37,11 +37,6 @@
                 <a class="nav-link" onclick="filterSelection('other')">Andre</a>
             </li>
         </ul>
-        <!--Knapper til hvordan 3D-Objektene skal vises-->
-        <div id="btnContainer">
-            <!--<button class="btnView" data-toggle="tooltip" data-placement="left" title="List View" onclick="listView()"><i class="fa fa-bars"></i> List</button>--> 
-            <button class="btnView active" data-toggle="tooltip" data-placement="right" title="Grid View" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>	
-        </div>
     </div>
 
  <!--SEARCH FILTER: https://codepen.io/AndrewThian/pen/QdeOVa-->

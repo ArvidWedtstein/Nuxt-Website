@@ -2,7 +2,7 @@
    <div id='discordbot'>
        <Navbar/>
        <h1>discoooordbot</h1>
-       
+       <button class="knapp">test</button>
    </div>
 </template>
 

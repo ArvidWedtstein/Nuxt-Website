@@ -14,9 +14,6 @@ export default {
           type: "module"
         },
         {
-          src: "https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
-        },
-        {
           src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
           defer: true,
           rel: "preload"

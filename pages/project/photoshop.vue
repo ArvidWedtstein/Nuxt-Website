@@ -30,7 +30,7 @@
                             <img v-bind:src="value.pathLong" v-bind:alt="value.pathShort" class="img-fluid">
                             </a>
                             <div class="content">
-                                <p class="desc">{{descriptions[value.pathShort]}}</p>
+                                <p class="desc title">{{descriptions[value.pathShort]}}</p>
                             </div>
                         </div>
                     </div>

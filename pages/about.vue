@@ -43,44 +43,7 @@
                     </div>
                 </div>
                 <div class="col-xl-12 about">
-                    <ul class="timeline">
-                        <li>
-                            <div class="direction-l">
-                                <div class="flag-wrapper">
-                                    <span class="flag">Praksis</span>
-                                    <span class="time-wrapper"><span class="time">2021 - today</span></span>
-                                </div>
-                                <div class="desc">Begynte på Appex som praksiselev!</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="direction-r">
-                                <div class="flag-wrapper">
-                                    <span class="flag">VG2</span>
-                                    <span class="time-wrapper"><span class="time">2021 - today</span></span>
-                                </div>
-                                <div class="desc">Begynte på Informasjonsteknologi og Media VG2</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="direction-l">
-                                <div class="flag-wrapper">
-                                    <span class="flag">VG1</span>
-                                    <span class="time-wrapper"><span class="time">2020 - 2021</span></span>
-                                </div>
-                                <div class="desc">Begynte på Informasjonsteknologi og Media VG2. Dette året lærte jeg om Photoshop, Illustrator osv</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="direction-r">
-                                <div class="flag-wrapper">
-                                    <span class="flag">Grunnskole</span>
-                                    <span class="time-wrapper"><span class="time">2010 - 2020</span></span>
-                                </div>
-                                <div class="desc">Tja, de første 10 årene med grunnskole i guess</div>
-                            </div>
-                        </li>   
-                    </ul>
+                    <Timeline/>
                 </div>
             </div>
         </div>

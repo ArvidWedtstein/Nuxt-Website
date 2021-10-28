@@ -14,8 +14,7 @@
                             <NuxtLink v-bind:to="item.path"><p v-if="item.category == 'Programming'" class="card-text">Language: {{ item.language.join(', ') }}</p></NuxtLink>
                         </div>
                     </div>
-                    
-                </div>
+                </div>      
                 <!--<div class="col-md-3 project d-flex">
                     <div class="card text-center">
                         <NuxtLink class="imgborder" to="./game"><img class="card-img-top" src="/images/Projects/game.PNG" alt="Spill"/></NuxtLink>
