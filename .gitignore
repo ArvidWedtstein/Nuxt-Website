@@ -1,5 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Node template
+
 # Logs
 /logs
 *.log
@@ -91,7 +90,7 @@ sw.*
 
 
 # Package.json
-package.json
+#package.json
 package-lock.json
 
 #Environment variables
