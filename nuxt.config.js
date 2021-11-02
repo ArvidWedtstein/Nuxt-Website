@@ -37,6 +37,7 @@ export default {
           src: "https://kit.fontawesome.com/0cda3bb6df.js"
         }
     ],
+    srcDir: "./",
     htmlAttrs: {
       lang: "en"
     },
@@ -64,7 +65,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "~/plugins/fontawesome.js"
+    //"~/plugins/fontawesome.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
