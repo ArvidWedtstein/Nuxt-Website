@@ -33,23 +33,23 @@ $gradients:
     }
 }
 $colorpalette: (
-    $moonlit-asteroid: linear-gradient(to right, #0f2027, #203a43, #2c5364),
-    $argon: linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9),
-    $velvet-sun: linear-gradient(to right, #e1eec3, #f05053),
-    $meridian: linear-gradient(to right, #283c86, #45a247),
+    "moonlit": linear-gradient(to right, #0f2027, #203a43, #2c5364),
+    "argon": linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9),
+    "velvet-sun": linear-gradient(to right, #e1eec3, #f05053),
+    "meridian": linear-gradient(to right, #283c86, #45a247)
 );
 // Website colorscheme
 $maincolors: (
-    $darkblue: #192D40,
-    $blue: #21303A,
-    $cyan: #375D72,
-    $lime: #7FCD8A,
-    $white: #F4F0E7,
-    $lightblue: #5DACB6
+    "darkblue": #192D40,
+    "blue": #21303A,
+    "cyan": #375D72,
+    "lime": #7FCD8A,
+    "white": #F4F0E7,
+    "lightblue": #5DACB6
 );
-@function colorscheme($color) {
+/*@function colorscheme($color) {
     @return map-get(map-get($maincolors, $color));
-}
+}*/
 
 body {
     //transform: rotateZ(--rotate);
@@ -135,7 +135,7 @@ a:hover {
             height: 100%;
             //display: block;
             vertical-align: middle;
-            font-size: auto;
+            font-size: 2.3ch;
             align-self: stretch;
             position: relative;
             color: #ffffff;

@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="/"><font-awesome-icon icon="fa-solid fa-home" /> Home</NuxtLink>
+                        <NuxtLink class="nav-link" id="hometab" aria-controls="home" aria-expanded="true" to="/"><i class="fas fa-solid fa-home" /> Home</NuxtLink>
                     </li>
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" to="/about"><font-awesome-icon icon="fa-address-card"/> About Me</NuxtLink>
+                        <NuxtLink class="nav-link" to="/about"><i class="fas fa-address-card"/> About Me</NuxtLink>
                     </li>
                     <NuxtLink class="nav-item" to="/project"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
                         <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
@@ -127,3 +127,191 @@ export default {
 
 </script>
 
+<style lang="scss">
+$titlefont: "Montserrat";
+$textfont: "Quicksand";
+@mixin hover {
+    color: #ff0000 !important;
+    /*box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
+        inset 3px 3px 10px rgba(0,0,0,0.3),
+        inset -3px -3px 10px rgba(0,0,0,0.1);*/
+    box-shadow: 0 15px 35px rgb(0 0 0 / 50%);
+    border-bottom: 0.2rem solid #ff0000;
+    // Optional
+    //animation: hover 2s forwards infinite;
+}
+@mixin active {
+    color: #ff0000 !important;
+    border-bottom: 0.2rem solid #ff0000;
+    box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
+        inset 3px 3px 10px rgba(0,0,0,0.3),
+        inset -3px -3px 10px rgba(0,0,0,0.1);
+}
+@mixin rgbshadow {
+    border-radius: 100px;
+    box-shadow: #ffdd00 5px -3px 5px 0px,
+                #00ff2f 3px 5px 5px 0px,
+                #f200ff -3px 5px 5px 0px,
+                #00eeff -3px -5px 5px 0px;
+}
+@mixin shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@keyframes hover {
+    0% {
+        box-shadow: 0.0px 0.0px 0.0px hsl(0deg 0% 0% / 0.50);
+    }
+    50% {
+        box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
+    }
+    100% {
+        box-shadow: 0.0px 0.0px 0.0px hsl(0deg 0% 0% / 0.50);
+    }
+}
+.title {
+    font-family: $titlefont;
+}
+/* Navbar */
+.navbar {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
+    background: colorscheme(darkblue);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0 !important;
+    .navbar-nav {
+        .nav-link {
+            flex: 1 1 auto;
+            align-self: center;
+            padding: 1rem 2rem;
+            transition: 0.2s;
+            height: 100%;
+            //display: block;
+            vertical-align: middle;
+            font-size: auto;
+            align-self: stretch;
+            position: relative;
+            color: #ffffff;
+            text-align: center;
+            margin-left: 0rem;
+            transition: all 1s ease;
+            //transition: all 300ms ease;
+            &:hover, &:focus {
+                @include hover;
+                border-radius: 50px;
+            }
+            &.active {
+                @include active;
+                border-radius: 50px;
+            }
+            &.nuxt-link-exact-active {
+                @include active;
+                border-radius: 50px;
+                box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
+                
+            }
+        }
+    }
+    .navbarbox {
+        position: absolute;
+        top: 0;
+        left: 70%;
+        width: 10%;
+        height: 100%;
+        text-align: center;
+        border-left: 0.1rem solid #ffffff;
+        border-right: 0.1rem solid #ffffff;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab );
+        background-size: 400% 200%;
+        transform: skewX(25deg);
+        display: block;
+        animation: gradient 10s ease infinite;
+    }
+}
+
+.rgbline {
+    background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    height: 3px;
+    border: 0;
+    background-size: 200% 200%;
+    box-shadow: 0px 1px 10px #23d5ab;
+}
+.rgb-link {
+    background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    background-position: left bottom;
+    text-decoration: none;
+    font-weight: 900;
+    transition: background-size 600ms ease;
+    &:hover {
+        background-size: 300% 3px;
+        -webkit-animation: rgb-link 10s ease infinite;
+        animation: rgb-link 3s linear infinite;
+    }
+}
+@keyframes rgb-link {
+    0% {
+        background-position-x: left;
+    }
+    50% {
+        background-position-x: right;
+    }
+    100% {
+        background-position-x: left;
+    }
+}
+/* dropdown */
+.dropdowncustom {
+    .dropdown-headercustom, .dropdown-headercustom a {
+        font-size: 1.2rem;
+        color: #ffffff;
+        text-align: center;
+    }
+    .dropdown-itemcustom:hover, .dropdown-itemcustom:focus, .dropdown-headercustom:hover, .dropdown-headercustom:focus {
+        color: #16181b;
+        text-decoration: none;
+        background-size: 400% 200% !important;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab );
+        -webkit-animation: gradient 10s ease infinite;
+        animation: gradient 10s ease infinite !important;
+    }
+    .dropdown-item:hover, .dropdown-item:hover a, .dropdown-headercustom:hover a {
+        background: none;
+        color: #ffffff;
+    }
+    .btn {
+        display: block;
+        font-size: 1.25rem;
+        color: #ffffff;
+        padding: 1rem 2rem;
+        text-align: center;
+        margin-left: 0rem;
+        border: none;
+        border-radius: 0;
+        transition: 0.3s;
+        background: none !important;
+        outline: none !important;
+        &:hover {
+            @include hover;
+            /*background: none;
+            border: none;
+            outline: none;
+            box-shadow: none;*/
+        }
+    }
+    .dropdown-menu {
+        background: var(--dropdownbackground);
+        border: 0.1px solid white;
+        border-top: none;
+    }
+    &.show {
+        @include active;
+        //box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
+    }
+}
+</style>

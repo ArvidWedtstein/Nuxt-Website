@@ -58,7 +58,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "~/assets/css/style.scss",
-    "@fortawesome/fontawesome-svg-core/styles.css"
+    //"@fortawesome/fontawesome-svg-core/styles.css"
   ],
 
 
