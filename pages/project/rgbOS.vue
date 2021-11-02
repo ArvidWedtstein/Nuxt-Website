@@ -133,14 +133,14 @@ export default {
    }
 }
 </script>
-<style>
+<style lang="scss">
 /* Remove default bullets */
 ul, .rgbOS {
   list-style-type: none;
 }
 
 /* Remove margins and padding from the parent ul */
-#myUL {
+.rgbOS {
   margin: 0;
   padding: 0;
 }
@@ -172,5 +172,9 @@ ul, .rgbOS {
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
   display: block;
+  padding: 0;
+  li {
+     margin-left: 0.5%;
+  }
 }
 </style>
