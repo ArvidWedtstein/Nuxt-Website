@@ -9,17 +9,18 @@
             </div>
         </div>
     <div class="container-fluid">
+        
         <!--Søkefeltet-->
-        <input type="text" v-model="search" id="searchbar" onKeyUp="search()" placeholder="Søk for 3D Objekter" title="Skriv inn"/>
+        <input type="text" v-model="search" id="searchbar" placeholder="Search for 3D Objects" title="Type in a 3D object"/>
         <ul id="category" class="nav nav-tabs">
             <li class="nav-item"> 
-                <a class="nav-link" onclick="filterSelection('all')">Vis Alle</a> 
+                <a class="nav-link" v-on:click="setFilter('all')">Vis Alle</a> 
             </li>
             <li class="nav-item"> 
-                <a class="nav-link"  @click="this.filterData(pc)">PC</a> 
+                <a class="nav-link" v-on:click="setFilter('pc')">PC</a> 
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="filterSelection('steampunk')">Steampunk</a>
+                <a class="nav-link" v-on:click="setFilter('steampunk')">Steampunk</a>
             </li>
             <!-- Dropdown -->
             <!-- Sort Icons: -->
@@ -32,16 +33,16 @@
             <li class="nav-item dropdown"> 
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Fan Cover</a>
             <div class="dropdown-menu"> 
-                <a class="dropdown-item" onclick="filterSelection('fancover')">Alle størrelser</a>
-                <a class="dropdown-item" onclick="filterSelection('40mm')">40mm</a> 
-                <a class="dropdown-item" onclick="filterSelection('80mm')">80mm</a> 
-                <a class="dropdown-item" onclick="filterSelection('120mm')">120mm</a>
-                <a class="dropdown-item" onclick="filterSelection('14cm')">140mm</a> 
-                <a class="dropdown-item" onclick="filterSelection('200mm')">200mm</a> 
+                <a class="dropdown-item" v-on:click="filterSelection('fancover')">Alle størrelser</a>
+                <a class="dropdown-item" v-on:click="filterSelection('40mm')">40mm</a> 
+                <a class="dropdown-item" v-on:click="filterSelection('80mm')">80mm</a> 
+                <a class="dropdown-item" v-on:click="filterSelection('120mm')">120mm</a>
+                <a class="dropdown-item" v-on:click="filterSelection('14cm')">140mm</a> 
+                <a class="dropdown-item" v-on:click="filterSelection('200mm')">200mm</a> 
             </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="filterSelection('other')">Andre</a>
+                <a class="nav-link" v-on:click="setFilter('other')">Andre</a>
             </li>
         </ul>
     </div>
@@ -50,39 +51,20 @@
 
     <div class="container-fluid">
         <ul class="row" id="items">
-            <li v-for="(object, index) in filteredList" v-bind:key="index" class="printcard col-md-4">
-                
-                <!--<div class="psresponsive">
-                    <div class="contentBox">
-                        <img v-bind:src="object.image" v-bind:alt="object.name" class="img-fluid">
-                        <div class="content">
-                            <p class="desc">{{ object.name }}</p>
-                            <p class="desc">{{ object.description }}</p>
+            <transition-group name="filteredList"></transition-group>
+            <li v-for="object in filteredList" v-bind:key="object">
+                <div class="printcard col-md-4" v-if="filter === 'all' || filter === object.category">
+                    <div class="printcard-body">
+                        <div class="printcard2">
+                            <img class="printcard-img-top" v-bind:src="object.image" :alt="object.name">
+                            <h5 class="printcard-title">{{ object.name }}</h5>
+                            <p class="printcard-text">{{ object.description }}</p>
                             <a v-bind:href="object.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
-                            
                         </div>
                     </div>
-                </div>-->
-                
-                <div class="printcard-body">
-                    <div class="printcard2">
-                    <img class="printcard-img-top" v-bind:src="object.image" alt="PCI Bracket">
-                    <h5 class="printcard-title">{{ object.name }}</h5>
-                    <p class="printcard-text">{{ object.description }}</p>
-                    <a v-bind:href="object.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a></div>
                 </div>
             </li>
-            <!--<li class="col-md-4 rgbcard filterDiv pc">
-                <div class="printcard-body">
-                    <div class="printcard2">
-                        <img class="printcard-img-top" src="/images/3D-Icons/PCIbracketHexagon.png" alt="PCI Bracket">
-                        <h5 class="printcard-title">PCI Bracket</h5>
-                        <p class="printcard-text"></p>
-                        <a href="~assets/3D-Object/PCIbracketHexagon.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
-                    </div>
-                </div>
-            </li>
-            <li class="printcard col-md-4 filterDiv pc">
+            <!--<li class="printcard col-md-4 filterDiv pc">
                 <div class="printcard-body">
                     <div class="printcard2">
                     <img class="printcard-img-top" src="/images/3D-Icons/PCIbracketSquare.png" alt="PCI Bracket">
@@ -253,19 +235,9 @@
                     <a href="~assets/3D-Object/Fan-Cover/MSI200mm.STL" class="pixelbutton" download><i class="fas fa-download"></i> Download</a> </div>
                 </div>
             </li>-->
-                <!--<li v-for="(item, index) in images" :key="item.images" class="col-md-4 printcard filterDiv pc">
-                <div class="printcard-body">
-                    <div class="printcard2">
-                        <img class="printcard-img-top" :src="images[index].pathShort" alt="PCI Bracket">
-                        <h5 class="printcard-title">PCI Bracket</h5>
-                        <p class="printcard-text"></p>
-                        <a href="~assets/3D-Object/PCIbracketHexagon.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
-                    </div>
-                </div>
-            </li>-->
             </ul>
         </div>
-	  <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top">Top</button>
+        <button @click="topFunction()" id="scrollToTopBtn" title="Go to top">Top</button>
     </div>
 </template>
 
@@ -274,9 +246,10 @@ const axios = require('axios');
 import Modal from '~/components/Modal.vue';
 const path = require('path');
 class Print {
-    constructor(name, description, stl, image) {
+    constructor(name, description, category, stl, image) {
         this.name = name;
         this.description = description;
+        this.category = category;
         this.stl = stl;
         this.image = image;
     }
@@ -288,7 +261,7 @@ export default {
     data() {
         return {
             images: null,
-            stl: null,
+            filter: 'all',
             search: '',
             printList: null,
             showModal: false
@@ -296,16 +269,8 @@ export default {
     },
     mounted() {
         this.load3Dobjects(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
-        //this.loadStl()
     },
     methods: {
-        async loadStl() {
-            this.stl = [];
-            const images = (await axios.$get('~/api/carousel/images')).data
-
-            this.stl.push(images)
-            console.log(this.stl);
-        },
         async load3Dobjects(r) {
             this.printList = [];
             const content = await this.$content('3dprint').fetch();
@@ -315,17 +280,38 @@ export default {
                 let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
                 let stl = content[name.toLowerCase()].path;
                 let description = content[name.toLowerCase()].description;
+                let category = content[name.toLowerCase()].category;
                 //let stl = `~/assets/3D-Object/${name}.stl`
                 //name = name.replace('Fan-Cover/', '');
                 let print = new Print(
                     name,
                     description,
+                    category,
                     stl,
                     r(key),
                 );
                 this.printList.push(print);
             });
-        }
+        },
+        setFilter: function(filter) {
+			this.filter = filter;
+            console.log(this.filter)
+		},
+        scroll(event) {
+            var scrollToTop = document.getElementById("scrollToTopBtn");
+            
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                scrollToTop.style.display = "block";
+            } else {
+                scrollToTop.style.display = "none";
+            }
+        },
+    },
+    created() {
+        window.addEventListener('scroll', this.scroll);
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.scroll);
     },
     computed: {
         filteredList() {
@@ -337,3 +323,34 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+.printcard {
+    list-style-type: none;
+    min-height: 1px;
+    flex: 1 1 auto;
+}
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 5;
+  font-size: 2ch;
+  border: none;
+  outline: none;
+  background: linear-gradient(45deg, #ff7272, #ff0000, #7f0000);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: calc(0.25rem - 1px);
+  transition: all 0.5s ease;
+  &:hover {
+      transform: scale(1.1);
+  }
+}
+#items {
+    list-style-type: none;
+}
+
+
+</style>

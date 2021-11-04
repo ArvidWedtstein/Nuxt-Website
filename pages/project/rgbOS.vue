@@ -112,6 +112,8 @@
 </template>
 
 <script>
+var https = require("https");
+import axios from 'axios';
 export default {
    template: 'rgbOS',
    transition: 'slide-bottom',
@@ -126,7 +128,7 @@ export default {
             this.classList.toggle("caret-down");
          });
          }
-      }
+      },
    },
    mounted() { 
       this.fileview()
@@ -135,46 +137,34 @@ export default {
 </script>
 <style lang="scss">
 /* Remove default bullets */
-ul, .rgbOS {
-  list-style-type: none;
-}
-
-/* Remove margins and padding from the parent ul */
 .rgbOS {
-  margin: 0;
-  padding: 0;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   .caret { /* Style the caret/arrow */
+      cursor: pointer;
+      user-select: none; /* Prevent text selection */
+      &::before { /* Create the caret/arrow with a unicode, and style it */
+         content: "\25B6";
+         color: black;
+         display: inline-block;
+         margin-right: 6px;
+      }
+   }
+   /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+   .caret-down::before {
+      transform: rotate(90deg);
+   }
+   .nested { /* Hide the nested list */
+      display: none;
+   }
+   .active { /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+      display: block;
+      padding: 0;
+      li {
+         margin-left: 0.5%;
+      }
+   }
 }
 
-/* Style the caret/arrow */
-.caret {
-  cursor: pointer;
-  user-select: none; /* Prevent text selection */
-}
-
-/* Create the caret/arrow with a unicode, and style it */
-.caret::before {
-  content: "\25B6";
-  color: black;
-  display: inline-block;
-  margin-right: 6px;
-}
-
-/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
-  transform: rotate(90deg);
-}
-
-/* Hide the nested list */
-.nested {
-  display: none;
-}
-
-/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
-.active {
-  display: block;
-  padding: 0;
-  li {
-     margin-left: 0.5%;
-  }
-}
 </style>

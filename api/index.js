@@ -7,7 +7,7 @@ const app = express()
 const carousel = require('./routes/carousel')
 app.use(carousel)
 // Import API Routes
-
+app.post
 // Export the server middleware
 module.exports = {
   path: '/api',

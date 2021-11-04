@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navbar">
-        reee
+        <Navbar/>
     </div>
     <slot/>
     <NuxtPage/>
@@ -9,9 +9,11 @@
 </template>
 
 <script>
+import Navbar from ".../components/navbar.vue";
 export default {
-   template: 'default',
-   transition: 'slide-bottom'
+    template: "default",
+    transition: "slide-bottom",
+    components: { Navbar }
 }
 </script>
 <style lang="scss">

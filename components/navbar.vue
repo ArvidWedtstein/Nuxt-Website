@@ -26,18 +26,24 @@
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" to="/about"><i class="fas fa-address-card"/> About Me</NuxtLink>
                     </li>
-                    <NuxtLink class="nav-item" to="/project"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
-                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/">All Projects</NuxtLink></b-dropdown-header>
+                    <!--<NuxtLink class="nav-item" to="/project"><b-dropdown variant="dark" text="Projects" class="nav-item dropdowncustom"> 
+                        <b-dropdown-header class="dropdown-headercustom"><NuxtLink to="/project/"><i class="fas fa-project-diagram"></i> All Projects</NuxtLink></b-dropdown-header>
                             <b-dropdown-divider class="dropdown-divider rgbline"></b-dropdown-divider>
-                            <!--<b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/game">Spill</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/3dprint">3D-Print</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/photoshop">Photoshop</NuxtLink></b-dropdown-item>
-                            <b-dropdown-item class="dropdown-itemcustom"><NuxtLink to="/project/php-login">PHP</NuxtLink></b-dropdown-item>-->
                             <b-dropdown-item v-for="item in projects" :key="item" v-bind:href="item.path" class="dropdown-itemcustom"><NuxtLink v-bind:to="item.path">{{ item.name }}</NuxtLink></b-dropdown-item>
-                    </b-dropdown></NuxtLink>
-                    
+                    </b-dropdown></NuxtLink>-->
+                    <li class="nav-item dropdown"> 
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" alt="Mitt Arbeid" aria-haspopup="true" aria-expanded="false"><i class="fas fa-briefcase"></i></a>
+                        <div class="dropdown-menu"> 
+                            <a class="dropdown-header" href="../Project/">Alle Prosjekter</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../Spill/">Spill</a>
+                            <a class="dropdown-item" href="../IMcity/">IM City</a>
+                            <a class="dropdown-item" href="../3D-Print/">3D</a>
+                            <a class="dropdown-item" href="../Photoshop/">Photoshop</a>
+                        </div>
+                    </li>
                     <li class="nav-item"> 
-                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/contact">Contact</NuxtLink>
+                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/contact"><i class="fas fa-id-card"></i> Contact</NuxtLink>
                     </li>
                     <li class="navbar-text">
 			            <h1 class="navbarbox"></h1>
@@ -171,7 +177,6 @@ $textfont: "Quicksand";
 .title {
     font-family: $titlefont;
 }
-/* Navbar */
 .navbar {
     display: flex;
     text-align: center;
@@ -191,8 +196,9 @@ $textfont: "Quicksand";
             transition: 0.2s;
             height: 100%;
             //display: block;
+            align-items: center;
             vertical-align: middle;
-            font-size: auto;
+            font-size: 2.3ch;
             align-self: stretch;
             position: relative;
             color: #ffffff;
@@ -208,6 +214,7 @@ $textfont: "Quicksand";
                 @include active;
                 border-radius: 50px;
             }
+            
             &.nuxt-link-exact-active {
                 @include active;
                 border-radius: 50px;
@@ -232,6 +239,7 @@ $textfont: "Quicksand";
         animation: gradient 10s ease infinite;
     }
 }
+
 
 .rgbline {
     background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -266,13 +274,13 @@ $textfont: "Quicksand";
     }
 }
 /* dropdown */
-.dropdowncustom {
-    .dropdown-headercustom, .dropdown-headercustom a {
+.dropdown {
+    .dropdown-header .dropdown-header a {
         font-size: 1.2rem;
         color: #ffffff;
         text-align: center;
     }
-    .dropdown-itemcustom:hover, .dropdown-itemcustom:focus, .dropdown-headercustom:hover, .dropdown-headercustom:focus {
+    .dropdown-item:hover, .dropdown-item:focus, .dropdown-header:hover, .dropdown-header:focus {
         color: #16181b;
         text-decoration: none;
         background-size: 400% 200% !important;
@@ -280,7 +288,7 @@ $textfont: "Quicksand";
         -webkit-animation: gradient 10s ease infinite;
         animation: gradient 10s ease infinite !important;
     }
-    .dropdown-item:hover, .dropdown-item:hover a, .dropdown-headercustom:hover a {
+    .dropdown-item:hover, .dropdown-item:hover a, .dropdown-header:hover a {
         background: none;
         color: #ffffff;
     }
@@ -311,7 +319,36 @@ $textfont: "Quicksand";
     }
     &.show {
         @include active;
-        //box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
+        border-radius: 50px;
+        box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
     }
 }
+/* Breadcrumb */
+.breadcrumb {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0rem;
+    list-style: none;
+    border-top: 0.05rem solid #ffffff;
+    background: var(--navitemcolor) !important;
+    border-radius: none;
+    border-bottom: 0.01rem solid #727272;
+    
+    .breadcrumb-item {
+        &.active {
+            color: #ff0000;
+            box-shadow: none !important;
+            border: none;
+        }
+        .nuxt-link-exact-active {
+            color: #ff0000;
+            box-shadow: none !important;
+            border: none;
+        }
+        .breadcrumb-item::before {
+            color: #00ffff;
+            content: '/';
+        }
+    }
+}
+
 </style>
