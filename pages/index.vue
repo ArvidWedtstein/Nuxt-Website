@@ -21,6 +21,7 @@
                 <ul class="hexGrid">
                     <li v-for="(img, i) in images" :key="i" class="hex">
                         <div class="hexIn">
+                            <div class="background"></div>
                             <a class="hexLink" href="Photoshop/">
                                 <div class="hexImg" v-bind:style="{ backgroundImage: 'url('+ images[i].pathLong +')' }"></div>
                                 <h1 class="hexTxtTitle orange-fade">{{i}}</h1>

@@ -227,13 +227,6 @@
             </div>
         </div>
 </template>
-<script src="~assets/js/jquery-3.4.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="~assets/js/popper.min.js"></script> 
-<script src="~assets/js/bootstrap-4.4.1.js"></script>
-<script type="text/javascript">
-
-</script>
 
 <script lang="text/javascript">
 

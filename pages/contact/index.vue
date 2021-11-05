@@ -3,35 +3,40 @@
         <Navbar/>
         <div class="container-fluid">
             <div class="contactFormBx">
-                <form id="form" action="mail.php" method="POST">
-                        <br><br>
-                        <div class="inputBox">
-                            <input type="text" id="name" name="name" required="required">
-                            <span class="spantxt" for="name">Name</span>
-                        </div>
-                        <div class="inputBox">
-                            <span class="indicator"></span>
-                            <input type="text" id="email" name="email" required="required">
-                            <span class="spantxt" for="email">Email</span>
-                        </div>
-                        <div style="display: flex; flex-direction: row; align-items: center;">
-                            <h5>Get a copy</h5>
-                            <input type="checkbox" name="test" class="copy check" value="value1">
-                        </div>
-                        <br>
-                        <div class="inputBox">
-                            <input type="text" id="subject" name="subject" required="required">
-                            <span class="spantxt" for="subject">Subject</span>
-                        </div>
-                        <div class="inputBox">
-                            <span class="indicator"></span>
-                            <textarea required="required" id="text" name="message" onkeyup="countChar(this)" maxlength="400"></textarea>
-                            <span class="spantxt" for="message">Message</span>
-                            <div id="charNum"></div>
-                        </div>
-                        <div class="inputBox">
-                            <input type="submit" value="Send">
-                        </div>
+                <p v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                    <ul>
+                        <li v-for="error in errors" :key="error">{{ error }}</li>
+                    </ul>
+                </p>
+                <form id="form" action="mail.php" method="POST" @submit="checkForm">
+                    <div class="inputBox">
+                        <input v-model="email.name" type="text" id="name" name="name" required="required">
+                        <span class="spantxt" for="name">Name</span>
+                    </div>
+                    <div class="inputBox">
+                        <span v-bind:class="{valid: email.email.match(this.emailRegex), invalid: !email.email.match(this.emailRegex)}" class="indicator"></span>
+                        <input v-model="email.email" type="text" id="email" name="email" required="required" autocomplete="email">
+                        <span class="spantxt" for="email">Email</span>
+                    </div>
+                    <div class="copy">
+                        <h5>Get a copy</h5>
+                        <input type="checkbox" name="test" class="copy check" value="value1">
+                    </div>
+                    <div class="inputBox">
+                        <span v-bind:class="{valid: email.subject, invalid: !email.subject}" class="indicator"></span>
+                        <input v-model="email.subject" type="text" id="subject" name="subject" required="required">
+                        <span class="spantxt" for="subject">Subject</span>
+                    </div>
+                    <div class="inputBox">
+                        <span v-bind:class="{valid: email.message, invalid: !email.message}" class="indicator"></span>
+                        <textarea v-model="email.message" required="required" id="text" name="message" maxlength="400"></textarea>
+                        <span class="spantxt" for="message">Message</span>
+                        <p>{{email.message.length}} / 400</p>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Send">
+                    </div>
                 </form>
             </div>
 	    </div>
@@ -42,7 +47,48 @@
 
 export default {
     template: '<contact/>',
-    transition: 'slide-bottom'
+    transition: 'slide-bottom',
+    data() {
+        return {
+            errors: [],
+            email: {
+                name: '',
+                email: '',
+                subject: '',
+                message: ''
+            },
+            emailRegex: /^\S+@\S+\.\S+$/,
+            stringRegex: /^[a-zA-Z0-9]*$/
+        }
+    },
+    mounted() {
+        
+    },
+    methods: {
+        checkForm: function (e) {
+            const {name, email, subject, message} = this.email
+
+            if (name && email && subject && message && name.match(this.stringRegex) && email.match(this.stringRegex) && subject.match(this.stringRegex) && message.match(this.stringRegex)) {
+                return true;
+            }
+
+            this.errors = [];
+            if (!name) {
+                this.errors.push('Name required.');
+            }
+            if (!email) {
+                this.errors.push('Your email is required');
+            }
+            if (!subject) {
+                this.errors.push('Subject is required');
+            }
+            if (message) {
+                this.errors.push('Message cannot be empty');
+            }
+            
+            e.preventDefault();
+        }
+    }
 }
 </script>
 
@@ -54,11 +100,17 @@ $rainbow-grad90: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 	width: 100%;
 	flex-wrap: wrap;
 	justify-content: center;
+    margin-top: 1rem;
 	align-items: center;
     form {
         width: 100%;
         padding: 0 0 0 0px;
         position: relative;
+        .copy {
+            display: flex; 
+            flex-direction: row; 
+            align-items: center;
+        }
         h5 {
             position: relative;
             width: 90%;
@@ -88,8 +140,9 @@ $rainbow-grad90: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
                 &:-webkit-autofill:focus, 
                 &:-webkit-autofill:active  {
                     -webkit-text-fill-color: White;
-                    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
-                    box-shadow: 0 0 0px 1000px #000 inset;
+                    background: rgba(0,0,0,0);
+                    //-webkit-box-shadow: 0 0 0px 1000px #000 inset;
+                    //box-shadow: 0 0 0px 1000px #000 inset;
                     transition: background-color 5000s ease-in-out 0s;
                 }
                 &:focus ~ span,
@@ -142,16 +195,16 @@ $rainbow-grad90: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
                 transition: all 0.2s;
                 outline: none;
                 border: none;
+                &.valid {
+                    background: #00ff00;
+                    box-shadow: 0 0 0.25rem #00ff00, 0 0 0.50rem #00ff00, 0 0 1rem #00ff00;
+                }
+                &.invalid {
+                    background: #ff0000;
+                    box-shadow: 0 0 0.25rem #ff0000, 0 0 0.50rem #ff0000, 0 0 1rem #ff0000;
+                }
             }
         }
-    }
-    #form.valid .indicator {
-        background: #00ff00;
-        box-shadow: 0 0 0.25rem #00ff00, 0 0 0.50rem #00ff00, 0 0 1rem #00ff00;
-    }
-    #form.invalid .indicator {
-        background: #ff0000;
-        box-shadow: 0 0 0.25rem #ff0000, 0 0 0.50rem #ff0000, 0 0 1rem #ff0000;
     }
     .check
     {

@@ -36,14 +36,14 @@
                         <div class="dropdown-menu"> 
                             <a class="dropdown-header" href="../Project/">Alle Prosjekter</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../Spill/">Spill</a>
-                            <a class="dropdown-item" href="../IMcity/">IM City</a>
-                            <a class="dropdown-item" href="../3D-Print/">3D</a>
-                            <a class="dropdown-item" href="../Photoshop/">Photoshop</a>
+                            <NuxtLink v-bind:to="item.path" v-for="item in projects" :key="item" v-bind:href="item.path" class="dropdown-item">{{ item.name }}</NuxtLink>
                         </div>
                     </li>
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/contact"><i class="fas fa-id-card"></i> Contact</NuxtLink>
+                    </li>
+                    <li class="nav-item"> 
+                        <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/blog"><i class="fas fa-id-card"></i> News</NuxtLink>
                     </li>
                     <li class="navbar-text">
 			            <h1 class="navbarbox"></h1>
@@ -70,10 +70,6 @@
         </nav>
     </div>
 </template>
-<script src="~assets/js/jquery-3.4.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="~assets/js/popper.min.js"></script> 
-<script src="~assets/js/bootstrap-4.4.1.js"></script>
 
 
 <script lang="text/javascript">
@@ -275,7 +271,7 @@ $textfont: "Quicksand";
 }
 /* dropdown */
 .dropdown {
-    .dropdown-header .dropdown-header a {
+    .dropdown-header, .dropdown-header a {
         font-size: 1.2rem;
         color: #ffffff;
         text-align: center;
@@ -290,6 +286,7 @@ $textfont: "Quicksand";
     }
     .dropdown-item:hover, .dropdown-item:hover a, .dropdown-header:hover a {
         background: none;
+        @include hover;
         color: #ffffff;
     }
     .btn {
@@ -316,6 +313,10 @@ $textfont: "Quicksand";
         background: var(--dropdownbackground);
         border: 0.1px solid white;
         border-top: none;
+        color: #fff;
+        .dropdown-item {
+            color: #fff;
+        }
     }
     &.show {
         @include active;
