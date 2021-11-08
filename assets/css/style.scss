@@ -798,7 +798,7 @@ a:hover {
         filter: grayscale(100);
 
         transition: all 0.1s ease !important;
-        //clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
+        clip-path: polygon(0% 10%, 100% calc(20% - 1px), 100% 100%, 0% calc(90% - 1px));  
         object-position: 0% 0%;
         &.maskimage {
             -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));

@@ -1,7 +1,6 @@
 
 <template>
     <div id="game">
-        <Navbar/>
         <div id="preview" class="container-fluid">
             <div class="jumbotron">
                 <h1 class="display-4">Spill uten navn..</h1>
@@ -229,7 +228,7 @@
 </template>
 
 <script lang="text/javascript">
-
+const axios = require('axios');
 
 export default {
   
@@ -243,6 +242,7 @@ export default {
     },
     mounted() {
         this.importAll(require.context('~/static/images/Blender/', true, /\.PNG$/))
+        this.api()
     },
     methods: {
         async importAll(r) {
@@ -251,7 +251,23 @@ export default {
             r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
             const content = await this.$content('game').fetch();
             this.descriptions = content;
-        }
+        },
+        api() {
+         axios({
+               method: 'get',
+               url: 'https://api.github.com/repos/ArvidWedtstein/Game/contents/'
+         })
+         .then(function (response) {
+            console.log(response.data)
+            axios({
+               method: 'get',
+               url: 'https://api.github.com/repos/ArvidWedtstein/Game/contents/Assets/3D models'
+            })
+            .then(function (response2) {
+               console.log(response2.data)
+            })
+         });
+      }
     }
 }
 

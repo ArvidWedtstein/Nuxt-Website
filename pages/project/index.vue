@@ -20,13 +20,15 @@
                             <p>{{i}}</p>
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">{{item.description}}</p>
+                        </div>
+                        <div class="card-footer">
                             <p class="card-text">Date: {{item.created_at}}</p>
                             <ul>
-                                <li v-for="(key, value) in gitprojectlang[i]" :key="value">{{value}}{{key}}</li>
+                                <li v-for="(key, value) in gitprojectlang" :key="value">{{value}}{{key}}</li>
                             </ul>
                         </div>
                     </div>
-                </div>-->          
+                </div>-->    
                 
                 <!--<div class="col-md-3 project d-flex">
                     <div class="card text-center">

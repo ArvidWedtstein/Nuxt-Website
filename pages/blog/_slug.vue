@@ -3,11 +3,13 @@
     <ul class="row">
      <li v-for="post in article" :key="post" class="col-md-2 d-flex">
         <div class="card">
-          <img v-if="post.img" class="card-img" :src="post.img" alt="Card image cap" height="400" >
+          <img v-if="post.img" class="card-img-top" :src="post.img" alt="Card image cap" height="400" >
+          <ul class="badges">
+            <li :class="'badge badge-' + tag.name " v-for="tag in post.tags" :key="tag"><i :class="'fas ' + tag.icon"/></li>
+          </ul>
           <div v-if="post.author" class="card-header">
             <p v-if="post.author.name">{{post.author.name}}</p>
             <img class="profileImg" v-if="post.author.img" :src="post.author.img"/>
-            <h6 class="badge" v-for="tag in post.tags" :key="tag"><i :class="'fas ' + tag.icon"/></h6>
           </div>
           <div class="card-body">
             <h5 v-if="post.title" class="card-title">{{post.title}}</h5>
@@ -94,7 +96,12 @@ $maincolors: (
     transition: all 0.3s ease;
     background: colorscheme('blue');
     .card-img-top {
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(95% - 1px));  
+      clip-path: polygon(0% 10%, 100% calc(20% - 1px), 100% 100%, 0% calc(90% - 1px));  
+      &::before {
+        border-style: solid;
+        border-width: 0 401px 55px 0;
+        border-color: transparent #1e1e1e transparent transparent;
+      }
     }
     .card-header {
       display: flex;
@@ -112,6 +119,16 @@ $maincolors: (
         overflow:hidden
       }
     }
+  }
+}
+.badges {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  font-size: 3ch;
+  .badge-Pain {
+    color: #ff0000;
   }
 }
 </style>

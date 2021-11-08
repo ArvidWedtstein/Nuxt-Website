@@ -8,7 +8,7 @@ router.get('/carousel/images', async function (req, res) {
     cwd: './static'
   }
   const filenames = glob.sync('*', options)
-
+  console.log('reee')
   let items = [];
   filenames.forEach(filename =>
     items.push({
