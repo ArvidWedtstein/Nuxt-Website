@@ -1,9 +1,9 @@
 <template>
   <div class="news">
-    <ul class="card-deck">
-      <!--<li v-for="post in article" :key="post" class="col-md-2">-->
-        <div v-for="post in article" :key="post" class="card">
-          <img v-if="post.img" class="card-img-top" :src="post.img" alt="Card image cap" height="400" >
+    <ul class="row">
+     <li v-for="post in article" :key="post" class="col-md-2 d-flex">
+        <div class="card">
+          <img v-if="post.img" class="card-img" :src="post.img" alt="Card image cap" height="400" >
           <div v-if="post.author" class="card-header">
             <p v-if="post.author.name">{{post.author.name}}</p>
             <img class="profileImg" v-if="post.author.img" :src="post.author.img"/>
@@ -17,9 +17,8 @@
             <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago</small>
           </div>
         </div>
-      <!--</li>-->
+      </li>
     </ul>
-<p>{{article[0]}}</p>
   </div>
 </template>
 
@@ -60,7 +59,6 @@ export default {
 
 <style lang="scss">
 /*Background https://codepen.io/towc/pen/eNEBQX*/
-
 $colorpalette: (
     "moonlit": linear-gradient(to right, #0f2027, #203a43, #2c5364),
     "argon": linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9),
@@ -86,12 +84,17 @@ $maincolors: (
 .news {
   margin-top: 1rem;
   list-style-type: none;
+  .row {
+    list-style-type: none;
+  }
   .card {
+    list-style-type: none;
     //margin: 1rem;
     //background: gradientscheme("moonlit");
+    transition: all 0.3s ease;
     background: colorscheme('blue');
     .card-img-top {
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(90% - 1px));
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(95% - 1px));  
     }
     .card-header {
       display: flex;

@@ -6,7 +6,7 @@
 			    <div v-for="item in projects" :key="item" class="col-md-3 project d-flex">
                     <div class="card text-center">
                         <div class="card-body">
-                            <NuxtLink v-bind:to="item.path"><img class="card-img-top" v-bind:src="item.image" v-bind:alt="item.name"/></NuxtLink>
+                            <NuxtLink v-bind:to="item.path"><img class="card-img-top" v-bind:src="item.image" v-bind:alt="item.name" /></NuxtLink>
                             <NuxtLink v-bind:to="item.path"><h5 class="card-title">{{ item.name }} <div class="icons"><font-awesome-icon class="category" v-for="category in item.category" :key="category" v-bind:icon="categoryicons[category]"/></div></h5></NuxtLink>
                             <NuxtLink v-bind:to="item.path"><p class="card-text">{{ item.description }}</p></NuxtLink>
                             <NuxtLink v-bind:to="item.path"><p class="card-text">Date: 22/10/21</p></NuxtLink>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-for="(item, i) in gitprojects" :key="i" class="col-md-3 project d-flex">
+                <!--<div v-for="(item, i) in gitprojects" :key="i" class="col-md-3 project d-flex">
                     <div class="card text-center">
                         <div class="card-body">
                             <p>{{i}}</p>
@@ -26,7 +26,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>          
+                </div>-->          
+                
                 <!--<div class="col-md-3 project d-flex">
                     <div class="card text-center">
                         <NuxtLink class="imgborder" to="./game"><img class="card-img-top" src="/images/Projects/game.PNG" alt="Spill"/></NuxtLink>
