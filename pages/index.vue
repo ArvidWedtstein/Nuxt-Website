@@ -1,7 +1,6 @@
 
 <template>
     <div id="app">
-        <Navbar/>
         <div class="container-fluid">  
             <!--Jumbotron-->
             <div class="jumbotron jumbotroncustom">

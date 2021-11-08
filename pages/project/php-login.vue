@@ -1,6 +1,5 @@
 <template>
    <div id='php'>
-      <Navbar/>
       <div class="container-fluid">
          <div class="jumbotron">
             <h1 class="display-4">Login System</h1>

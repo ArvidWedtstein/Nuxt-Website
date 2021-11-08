@@ -1,7 +1,6 @@
 
 <template>
     <div id="photoshop">
-        <Navbar/>
         <div class="container-fluid">  
             <div id="jumbo" class="jumbotron">
                 <h1 class="display-4">Photoshop</h1>

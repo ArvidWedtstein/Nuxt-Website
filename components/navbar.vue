@@ -73,7 +73,6 @@
 
 
 <script lang="text/javascript">
-
 export default {
     name: "Navbar",
     props: {
@@ -123,6 +122,9 @@ export default {
             this.projects = [];
             const content = await this.$content('projects').fetch();
             this.projects = content.projects;
+        },
+        async login() {
+
         }
     }
 }
@@ -130,21 +132,39 @@ export default {
 </script>
 
 <style lang="scss">
-$titlefont: "Montserrat";
-$textfont: "Quicksand";
+@font-face {
+    font-family: "medieval";
+    src: url('https://fonts.gstatic.com/s/unifrakturmaguntia/v7/7KWy3ymCVR_xfAvvcIXm3wh3zWhftzIdHBsuU0JwdCQ.woff2');
+}
+@font-face {
+    font-family: "bodytext";  
+    src: url('https://fonts.gstatic.com/s/unifrakturcook/v8/ASwh69ykD8iaoYijVEU6RpMdj8Gkv7ccSfgBBVtwm5Y.woff2');
+}
+
 @mixin hover {
-    color: #ff0000 !important;
+    color: $hovercolor !important;
     /*box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
         inset 3px 3px 10px rgba(0,0,0,0.3),
         inset -3px -3px 10px rgba(0,0,0,0.1);*/
     box-shadow: 0 15px 35px rgb(0 0 0 / 50%);
-    border-bottom: 0.2rem solid #ff0000;
+    border-bottom: 0.2rem solid $hovercolor;
     // Optional
     //animation: hover 2s forwards infinite;
 }
+$maincolors: (
+    "darkblue": #192D40,
+    "blue": #21303A,
+    "cyan": #375D72,
+    "lime": #7FCD8A,
+    "white": #F4F0E7,
+    "lightblue": #5DACB6
+);
+@function colorscheme($color) {
+    @return map-get($maincolors, $color);
+}
 @mixin active {
-    color: #ff0000 !important;
-    border-bottom: 0.2rem solid #ff0000;
+    color: $hovercolor !important;
+    border-bottom: 0.2rem solid $hovercolor;
     box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
         inset 3px 3px 10px rgba(0,0,0,0.3),
         inset -3px -3px 10px rgba(0,0,0,0.1);
@@ -170,9 +190,13 @@ $textfont: "Quicksand";
         box-shadow: 0.0px 0.0px 0.0px hsl(0deg 0% 0% / 0.50);
     }
 }
+$titlefont: "Montserrat";
+$textfont: "Quicksand";
+$hovercolor: colorscheme('lime');
 .title {
     font-family: $titlefont;
 }
+
 .navbar {
     display: flex;
     text-align: center;
@@ -181,40 +205,55 @@ $textfont: "Quicksand";
     align-items: flex-start;
     flex-direction: row;
     justify-content: center;
-    background: colorscheme(darkblue);
+    background: linear-gradient(to right, colorscheme('blue'), colorscheme('darkblue'));
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 0 !important;
     .navbar-nav {
         .nav-link {
             flex: 1 1 auto;
             align-self: center;
-            padding: 1rem 2rem;
+            padding: 1rem 4rem;
             height: 100%;
             //display: block;
             align-items: center;
             vertical-align: middle;
             font-size: 2.3ch;
-            align-self: stretch;
+            /*background: url('/images/UI/MenuTab.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;*/
             position: relative;
             color: #ffffff;
             text-align: center;
             margin-left: 0rem;
-            transition: all 0.1s ease;
-            //transition: all 300ms ease;
+            transition: all 0.3s ease;
+            /*Hmm yes?*/
+            font-family: 'bodytext';
             &:hover, &:focus {
                 @include hover;
                 border-radius: 50px;
+                /*background: url('/images/UI/MenuTabActive.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;*/
             }
             &.active {
                 @include active;
                 border-radius: 50px;
+                /*background: url('/images/UI/MenuTabActive.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;*/
             }
             
             &.nuxt-link-exact-active {
                 @include active;
                 border-radius: 50px;
                 box-shadow: 4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);
-                
+                /*background: url('/images/UI/MenuTabActive.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;*/
             }
         }
     }
@@ -272,7 +311,7 @@ $textfont: "Quicksand";
 .dropdown {
     .dropdown-header, .dropdown-header a {
         font-size: 1.2rem;
-        color: #ffffff;
+        color: $hovercolor;
         text-align: center;
     }
     .dropdown-item:hover, .dropdown-item:focus, .dropdown-header:hover, .dropdown-header:focus {
@@ -286,7 +325,7 @@ $textfont: "Quicksand";
     .dropdown-item:hover, .dropdown-item:hover a, .dropdown-header:hover a {
         background: none;
         @include hover;
-        color: #ffffff;
+        color: $hovercolor;
     }
     .btn {
         display: block;

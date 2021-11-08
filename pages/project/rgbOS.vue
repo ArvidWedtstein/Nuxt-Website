@@ -1,6 +1,5 @@
 <template>
    <div id='rgbOS'>
-      <Navbar/>
       <div class="jumbotron">
          <p class="display-4"><span style="color: red;">R</span><span style="color: green;">G</span><span style="color: blue;">B</span>os</p>
          <p class="lead">Linux distro test</p>

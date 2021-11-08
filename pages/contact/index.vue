@@ -1,6 +1,5 @@
 <template>
     <div id="contact">
-        <Navbar/>
         <div class="container-fluid">
             <div class="contactFormBx">
                 <p v-if="errors.length">

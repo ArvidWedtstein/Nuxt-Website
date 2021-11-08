@@ -1,7 +1,6 @@
 
 <template>
     <div id="project">
-        <Navbar/>
         <div class="container-fluid">  
             <div class="row">
 			    <div v-for="item in projects" :key="item" class="col-md-3 project d-flex">

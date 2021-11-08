@@ -1,6 +1,5 @@
 <template>
     <div id="3d-print">
-        <Navbar/>
         <div id="preview" class="container-fluid">
             <div class="jumbotron">
                 <h1 class="display-4">3D Print</h1>
@@ -62,6 +61,12 @@
                             <a v-bind:href="object.stl" class="pixelbutton" download><i class="fas fa-download"></i> Download</a>
                         </div>
                     </div>
+                </div>
+            </li>
+            <li class="printcard col-md-4">
+                <div class="box">
+                    <div class="icon"><i class="fas fa-code"/></div>
+                    <div class="content">Content</div>
                 </div>
             </li>
             <!--<li class="printcard col-md-4 filterDiv pc">
@@ -324,10 +329,53 @@ export default {
 }
 </script>
 <style lang="scss">
+
 .printcard {
     list-style-type: none;
     min-height: 1px;
     flex: 1 1 auto;
+    .box {
+        position: relative;
+        overflow: hidden;
+        width: 350px;
+        height: 280px;
+        border-radius: 20px;
+        background: #51446e;
+        .icon {
+            position: absolute;
+            top: 0%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: 0.5s;
+            border-radius: 20px;
+            background: red;
+            z-index: 2;
+            text-align: center;
+            vertical-align: middle;
+            i {
+                font-size: 4ch;
+                transform: translateY(50%);
+            }
+        }
+        &:hover {
+            .icon {
+                top: 30px;
+                left: calc(50% - 40px);
+                width: 80px;
+                height: 80px;
+                border: 50%;
+            }
+        }
+        .content {
+            position: relative;
+            padding: 20px;
+            color: #fff;
+            margin-top: 100px;
+            text-align: center;
+            z-index: 1;
+        }
+    }
 }
 #scrollToTopBtn {
   display: none;

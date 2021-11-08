@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
+@font-face {
+    font-family: "medieval";
+    src: url('https://fonts.gstatic.com/s/unifrakturmaguntia/v7/7KWy3ymCVR_xfAvvcIXm3wh3zWhftzIdHBsuU0JwdCQ.woff2');
+}
+@font-face {
+    font-family: "medieval-bodytext";  
+    src: url('https://fonts.gstatic.com/s/unifrakturcook/v8/ASwh69ykD8iaoYijVEU6RpMdj8Gkv7ccSfgBBVtwm5Y.woff2');
+}
 :root {
     --navbarcolor: #232323;
     --navitemcolor: #272727; 
@@ -74,6 +82,12 @@ a:hover {
 ::selection {
     color: white;
     background: #03a9f4;
+}
+.medieval-text {
+    font-family: 'medieval';
+}
+.medieval-bodytext {
+    font-family: 'medieval-bodytext';
 }
 @mixin hover {
     color: #ff0000 !important;
@@ -168,9 +182,7 @@ a:hover {
     }
     
 }
-.col-xl-3 {
-    padding: 15px;
-}
+
 @keyframes rgb {
     0% {
         filter: hue-rotate(0deg);
@@ -189,22 +201,7 @@ a:hover {
 	animation: rgb 3s linear infinite;
 }
 
-#profile {
-	transition: 0.5s;
-    background: transparent;
-	mask-image: -webkit-gradient(linear, top, bottom, 
-	  color-stop(0.00,  rgba(0,0,0,1)),
-      color-stop(0.35,  rgba(0,0,0,1)),
-      color-stop(0.50,  rgba(0,0,0,0)),
-      color-stop(0.65,  rgba(0,0,0,0)),
-      color-stop(1.00,  rgba(0,0,0,0)));
-}
-#profile:hover {
-	border-radius: 50%;
-	background: #131419;
-	box-shadow: inset -5px -5px 10px rgba(255,255,255,0.05),
-		inset 5px 5px 15px rgba(0,0,0,0.5);
-}
+
 
 
 
@@ -639,116 +636,9 @@ a:hover {
   padding: 0px;
 }
 
-/* About Me page */
-.about { 
-    &:first-child {
-        background: #333333;
-        clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0% );
-    }
-    &:nth-child(2) {
-        //background: #333333; 
-        padding: 6rem;
-        background: none; 
-        clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
-    }
-}
-.text .aboutMe {
-    background: none;
-	text-align: left;
-	display: -ms-flexbox;
-  	display: flex;
-	position: relative;
-	padding-left: 0rem;
-	font-size: 5rem;
-}
-
 .my-4 {
     background: #ffffff;
 }
-@media (max-width: 992px) {
-	.text .aboutMe {
-		font-size: 20px;
-		text-align: center;
-		float: left;
-		padding: 0;
-	}
-}
-
- /* About Me link bar */
- .icon-bar {
-    $iconcolors: (
-        "facebook":#3B5998,
-        "twitter":#55ACEE,
-        "twitch": rgba(145, 71, 255, 0.9),
-        "discord": #8697F6,
-        "github": #333333,
-        "steam": #173e58,
-        "linkedin":#007bb5,
-        "cv": #009bb5,
-        "js": #EFD81D,
-        "html": #D84B24,
-        "css": #3492CB,
-        "sass": #C45F92,
-        "vue": #49B180,
-        "ubuntu": #D24413,
-        "python": #dddddd
-    );
-    &.social {
-        font-size: 1.3rem;
-        & > * {
-            border-radius: 30% 30%;
-            opacity: 0.7;
-            @each $color, $value in $iconcolors {
-                &.#{$color}  {
-                    background: $value;
-                    color: white;
-                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-                }
-            }
-            &:hover {
-                box-shadow: none;
-                font-size: 1.8rem;
-                /*color: #333333;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;*/
-            }
-        }
-    }
-    &.icons {
-        font-size: 1.8rem;
-        opacity: 1;
-        & > * {
-            @each $color, $value in $iconcolors {
-                &.#{$color}  {
-                    background: none;
-                    color: $value;
-                    border: 1mm outset $value;
-                }
-            }
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
-    & > * {
-        justify-content: center;
-        align-items: center;
-        display: inline-flex;
-        align-items: center;
-        align-content: center;
-        vertical-align: middle;
-        -webkit-transition: all 0.5s ease-in-out;
-        text-align: center;
-        border: 1px solid transparent;
-        padding: 1rem;
-        width: 4rem;
-        height: 4rem;
-        transition: all 0.3s ease;
-        margin: 5px 2px;
-        line-height: 4rem;
-        position: relative;
-    }
- }
 
 @keyframes rotate {
     from {
@@ -821,8 +711,6 @@ a:hover {
         //background: linear-gradient(#111111, #333333, #222222);
         background: url("/images/galaxy.jpg");
         background-size: 400%;
-        -webkit-transition: all var(--speed) ease;
-        transition: all var(--speed) ease;
         background-repeat: no-repeat;
         animation-name: zoom;
         animation-duration: 180s;
@@ -843,7 +731,7 @@ a:hover {
             background: rgba(0,0,0,0.2);
         }
         &:hover {
-            transition: all 0.3s ease !important;
+            transition: all 0.2s ease !important;
             padding: 0.7rem;
             .card-body {
                 filter: drop-shadow(4px 4px 10px black);

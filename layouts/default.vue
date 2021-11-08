@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="navbar">
-        <Navbar/>
-    </div>
+    <Navbar/>
     <Nuxt/>
     <slot/>
     <NuxtPage/>
@@ -10,13 +8,15 @@
 </template>
 
 <script>
-import Navbar from ".../components/navbar.vue";
 export default {
     template: "default",
-    transition: "slide-bottom",
-    components: { Navbar }
+    transition: "slide-bottom"
 }
 </script>
 <style lang="scss">
-
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
 </style>
