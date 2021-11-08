@@ -255,7 +255,7 @@ export default {
         api() {
          axios({
                method: 'get',
-               url: 'https://api.github.com/repos/ArvidWedtstein/Game/contents/'
+               url: 'https://api.github.com/repos/ArvidWedtstein/Game'
          })
          .then(function (response) {
             console.log(response.data)

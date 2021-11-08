@@ -7,7 +7,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <NuxtLink v-bind:to="item.path"><img class="card-img-top" v-bind:src="item.image" v-bind:alt="item.name" /></NuxtLink>
-                            <NuxtLink v-bind:to="item.path"><h5 class="card-title">{{ item.name }} <div class="icons"><font-awesome-icon class="category" v-for="category in item.category" :key="category" v-bind:icon="categoryicons[category]"/></div></h5></NuxtLink>
+                            <NuxtLink v-bind:to="item.path"><h5 class="card-title">{{ item.name }} <div class="icons"><i class="category" v-for="category in item.category" :key="category" v-bind:class="'fas ' + categoryicons[category]"/></div></h5></NuxtLink>
                             <NuxtLink v-bind:to="item.path"><p class="card-text">{{ item.description }}</p></NuxtLink>
                             <NuxtLink v-bind:to="item.path"><p class="card-text">Date: 22/10/21</p></NuxtLink>
                             <NuxtLink v-bind:to="item.path"><p v-if="item.category == 'Programming'" class="card-text">Language: {{ item.language.join(', ') }}</p></NuxtLink>
