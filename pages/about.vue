@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col-xl-12 about">
-                    <Timeline/>
+                    <Timeline :timeline="timeline"/>
                 </div>
             </div>
         </div>
@@ -52,7 +52,8 @@
 
 
 <script lang="text/javascript">
-
+const axios = require('axios');
+const moment = require('moment');
 export default {
     template: '<about/>',
     transition: 'slide-bottom',
@@ -63,6 +64,28 @@ export default {
         return {
             ragemode: false,
             ragemode2: false,
+            timeline: [
+                {
+                    message: "Praksis",
+                    description: "Begynte på Appex som praksiselev!",
+                    date: "2021 - today"
+                },
+                {
+                    message: "VG2",
+                    description: "Begynte på Informasjonsteknologi og Media VG2",
+                    date: "2021 - today"
+                },
+                {
+                    message: "VG1",
+                    description: "Begynte på Informasjonsteknologi og Media VG2. Dette året lærte jeg om Photoshop, Illustrator osv",
+                    date: "2020 - 2021"
+                },
+                {
+                    message: "Grunnskole",
+                    description: "Tja, de første 10 årene med grunnskole i guess",
+                    date: "2010 - 2020"
+                }
+            ]
         }
     },
     methods: {
@@ -72,8 +95,10 @@ export default {
             setTimeout(() => {
                 this.ragemode2 = true;
             }, 9000);
-        }
+        },
+    },
+    mounted() {
+
     }
 }
 </script>
-

@@ -18,13 +18,15 @@ export default {
                url: 'https://api.github.com/users/ArvidWedtstein/repos'
          })
          .then(function (response) {
-               axios({
-                  method: 'get',
-                  url: response.data[0].languages_url
-               })
-               .then(function (response2) {
-                  console.log(response2)
-               })
+            let Discordbot = response.data.find(x => x.name === 'DiscordBotArvid');
+            console.log(Discordbot)
+            axios({
+               method: 'get',
+               url: 'https://api.github.com/repos/ArvidWedtstein/DiscordBotArvid/contents/'
+            })
+            .then(function (response2) {
+               console.log(response2.data)
+            })
          });
       }
    },

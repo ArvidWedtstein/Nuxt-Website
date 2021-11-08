@@ -5,7 +5,7 @@
          <p class="display-4"><span style="color: red;">R</span><span style="color: green;">G</span><span style="color: blue;">B</span>os</p>
          <p class="lead">Linux distro test</p>
       </div>
-      <ul class="rgbOS">
+      <!--<ul class="rgbOS">
          <li><span class="caret">rgbOS Files</span>
             <ul class="nested">
                <li><span class="caret">build</span>
@@ -107,16 +107,39 @@
                <li>Makefile</li>
             </ul>
          </li>
+      </ul>-->
+      <ul class="rgbOS">
+         <li><span class="caret">rgbOS Files</span>
+            <ul class="nested">
+               <li v-for="file in files" :key="file">
+                  <span v-if="file.type === 'dir'" class="caret">{{file.name}}</span>
+                  <p v-else>{{file.name}}</p>
+                  <ul v-if="file.type === 'dir'" class="nested">
+                     <!--<li v-for="underfile in " :key="underfile"><span class="caret">n</span>
+                        <ul class="nested">
+                           <li>main.o</li>
+                        </ul>
+                     </li>-->
+                     <li>{{file.name}}</li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
       </ul>
    </div>
 </template>
 
 <script>
 var https = require("https");
-import axios from 'axios';
+const axios = require('axios');
 export default {
    template: 'rgbOS',
    transition: 'slide-bottom',
+   data() {
+      return {
+         files: null
+      }
+   },
    methods: {
       fileview() {
          var toggler = document.getElementsByClassName("caret");
@@ -129,8 +152,31 @@ export default {
          });
          }
       },
+      api() {
+         this.files = []
+         axios({
+            method: 'get',
+            url: 'https://api.github.com/repos/ArvidWedtstein/DiscordBotArvid/contents/'
+         })
+         .then(async (response) => {
+            console.log(response.data)
+            this.files = await response.data;
+            
+         })
+      },
+      async api2(url) {
+         await axios({
+            method: 'get',
+            url: url
+         })
+         .then(async (response2) => {
+            console.log(response2.data)
+            return response2.data
+         })
+      }
    },
    mounted() { 
+      this.api()
       this.fileview()
    }
 }

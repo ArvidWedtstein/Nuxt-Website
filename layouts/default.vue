@@ -3,6 +3,7 @@
     <div class="navbar">
         <Navbar/>
     </div>
+    <Nuxt/>
     <slot/>
     <NuxtPage/>
   </div>

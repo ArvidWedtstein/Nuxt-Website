@@ -78,8 +78,8 @@ export default {
     name: "Navbar",
     props: {
         title: {
-        type: String,
-        default: null,
+            type: String,
+            default: null,
         },
     },
     data() {
@@ -189,7 +189,6 @@ $textfont: "Quicksand";
             flex: 1 1 auto;
             align-self: center;
             padding: 1rem 2rem;
-            transition: 0.2s;
             height: 100%;
             //display: block;
             align-items: center;
@@ -200,7 +199,7 @@ $textfont: "Quicksand";
             color: #ffffff;
             text-align: center;
             margin-left: 0rem;
-            transition: all 1s ease;
+            transition: all 0.1s ease;
             //transition: all 300ms ease;
             &:hover, &:focus {
                 @include hover;
@@ -298,7 +297,7 @@ $textfont: "Quicksand";
         margin-left: 0rem;
         border: none;
         border-radius: 0;
-        transition: 0.3s;
+        transition: 0.1s;
         background: none !important;
         outline: none !important;
         &:hover {
