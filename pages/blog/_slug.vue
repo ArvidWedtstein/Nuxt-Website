@@ -2,17 +2,18 @@
   <div class="news">
     <Navbar/>
     <ul class="row posts">
-      <li class="col-md-4">
+      <li v-for="post in article" :key="post" class="col-md-4">
         <div class="card">
-          <img class="card-img-top" :src="article[0].img" alt="Card image cap">
-          <div class="card-header">
-            <p>{{article[0].author.name}}</p>
-            <img class="profileImg" :src="article[0].author.img"/>
+          <img v-if="post.img" class="card-img-top" :src="post.img" alt="Card image cap">
+          <div v-if="post.author" class="card-header">
+            <p v-if="post.author.name">{{post.author.name}}</p>
+            <img class="profileImg" v-if="post.author.img" :src="post.author.img"/>
           </div>
           <div class="card-body">
-            <h5 class="card-title">{{article[0].title}}</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated {{timeSince(article[0].updatedAt)}} ago</small></p>
+            <h5 v-if="post.title" class="card-title">{{post.title}}</h5>
+            <p v-if="post.description" class="card-text">{{post.description}}</p>
+            <p class="card-text"><small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago</small></p>
+            <NuxtLink :to="{ name:'ff', params: { slug: post.slug }}">{{post.title}}</NuxtLink>
           </div>
         </div>
       </li>
@@ -23,20 +24,29 @@
 
 <script>
 import moment from 'moment'
-  export default {
-    async asyncData({ $content, params }) {
-      const article = await $content('articles', params.slug).fetch()
-    
-      return {
-        article
-      }
+export default {
+  data() {
+    return {
+      author: '',
+      title: '',
+      description: ''
+    }
+  },
+  async asyncData({ $content, params }) {
+    const article = await $content('articles', params.slug).fetch()
+    return {
+      article
+    }
+  },
+  methods: {
+    timeSince(date) {
+      return moment(date).fromNow(true)
     },
-    methods: {
-      timeSince(date) {
-        return moment(date).fromNow(true)
-      }
+    createpost() {
+      console.log(this.ownarticle)
     }
   }
+}
 </script>
 
 <style lang="scss">

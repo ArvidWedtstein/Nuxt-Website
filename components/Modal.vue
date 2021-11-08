@@ -1,8 +1,7 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-overlay" @click="$emit('close-modal')">
-        <h2 style="color: #ffffff;">NOICE</h2>
-        <p>Your Details have been saved Successfully</p>
+        <slot></slot>
         <button>Go Home</button>
       <div class="modal" @click.stop>
         <h2 style="color: #ffffff;">NOICE</h2>
