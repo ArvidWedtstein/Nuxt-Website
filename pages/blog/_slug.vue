@@ -10,9 +10,7 @@
             This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.
           </p>
           <hr>
-          <p>
-            {{ post.description }}
-          </p>
+          <p>{{ post.description }}</p>
           <blockquote>
             <p>
               Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. 

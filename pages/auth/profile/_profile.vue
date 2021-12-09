@@ -292,7 +292,7 @@ html {
       color: colorscheme('white');
       //border-top: 2px solid transparent;
       border-radius: none;
-      
+      text-decoration: none;
       &.active, &.show {
           background: none;
           border: none;

@@ -5,34 +5,21 @@
         <h3 class="pb-3 mb-4 border-bottom">TestPost</h3>
         <div class="blog-post">
           <div class='inputBox'>
-            <input id="title" type='text' name='title' class="blog-post-title" placeholder="Title"/>
+            <input id="title" type='text' name='title' class="blog-post-title" placeholder="Title" v-model="title"/>
           </div>
           <p class="blog-post-meta text-muted">date by <a class="link" href="#">author</a></p>
           <div class="inputBox">
-            <textarea data-provide="markdown" placeholder="Text"></textarea>
+            <textarea data-provide="markdown" placeholder="Text" v-model="description"></textarea>
           </div>
           <hr>
           <div class="inputBox" v-for="i in textBlocks" :key="i">
             <textarea @input="updateTextBlock(textBlock, `textBlock${i}.text`, $event)" placeholder="Text"></textarea>
           </div>
-          <p>
-            <a class="link" href="https://en.wikipedia.org/wiki/Cum">Cum</a> sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. 
-            <a class="link" href="#">Pellentesque</a>
-             ornare sem lacinia quam venenatis vestibulum. 
-            Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-          </p>
           <div class="inputBox" v-for="i in sectionBlocks" :key="i">
             <input @input="updateTextBlock(sectionBlock, `sectionBlock${i}.header`, $event)" placeholder="Header">
             <br>
             <textarea @input="updateTextBlock(sectionBlock, `sectionBlock${i}.text`, $event)" placeholder="Content"></textarea>
           </div>
-          <h2>Heading</h2>
-          <p>
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. 
-            <a class="link" href="#">Pellentesque</a>
-             ornare sem lacinia quam venenatis vestibulum. 
-            Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
-          </p>
         </div>
       </div>
       <div class="col-md-4 sidebar">
@@ -64,6 +51,29 @@
         </div>
       </div>
     </div>
+    <div class="preview-post">
+      <div class="row">
+        <div class="col-md-8 post-main">
+          <h2>Preview</h2>
+          <h3 class="pb-3 mb-4 border-bottom">Test Post</h3>
+          <div class="blog-post">
+            <h2 class="blog-post-title">{{ title }}</h2>
+            <p class="blog-post-meta text-muted">creationdate by <a class="link" href="#">you</a></p>
+            <p>{{ description }}</p>
+            <hr>
+            <div v-for="b in textBlocks" :key="b">
+              <p>{{ textBlock[`textBlock${b}.text`] }}</p>
+            </div>
+            <hr>
+            <div v-for="a in sectionBlocks" :key="a">
+              <h2>{{ sectionBlock[`sectionBlock${a}.header`] }}</h2>
+              <p>{{ sectionBlock[`sectionBlock${a}.text`] }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-github">Publish</button>
     <ArvidFooter></ArvidFooter>
   </div>
 </template>
@@ -98,12 +108,12 @@ export default {
   },
   methods: {
     addTextBlock() {
-      if (this.textBlocks <= 0) return; 
       //this.textBlock[`textBlock${this.textBlocks}`] = {"text": ""}
       this.textBlocks++;
       console.log(this.textBlock)
     },
     removeTextBlock() {
+      if (this.textBlocks <= 0) return; 
       this.textBlocks--;
     },
     addSectionBlock() {
@@ -180,7 +190,7 @@ $colorpalette: (
 
 // Website colorscheme
 $maincolors: (
-    "grey": "#212529",
+    "grey": #212529,
     "darkblue": #192D40,
     "blue": #21303A,
     "cyan": #375D72,
@@ -196,43 +206,16 @@ $maincolors: (
 }
 .news {
   list-style-type: none;
-  .post-main {
-    //background-color: colorscheme('blue');
-    border-radius: 0.25rem;
-    .blog-post {
-      margin-bottom: 4rem;
-      .blog-post-title {
-        font-family: 'MedievalSharp';
-        &::first-letter {
-          position: relative;
-          font-size: 3ch;
-          color: #f05053;
-          text-transform: uppercase;
-        }
-      }
-      .input-title {
-        font-size: 2rem;
-        background: transparent;
-        border-bottom: 2px solid #f4f0e7;
-      }
+  .preview-post {
+    .post-main {
+      background: colorscheme('darkblue');
+      border-radius: 0.5rem;
+      padding: 3rem;
     }
   }
   .sidebar {
     //background-color: colorscheme('blue');
     border-radius: 0.25rem;
-  }
-  #editPost {
-    position: fixed; /* Sit on top of the page content */
-    display: block; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100vh; /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
   }
 }
 </style>
