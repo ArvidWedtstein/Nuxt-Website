@@ -1,0 +1,28 @@
+{
+    "title": "template",
+    "description": "template",
+    "img": "https://images.unsplash.com/photo-1588514727390-91fd5ebaef81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=80&q=80",
+    "author": {
+        "name": "template",
+        "bio": "template",
+        "img": "https://images.unsplash.com/photo-1588514727390-91fd5ebaef81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=80&q=80"
+    },
+    "tags": [
+        {
+            "name": "Pain",
+            "icon": "fa-tired"
+        },
+        {
+            "name": "Programming",
+            "icon": "fa-code"
+        },
+        {
+            "name": "Media",
+            "icon": "fa-photo-video"
+        },
+        {
+            "name": "3D Print",
+            "icon": "fa-cubes"
+        }
+    ]
+}

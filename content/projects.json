@@ -1,0 +1,56 @@
+{
+    "projects": [
+        {
+            "name": "Game",
+            "description": "Et spill jeg holder på med",
+            "image": "/images/Projects/game.PNG",
+            "category": ["Programming"],
+            "language": ["C#"],
+            "path": "/project/game"
+        },
+        {
+            "name": "3D Print",
+            "description": "3D Models",
+            "image": "/images/Projects/3dprint.jpg",
+            "category": ["3D Print"],
+            "path": "/project/3dprint"
+        },
+        {
+            "name": "Photoshop",
+            "description": "Photoshop images",
+            "image": "/images/Projects/photoshop.jpg",
+            "category": ["Media"],
+            "path": "/project/photoshop"
+        },
+        {
+            "name": "Login System",
+            "description": "PHP & SQL Login system",
+            "image": "/images/Projects/php.png",
+            "category": ["Programming", "Pain"],
+            "language": ["PHP", "SQL"],
+            "path": "/project/php-login"
+        },
+        {
+            "name": "Discordbot",
+            "description": "Discordbot chatbot.",
+            "image": "/images/Projects/rgbOS.png",
+            "category": ["Programming"],
+            "language": ["Javascript"],
+            "path": "/project/discordbot"
+        },
+        {
+            "name": "rgbOS",
+            "description": "Linux Ubuntu distro",
+            "image": "/images/ArvidLogo.png",
+            "category": ["Programming"],
+            "language": ["C", "Assembly"],
+            "path": "/project/rgbOS"
+        }
+    ],
+    "categoryicons": {
+        "Programming": "fa-code",
+        "Media": "fa-photo-video",
+        "3D Print": "fa-cubes",
+        "Pain": "fa-tired"
+    }
+}
