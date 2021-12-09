@@ -2,7 +2,7 @@
   <div class="news container">
     <div class="row">
       <div class="col-md-8 post-main">
-        <h3 class="pb-3 mb-4 border-bottom">TestPost</h3>
+        <h3 class="pb-3 mb-4 border-bottom">Test Post</h3>
         <div class="blog-post">
           <h2 class="blog-post-title">{{ post.title }}</h2>
           <p class="blog-post-meta text-muted">{{ formatDate(post.createdAt) }} by <a class="link" href="#">{{ post.author.name }}</a></p>
