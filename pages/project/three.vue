@@ -208,7 +208,7 @@ export default {
             
 
             const plane = new THREE.Mesh(
-               new THREE.PlaneGeometry(100, 50, 1, 1),
+               new THREE.PlaneBufferGeometry(100, 50, 1, 1),
                new THREE.MeshStandardMaterial({
                   map: diff,
                })
