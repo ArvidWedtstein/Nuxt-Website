@@ -44,7 +44,7 @@ export default {
    transition: 'slide-bottom',
    methods: {
       three() {
-         let scene, camera, renderer, controls, model, hemiLight, spotLight, manager, textureLoader, gridHelper, loader, object;
+         let scene, camera, renderer, controls, model, hemiLight, spotLight, manager, textureLoader, gridHelper, loader, object, house;
          async function init() {
             scene = new THREE.Scene();
             //scene.background = new THREE.Color(0xdddddd);
@@ -66,7 +66,7 @@ export default {
 
 
             gridHelper = new THREE.GridHelper(200, 50);
-            scene.add(gridHelper);
+            //scene.add(gridHelper);
 
             renderer = new THREE.WebGLRenderer({
                canvas: document.querySelector('#threejs'),
@@ -98,9 +98,9 @@ export default {
 
             loader = new GLTFLoader();
             loader.load("/scene/House.glb", async (glb) => {
-               const root = glb.scene;
-               root.scale.set(2,2,2);
-               scene.add(root)
+               house = glb.scene;
+               house.scale.set(2,2,2);
+               scene.add(house)
                animate();
                renderer.render( scene, camera );
             }, onProgress, onError);
@@ -225,18 +225,22 @@ export default {
             controls = new OrbitControls(camera, renderer.domElement);
             //controls.addEventListener("change", renderer);
             //controls.minDistance = 500;
+            controls.target.copy(house.position);
+            controls.autoRotate = true; 
             controls.maxDistance = 1500;
             animate()
          }
 
          function animate() {
             renderer.render( scene, camera );
-            spotLight.position.set(
+            controls.update();
+            /*spotLight.position.set(
                camera.position.x + 10,
                camera.position.y + 10,
                camera.position.z + 10
-            )
+            )*/
             requestAnimationFrame( animate );
+            
          }
          init();
 
