@@ -60,8 +60,8 @@ export default {
             spotLight = new THREE.SpotLight(0xffa95c, 4);
             spotLight.castShadow = true;
             spotLight.shadow.bias = -0.0001;
-            spotLight.shadow.mapSize.width = 1024*2;
-            spotLight.shadow.mapSize.height = 1024*2;
+            spotLight.shadow.mapSize.width = 1024*1;
+            spotLight.shadow.mapSize.height = 1024*1;
             scene.add(spotLight);
 
 
