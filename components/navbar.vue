@@ -61,7 +61,7 @@
                     </NuxtLink>
                     <meta property="position" content="1" />
                 </li>
-                <li v-for="(crumb, i) in crumbs" :key="i" property="itemListElement" typeof="ListItem" class="breadcrumb-item">
+                <li v-for="(crumb, iii) in crumbs" :key="iii" property="itemListElement" typeof="ListItem" class="breadcrumb-item">
                     <NuxtLink property="item" typeof="WebPage" :to="crumb.path">
                         <span property="name">
                             {{ $route.fullPath === crumb.path && title !== null ? title : crumb.title }}

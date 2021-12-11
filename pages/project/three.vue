@@ -35,8 +35,9 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { EXRLoader } from "three/examples/jsm/loaders/EXRLoader.js";
+import THREEx from "three/examples/jsm/interactive/InteractiveGroup";
+//import THREEx from "~/threex.domevents";
 //import { initializeDomEvents } from "threex.domevents";
-//var THREEx = {}
 
 
 export default {
@@ -84,7 +85,7 @@ export default {
 
 
 
-            manager = new THREE.LoadingManager( loadModel );
+            /*manager = new THREE.LoadingManager( loadModel );
             textureLoader = new THREE.TextureLoader( manager );
 
             manager.onProgress = function ( item, loaded, total ) {     
@@ -155,8 +156,8 @@ export default {
                      child.recieveShadow = true;
                      child.material.map = baseColor;
                      child.material.aoMap = mixedAOColor;
-                     /*child.material.emissiveMap = emissiveColor;
-                     child.material.emissiveIntensity = 1;*/
+                     //child.material.emissiveMap = emissiveColor;
+                     //child.material.emissiveIntensity = 1;
                      child.material.metalnessMap = metallicColor;
                      child.material.metalness = 2.0;                    ;
                      //child.material.bumpMap = heightColor;
@@ -184,8 +185,8 @@ export default {
 
 
 
-            /*let skyboxArray = [];
-            const skybox_ft = textureLoader.load("skybox/arid2_ft.jpg");
+            //let skyboxArray = [];
+            //const skybox_ft = textureLoader.load("skybox/arid2_ft.jpg");
             const skybox_bk = textureLoader.load("skybox/arid2_bk.jpg");
             const skybox_up = textureLoader.load("skybox/arid2_up.jpg");
             const skybox_dn = textureLoader.load("skybox/arid2_dn.jpg");
@@ -202,15 +203,18 @@ export default {
                skyboxArray[i].side = THREE.BackSide;
             }
             const skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
-            const skybox = new THREE.Mesh(skyboxGeo, skyboxArray);*/
-            //scene.add(skybox)
+            const skybox = new THREE.Mesh(skyboxGeo, skyboxArray);
+            //scene.add(skybox)*/
 
-            
+            window.addEventListener('click', onDocumentMouseDown, false);
+
+
 
             const plane = new THREE.Mesh(
                new THREE.PlaneBufferGeometry(100, 50, 1, 1),
                new THREE.MeshStandardMaterial({
-                  map: diff,
+                  color: 0xffffff,
+                  doubleSided: true
                })
             )
             plane.rotateX(Math.PI * -0.5);
@@ -222,16 +226,40 @@ export default {
             scene.add(plane)
 
 
+
+            var raycaster = new THREE.Raycaster();
+            var mouse = new THREE.Vector2();
+            function onDocumentMouseDown( event ) {
+               event.preventDefault();
+               mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+               mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+               raycaster.setFromCamera( mouse, camera );
+               //console.log(scene.children);
+               //var intersects = raycaster.intersectObjects( scene.children );
+               var intersects = raycaster.intersectObjects(scene.children, true);
+               console.log(intersects[0]);
+               if ( intersects.length > 0 ) {
+                  //intersects[1].object.callback();
+                  let selectedObject = intersects[0];
+                  alert(selectedObject.object.type);
+               }
+            }
+
+            /*var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
+            domEvents.addEventListener(plane, 'click', event => {
+               material.wireframe = true;
+            })*/
+
             controls = new OrbitControls(camera, renderer.domElement);
             //controls.addEventListener("change", renderer);
             //controls.minDistance = 500;
-            controls.target.copy(house.position);
-            controls.autoRotate = true; 
+            //controls.target.copy(house.position);
+            //controls.autoRotate = true; 
             controls.maxDistance = 1500;
             animate()
          }
 
-         function animate() {
+         const animate = () => {
             renderer.render( scene, camera );
             controls.update();
             /*spotLight.position.set(
@@ -344,7 +372,8 @@ export default {
    },
    mounted() {
       this.three()
-   }
+   },
+
 }
 </script>
 <style lang="scss">

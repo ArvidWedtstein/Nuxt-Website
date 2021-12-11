@@ -46,9 +46,6 @@ export default {
           src: "https://apis.google.com/js/platform.js",
           async: true,
           defer: true
-        },
-        {
-          src: "https://rawgit.com/jeromeetienne/threex.domevents/master/threex.domevents.js"
         }
     ],
     srcDir: "./",
@@ -82,7 +79,8 @@ export default {
   plugins: [
     //"~/plugins/fontawesome.js"
     //"~/plugins/canvasgradient"
-    "~/plugins/notifier.js"
+    "~/plugins/notifier.js",
+    //"~/plugins/threex.domevents.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

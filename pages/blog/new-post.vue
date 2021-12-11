@@ -4,21 +4,21 @@
       <div class="col-md-8 post-main">
         <h3 class="pb-3 mb-4 border-bottom">TestPost</h3>
         <div class="blog-post">
-          <div class='inputBox'>
+          <div class='inputBox bg-github p-3'>
             <input id="title" type='text' name='title' class="blog-post-title" placeholder="Title" v-model="title"/>
           </div>
           <p class="blog-post-meta text-muted">date by <a class="link" href="#">author</a></p>
-          <div class="inputBox">
+          <div class="inputBox bg-github p-3">
             <textarea data-provide="markdown" placeholder="Text" v-model="description"></textarea>
           </div>
           <hr>
-          <div class="inputBox" v-for="i in textBlocks" :key="i">
-            <textarea @input="updateTextBlock(textBlock, `textBlock${i}.text`, $event)" placeholder="Text"></textarea>
+          <div class="inputBox bg-github p-3" v-for="(bblock, abc) in textBlock" :key="abc">
+            <textarea v-model="bblock.text" placeholder="Text"></textarea>
           </div>
-          <div class="inputBox" v-for="i in sectionBlocks" :key="i">
-            <input @input="updateTextBlock(sectionBlock, `sectionBlock${i}.header`, $event)" placeholder="Header">
+          <div class="inputBox bg-github p-3" v-for="(sectblock, sd) in sectionBlock" :key="sd">
+            <input v-model="sectblock.header" placeholder="Header">
             <br>
-            <textarea @input="updateTextBlock(sectionBlock, `sectionBlock${i}.text`, $event)" placeholder="Content"></textarea>
+            <textarea v-model="sectblock.text" placeholder="Content"></textarea>
           </div>
         </div>
       </div>
@@ -61,19 +61,32 @@
             <p class="blog-post-meta text-muted">creationdate by <a class="link" href="#">you</a></p>
             <p>{{ description }}</p>
             <hr>
-            <div v-for="b in textBlocks" :key="b">
-              <p>{{ textBlock[`textBlock${b}.text`] }}</p>
+            <div v-for="(blogg, ccc) in textBlock" :key="ccc" >
+              <p>{{ blogg.text }}</p>
             </div>
             <hr>
-            <div v-for="a in sectionBlocks" :key="a">
-              <h2>{{ sectionBlock[`sectionBlock${a}.header`] }}</h2>
-              <p>{{ sectionBlock[`sectionBlock${a}.text`] }}</p>
+            <div v-for="(blcck, ddd) in sectionBlock" :key="ddd">
+              <h2>{{ blcck.header }}</h2>
+              <p>{{ blcck.text }}</p>
+              <hr>
             </div>
           </div>
         </div>
       </div>
     </div>
     <button class="btn btn-github">Publish</button>
+    <div class="container center">
+  <ul class="list "id="list">
+    <li draggable="true"
+        v-for="(item, index) in items"
+        :key="index"
+        v-on:dragstart="dragstart($event)"
+        v-on:dragenter="dragenter($event, index)"
+        v-on:dragend="dragend($event, index)"
+        >{{item.label}}<span>{{item.id}}</span></li>
+    <li ref="ph" class="ph">Placeholder</li>
+  </ul>
+</div>
     <ArvidFooter></ArvidFooter>
   </div>
 </template>
@@ -89,8 +102,8 @@ export default {
       description: '',
       textBlocks: 0,
       sectionBlocks: 0,
-      textBlock: {},
-      sectionBlock: {}
+      textBlock: [],
+      sectionBlock: []
     }
   },
   content: {
@@ -109,21 +122,21 @@ export default {
   methods: {
     addTextBlock() {
       //this.textBlock[`textBlock${this.textBlocks}`] = {"text": ""}
-      this.textBlocks++;
+      this.textBlock.push({text: ""})
       console.log(this.textBlock)
     },
     removeTextBlock() {
-      if (this.textBlocks <= 0) return; 
-      this.textBlocks--;
+      if (this.textBlock.length <= 0) return; 
+      this.textBlock.pop();
     },
     addSectionBlock() {
       //this.textBlock[`textBlock${this.textBlocks}`] = {"text": ""}
-      this.sectionBlocks++;
+      this.sectionBlock.push({header: "", text: ""})
       console.log(this.sectionBlock)
     },
     removeSectionBlock() {
-      if (this.sectionBlocks <= 0) return; 
-      this.sectionBlocks--;
+      if (this.sectionBlock.length <= 0) return; 
+      this.sectionBlock.pop();
     },
     updateTextBlock(obj, prop, event) {
       // REPLACE LINK WHEN BEFORE POST IS DISPLAYED
@@ -168,7 +181,7 @@ export default {
 
   },
   mounted() {
-      
+      this._placeholder = this.$refs.ph;
   },
   computed: {
     isAuthenticated() {
