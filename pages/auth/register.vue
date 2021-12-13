@@ -87,14 +87,6 @@ export default {
       stringRegex: /[a-zA-Z0-9&_\.-]/
     };
   },
-  watch: {
-      'registerData.password': function () {
-          this.registerData.has_number = /\d/.test(this.registerData.password);
-          this.registerData.has_lowercase = /[a-z]/.test(this.registerData.password);
-          this.registerData.has_uppercase = /[A-Z]/.test(this.registerData.password);
-          this.registerData.has_special = /[!@#\$%\^\&*\)\(+=._-]/.test(this.registerData.password);
-      }
-  },
   methods: {
     showSnackbar(message) {
 			this.$notifier.showMessage({ content: message, color: 'success' })
@@ -111,6 +103,9 @@ export default {
       let has_number = /\d/.test(this.registerData.password);
       if (!has_special || !has_lowercase || !has_number || !has_uppercase) {
         return this.showSnackbar("Invalid password")
+      }
+      if (!this.registerData.email.match(this.emailRegex)) {
+        return this.showSnackbar("Invalid email")
       }
       try {
         $('#modal').modal('toggle');

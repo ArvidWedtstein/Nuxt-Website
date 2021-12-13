@@ -46,6 +46,10 @@ export default {
           src: "https://apis.google.com/js/platform.js",
           async: true,
           defer: true
+        },
+        {
+          src: `https://cdn.tiny.cloud/1/${process.env.TINY_MCE_API_KEY}/tinymce/5/tinymce.min.js`,
+          referrerpolicy: "origin"
         }
     ],
     srcDir: "./",

@@ -1,7 +1,7 @@
 <template>
   <div class="news container-fluid">
-    <button v-if="userPerm('CREATE_POST')" type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">New Post</button>
-    <Modal>
+    <button v-if="userPerm('CREATE_POST')" type="button" class="btn btn-main" href="/blog/new-post">New Post</button>
+    <!--<Modal>
       <div slot="header">
         <h5 class="modal-title" id="modalLabel">New Post</h5>
       </div>
@@ -26,10 +26,10 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button v-on:click="createpost" type="button" class="btn btn-primary" data-bs-dismiss="modal">Create Post</button>
       </div>
-    </Modal>
+    </Modal>-->
 
     <ul class="grid">
-     <li v-for="(post, i) in articles.posts" :key="i" class="d-flex" :class="{'grid-row-span-2': post.image}" data-match-height="news-items">
+     <li v-for="(post, i) in articles" :key="i" class="d-flex" :class="{'grid-row-span-2': post.image}" data-match-height="news-items">
         <div class="card newspost">
           <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
           <div v-if="post.author" class="card-header" :id="'post' + i">
@@ -41,15 +41,14 @@
             <p v-if="post.description" class="card-text description">{{ post.description }}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small>
-            <br>
-            <small v-if="post.tags" class="badge bg-success" style="text-align: right;"><i v-for="(tag, v) in post.tags" :key="v" :class="tag.icon"/></small>
+            <!--<small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small>-->
+            <small v-if="post.tags" class="badge bg-success m-1" style="text-align: right;"><i v-for="(tag, v) in post.tags" :key="v" :class="tag.icon"/></small>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a :href="'/blog/'+ post._id" class="btn btn-sm btn-outline-secondary">View</a>
                 <a v-if="userPerm('MODIFY_POST')" href="/blog/new-post" class="btn btn-sm btn-outline-secondary">Edit</a>
               </div>
-              <small class="text-muted" v-on:click="notAMethod()">9 mins</small>
+              <small class="text-muted">{{ timeSince(post.updatedAt) }} ago</small>
             </div>
           </div>
         </div>
@@ -74,59 +73,44 @@ export default {
         tags: []
       },
       tags: [
-            {"name": "Pain","icon": "fas fa-tired"},
-            {"name": "Programming","icon": "fas fa-code"},
-            {"name": "Media","icon": "fas fa-photo-video"},
-            {"name": "3D Print","icon": "fas fa-cubes"},
-            {"name": "AD","icon": "fas fa-ad"},
-            {"name": "Beer","icon": "fas fa-beer"}
-        ]
+        {"name": "Pain","icon": "fas fa-tired"},
+        {"name": "Programming","icon": "fas fa-code"},
+        {"name": "Media","icon": "fas fa-photo-video"},
+        {"name": "3D Print","icon": "fas fa-cubes"},
+        {"name": "AD","icon": "fas fa-ad"},
+        {"name": "Beer","icon": "fas fa-beer"}
+      ]
     }
   },
   content: {
     nestedProperties: ['author.name']
   },
   async asyncData({ $content, params, $axios, $config }) {
-    //console.log(params.slug)
+
     let baseURL = $config.baseURL;
-    if (!params.slug) {
+    /*if (!params.slug) {
       const articles = await $axios.$get("api/news/getnewsposts");
       return {
-        articles,
+        articles: articles.posts,
         baseURL,
       }
     } else {
       const articles = await $axios.$get("api/news/getnewspost/" + params.slug);
       return {
-        articles,
+        articles: articles.posts,
         baseURL,
         params
       }
+    }*/
+    const articles = await $axios.$get("api/news/getnewsposts");
+    return {
+      articles: articles.posts,
+      baseURL,
     }
   },
   methods: {
     timeSince(date) {
       return moment(date).fromNow(true)
-    },
-    async createpost() {
-      let json = {
-        title: this.ownarticle.title,
-        description: this.ownarticle.description,
-        author: this.$store.getters.getUserInfo,
-        tags: this.ownarticle.tags
-      }
-      const data = new FormData();
-      data.append("image", document.getElementById('image').files[0])
-      data.append('json', JSON.stringify(json));
-      
-      const project = await this.$axios.$post("api/news/newspost", data).then((res) => {
-        this.showSnackbar(res.message)
-      })
-      this.$nuxt.refresh()
-      this.ownarticle.title = ''
-      this.ownarticle.description = ''
-      this.ownarticle.tags = [];
-      //return post
     },
     tagSelect(tag) {
       console.log(this.$auth.user)
@@ -166,7 +150,6 @@ export default {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;  
     },
-    
   }
 }
 </script>

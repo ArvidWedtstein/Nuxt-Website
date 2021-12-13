@@ -33,7 +33,7 @@
                     <li class="nav-item"> 
                         <NuxtLink class="nav-link" aria-controls="contacttab" aria-expanded="true" to="/contact"><i class="fas fa-id-card"/> Contact</NuxtLink>
                     </li>
-                    <li v-if="hasPermission('VIEW_POST')" class="nav-item"> 
+                    <li class="nav-item"> 
                         <NuxtLink class="nav-link" aria-controls="newstab" aria-expanded="true" to="/blog"><i class="far fa-newspaper"/> News</NuxtLink>
                     </li>
                     <li class="nav-item dropdown"> 

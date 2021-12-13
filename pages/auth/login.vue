@@ -81,7 +81,13 @@ export default {
           data: this.loginData
         }).then((res) => {
           this.showSnackbar(res.data.message, "success")
+
+          //console.log(res)
         })
+
+        //this.$auth.$storage.setState(user, val)
+        this.loginData.email = "";
+        this.loginData.password = "";
         this.$router.push("/");
         /*emailjs.sendForm('service_5s4j6tk', 'template_y8bo3vr', e.target, 'user_iJj06RAflifrwnzoXxkoy',{
           code: this.verificationcode,
@@ -109,8 +115,11 @@ export default {
             data: this.loginData
           }).then((res) => {
             this.showSnackbar(res.data.message, "success")
+            this.$auth.$storage.setState(res.data.user.name, res.data.user)
+            console.log(this.$auth.$storage.getState(res.data.user.name))
           });
-          this.$router.push("/");
+          
+          //this.$router.push("/");
         } catch (err) {
           console.log("err", err);
         }

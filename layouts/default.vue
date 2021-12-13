@@ -8,12 +8,14 @@
 </template>
 
 <script>
-
+//import Editor from '@tinymce/tinymce-vue'
 import Snackbar from '~/components/snackbar.vue'
 export default {
   template: "default",
   transition: "slide-bottom",
-  components: { Snackbar },
+  components: { 
+    Snackbar,
+  },
   methods: {
     /*scroll() {
       let lastKnownScrollPosition = 0;
