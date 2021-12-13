@@ -7,7 +7,7 @@
           <div class="blog-post">
             <h2 class="blog-post-title">{{ post.title }}</h2>
             <p class="blog-post-meta text-muted">{{ formatDate(post.createdAt) }} by <a class="link" href="#">{{ post.author.name }}</a></p>
-            <!--<p class="blog-post-description">{{ replaceLink(post.description) }}</p>-->
+            <!--<p class="blog-post-description"><span v-if="post.description.match(/(https?:\/\/[^\s]+)/g) && post.description.match(/^[a-zA-Z0-9]*$/)" v-html="replaceLink(post.description)"></span><span v-else>{{ post.description }}</span>{{ replaceLink(post.description) }}</p>-->
             <p class="blog-post-description">{{ post.description }}</p>
             <hr>
             <div class="sectionBlocks">
