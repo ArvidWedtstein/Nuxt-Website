@@ -7,7 +7,8 @@
           <div class="blog-post">
             <h2 class="blog-post-title">{{ post.title }}</h2>
             <p class="blog-post-meta text-muted">{{ formatDate(post.createdAt) }} by <a class="link" href="#">{{ post.author.name }}</a></p>
-            <p id="test" class="blog-post-description">{{ replaceLink(post.description) }}</p>
+            <!--<p class="blog-post-description">{{ replaceLink(post.description) }}</p>-->
+            <p class="blog-post-description">{{ post.description }}</p>
             <hr>
             <div class="sectionBlocks">
               <div v-for="(sectBlock, ttt) in post.sectionBlocks" :key="ttt">
