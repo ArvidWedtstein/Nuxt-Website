@@ -104,7 +104,7 @@ export default {
       }
     },
     timeSince(date) {
-      return moment(date).fromNow(true)
+      return moment(date).fromNow(true);
     },
     formatDate(date) {
       return moment(date).format("DD MMMM, YYYY hh:mm")
