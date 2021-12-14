@@ -96,6 +96,7 @@ $colorpalette: (
   display: flex;
   justify-content: center;
   align-items: center;
+  
   .hexGrid {
     display: flex;
     flex-wrap: wrap;
@@ -110,10 +111,9 @@ $colorpalette: (
     .hex {
       position: relative;
       visibility:hidden;
-      outline: 1px solid transparent;
+      outline: 2px solid transparent;
       transition: all 0.5s;
       backface-visibility: hidden;
-      
       will-change: transform;
       p {
         color: #ffffff;
