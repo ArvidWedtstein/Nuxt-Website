@@ -21,8 +21,8 @@
           <li v-for="(img, i) in images" :key="i" class="hex">
             <div class="hexIn">
               <div class="background"></div>
-              <a class="hexLink" href="Photoshop/">
-                <div class="hexImg" :style="{ backgroundImage: 'url('+ images[i].pathLong +')' }"></div>
+              <a class="hexLink" :href="img.pathLong">
+                <div class="hexImg" :style="{ backgroundImage: 'url('+ img.pathLong +')' }"></div>
                 <h1 class="hexTxtTitle orange-fade">{{i + 1}}</h1>
                 <p class="hexTxtDesc">{{img.pathShort.replace('./', '').substring(0, img.pathShort.length - 6)}}</p>
               </a>
