@@ -4,7 +4,7 @@
     <ul class="nav nav-tabs nav-justified">
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab1" class="nav-link active">Dashboard</a></li>
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link">Users</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link">Userlist</a></li>
+      <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link">Ratings</a></li>
     </ul>
 
     <div class="tab-content">
@@ -32,67 +32,74 @@
         </div>
       </div>
       <div id="tab2" class="tab-pane fade">
-        <div class="nav">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1"><i class="fas fa-filter"/></span>
+        <div class="users">
+          <div class="nav">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-filter"/></span>
+              </div>
+              <input type="text" v-model="searchbar" name='search' class="form-control" placeholder="" aria-label="">
             </div>
-            <input type="text" v-model="searchbar" name='search' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+            <a v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
+              <div class="name">
+                <img class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
+                <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
+              </div>
+              <hr class="line">
+              <div class="role">
+                <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
+              </div>
+            </a>
           </div>
-          <a v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
-            <div class="name">
-              <img class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
-              <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
-            </div>
-            <hr class="line">
-            <div class="role">
-              <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
-            </div>
-          </a>
-        </div>
-        <div class="tab-content">
-          <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
-            <div class='jumbotron'>
-              <h1 class='display-4'>{{ user.name }}'s Profile</h1>
-              <hr class='my-4'>
-              <p class='lead'>{{ user.email }}</p>
-              <div class="dropdown">
-                <button class="btn btn-🤯 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Permissions</button>
-                <form class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside" @submit.prevent="changePerms($event, user)">
-                  <!--<div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check">
-                    <input class="form-check-input" type="checkbox" value="" :id="perm" :checked="user.role.permissions.includes(perm)">
-                    <label class="form-check-label" :for="perm">{{ perm }}</label>
-                  </div>-->
-                  <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
-                    <input class="form-check-input" :id="perm" :checked="user.role.permissions.includes(perm)" type="checkbox">
-                    <label class="form-check-label" :for="perm">{{ perm }}</label>
-                  </div>
-                  <button class="btn btn-🤯" type="submit">Submit</button>
-                </form>
-              </div>
-              <div class="btn-group">
-                <button class="btn btn-🤯" type="button">{{ user.role.name }}</button>
-                <button type="button" class="btn btn-🤯 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" data-bs-auto-close="outside">
-                  <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.name, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
+          <div class="tab-content">
+            <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
+              <div class='jumbotron'>
+                <h1 class='display-4'>{{ user.name }}'s Profile</h1>
+                <hr class='my-4'>
+                <p class='lead'>{{ user.email }}</p>
+                <div class="dropdown">
+                  <button class="btn btn-🤯 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Permissions</button>
+                  <form class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside" @submit.prevent="changePerms($event, user)">
+                    <!--<div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check">
+                      <input class="form-check-input" type="checkbox" value="" :id="perm" :checked="user.role.permissions.includes(perm)">
+                      <label class="form-check-label" :for="perm">{{ perm }}</label>
+                    </div>-->
+                    <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
+                      <input class="form-check-input" :id="perm" :checked="user.role.permissions.includes(perm)" type="checkbox">
+                      <label class="form-check-label" :for="perm">{{ perm }}</label>
+                    </div>
+                    <button class="btn btn-🤯" type="submit">Submit</button>
+                  </form>
                 </div>
+                <div class="btn-group">
+                  <button class="btn btn-🤯" type="button">{{ user.role.name }}</button>
+                  <button type="button" class="btn btn-🤯 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right" data-bs-auto-close="outside">
+                    <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.name, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
+                  </div>
+                </div>
+                <p class="lead">Creation Date: {{ formatDate(user.createdAt) }}
+                  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                    99+
+                    <span class="visually-hidden">New alerts</span>
+                  </span>
+                </p>
+                <button v-if="!user.banned" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Ban ' + user.name" v-on:click="banUser(user)" class="btn btn-red"><i class="fas fa-gavel"/></button>
+                <button v-else v-on:click="unbanUser(user)" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Unban ' + user.name" class="btn btn-success"><i style="transform: rotate(135deg)" class="fas fa-gavel"/></button>
               </div>
-              <p class="lead">Creation Date: {{ formatDate(user.createdAt) }}
-                <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                  99+
-                  <span class="visually-hidden">New alerts</span>
-                </span>
-              </p>
-              <button v-if="!user.banned" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Ban ' + user.name" v-on:click="banUser(user)" class="btn btn-red"><i class="fas fa-gavel"/></button>
-              <button v-else v-on:click="unbanUser(user)" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Unban ' + user.name" class="btn btn-success"><i style="transform: rotate(135deg)" class="fas fa-gavel"/></button>
             </div>
           </div>
         </div>
       </div>
       <div id="tab3" class="tab-pane fade">
-      
+        <div class='jumbotron'>
+           <h1 class='display-4'>Ratings</h1>
+           <p class='lead'>Ratings</p>
+           <hr class='my-4'>
+           <p class='lead'>{{ reviews }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -100,10 +107,6 @@
 
 <script>
 
-$(document).on('click', '.dropdown-menu.keep-open', function (e) {
-  e.stopPropagation();
-});
-import Rating from '../../components/rating.vue';
 const axios = require('axios');
 const moment = require('moment');
 export default {
@@ -120,12 +123,14 @@ export default {
     const users = await $axios.$get("/api/auth/allusers");
     const roles = await $axios.$get("/api/auth/getRoles");
     const posts = await $axios.$get("/api/news/getnewsposts");
+    const reviews = await $axios.get("/api/project/getRatings");
     let baseURL = $config.baseURL;
     return {
       users,
       posts,
       roles: roles.roles,
-      baseURL
+      baseURL,
+      reviews: reviews.data.reviews
     };
   },
   methods: {
@@ -355,7 +360,6 @@ export default {
       });
     }
   },
-  components: { Rating }
 };
 
 </script>
@@ -370,7 +374,7 @@ $colorpalette: (
 
 // Website colorscheme
 $maincolors: (
-  "grey": "#212529",
+  "grey": #212529,
   "darkblue": #192D40,
   "blue": #21303A,
   "cyan": #375D72,
@@ -399,81 +403,83 @@ $maincolors: (
 $border-radius: 0.25rem;
 #admin-dashboard {
   #tab2 {
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    .tab-content {
-      margin: 4rem;
-      width: 100%;
-      .permlist {
-        list-style-type: none;
-        width: 10vw;
-      }
-    }
-    .nav {
-      &::-webkit-scrollbar {
-        width: 0;  /* Remove scrollbar space */
-        background: transparent;  /* Optional: just make scrollbar invisible */
-      }
-      //background: colorscheme('lightblue');
-      border: 1px solid colorscheme('white');
-      padding: 1rem;
-      padding-right: 2rem;
-      margin-top: 0;
-      width: 20rem;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-      height: 45rem;
-      overflow-x: hidden;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      .users-list {
-        background: colorscheme('blue');
-        padding: 0.5rem 1rem;
-        margin: 0.2rem;
-        color: colorscheme('white');
-        border-radius: 0.5rem;
+    .users {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      .tab-content {
+        margin: 4rem;
         width: 100%;
-        position: relative;
-        display: flex;
+        .permlist {
+          list-style-type: none;
+          width: 10vw;
+        }
+      }
+      .nav {
+        &::-webkit-scrollbar {
+          width: 0;  /* Remove scrollbar space */
+          background: transparent;  /* Optional: just make scrollbar invisible */
+        }
+        //background: colorscheme('lightblue');
+        border: 1px solid colorscheme('white');
+        padding: 1rem;
+        padding-right: 2rem;
+        margin-top: 0;
+        width: 20rem;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        height: 45rem;
+        overflow-x: hidden;
         flex-direction: column;
-        border: none;
-        justify-content: flex-start;
-        align-content: flex-start;
-        align-items: flex-start;
-        border: 3px solid transparent;
-        transition: all 200ms ease-in-out;
-        &.active, &.show {
-          border: 3px solid colorscheme('lime');
-        }
-        &:hover {
-          &.active {
-            border: 3px solid rgba(colorscheme('lime'), 1);
-          }
-          border: 3px solid rgba(colorscheme('lime'), 0.3);
-
-        }
-        .name {
-          font-size: 2ch;
-          flex: 1 1 auto;
-          display: flex;
-          flex-direction: row;
-          position: relative;
-          align-items: center;
-          justify-content: flex-start;
+        flex-wrap: nowrap;
+        .users-list {
+          background: colorscheme('blue');
+          padding: 0.5rem 1rem;
+          margin: 0.2rem;
           color: colorscheme('white');
-          img {
-            flex: 0 0 auto;
-            border-radius: 50%;
-          }
-        }
-        .line {
-          flex: 1 1 auto;
-          margin-top: 0.5rem !important;
-          margin-bottom: 0.5rem !important;
-          background: colorscheme('white');
+          border-radius: 0.5rem;
           width: 100%;
-        } 
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          border: none;
+          justify-content: flex-start;
+          align-content: flex-start;
+          align-items: flex-start;
+          border: 3px solid transparent;
+          transition: all 200ms ease-in-out;
+          &.active, &.show {
+            border: 3px solid colorscheme('lime');
+          }
+          &:hover {
+            &.active {
+              border: 3px solid rgba(colorscheme('lime'), 1);
+            }
+            border: 3px solid rgba(colorscheme('lime'), 0.3);
+
+          }
+          .name {
+            font-size: 2ch;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            align-items: center;
+            justify-content: flex-start;
+            color: colorscheme('white');
+            img {
+              flex: 0 0 auto;
+              border-radius: 50%;
+            }
+          }
+          .line {
+            flex: 1 1 auto;
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+            background: colorscheme('white');
+            width: 100%;
+          } 
+        }
       }
     }
   }

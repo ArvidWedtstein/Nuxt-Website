@@ -107,31 +107,34 @@ export default {
   auth: {
     strategies: {
       local: {
-        //scheme: "refresh",
+        scheme: "refresh",
         token: {
-          property: "token",
+          property: "access_token",
           global: false,
           required: true,
-          type: "Bearer"
+          maxAge: 1800,
+          //type: "Bearer"
         },
         user: {
           property: "user",
-          autoFetch: true
+          //autoFetch: true
         },
-        /*refreshToken: {  
+        refreshToken: {  
           property: "refresh_token",
           data: "refresh_token",
-        },*/
+          maxAge: 60 * 60 * 24 * 30
+        },
         
         endpoints: {
           login: { url: "/api/auth/login", method: "post" },
-          //refresh: { url: "/api/auth/refresh-token", method: "post" },
+          refresh: { url: "/api/auth/refresh", method: "post" },
           logout: { url: "/api/auth/logout", method: "delete" },
           user: { url: "/api/auth/getUser", method: "get" },
           allusers: { url: "/api/auth/allusers", method: "get" },
           allposts: { url: "/api/auth/allnewsposts", method: "get" },
           getroles: { url: "/api/auth/getRoles", method: "get" }
-        }
+        },
+        autoLogout: false
       }
     },
   },

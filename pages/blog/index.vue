@@ -1,7 +1,16 @@
 <template>
   <div class="news container-fluid">
+    <div class='jumbotron'>
+       <h1 class='display-4'>Arvid.spayce News</h1>
+       <hr class='my-1'>
+       <hr class='my-0'>
+       <p class='lead'>{{ new Date().toDateString() }}</p><i class="fab fa-linux"/>
+       <hr class='my-0'>
+       <hr class='my-1'>
+    </div>
     <NuxtLink v-if="userPerm('CREATE_POST')" type="button" class="btn btn-main" to="/blog/new-post">New Post</NuxtLink>
-
+    <!--http://www.dollardreadful.com/ blog-->
+    <!--https://codepen.io/alekspopovic/pen/gzOJbq-->
     <div class="row">
       <div class="col-md-4 d-flex blog" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
         <div class="card newspost">
@@ -154,6 +163,7 @@ $maincolors: (
     @return map-get($colorpalette, $color);
 }
 .news {
+  
   margin-top: 1rem;
   list-style-type: none;
   .row {
@@ -175,6 +185,7 @@ $maincolors: (
       grid-row: span 2;
     }
     .description {
+      column-count: 3;
       word-break: break-all;
       background: -webkit-linear-gradient(#fff 60%, transparent);
       -webkit-background-clip: text;

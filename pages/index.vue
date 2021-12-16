@@ -1,18 +1,18 @@
 
 <template>
   <div id="app">
-    <div class="container-fluid">  
+    <div class="container">  
       <!--Jumbotron-->
-      <div class="jumbotron jumbotroncustom">
-      <!--RGB firkanten som går rundt "Velkommen" boksen-->
-        <div class="RGBborder">
+      <div class="jumbotron bg-img">
+        <!--<div class="RGBborder">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-          <p class="display-4 rgb-link unselectable">Welcome</p>
-          <p id="pos" class="lead unselectable">to my website</p>
-        </div>
+          
+        </div>-->
+        <p class="display-4 rgb-link unselectable">Welcome</p>
+        <p id="pos" class="lead unselectable">to my website</p>
       </div>
       <!--Hexagon layouten med bildene-->
         
@@ -42,7 +42,6 @@
 const axios = require('axios');
 import bcrypt from 'bcryptjs';
 import Userreview from '../components/userreview.vue';
-import Rating from '../components/rating.vue';
 
 export default {
   name: "App",
@@ -71,7 +70,7 @@ export default {
       }
     },
   },
-  components: { Userreview, Rating }
+  components: { Userreview }
 }
 
 </script>
@@ -87,8 +86,21 @@ $colorpalette: (
 @function gradientscheme($color) {
   @return map-get($colorpalette, $color);
 }
+$maincolors: (
+  "grey": #212529,
+  "darkblue": #192D40,
+  "blue": #21303A,
+  "cyan": #375D72,
+  "lime": #7FCD8A,
+  "white": #F4F0E7,
+  "lightblue": #5DACB6
+);
+@function colorscheme($color) {
+  @return map-get($maincolors, $color);
+}
 #app {
   margin-top: 2rem;
+  font-family: 'Lato';
 }
 /*Hex Layout*/
 .hexContainer {
@@ -96,15 +108,14 @@ $colorpalette: (
   display: flex;
   justify-content: center;
   align-items: center;
-  
   .hexGrid {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
     width: 90%;
+    
     margin: 0 auto;
     //overflow: hidden;
-    font-family: sans-serif;
     list-style-type: none;
     height: 100%;
     /*Hexagon bildene*/
@@ -176,6 +187,7 @@ $colorpalette: (
         padding: 5%;
         box-sizing: border-box;
         font-weight: 300;
+        font-size: 100%;
         opacity: 0;
       }
       h1::before, h1::after {

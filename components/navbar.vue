@@ -26,7 +26,7 @@
               <NuxtLink class="nav-link link" to="/contact"><i class="fas fa-id-card"/> Contact</NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link link" to="/blog"><i class="far fa-newspaper"/> News</NuxtLink>
+              <NuxtLink class="nav-link link" to="/blog"><i class="fas fa-newspaper"/> News</NuxtLink>
             </li>
           </ul>
           <!--<span class="navbar-text">
@@ -224,12 +224,36 @@ $hovercolor: colorscheme('lime');
 
     .navbar-nav {
       .nav-item {
+        position: relative;
         .nav-link {
           padding: 1rem 2rem;
           font-size: 2.3ch;
           text-align: center;
           transition: all 0.3s ease;
           font-family: 'bodytext';
+          span {
+            cursor: pointer;
+            display: inline-block;
+            &::after {
+              vertical-align: middle;
+              content: "News ";
+              position: absolute;
+              opacity: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              right: -20px;
+              transition: 0.5s;
+            }
+          }
+          &:hover {
+            span {
+              padding-right: 25px;
+              &::after {
+                opacity: 1;
+                right: 0px;
+              }
+            }
+          }
         }
       }
     }
