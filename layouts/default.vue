@@ -90,7 +90,7 @@ body {
 a {
   &:hover {
     &:not(.link), &:not(.rgb-link) {
-      text-decoration: underline;
+      //text-decoration: underline;
     }
     color: #7FCD8A;
     
@@ -105,7 +105,7 @@ a {
     background-position: left bottom;
     text-decoration: none;
     //font-weight: 900;
-    transition: background-size 600ms ease;
+    transition: background-size 600ms ease-in-out;
     &:hover {
       color: #7FCD8A;
       background-size: 300% 2px;

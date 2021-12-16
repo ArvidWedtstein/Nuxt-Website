@@ -49,7 +49,7 @@
             <div class="blog-post">
               <h2 class="blog-post-title">{{ title }}</h2>
               <p class="blog-post-meta text-muted">'creationdate' by 'you'</p>
-              <p class="blog-post-description">{{ description }}</p>
+              <p class="blog-post-description"><span v-html="description"></span>{{ description }}</p>
               <hr>
               <div v-for="(blcck, ddd) in sectionBlocks" :key="ddd">
                 <h2 v-if="'header' in blcck">{{ blcck.header }}</h2>
@@ -116,7 +116,9 @@ export default {
       let newblocks = []
       console.log(this.description)
       console.log(tinymce.get("description").getContent())
-      /*const { title, description, tags, sectionBlocks } = this;
+      this.description = tinymce.get("description").getContent();
+      let description = tinymce.get("description").getContent();
+      /*const { title, tags, sectionBlocks } = this;
       if (!title || !description) {
         return this.showSnackbar("Please fill out title and description field", 'success')
       }
@@ -159,6 +161,7 @@ export default {
   mounted() {
     tinymce.init({
       selector: '#description',
+      plugins: "link",
     });
   },
   computed: {
@@ -168,7 +171,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss">
 $badgeselectcolor: #dddddd;
 $colorpalette: (

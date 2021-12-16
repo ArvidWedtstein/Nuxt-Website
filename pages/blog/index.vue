@@ -1,35 +1,9 @@
 <template>
   <div class="news container-fluid">
-    <button v-if="userPerm('CREATE_POST')" type="button" class="btn btn-main" href="/blog/new-post">New Post</button>
-    <!--<Modal>
-      <div slot="header">
-        <h5 class="modal-title" id="modalLabel">New Post</h5>
-      </div>
-      <div slot="body">
-        <div class="form-floating custom">
-          <input type="text" class="form-control shadow-none" id="floatingTitle" placeholder="Title" v-model="ownarticle.title" required="required" name="title">
-          <label for="floatingTitle">Title</label>
-        </div>
-        <div class="form-floating custom">
-          <textarea type="text" class="form-control shadow-none" id="floatingDescription" placeholder="Description" v-model="ownarticle.description" required="required" name="description"></textarea>
-          <label for="floatingDescription">Description</label>
-        </div>
-        <input id="image" type="file" accept="image/*"/>
-        <ul class="badgeshow">
-          <li :class="'badge badge-' + tag.name " v-for="(tag, x) in ownarticle.tags" :key="x"><i :class="tag.icon"/></li>
-        </ul>
-        <ul class="badgeselect">
-          <li :class="'badge badge-' + tag.name " v-for="(tag, x) in tags" :key="x"><i v-on:click="tagSelect(tag)" :class="tag.icon"/></li>
-        </ul>
-      </div>
-      <div slot="footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button v-on:click="createpost" type="button" class="btn btn-primary" data-bs-dismiss="modal">Create Post</button>
-      </div>
-    </Modal>-->
+    <NuxtLink v-if="userPerm('CREATE_POST')" type="button" class="btn btn-main" to="/blog/new-post">New Post</NuxtLink>
 
-    <ul class="grid">
-     <li v-for="(post, i) in articles" :key="i" class="d-flex" :class="{'grid-row-span-2': post.image}" data-match-height="news-items">
+    <div class="row">
+      <div class="col-md-4 d-flex blog" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
         <div class="card newspost">
           <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
           <div v-if="post.author" class="card-header" :id="'post' + i">
@@ -52,8 +26,8 @@
             </div>
           </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
     <ArvidFooter></ArvidFooter>
   </div>
 </template>
@@ -183,6 +157,7 @@ $maincolors: (
   margin-top: 1rem;
   list-style-type: none;
   .row {
+    gap: 1.5rem 0;
     list-style-type: none;
   }
   .grid {

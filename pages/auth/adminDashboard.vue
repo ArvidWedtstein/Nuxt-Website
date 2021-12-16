@@ -39,7 +39,7 @@
             </div>
             <input type="text" v-model="searchbar" name='search' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
           </div>
-          <a v-for="(user, i) in filteredList" :key="i" class="nav-link" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
+          <a v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
             <div class="name">
               <img class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
               <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
@@ -58,7 +58,7 @@
               <p class='lead'>{{ user.email }}</p>
               <div class="dropdown">
                 <button class="btn btn-🤯 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Permissions</button>
-                <form class="dropdown-menu keep-open dropdown-menu-right" aria-labelledby="dropdownMenuButton" @submit.prevent="changePerms($event, user)">
+                <form class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside" @submit.prevent="changePerms($event, user)">
                   <!--<div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check">
                     <input class="form-check-input" type="checkbox" value="" :id="perm" :checked="user.role.permissions.includes(perm)">
                     <label class="form-check-label" :for="perm">{{ perm }}</label>
@@ -71,13 +71,11 @@
                 </form>
               </div>
               <div class="btn-group">
-                <button class="btn btn-🤯" type="button">
-                  {{user.role.name}}
-                </button>
+                <button class="btn btn-🤯" type="button">{{ user.role.name }}</button>
                 <button type="button" class="btn btn-🤯 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-right" data-bs-auto-close="outside">
                   <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.name, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
                 </div>
               </div>
@@ -386,7 +384,18 @@ $maincolors: (
 @function gradientscheme($color) {
   @return map-get($colorpalette, $color);
 }
-
+@mixin rad-shadow {
+  border: 1px solid hsl(200 10% 50% / 15%);
+  box-shadow: 0 1rem .5rem -.5rem;
+  box-shadow:
+    0 2.8px 2.2px hsl(200 50% 3% / calc(.3 + .03)),
+    0 6.7px 5.3px hsl(200 50% 3% / calc(.3 + .01)),
+    0 12.5px 10px hsl(200 50% 3% / calc(.3 + .02)),
+    0 22.3px 17.9px hsl(200 50% 3% / calc(.3 + .02)),
+    0 41.8px 33.4px hsl(200 50% 3% / calc(.3 + .03)),
+    0 100px 80px hsl(200 50% 3% / .3)
+  ;
+}
 $border-radius: 0.25rem;
 #admin-dashboard {
   #tab2 {
@@ -418,7 +427,7 @@ $border-radius: 0.25rem;
       overflow-x: hidden;
       flex-direction: column;
       flex-wrap: nowrap;
-      .nav-link {
+      .users-list {
         background: colorscheme('blue');
         padding: 0.5rem 1rem;
         margin: 0.2rem;
@@ -433,11 +442,16 @@ $border-radius: 0.25rem;
         align-content: flex-start;
         align-items: flex-start;
         border: 3px solid transparent;
+        transition: all 200ms ease-in-out;
         &.active, &.show {
           border: 3px solid colorscheme('lime');
         }
         &:hover {
+          &.active {
+            border: 3px solid rgba(colorscheme('lime'), 1);
+          }
           border: 3px solid rgba(colorscheme('lime'), 0.3);
+
         }
         .name {
           font-size: 2ch;

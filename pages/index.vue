@@ -114,10 +114,8 @@ $colorpalette: (
       outline: 2px solid transparent;
       transition: all 0.5s;
       backface-visibility: hidden;
+      color: #ffffff;
       will-change: transform;
-      p {
-        color: #ffffff;
-      }
       &::after {
         content:'';
         display:block;
