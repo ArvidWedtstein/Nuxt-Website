@@ -190,16 +190,18 @@ $maincolors: (
         font-size: 100%;
         opacity: 0;
       }
-      h1::before, h1::after {
-        display: inline-block;
-        margin: 0 0.5em;
-        width: 0.55em;
-        height: 0.03em;
-        background: #ffffff;
-        content: '';
-        vertical-align: middle;
-        transition: all 0.3s;
-        text-align:center;
+      h1 {
+        &::before, &::after {
+          display: inline-block;
+          margin: 0 0.5em;
+          width: 0.55em;
+          height: 0.03em;
+          background: #ffffff;
+          content: '';
+          vertical-align: middle;
+          transition: all 0.3s;
+          text-align:center;
+        }
       }
       .hexTxtTitle {
         color: #F5CE95;
@@ -244,7 +246,6 @@ $maincolors: (
           content: '';
           opacity: 0;
           transition: all 0.3s;
-          
         }
       }
     }
@@ -260,58 +261,55 @@ $maincolors: (
 }
 /*Media funksjonene til hex bilde layouten. Dette er funksjonene som gjør dem responsive når skjermstørrelsen blir mindre eller større*/
 @media (min-width:1201px) { 
-  #hexGrid{
-  padding-bottom: 4.4%
-  }
-  .hex {
-  width: 20%;
-  }
-  .hex:nth-child(9n+6){ 
-  margin-left:10%; 
-  }
+  .hexGrid{
+    padding-bottom: 4.4%;
+    .hex {
+      width: 20%;
+      &:nth-child(9n+6){ 
+        margin-left:10%;
+      }
+    }
+  } 
 }
 
 @media (max-width: 1200px) and (min-width:901px) {
-  #hexGrid{
-  padding-bottom: 5.5%;
-  font-size: 13px;
-  }
-  .hex {
-  width: 25%;
-  }
-  .hex:nth-child(7n+5){ 
-  margin-left:12.5%; 
+  .hexGrid{
+    padding-bottom: 5.5%;
+    font-size: 13px;
+    .hex {
+      width: 25%;
+      &:nth-child(7n+5){ 
+        margin-left:12.5%; 
+      }
+    }
   }
 }
-
 @media (max-width: 900px) and (min-width:601px) { 
-  #hexGrid{
-  padding-bottom: 7.4%;
-  font-size: 14px;
-  }
-  .hex {
-  width: 33.333%; 
-  }
-  .hex:nth-child(5n+4){ 
-  margin-left:16.666%; 
+  .hexGrid{
+    padding-bottom: 7.4%;
+    font-size: 14px;
+    .hex {
+      width: 33.333%; 
+      &:nth-child(5n+4){ 
+        margin-left:16.666%; 
+      }
+    }
   }
 }
-
 @media (max-width: 600px) { 
-  #hexGrid{
-  padding-bottom: 11.2%;
-  font-size: 12px;
-  }
-  .hex {
-  width: 50%;
-  }
-  .hex:nth-child(3n+3){ 
-  margin-left:25%; 
+  .hexGrid{
+    padding-bottom: 11.2%;
+    font-size: 12px;
+    .hex {
+      width: 50%;
+      &:nth-child(3n+3){ 
+        margin-left:25%; 
+      }
+    }
   }
 }
-
 @media (max-width: 400px) {
-  #hexGrid {
+  .hexGrid {
     font-size: 8px;
   }
 }

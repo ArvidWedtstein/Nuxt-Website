@@ -52,6 +52,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
+@import url("https://use.typekit.net/gyz4ina.css");
+@import url("https://use.typekit.net/gyz4ina.css");
 @font-face {
   font-family: "medieval";
   src: url('https://fonts.gstatic.com/s/unifrakturmaguntia/v7/7KWy3ymCVR_xfAvvcIXm3wh3zWhftzIdHBsuU0JwdCQ.woff2');
@@ -60,6 +62,7 @@ export default {
   font-family: "medieval-bodytext";  
   src: url('https://fonts.gstatic.com/s/unifrakturcook/v8/ASwh69ykD8iaoYijVEU6RpMdj8Gkv7ccSfgBBVtwm5Y.woff2');
 }
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -142,7 +145,7 @@ a {
 }*/
 
 $maincolors: (
-  "grey": "#212529",
+  "grey": #212529,
   "darkblue": #192D40,
   "blue": #21303A,
   "cyan": #375D72,
@@ -162,6 +165,11 @@ $border-radius: 0.25rem;
   background: none;
   text-align: center;
   margin: 2rem;
+  &.newspost {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
   .my-4 {
     background: #ffffff;
   }

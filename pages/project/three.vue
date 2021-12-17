@@ -1,7 +1,7 @@
 <template>
    <div id="threecontainer">
     <canvas id="threejs"></canvas>
-    <!--<div style="margin-top: 50vh; color: #fff !important;" class='jumbotron threejs'>
+    <div style="margin-top: 50vh; color: #fff !important;" class='jumbotron threejs'>
      <h1 class='display-4'>hehe</h1>
      <p class='lead'>hehe</p>
      <hr class='my-4'>
@@ -24,7 +24,7 @@
      <p class='lead'>hehe</p>
      <hr class='my-4'>
      <p class='lead'></p>
-    </div>-->
+    </div>
    </div>
 </template>
 
@@ -82,7 +82,7 @@ export default {
         hemiLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
         hemiLight.position.setZ(20);
         hemiLight.position.setX(30);
-        //scene.add(hemiLight);
+        scene.add(hemiLight);
 
         const dirLight = new THREE.DirectionalLight( 0xffffff, 0.05 );
         dirLight.position.set( 3, - 1, 0 ).normalize();

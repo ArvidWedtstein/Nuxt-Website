@@ -118,7 +118,7 @@ export default {
       console.log(tinymce.get("description").getContent())
       this.description = tinymce.get("description").getContent();
       let description = tinymce.get("description").getContent();
-      /*const { title, tags, sectionBlocks } = this;
+      const { title, tags, sectionBlocks } = this;
       if (!title || !description) {
         return this.showSnackbar("Please fill out title and description field", 'success')
       }
@@ -155,7 +155,7 @@ export default {
       this.title = '';
       this.description = '';
       this.sectionBlocks = [];
-      this.tags = [];*/
+      this.tags = [];
     },
   },
   mounted() {
