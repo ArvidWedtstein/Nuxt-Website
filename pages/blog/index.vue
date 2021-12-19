@@ -17,7 +17,7 @@
         <div class="item" v-for="(post, i) in articles" :key="i">
           <div class="column">
             <div class="head">
-              <span class="headline hl1">{{ post.title }}</span>
+              <NuxtLink class="headline hl1" :to="'/blog/'+ post._id">{{ post.title }}</NuxtLink>
               <p><span class="headline hl2">{{ `"${post.description}" by ${post.author.name}` }}</span></p>
             </div>
             <p></p>
@@ -318,10 +318,10 @@ $bordercolor: #2f2f2f;
       }
       .header { 
         //font-family: 'Playfair Display', serif;
-        font-family: 'Quinthero' !important;
+        font-family: 'Pokerkings' !important;
         font-weight: 900;
         font-size: 80px;
-        text-transform: uppercase;
+        //text-transform: uppercase;
         display: inline-block;
         line-height: 72px;
         text-align: center;
