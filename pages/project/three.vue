@@ -77,7 +77,7 @@ export default {
         
 
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-        camera.position.setZ(10);
+        camera.position.setZ(20);
         camera.position.setY(-10);
 
         stats = new Stats();
@@ -221,7 +221,7 @@ export default {
         controls = new OrbitControls(camera, renderer.domElement);
 
         //controls.minDistance = 500;
-        camera.lookAt(100, 800, 0);
+        //camera.lookAt(100, 800, 0);
         controls.enabled = true;
         controls.enableDamping = true;
         controls.autoRotate = false; 
@@ -325,7 +325,7 @@ export default {
         // camera.position.z = t * -0.01;
         //camera.position.x = t * -0.0002;
         let pos = camera.position.z;
-        camera.position.y = t * 0.0002;
+        camera.position.y = t * 0.02;
         
       }
       //renderer.render( scene, camera );
