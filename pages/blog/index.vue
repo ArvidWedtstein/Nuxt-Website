@@ -15,20 +15,20 @@
     <div class="content">
       <div class="masonry">
         <div class="item" v-for="(post, i) in articles" :key="i">
-          <div class="column">
+          <NuxtLink class="column" :to="'/blog/'+ post._id">
             <div class="head">
-              <NuxtLink class="headline hl1" :to="'/blog/'+ post._id">{{ post.title }}</NuxtLink>
+              <p><span class="headline hl1">{{ post.title }}</span></p>
               <p><span class="headline hl2">{{ `"${post.description}" by ${post.author.name}` }}</span></p>
             </div>
             <p></p>
             <figure v-if="post.image" class="figure">
               <img class="media" :src="baseURL + post.image" alt="">
-              <figcaption class="figcaption">"This time, let go your conscious self and act on instinct."</figcaption>
+              <figcaption v-if="post.imagecaption" class="figcaption">"{{ post.imagecaption }}"</figcaption>
             </figure>
             <div v-if="post.sectionBlocks">
               <p v-for="(blogg, dsl) in post.sectionBlocks" :key="dsl">{{blogg.text}}</p>
             </div>
-          </div>
+          </NuxtLink>
         </div>
       </div>
       <div class="columns">

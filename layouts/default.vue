@@ -91,11 +91,19 @@ body {
   background: #212529;
 }
 a {
+  &.column {
+    color: #2f2f2f;
+  }
+  transition: all 0.2s ease;
   &:hover {
     &:not(.link), &:not(.rgb-link) {
-      //text-decoration: underline;
+      text-decoration: underline;
     }
     color: #7FCD8A;
+    &.column {
+      text-decoration: none;
+      color: #2f2f2f;
+    }
     
   }
   color: #7FCD8A;
