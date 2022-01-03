@@ -84,10 +84,10 @@ html:not([data-scroll='0']) {
 html:not([data-scroll='0']) header {
     position: fixed;
 }
-::selection {
+/*::selection {
     color: white;
     background: #03a9f4;
-}
+}*/
 .medieval-text {
     font-family: 'medieval';
 }

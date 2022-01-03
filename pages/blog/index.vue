@@ -15,63 +15,20 @@
     <div class="content">
       <div class="masonry">
         <div class="item" v-for="(post, i) in articles" :key="i">
-          <NuxtLink class="column" :to="'/blog/'+ post._id">
+          <a class="column" :href="'/blog/' + post._id">
             <div class="head">
               <p><span class="headline hl1">{{ post.title }}</span></p>
               <p><span class="headline hl2">{{ `"${post.description}" by ${post.author.name}` }}</span></p>
             </div>
             <p></p>
             <figure v-if="post.image" class="figure">
-              <img class="media" :src="baseURL + post.image" alt="">
+              <img class="media" :src="baseURL + post.image" :alt="post.image">
               <figcaption v-if="post.imagecaption" class="figcaption">"{{ post.imagecaption }}"</figcaption>
             </figure>
             <div v-if="post.sectionBlocks">
-              <p v-for="(blogg, dsl) in post.sectionBlocks" :key="dsl">{{blogg.text}}</p>
+              <p v-for="(blogg, dsl) in post.sectionBlocks" :key="dsl">{{ blogg.text }}</p>
             </div>
-          </NuxtLink>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="head">
-            <span class="headline hl5">Give people courage</span>
-            <p><span class="headline hl6">The crowd seemed to grow</span></p>
-          </div>
-          <p>The sunset faded to twilight before anything further happened.  The crowd far away on the left, towards Woking, seemed to grow, and I heard now a faint murmur from it.  The little knot of people towards Chobham dispersed.  There was scarcely an intimation of movement from the pit.</p>
-          <figure class="figure">
-            <img class="media" src="http://i.giphy.com/PW7MoTD2d9pJK.gif" alt="">
-            <figcaption class="figcaption">Hermine hoping for courage.</figcaption>
-          </figure>
-          <p>It was this, as much as anything, that gave people courage, and I suppose the new arrivals from Woking also helped to restore confidence.  At any rate, as the dusk came on a slow, intermittent movement upon the sand pits began, a movement that seemed to gather force as the stillness of the evening about the cylinder remained unbroken.  Vertical black figures in twos and threes would advance, stop, watch, and advance again, spreading out as they did so in a thin irregular crescent that promised to enclose the pit in its attenuated horns.  I, too, on my side began to move towards the pit.</p>
-          <p>Then I saw some cabmen and others had walked boldly into the sand pits, and heard the clatter of hoofs and the gride of wheels.  I saw a lad trundling off the barrow of apples.  And then, within thirty yards of the pit, advancing from the direction of Horsell, I noted a little black knot of men, the foremost of whom was waving a white flag.</p>
-        </div>
-        <div class="column">
-          <div class="head">
-            <span class="headline hl1">May the Force be with you</span>
-            <p><span class="headline hl2">Let go your conscious self and act on instinct</span></p>
-          </div>
-          <p>Partially, but it also obeys your commands. Hey, Luke! May the Force be with you. I have traced the Rebel spies to her. Now she is my only link to finding their secret base;</p>
-          <figure class="figure">
-            <img class="media" src="http://i.giphy.com/4fDWVPMoSyhgc.gif" alt="">
-            <figcaption class="figcaption">"This time, let go your conscious self and act on instinct."</figcaption>
-          </figure>
-          <p>Leave that to me. Send a distress signal, and inform the Senate that all on board were killed. <span class="citation">"Don't under&shy;estimate the Force. I suggest you try it again, Luke."</span> This time, let go your conscious self and act on instinct. In my experience, there is no such thing as luck. You're all clear, kid. Let's blow this thing and go home!</p>
-          <p>You don't believe in the Force, do you? Partially, but it also obeys your commands. The plans you refer to will soon be back in our hands. As you wish.</p>
-        </div>
-        <div class="column">
-          <div class="head">
-            <span class="headline hl3">The buzz of the little world </span>
-            <p><span class="headline hl4">A thousand unknown plants</span></p>
-          </div>
-          <p>I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath</p>
-        </div>
-        <div class="column">
-          <div class="head">
-            <span class="headline hl1">It wasn't a dream </span>
-            <p><span class="headline hl4">by FRANZ KAFKA</span></p>
-          </div>
-          <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. </p>
-          <p>His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What's happened to me?" he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. </p>
+          </a>
         </div>
       </div>
     </div>
@@ -354,10 +311,9 @@ $bordercolor: #2f2f2f;
       margin: 30px 2% 0 2%;
       .item {
         display: inline-block;
-        padding: 0 1% 0 1%;
+        padding: 30px 2% 0 2%;
         width: 100%;
         vertical-align: top;
-        margin: 0px 2% 0 2%;
         -webkit-transition: 1s ease all;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -366,6 +322,9 @@ $bordercolor: #2f2f2f;
         border-right: 1px solid $bordercolor;
         border-bottom: 3px double $bordercolor;
         img {max-width:100%; height: auto;}
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
     .column {

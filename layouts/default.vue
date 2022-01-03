@@ -110,6 +110,9 @@ a {
   text-decoration: none;
   background-color: none !important;
   &.link {
+    &.active, &.nuxt-link-exact-active {
+      background-size: 300% 2px;
+    }
     background: linear-gradient(90deg, #7FCD8A, #7FCD8A, #7FCD8A, #7FCD8A);
     background-repeat: no-repeat;
     background-size: 0% 2px;
