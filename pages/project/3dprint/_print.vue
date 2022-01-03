@@ -1,5 +1,5 @@
 <template>
-  <div id="3dprint" class="container">
+  <div id="3dprintview" class="container">
     <div class="jumbotron">
       <h1 class="display-4">3D Print</h1>
       <p class="lead">{{ print }}</p>
@@ -9,9 +9,9 @@
 </template>
 
 <script lang="text/javascript">
-const axios = require('axios');
-var base64 = require('base-64');
-const path = require('path');
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 class Print {
   constructor(name, description, category, stl, image) {
     this.name = name;
@@ -21,6 +21,7 @@ class Print {
     this.image = image;
   }
 }
+
 export default {
   name: 'print',
   transition: 'slide-bottom',
@@ -28,39 +29,14 @@ export default {
     return {
       images: null,
       filter: 'all',
+      print: null,
+      scene: null
     }
   },
   async asyncData({ $content, params, $axios, $config }) {
-    let print;
     let baseURL = $config.baseURL;
     console.log(params)
-    console.log($content('3dprint').fetch())
-    const prints = await $content('3dprint').fetch();
     
-    const icons = require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/)
-    icons.keys().forEach(async (key) => {
-      let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
-
-      if (name === params.print) {
-        let stl = await prints[name.toLowerCase()].path;
-        let description = await prints[name.toLowerCase()].description;
-        let category = await prints[name.toLowerCase()].category;
-        //let stl = `~/assets/3D-Object/${name}.stl`
-        print = new Print(
-          name,
-          description,
-          category,
-          stl,
-          icons(key),
-        );
-        console.log(print)
-
-        /*return {
-          baseURL,
-          params
-        }*/
-      }
-    });
     // Midlertidig tatt vekk siden jeg ikke har fått 3d printene opp på database enda
     /*await $axios({
       method: "get",
@@ -69,100 +45,177 @@ export default {
 
     })*/
     return {
-      print,
       baseURL,
       params
     }
   },
   mounted() {
-    this.load3Dobjects(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
+    this.three(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
+    //this.load3Dobjects(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
   },
   methods: {
     async load3Dobjects(r) {
-      this.printList = [];
-      const content = await this.$content('3dprint').fetch();
+      const prints = await this.$content('3dprint').fetch();
         
       r.keys().forEach(async (key) => {
-        //this.images.push({ pathLong: r(key), pathShort: key, name: key.split('/') })
         let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
-        let stl = content[name.toLowerCase()].path;
-        let description = content[name.toLowerCase()].description;
-        let category = content[name.toLowerCase()].category;
-        //let stl = `~/assets/3D-Object/${name}.stl`
-        //name = name.replace('Fan-Cover/', '');
-        let print = new Print(
-          name,
-          description,
-          category,
-          stl,
-          r(key),
-        );
-        this.printList.push(print);
-        
+
+        if (name === this.params.print) {
+          let stl = await prints[name.toLowerCase()].path;
+          let description = await prints[name.toLowerCase()].description;
+          let category = await prints[name.toLowerCase()].category;
+          //let stl = `~/assets/3D-Object/${name}.stl`
+          this.print = new Print(
+            name,
+            description,
+            category,
+            stl,
+            r(key),
+          );
+        }
       });
     },
-    setFilter: function(filter) {
-      this.filter = filter;
-      console.log(this.filter)
-    },
-    async previewFiles(event) {
-      function stringToBinary(str, spaceSeparatedOctets) {
-        function zeroPad(num) {
-          return "00000000".slice(String(num).length) + num;
-        }
+    async three(r) {
+      let camera, cameraTarget, scene, renderer, container;
+      const prints = await this.$content('3dprint').fetch();
+        
+      r.keys().forEach(async (key) => {
+        let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
 
-        return str.replace(/[\s\S]/g, function(str) {
-          str = zeroPad(str.charCodeAt().toString(2));
-          return !1 == spaceSeparatedOctets ? str : str + " "
-        });
-      };
-      const reader = new FileReader();
-      reader.readAsText(event.target.files[0]);
-      reader.onload = e =>{
-        //this.print.stl = e.target.result;
-        this.print.stl = stringToBinary(e.target.result);
-        console.log()
-      };
-      
-      
-    },
-    scrollToTop() {
-      window.scrollTo(0,0);
-    },
-    async newPrint() {
-      let json = {
-        name: this.print.title,
-        description: this.print.description,
-        author: this.$store.getters.getUserInfo
+        if (name === this.params.print) {
+          let stl = await prints[name.toLowerCase()].path;
+          let description = await prints[name.toLowerCase()].description;
+          let category = await prints[name.toLowerCase()].category;
+          //let stl = `~/assets/3D-Object/${name}.stl`
+          this.print = new Print(
+            name,
+            description,
+            category,
+            stl,
+            r(key),
+          );
+          init();
+        }
+      });
+      const init = async () => {
+        
+        camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
+				camera.position.set( 3, 0.15, 3 );
+
+				cameraTarget = new THREE.Vector3( 0, - 0.25, 0 );
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x72645b );
+			  scene.fog = new THREE.Fog( 0x72645b, 2, 15 );
+
+
+        container = document.getElementById('3dprintview');
+				// Ground
+
+				const plane = new THREE.Mesh(
+					new THREE.PlaneGeometry( 40, 40 ),
+					new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
+				);
+				plane.rotation.x = - Math.PI / 2;
+				plane.position.y = - 0.5;
+				scene.add( plane );
+
+				plane.receiveShadow = true;
+
+        const loader = new STLLoader();
+        let link = this.print.stl.replace("~/", "../../../");
+        const material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
+
+				loader.load(link, function ( geometry ) {
+
+					const mesh = new THREE.Mesh( geometry, material );
+
+					mesh.position.set( 0, - 0.37, - 0.6 );
+					mesh.rotation.set( - Math.PI / 2, 0, 0 );
+					mesh.scale.set( 2, 2, 2 );
+
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+
+					scene.add( mesh );
+
+				});
+
+
+
+        // Light
+        
+        scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
+
+				addShadowedLight( 1, 1, 1, 0xffffff, 1.35 );
+				addShadowedLight( 0.5, 1, - 1, 0xffaa00, 1 );
+				// renderer
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.domElement.id = "threejs";
+				renderer.shadowMap.enabled = true;
+
+				container.appendChild( renderer.domElement );
+        window.addEventListener( 'resize', onWindowResize );
+
+        animate();
       }
-      const data = new FormData();
-      data.append("stl", document.getElementById('stl').files[0])
-      data.append('json', JSON.stringify(json));
       
-      const print = await this.$axios.$post("api/project/newPrint", data).then((res) => {
-        this.showSnackbar(res.message)
-      })
-      this.$nuxt.refresh()
-    
-      this.print.title = '';
-      this.print.description = '';
-      this.print.size = '';
+			
+      function addShadowedLight( x, y, z, color, intensity ) {
+
+				const directionalLight = new THREE.DirectionalLight( color, intensity );
+				directionalLight.position.set( x, y, z );
+				scene.add( directionalLight );
+
+				directionalLight.castShadow = true;
+
+				const d = 1;
+				directionalLight.shadow.camera.left = - d;
+				directionalLight.shadow.camera.right = d;
+				directionalLight.shadow.camera.top = d;
+				directionalLight.shadow.camera.bottom = - d;
+
+				directionalLight.shadow.camera.near = 1;
+				directionalLight.shadow.camera.far = 4;
+
+				directionalLight.shadow.bias = - 0.002;
+
+			}
+      function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+
+			}
+
+			function render() {
+
+				const timer = Date.now() * 0.0005;
+
+				camera.position.x = Math.cos( timer ) * 3;
+				camera.position.z = Math.sin( timer ) * 3;
+
+				camera.lookAt( cameraTarget );
+
+				renderer.render( scene, camera );
+
+			}
     }
   },
-  created() {
-    window.addEventListener('scroll', this.scroll);
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.scroll);
-  },
-  computed: {
-    filteredList() {
-      if (!this.printList) return;
-      return this.printList.filter(post => {
-        return post.name.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }
-  }
 }
 </script>
 <style lang="scss">
