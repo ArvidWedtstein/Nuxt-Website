@@ -1,9 +1,9 @@
 <template>
-  <div id="3dprintview" class="container">
-    <div class="jumbotron">
-      <h1 class="display-4">3D Print</h1>
-      <p class="lead">{{ print }}</p>
+  <div class="container">
+    <div class="jumbotron" id="3dprintview">
+      <h1 class="display-4" v-if="print" v-cloak>{{ print.name }}</h1>
       <hr class="my-4">
+      <p class="lead" v-cloak>{{ print }}</p>
     </div>
   </div>
 </template>
@@ -12,6 +12,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 class Print {
   constructor(name, description, category, stl, image) {
     this.name = name;
@@ -21,7 +22,6 @@ class Print {
     this.image = image;
   }
 }
-
 export default {
   name: 'print',
   transition: 'slide-bottom',
@@ -49,44 +49,22 @@ export default {
       params
     }
   },
-  mounted() {
-    this.three(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
+  async mounted() {
+    await this.three(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
     //this.load3Dobjects(require.context('~/static/images/3D-Icons/', true, /\.(jpg|png|PNG)\b/))
   },
   methods: {
-    async load3Dobjects(r) {
-      const prints = await this.$content('3dprint').fetch();
-        
-      r.keys().forEach(async (key) => {
-        let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
-
-        if (name === this.params.print) {
-          let stl = await prints[name.toLowerCase()].path;
-          let description = await prints[name.toLowerCase()].description;
-          let category = await prints[name.toLowerCase()].category;
-          //let stl = `~/assets/3D-Object/${name}.stl`
-          this.print = new Print(
-            name,
-            description,
-            category,
-            stl,
-            r(key),
-          );
-        }
-      });
-    },
     async three(r) {
-      let camera, cameraTarget, scene, renderer, container;
+      let camera, cameraTarget, scene, renderer, container, controls;
       const prints = await this.$content('3dprint').fetch();
-        
       r.keys().forEach(async (key) => {
         let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
 
-        if (name === this.params.print) {
+        //if (name === await this.$route.params.print) {
+        if (name === this.$route.params.print) {
           let stl = await prints[name.toLowerCase()].path;
           let description = await prints[name.toLowerCase()].description;
           let category = await prints[name.toLowerCase()].category;
-          //let stl = `~/assets/3D-Object/${name}.stl`
           this.print = new Print(
             name,
             description,
@@ -96,55 +74,79 @@ export default {
           );
           init();
         }
-      });
+      })
+      
       const init = async () => {
         
         camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
-				camera.position.set( 3, 0.15, 3 );
+				camera.position.set( 3, 3.15, 3 );
 
 				cameraTarget = new THREE.Vector3( 0, - 0.25, 0 );
+        
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0x72645b );
+				//scene.background = new THREE.Color( 0x72645b );
 			  scene.fog = new THREE.Fog( 0x72645b, 2, 15 );
 
+        new RGBELoader().setPath('/scene/').load('park_2k.hdr', async (texture) => {
+          texture.mapping = THREE.EquirectangularReflectionMapping;
+
+          scene.background = texture;
+          scene.environment = texture;
+        });
 
         container = document.getElementById('3dprintview');
 				// Ground
 
-				const plane = new THREE.Mesh(
-					new THREE.PlaneGeometry( 40, 40 ),
-					new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
-				);
-				plane.rotation.x = - Math.PI / 2;
-				plane.position.y = - 0.5;
-				scene.add( plane );
-
-				plane.receiveShadow = true;
-
+				// const plane = new THREE.Mesh(
+				// 	new THREE.PlaneGeometry( 40, 40 ),
+				// 	new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
+				// );
+				// plane.rotation.x = - Math.PI / 2;
+				// plane.position.y = - 0.5;
+				// plane.receiveShadow = true;
+				// scene.add(plane);
         const loader = new STLLoader();
-        let link = this.print.stl.replace("~/", "../../../");
-        const material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
+        const material = new THREE.MeshPhysicalMaterial({
+          color: 0x000000,
+          envMap: scene.environment,
+          metalness: .1,
+          roughness: 0.1,
+          transparent: true,
+          transmission: .5,
+          side: THREE.DoubleSide,
+          clearcoat: 1.0,
+          clearcoatRoughness: .25
+        });
+        let link = this.print.stl.replace("~/assets", "").replace('3D-Object', 'print');
+        let printss = Array(10).fill()
+        console.log(printss)
+        printss.forEach((item) => {
+          addObj(link, material, loader)
+        });
 
-				loader.load(link, function ( geometry ) {
+        
+        //const envTexture = new THREE.CubeTextureLoader().load(["img/px_25.jpg", "img/nx_25.jpg", "img/py_25.jpg", "img/ny_25.jpg", "img/pz_25.jpg", "img/nz_25.jpg"]);
+        //envTexture.mapping = THREE.CubeReflectionMapping;
+        
+        /*const loader = new STLLoader();
+        let link = this.print.stl.replace("~/assets", "").replace('3D-Object', 'print');
+        loader.load(link, async (geometry) => {
+          let mesh = new THREE.Mesh(geometry, material);
+          mesh.scale.set(0.02, 0.02, 0.02);
+          mesh.rotateX(Math.PI / -2);
+          //mesh.rotation.y = 90;
+          // mesh.rotateY(Math.PI / 2) - 90;
+          mesh.rotateZ(Math.PI / 2);
+          scene.add(mesh);
 
-					const mesh = new THREE.Mesh( geometry, material );
-
-					mesh.position.set( 0, - 0.37, - 0.6 );
-					mesh.rotation.set( - Math.PI / 2, 0, 0 );
-					mesh.scale.set( 2, 2, 2 );
-
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
-
-					scene.add( mesh );
-
-				});
+          cameraTarget = mesh.position
+        }, onProgress, onError);*/
 
 
 
         // Light
-        
+  
         scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
 
 				addShadowedLight( 1, 1, 1, 0xffffff, 1.35 );
@@ -158,14 +160,37 @@ export default {
         renderer.domElement.id = "threejs";
 				renderer.shadowMap.enabled = true;
 
+
+        controls = new OrbitControls(camera, renderer.domElement);
+
+        controls.enabled = true;
+        controls.enableDamping = true;
+        controls.autoRotate = false; 
+        controls.maxDistance = 500;
+
 				container.appendChild( renderer.domElement );
         window.addEventListener( 'resize', onWindowResize );
 
         animate();
       }
-      
-			
-      function addShadowedLight( x, y, z, color, intensity ) {
+      function addObj(link, material, loader) {
+        console.log(link)
+        
+        
+        loader.load(link, async (geometry) => {
+          let mesh = new THREE.Mesh(geometry, material);
+          mesh.scale.set(0.02, 0.02, 0.02);
+          mesh.rotateX(Math.PI / -2);
+
+          mesh.rotateZ(Math.PI / 2);
+          const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
+          mesh.position.set(x, y, z);
+          scene.add(mesh);
+
+          // cameraTarget = mesh.position
+        }, onProgress, onError);
+      }
+      const addShadowedLight = ( x, y, z, color, intensity ) => {
 
 				const directionalLight = new THREE.DirectionalLight( color, intensity );
 				directionalLight.position.set( x, y, z );
@@ -185,6 +210,16 @@ export default {
 				directionalLight.shadow.bias = - 0.002;
 
 			}
+      function onProgress( xhr ) {
+        
+        if ( xhr.lengthComputable ) {
+          const percentComplete = xhr.loaded / xhr.total * 100;
+          console.log( 'model ' + Math.round( percentComplete, 2 ) + '% downloaded' );
+        } else {
+          return
+        }
+      }
+      function onError() {}
       function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -198,17 +233,18 @@ export default {
 
 				requestAnimationFrame( animate );
 
-				render();
+			  render();
 
 			}
 
 			function render() {
 
-				const timer = Date.now() * 0.0005;
+				// const timer = Date.now() * 0.0005;
+				const timer = Date.now() * 0.05;
 
-				camera.position.x = Math.cos( timer ) * 3;
-				camera.position.z = Math.sin( timer ) * 3;
-
+				//camera.position.x = Math.cos( timer ) * 5;
+				//camera.position.z = Math.sin( timer ) * 5;
+        controls.update( timer );
 				camera.lookAt( cameraTarget );
 
 				renderer.render( scene, camera );
@@ -241,73 +277,15 @@ $maincolors: (
 @function gradientscheme($color) {
   @return map-get($colorpalette, $color);
 }
-.printcard {
-  .box {
-    position: relative;
-    overflow: hidden;
-    width: 350px;
-    height: 280px;
-    border-radius: 20px;
-    background: gradientscheme('moonlit');
-    margin-top: 2rem;
-    .icon {
-      position: absolute;
-      top: 0%;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      transition: 0.5s;
-      border-radius: 20px;
-      background: colorscheme('blue');
-      z-index: 2;
-      text-align: center;
-      vertical-align: middle;
-      i {
-        font-size: 4ch;
-        transform: translateY(50%);
-      }
-    }
-    &:hover {
-      .icon {
-        top: 30px;
-        left: calc(50% - 40px);
-        width: 80px;
-        height: 80px;
-        border: 50%;
-      }
-    }
-    .content {
-      position: relative;
-      padding: 20px;
-      color: #fff;
-      margin-top: 100px;
-      text-align: center;
-      z-index: 1;
-    }
-  }
+#progressBar {
+  width: 500px;
+  height: 24px;
+  position: relative;
 }
-#scrollToTopBtn {
-  display: none;
-  position: sticky;
-  bottom: 30px;
-  right: 30px;
-  z-index: 5;
-  font-size: 2ch;
-  border: none;
-  outline: none;
-  background: colorscheme('cyan');
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: calc(0.25rem - 1px);
-  transition: all 0.5s ease;
-  &:hover {
-    transform: scale(1.1);
-  }
+#threejs {
+  width: auto;
+  margin-left: auto;
+  padding: 4rem;
+  margin-right: auto;
 }
-#items {
-  list-style-type: none;
-}
-
-
 </style>

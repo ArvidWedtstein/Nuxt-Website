@@ -61,9 +61,6 @@ export default {
         textureLoader = new THREE.TextureLoader( manager );
         gltfloader = new GLTFLoader( manager );
         objloader = new OBJLoader( manager );
-        
-        
-
 
         clock = new THREE.Clock();
         manager.onProgress = function ( item, loaded, total ) {     

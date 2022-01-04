@@ -67,7 +67,7 @@
             <div class="content">
               <h5 class="printcard-title">{{ object.name }}</h5>
               <p class="printcard-text">{{ object.description }}</p>
-              <a v-bind:href="object.name">Link</a>
+              <a v-bind:href="object.name">View model</a>
               <a v-bind:href="object.stl" class="btn btn-download" download><i class="fas fa-download"/> Download</a>
             </div>
           </div>
