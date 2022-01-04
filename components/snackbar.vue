@@ -41,6 +41,7 @@ export default {
   flex-direction: row;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 6;
   button {
     float: right;
     position: absolute !important;

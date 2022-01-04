@@ -4,7 +4,7 @@
       <h1 class="display-4">3D Print</h1>
       <p class="lead">Here can you download some of my 3d models</p>
       <hr class="my-4">
-      <button type="button" class="btn btn-main" data-toggle="modal" data-target="#modal">New Print</button>
+      <button type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">New Print</button>
     </div>
     <div class="form-floating custom">
       <input type="text" class="form-control shadow-none" id="floatingSearch" placeholder="Search" v-model="search">
@@ -82,6 +82,7 @@
 const axios = require('axios');
 var base64 = require('base-64');
 const path = require('path');
+
 class Print {
   constructor(name, description, category, stl, image) {
     this.name = name;
@@ -173,7 +174,6 @@ export default {
       reader.onload = e =>{
         //this.print.stl = e.target.result;
         this.print.stl = stringToBinary(e.target.result);
-        console.log()
       };
       
       
@@ -197,19 +197,46 @@ export default {
         description: this.print.description,
         author: this.$store.getters.getUserInfo
       }
-      const data = new FormData();
-      data.append("stl", document.getElementById('stl').files[0])
-      data.append('json', JSON.stringify(json));
-      
-      const print = await this.$axios.$post("api/project/newPrint", data).then((res) => {
-        this.showSnackbar(res.message)
-      })
-      this.$nuxt.refresh()
+      // const data = new FormData();
+      // data.append("stl", document.getElementById('stl').files[0])
+      // data.append('json', JSON.stringify(json));
+
+      const rey = new FileReader()
+      rey.readAsText(document.getElementById('stl').files[0])
+      rey.onload = e =>{
+        this.$axios({
+          method: "put",
+          url: "https://api.github.com/repos/ArvidWedtstein/Nuxt-Website/contents/static/print/" + document.getElementById('stl').files[0].name,
+          headers: {
+            "Authorization": "Bearer " + "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",
+            'Content-Type': 'application/json'
+          },
+          data: {
+            content: base64.encode(e.target.result),
+            message: `Bot File Upload: ${document.getElementById('stl').files[0].name}`
+          }
+        }).then(async (res) => {
+          if (res.status === 201) {
+            this.showSnackbar("Successfully uploaded print", "success")
+            $('#modal').modal('hide'); 
+          } else {
+            this.showSnackbar("Something went wrong. Try again later", "danger")
+          }
+        })
+      };
     
+      /*const print = await this.$axios.$post("api/project/newPrint", data).then((res) => {
+        this.showSnackbar(res.message)
+      })*/
+      this.$nuxt.refresh()
+  
       this.print.title = '';
       this.print.description = '';
       this.print.size = '';
-    }
+    },
+    showSnackbar(message, type) {
+      this.$notifier.showMessage({ content: message, color: type })
+    },
   },
   created() {
     window.addEventListener('scroll', this.scroll);
@@ -268,7 +295,7 @@ $maincolors: (
       transition: 0.5s;
       border-radius: 20px;
       background: colorscheme('blue');
-      z-index: 2;
+      z-index: 1;
       text-align: center;
       vertical-align: middle;
       i {
@@ -291,7 +318,7 @@ $maincolors: (
       color: #fff;
       margin-top: 100px;
       text-align: center;
-      z-index: 1;
+      z-index: 0;
     }
   }
 }

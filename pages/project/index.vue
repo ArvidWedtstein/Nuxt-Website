@@ -140,12 +140,6 @@ export default {
     try {
       await $axios({
         method: "get",
-        url: "https://api.github.com/repos/ArvidWedtstein/Nuxt-Website/projects"
-      }).then(async (res) => {
-        console.log(res);
-      })
-      /*await $axios({
-        method: "get",
         url: "/api/project/getProjects"
       }).then(async (res) => {
         const projectss = await res.data.projects;
@@ -164,7 +158,7 @@ export default {
         })
         const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
         timeline = timeline.concat(sortedTimeline);
-      })*/
+      })
     } catch (err) {
       console.log(err)
     }

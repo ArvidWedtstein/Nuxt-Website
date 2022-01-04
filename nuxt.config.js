@@ -140,7 +140,10 @@ export default {
     },
   },
   publicRuntimeConfig: {
-    baseURL: "https://websiteapiarvidw.herokuapp.com/" 
+    baseURL: process.env.BASE_URL
+  },
+  privateRuntimeConfig: {
+    github: process.env.GITHUB_TOKEN
   },
   axios: {
     baseURL: "https://websiteapiarvidw.herokuapp.com/" 
