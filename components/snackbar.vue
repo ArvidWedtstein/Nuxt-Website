@@ -24,7 +24,6 @@ export default {
         setTimeout(() => {
           this.show = false
         }, 3000)
-
       }
     })
   }

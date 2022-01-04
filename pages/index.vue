@@ -100,7 +100,7 @@ $maincolors: (
 }
 #app {
   margin-top: 2rem;
-  font-family: 'Lato';
+  //font-family: 'Lato';
 }
 /*Hex Layout*/
 .hexContainer {

@@ -1,6 +1,6 @@
 <template>
     <div id="contact">
-        <CommingSoon releasedate="24.12.2021" name="Contact Page"></CommingSoon>
+        <CommingSoon releasedate="24.12.2022" name="Contact Page. Comming Soon"></CommingSoon>
         <!--<div class="container-fluid">
             <div class="contactFormBx">
                 <p v-if="errors.length">

@@ -51,7 +51,7 @@
         <input id="stl" type="file" accept="print/stl"/>
       </div>
       <div slot="footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button v-on:click="newPrint" type="button" class="btn btn-primary" data-dismiss="modal">Create Print</button>
       </div>
     </Modal>
@@ -110,6 +110,7 @@ export default {
   },
   async asyncData({ $axios, params, $config }) {
     let baseURL = $config.baseURL;
+    let token = $config.github;
     if (!params) {
       return {
         baseURL
@@ -122,7 +123,8 @@ export default {
 
       })*/
       return {
-        baseURL
+        baseURL,
+        token
       }
     }
   },
@@ -206,9 +208,9 @@ export default {
       rey.onload = e =>{
         this.$axios({
           method: "put",
-          url: "https://api.github.com/repos/ArvidWedtstein/Nuxt-Website/contents/static/print/" + document.getElementById('stl').files[0].name,
+          url: `https://api.github.com/repos/ArvidWedtstein/Nuxt-Website/contents/static/print/${document.getElementById('stl').files[0].name}`,
           headers: {
-            "Authorization": "Bearer " + "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",
+            "Authorization": "Bearer " + this.token,
             'Content-Type': 'application/json'
           },
           data: {
