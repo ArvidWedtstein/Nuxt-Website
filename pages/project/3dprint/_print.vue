@@ -78,7 +78,7 @@ export default {
       
       const init = async () => {
         
-        camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 15 );
+        camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 200 );
 				camera.position.set( 3, 3.15, 3 );
 
 				cameraTarget = new THREE.Vector3( 0, - 0.25, 0 );
@@ -106,30 +106,22 @@ export default {
 				// plane.position.y = - 0.5;
 				// plane.receiveShadow = true;
 				// scene.add(plane);
-        const loader = new STLLoader();
-        const material = new THREE.MeshPhysicalMaterial({
-          color: 0x000000,
-          envMap: scene.environment,
-          metalness: .1,
-          roughness: 0.1,
-          transparent: true,
-          transmission: .5,
-          side: THREE.DoubleSide,
-          clearcoat: 1.0,
-          clearcoatRoughness: .25
-        });
-        let link = this.print.stl.replace("~/assets", "").replace('3D-Object', 'print');
-        let printss = Array(10).fill()
-        console.log(printss)
-        printss.forEach((item) => {
-          addObj(link, material, loader)
-        });
-
         
         //const envTexture = new THREE.CubeTextureLoader().load(["img/px_25.jpg", "img/nx_25.jpg", "img/py_25.jpg", "img/ny_25.jpg", "img/pz_25.jpg", "img/nz_25.jpg"]);
         //envTexture.mapping = THREE.CubeReflectionMapping;
         
-        /*const loader = new STLLoader();
+        const loader = new STLLoader();
+        const material = new THREE.MeshPhysicalMaterial({
+          color: 0x000000,
+          envMap: scene.environment,
+          metalness: .5,
+          roughness: 0.8,
+          transparent: false,
+          //transmission: .5,
+          side: THREE.DoubleSide,
+          //clearcoat: 1.0,
+          clearcoatRoughness: .25
+        });
         let link = this.print.stl.replace("~/assets", "").replace('3D-Object', 'print');
         loader.load(link, async (geometry) => {
           let mesh = new THREE.Mesh(geometry, material);
@@ -141,7 +133,7 @@ export default {
           scene.add(mesh);
 
           cameraTarget = mesh.position
-        }, onProgress, onError);*/
+        }, onProgress, onError);
 
 
 
@@ -150,7 +142,6 @@ export default {
         scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
 
 				addShadowedLight( 1, 1, 1, 0xffffff, 1.35 );
-				addShadowedLight( 0.5, 1, - 1, 0xffaa00, 1 );
 				// renderer
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -166,29 +157,12 @@ export default {
         controls.enabled = true;
         controls.enableDamping = true;
         controls.autoRotate = false; 
-        controls.maxDistance = 500;
+        controls.maxDistance = 10;
 
 				container.appendChild( renderer.domElement );
         window.addEventListener( 'resize', onWindowResize );
 
         animate();
-      }
-      function addObj(link, material, loader) {
-        console.log(link)
-        
-        
-        loader.load(link, async (geometry) => {
-          let mesh = new THREE.Mesh(geometry, material);
-          mesh.scale.set(0.02, 0.02, 0.02);
-          mesh.rotateX(Math.PI / -2);
-
-          mesh.rotateZ(Math.PI / 2);
-          const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
-          mesh.position.set(x, y, z);
-          scene.add(mesh);
-
-          // cameraTarget = mesh.position
-        }, onProgress, onError);
       }
       const addShadowedLight = ( x, y, z, color, intensity ) => {
 
