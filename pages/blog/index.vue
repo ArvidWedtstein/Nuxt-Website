@@ -1,6 +1,6 @@
 <template>
-  <div class="oldnews container-fluid">
-    <div class="head">
+  <div class="news container-fluid">
+    <!--<div class="head">
       <div class="headerobjectswrapper">
         <div class="weatherforcastbox">
           <span style="font-style: italic;">Været:</span>
@@ -11,8 +11,8 @@
         <NuxtLink v-if="userPerm('CREATE_POST')" type="button" class="btn btn-notch" to="/blog/new-post">New Post</NuxtLink>​
       </div>
       <div class="subhead">Haugesund - {{days[new Date().getDay()]}} {{months[new Date().getMonth()]}} {{new Date().getDate()}}, {{new Date().getFullYear()}}</div>
-    </div>
-    <div class="content">
+    </div>-->
+    <!--<div class="content">
       <div class="masonry">
         <div class="item" v-for="(post, i) in articles" :key="i">
           <a class="column" :href="'/blog/' + post._id">
@@ -31,12 +31,12 @@
           </a>
         </div>
       </div>
-    </div>
+    </div>-->
     <!--http://www.dollardreadful.com/ blog-->
     <!--https://codepen.io/alekspopovic/pen/gzOJbq-->
-    <!--<div class="row">
+    <div class="row">
       <div class="col-md-4 d-flex blog" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
-        <div class="card newspost">
+        <a class="card newspost" :href="'/blog/' + post._id">
           <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
           <div v-if="post.author" class="card-header" :id="'post' + i">
             <p v-if="post.author.name">{{ post.author.name }}</p>
@@ -57,9 +57,9 @@
               <small class="text-muted">{{ timeSince(post.updatedAt) }} ago</small>
             </div>
           </div>
-        </div>
+        </a>
       </div>
-    </div>-->
+    </div>
     <ArvidFooter></ArvidFooter>
   </div>
 </template>
