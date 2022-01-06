@@ -52,7 +52,7 @@
             <div class="card-body d-flex flex-column align-items-start">
               <strong v-if="project.tags" class="d-inline-block mb-2 text-light"><i style="padding: 0 0.3rem" v-for="(tag, v) in project.tags" :key="v" :class="tag.icon"/></strong>
               <h3 class="mb-0">
-                <a class="text-light" href="#">{{ project.name }}</a>
+                <a class="text-light" :href="project.projectLink">{{ project.name }}</a>
               </h3>
               <div v-if="project.gitlink" class="mb-1 text-muted">{{project.github.name}}</div>
               <p class="card-text mb-auto">{{ project.description }}</p>
@@ -253,7 +253,7 @@ export default {
 <style lang="scss">
 $colorpalette: (
   "moonlit": linear-gradient(to right, #0f2027, #203a43, #2c5364),
-  "argon": linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9),
+  "argon": linear-gradient(to right, #0f0e0f, #7303c0, #ec38bc, #fdeff9),
   "velvet-sun": linear-gradient(to top, #e1eec3, #f05053),
   "bluegreen": linear-gradient(45, #402565, #30BE96),
   "meridian": linear-gradient(45deg, #283c86, #45a247)
