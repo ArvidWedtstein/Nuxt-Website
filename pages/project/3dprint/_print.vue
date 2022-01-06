@@ -3,7 +3,6 @@
     <div class="jumbotron" id="3dprintview">
       <h1 class="display-4" v-if="print" v-cloak>{{ print.name }}</h1>
       <hr class="my-4">
-      <p class="lead" v-cloak>{{ print }}</p>
     </div>
   </div>
 </template>
@@ -96,39 +95,17 @@ export default {
         });
 
         container = document.getElementById('3dprintview');
-				// Ground
-
-				// const plane = new THREE.Mesh(
-				// 	new THREE.PlaneGeometry( 40, 40 ),
-				// 	new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
-				// );
-				// plane.rotation.x = - Math.PI / 2;
-				// plane.position.y = - 0.5;
-				// plane.receiveShadow = true;
-				// scene.add(plane);
         
-        //const envTexture = new THREE.CubeTextureLoader().load(["img/px_25.jpg", "img/nx_25.jpg", "img/py_25.jpg", "img/ny_25.jpg", "img/pz_25.jpg", "img/nz_25.jpg"]);
-        //envTexture.mapping = THREE.CubeReflectionMapping;
-        
+        let link = this.print.stl.replace("~/assets", "").replace('3D-Object', 'print');
         const loader = new STLLoader();
         const material = new THREE.MeshPhysicalMaterial({
           color: 0x000000,
           envMap: scene.environment,
-          metalness: .5,
-          roughness: 0.8,
-          transparent: false,
-          //transmission: .5,
-          side: THREE.DoubleSide,
-          //clearcoat: 1.0,
-          clearcoatRoughness: .25
         });
-        let link = this.print.stl.replace("~/assets", "").replace('3D-Object', 'print');
         loader.load(link, async (geometry) => {
           let mesh = new THREE.Mesh(geometry, material);
           mesh.scale.set(0.02, 0.02, 0.02);
           mesh.rotateX(Math.PI / -2);
-          //mesh.rotation.y = 90;
-          // mesh.rotateY(Math.PI / 2) - 90;
           mesh.rotateZ(Math.PI / 2);
           scene.add(mesh);
 

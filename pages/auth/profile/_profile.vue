@@ -61,7 +61,7 @@
       </ul>
       <div class="tab-content">
         <div id="tab1" class="tab-pane fade active show">
-          <div v-for="(post, l) in userposts" :key="l" class="card news">
+          <div v-for="(post, l) in userposts" :key="l" class="card newspost">
             <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
             <div v-if="post.author" class="card-header" :id="'post' + i">
               <p v-if="post.author.name">{{ post.author.name }}</p>

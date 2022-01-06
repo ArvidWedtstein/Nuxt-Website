@@ -1,30 +1,6 @@
 <template>
    <div id="threecontainer">
     <canvas id="threejs"></canvas>
-    <div style="margin-top: 50vh; color: #fff !important;" class='jumbotron threejs'>
-     <h1 class='display-4'>hehe</h1>
-     <p class='lead'>hehe</p>
-     <hr class='my-4'>
-     <p class='lead'></p>
-    </div>
-    <div class='jumbotron threejs'>
-     <h1 class='display-4'>hehe</h1>
-     <p class='lead'>hehe</p>
-     <hr class='my-4'>
-     <p style="color: #fff;" class='lead'>aaaaaaaaa</p>
-    </div>
-    <div class='jumbotron threejs'>
-     <h1 class='display-4'>hehe</h1>
-     <p class='lead'>hehe</p>
-     <hr class='my-4'>
-     <p class='lead'></p>
-    </div>
-    <div class='jumbotron threejs'>
-     <h1 class='display-4'>hehe</h1>
-     <p class='lead'>hehe</p>
-     <hr class='my-4'>
-     <p class='lead'></p>
-    </div>
    </div>
 </template>
 
@@ -84,15 +60,6 @@ export default {
   
 
         /* Lights */
-        /*hemiLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
-        hemiLight.position.setZ(20);
-        hemiLight.position.setX(30);
-        scene.add(hemiLight);*/
-
-        /*const dirLight = new THREE.DirectionalLight( 0xffffff, 0.05 );
-        dirLight.position.set( 3, - 1, 0 ).normalize();
-        dirLight.color.setHSL( 0.1, 0.7, 0.5 );
-        scene.add( dirLight )*/
 
         const textureFlare0 = textureLoader.load( '/scene/lensflare0.png' );
         const textureFlare3 = textureLoader.load( '/scene/lensflare3.png' );
@@ -142,19 +109,7 @@ export default {
         renderer.domElement.id = "threejs";
         container.appendChild( renderer.domElement );
 
-        /*effect = new AsciiEffect(renderer, ' `:-+*=%@#{}[]()', { invert: true } );
-        effect.setSize(window.innerWidth, window.innerHeight);
-        effect.domElement.style.color = "white";
-        effect.domElement.style.backgroundColor = "black";
-
-        container.appendChild(effect.domElement);*/
-
-
-
-        
-
-        
-        /*gltfloader.load("/scene/House.glb", async (glb) => {
+        gltfloader.load("/scene/House.glb", async (glb) => {
           house = glb.scene;
           glb.scene.traverse(async (child) => {
             if (child.isMesh) {
@@ -162,10 +117,10 @@ export default {
             }
           })
           house.scale.set(1,1,1);
-          house.position.set(0,0,0);
+          house.position.set(50,0,0);
           scene.add(house);
           roughnessMipmapper.dispose();
-        }, onProgress, onError);*/
+        }, onProgress, onError);
 
         /*gltfloader.load("/scene/cabinet.glb", async (glb) => {
           roughnessMipmapper = new RoughnessMipmapper( renderer );
@@ -217,8 +172,7 @@ export default {
 
         controls = new OrbitControls(camera, renderer.domElement);
 
-        //controls.minDistance = 500;
-        //camera.lookAt(100, 800, 0);
+
         controls.enabled = true;
         controls.enableDamping = true;
         controls.autoRotate = false; 
@@ -253,7 +207,7 @@ export default {
 
       function addStar() {
         const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-        const material = new THREE.MeshStandardMaterial({color: 0xffffff})
+        const material = new THREE.MeshStandardMaterial({color: 0xf6ff00})
         const star = new THREE.Mesh( geometry, material );
 
         const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
@@ -261,7 +215,7 @@ export default {
         scene.add(star);
       }
 
-      //Array(200).fill().forEach(addStar);
+      Array(200).fill().forEach(addStar);
 
      
 

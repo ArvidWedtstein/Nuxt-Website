@@ -36,14 +36,14 @@
     <!--https://codepen.io/alekspopovic/pen/gzOJbq-->
     <div class="row">
       <div class="col-md-4 d-flex blog" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
-        <a class="card newspost" :href="'/blog/' + post._id">
+        <div class="card newspost">
           <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
           <div v-if="post.author" class="card-header" :id="'post' + i">
             <p v-if="post.author.name">{{ post.author.name }}</p>
             <img style="width: 50px" class="profileImg" v-if="post.author.profileimg" :src="baseURL + post.author.profileimg"/>
           </div>
           <div class="card-body" :id="'post' + i">
-            <h5 v-if="post.title" class="card-title">{{ post.title }}</h5>
+            <a :href="'/blog/' + post._id" v-if="post.title" class="card-title">{{ post.title }}</a>
             <p v-if="post.description" class="card-text description">{{ post.description }}</p>
           </div>
           <div class="card-footer">
@@ -57,7 +57,7 @@
               <small class="text-muted">{{ timeSince(post.updatedAt) }} ago</small>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
     <ArvidFooter></ArvidFooter>

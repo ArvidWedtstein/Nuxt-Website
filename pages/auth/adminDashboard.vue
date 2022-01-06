@@ -94,11 +94,19 @@
         </div>
       </div>
       <div id="tab3" class="tab-pane fade">
-        <div class='jumbotron'>
-           <h1 class='display-4'>Ratings</h1>
-           <p class='lead'>Ratings</p>
-           <hr class='my-4'>
-           <p class='lead'>{{ reviews }}</p>
+        <div class="jumbotron" v-for="(review, o) in reviews" :key="o">
+          <h1 class="display-4"><i style="color: yellow" v-for="x in review.rating" :key="x" class="fas fa-star" /></h1>
+          <p class="lead">{{ review.author }}: "{{ review.review }}"</p>
+          <button class="lead link" @click="changeReview(review)">Edit Review</button>
+          <div v-if="editReview.active">
+            <div class="form-floating custom">
+              <input type="text" class="form-control shadow-none" id="floatingSearch" placeholder="Search" v-model="editReview.title">
+              <label for="floatingSearch">Edit Author</label>
+            </div>
+            
+            
+          </div>
+          <hr class="my-4">
         </div>
       </div>
     </div>
@@ -116,7 +124,11 @@ export default {
     return {
       role: "",
       searchbar: "",
-      loaded: false
+      loaded: false,
+      editReview: {
+        active: false,
+        user: ""
+      }
     };
   },
   async asyncData({ $axios, $store, $config }) {
@@ -134,6 +146,10 @@ export default {
     };
   },
   methods: {
+    async changeReview(review) {
+      this.editReview.active = true
+      this.editReview.title = review.author
+    },
     async rolesname(role, email) {
       try {
         let token = this.$auth.strategy.token.get().split(" ")[1]

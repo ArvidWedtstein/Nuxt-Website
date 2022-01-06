@@ -58,7 +58,7 @@
     
     <div class="row" id="items">
       <div class="col-md-4" v-for="(object, i) in filteredList" :key="i">
-        <div class="printcard col-sm" v-if="filter === 'all' || object.category.includes(filter)">
+        <div id=i class="printcard col-sm" v-if="filter === 'all' || object.category.includes(filter)">
           <div class="box">
             <div class="icon">
               <!--<i class="fas fa-code"/>-->
@@ -83,6 +83,8 @@ const axios = require('axios');
 var base64 = require('base-64');
 const path = require('path');
 
+import * as THREE from "three";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader"
 class Print {
   constructor(name, description, category, stl, image) {
     this.name = name;
@@ -202,10 +204,10 @@ export default {
       // const data = new FormData();
       // data.append("stl", document.getElementById('stl').files[0])
       // data.append('json', JSON.stringify(json));
-
-      const rey = new FileReader()
-      rey.readAsText(document.getElementById('stl').files[0])
-      rey.onload = e =>{
+      console.log(this.token)
+      const fileReader = new FileReader()
+      fileReader.readAsText(document.getElementById('stl').files[0])
+      fileReader.onload = e =>{
         this.$axios({
           method: "put",
           url: `https://api.github.com/repos/ArvidWedtstein/Nuxt-Website/contents/static/print/${document.getElementById('stl').files[0].name}`,

@@ -94,7 +94,7 @@ export default {
     generatecode() {
       const verificationgenerator = Math.floor(100000 + Math.random() * 900000)
       this.verificationcode = Math.floor(100000 + Math.random() * 900000)
-      console.log(this.verificationcode)
+      //console.log(this.verificationcode)
     },
     async register(e) {
       let has_special = /[!@#\$%\^\&*\)\(+=._-]/.test(this.registerData.password);
