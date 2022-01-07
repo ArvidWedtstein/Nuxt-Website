@@ -157,7 +157,7 @@ export default {
           email: email,
           role: role
         }, {
-          "authorization": `Basic ${token}`
+          "Authorization": `Basic ${token}`
         });
       } catch (err) {
         console.log(err)
@@ -177,7 +177,7 @@ export default {
           user: user
         }, {
           Headers: {
-            "authorization": `Basic ${token}`
+            "Authorization": `Basic ${token}`
           }
         }).then((res) => {
           console.log(res)
@@ -192,7 +192,7 @@ export default {
         let token = this.$auth.strategy.token.get().split(" ")[1]
         
         await this.$axios.$post("/api/auth/banUser", user, {
-          "authorization": `Basic ${token}`
+          "Authorization": `Basic ${token}`
         });
       } catch (err) {
         console.log(err)
