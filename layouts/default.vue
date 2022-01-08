@@ -346,9 +346,16 @@ $border-radius: 0.25rem;
     margin: 1rem;
     color: colorscheme('white');
     background: none;
-    outline: none;
-    .form-control {
+    outline: none !important;
+    .form-control, .form-select {
+      &.form-select > * {
+        background: none !important;
+        color: lime;
+        
+      }
+      border: 1px solid #ced4da !important;
       color: colorscheme('white');
+      box-shadow: none;
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus,

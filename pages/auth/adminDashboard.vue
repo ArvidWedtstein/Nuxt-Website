@@ -97,14 +97,23 @@
         <div class="jumbotron" v-for="(review, o) in reviews" :key="o">
           <h1 class="display-4"><i style="color: yellow" v-for="x in review.rating" :key="x" class="fas fa-star" /></h1>
           <p class="lead">{{ review.author }}: "{{ review.review }}"</p>
-          <button class="lead link" @click="changeReview(review)">Edit Review</button>
+          <button v-if="editReview.active" class="lead link" @click="saveReview(editReview)">Save Review</button>
+          <button v-else class="lead link" @click="changeReview(review)">Edit Review</button>
           <div v-if="editReview.active">
             <div class="form-floating custom">
-              <input type="text" class="form-control shadow-none" id="floatingSearch" placeholder="Search" v-model="editReview.title">
-              <label for="floatingSearch">Edit Author</label>
+              <input type="text" class="form-control shadow-none" id="floatingReviewAuthor" placeholder="Author" v-model="editReview.user">
+              <label for="floatingReviewAuthor">Edit Author</label>
             </div>
-            
-            
+            <div class="form-floating custom">
+              <input type="text" class="form-control shadow-none" id="floatingReview" placeholder="Review" v-model="editReview.review">
+              <label for="floatingReview">Edit Review</label>
+            </div>
+            <div class="form-floating custom">
+              <select class="form-select" id="floatingReviewStar" aria-label="Star Rating">
+                <option v-for="i in 5" :key="i" value="i" :selected="editReview.rating == i">{{i}}</option>
+              </select>
+              <label for="floatingReviewStar">Edit Rating</label>
+            </div>
           </div>
           <hr class="my-4">
         </div>
@@ -127,7 +136,10 @@ export default {
       loaded: false,
       editReview: {
         active: false,
-        user: ""
+        id: "",
+        user: "",
+        review: "",
+        rating: ""
       }
     };
   },
@@ -148,7 +160,10 @@ export default {
   methods: {
     async changeReview(review) {
       this.editReview.active = true
-      this.editReview.title = review.author
+      this.editReview.id = review._id;
+      this.editReview.user = review.author;
+      this.editReview.review = review.review;
+      this.editReview.rating = review.rating;
     },
     async rolesname(role, email) {
       try {
