@@ -110,7 +110,7 @@
             </div>
             <div class="form-floating custom">
               <select class="form-select" id="floatingReviewStar" aria-label="Star Rating">
-                <option v-for="i in 5" :key="i" value="i" :selected="editReview.rating == i">{{i}}</option>
+                <option v-for="i in 5" :key="i" value="i" :selected="editReview.rating == i">{{ i }}</option>
               </select>
               <label for="floatingReviewStar">Edit Rating</label>
             </div>
@@ -165,9 +165,12 @@ export default {
       this.editReview.review = review.review;
       this.editReview.rating = review.rating;
     },
+    async saveReview() {
+      //await this.$axios.$post("/api/")
+    }
     async rolesname(role, email) {
       try {
-        let token = this.$auth.strategy.token.get().split(" ")[1]
+        let token = this.$auth.strategy.token.get().split(" ")[1];
         await this.$axios.$post("/api/auth/postUpdateuser", {
           email: email,
           role: role
