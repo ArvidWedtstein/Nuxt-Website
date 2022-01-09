@@ -167,7 +167,7 @@ export default {
     },
     async saveReview() {
       //await this.$axios.$post("/api/")
-    }
+    },
     async rolesname(role, email) {
       try {
         let token = this.$auth.strategy.token.get().split(" ")[1];
