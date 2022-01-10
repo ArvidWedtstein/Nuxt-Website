@@ -197,6 +197,7 @@ export default {
     async rolesname(role, email) {
       try {
         let token = this.$auth.strategy.token.get().split(" ")[1];
+        //console.log(token)
         await this.$axios.$post("/api/auth/postUpdateuser", {
           email: email,
           role: role
