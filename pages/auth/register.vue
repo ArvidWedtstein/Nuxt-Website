@@ -168,9 +168,9 @@ export default {
             name: this.registerData.name,
             email: this.registerData.email,
             password: hashedPassword.hash
-          }).then((response) => {
+          }).then(async (response) => {
             alert(response.message)
-            this.$auth.loginWith('local', {
+            await this.$auth.loginWith('local', {
               data: this.registerData
             })
             this.$router.push("/");
