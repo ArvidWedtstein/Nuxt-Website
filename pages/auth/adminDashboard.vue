@@ -2,9 +2,9 @@
 <template>
   <div id="admin-dashboard" class="container-fluid">
     <ul class="nav nav-tabs nav-justified">
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab1" class="nav-link active">Dashboard</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link">Users</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link">Ratings</a></li>
+      <li class="nav-item"><a data-bs-toggle="tab" href="#tab1" class="nav-link link active">Dashboard</a></li>
+      <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link link ">Users</a></li>
+      <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link link">Ratings</a></li>
     </ul>
 
     <div class="tab-content">
@@ -94,10 +94,18 @@
         </div>
       </div>
       <div id="tab3" class="tab-pane fade">
+        <div class="jumbotron">
+          <h3 class="display-4">Reviews</h3>
+          <div class="row align-items-center justify-content-center">
+            <div class="col-sm-4 align-self-center">
+              <canvas class="chart rad-shadow" id="reviewChart"></canvas>
+            </div>
+          </div>
+        </div>
         <div class="jumbotron" v-for="(review, o) in reviews" :key="o">
           <h1 class="display-4"><i style="color: yellow" v-for="x in review.rating" :key="x" class="fas fa-star" /></h1>
           <p class="lead">{{ review.author }}: "{{ review.review }}"</p>
-          <button v-if="editReview.active" class="lead link" @click="saveReview(editReview)">Save Review</button>
+          <button v-if="editReview.active" class="lead link" @click="saveReview()">Save Review</button>
           <button v-else class="lead link" @click="changeReview(review)">Edit Review</button>
           <div v-if="editReview.active">
             <div class="form-floating custom">
@@ -166,7 +174,25 @@ export default {
       this.editReview.rating = review.rating;
     },
     async saveReview() {
-      //await this.$axios.$post("/api/")
+      try {
+        let token = this.$auth.strategy.token.get().split(" ")[1];
+        console.log(token)
+        const { id, user, review, rating } = this.editReview;
+        await this.$axios.$post("/api/project/editRating/" + id, {
+          user: user,
+          review: review,
+          rating: rating
+        }, {
+          "authorization": `Basic ${token}`
+        });
+        this.editReview.active = false;
+        this.editReview.id = "";
+        this.editReview.user = "";
+        this.editReview.review = "";
+        this.editReview.rating = "";
+      } catch (err) {
+        console.log(err)
+      }
     },
     async rolesname(role, email) {
       try {
@@ -175,7 +201,7 @@ export default {
           email: email,
           role: role
         }, {
-          "Authorization": `Basic ${token}`
+          "authorization": `Basic ${token}`
         });
       } catch (err) {
         console.log(err)
@@ -195,7 +221,7 @@ export default {
           user: user
         }, {
           Headers: {
-            "Authorization": `Basic ${token}`
+            "authorization": `Basic ${token}`
           }
         }).then((res) => {
           console.log(res)
@@ -210,7 +236,7 @@ export default {
         let token = this.$auth.strategy.token.get().split(" ")[1]
         
         await this.$axios.$post("/api/auth/banUser", user, {
-          "Authorization": `Basic ${token}`
+          "authorization": `Basic ${token}`
         });
       } catch (err) {
         console.log(err)
@@ -233,7 +259,24 @@ export default {
     },
     async chart() {
       const rolesCTX = document.getElementById("rolesChart").getContext("2d");
+      const reviewCTX = document.getElementById("reviewChart").getContext("2d");
       const postsCTX = document.getElementById("postsChart").getContext("2d");
+
+      const reviews = [];
+      this.reviews.forEach(async (review) => {
+        reviews.push(review.rating)
+      })
+      const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+      const dataReview = {
+        labels: ["1⭐", "2⭐", "3⭐", "4⭐", "5⭐"],
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: [countOccurrences(reviews, 1), countOccurrences(reviews, 2), countOccurrences(reviews, 3), countOccurrences(reviews, 4), countOccurrences(reviews, 5)],
+            backgroundColor: ["red", "green", "blue", "red", "gold"],
+          }
+        ]
+      };
       let grad = rolesCTX.createLinearGradient(0, 0, 0, 400);
       grad.addColorStop(0.24, "rgba(207, 193, 159, 1)");
       grad.addColorStop(0.26, "rgba(82, 79, 44, 1)");
@@ -360,8 +403,21 @@ export default {
           display: false
         }
       };
+      const optionsReview = {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Doughnut Chart'
+          }
+        }
+      };
       const rolesChart = new Chart(rolesCTX, { type: "bar", data: dataRoles, options: optionsRoles });
       const postsChart = new Chart(postsCTX, { type: "line", data: dataPosts, options: optionsPosts });
+      const reviewChart = new Chart(reviewCTX, { type: "doughnut", data: dataReview, options: optionsReview });
     },
     lastDays(days, date) {
       var result = [];
@@ -518,11 +574,13 @@ $border-radius: 0.25rem;
     }
   }
   .nav {
-    margin: 0rem 0;
+    
     margin-bottom: 0;
     .nav-item {
-      padding: 1rem 0;
+      margin: 0rem 0;
+      padding: 0;
       .nav-link {
+        padding: 1rem 0;
         color: colorscheme('white');
         //border-top: 2px solid transparent;
         border-radius: none;
@@ -531,6 +589,8 @@ $border-radius: 0.25rem;
           border: none;
           color: colorscheme('lime');
           border-top: 2px solid colorscheme('lime');
+          border-left: 2px solid colorscheme('lime');
+          border-right: 2px solid colorscheme('lime');
         }
       }
     }
@@ -598,12 +658,12 @@ $border-radius: 0.25rem;
       }
     }
     .dropdown-menu {
-      background: colorscheme('cyan');
+      background: colorscheme('blue');
       color: #fff;
-      padding: 0.3rem;
+      //padding: 0.3rem;
       .dropdown-item {
         transition: all 0.1s ease; 
-        padding-left: 0.5rem;
+        padding-left: 0.8rem;
         .roletxt {
           color: colorscheme('white');
           border-left: 5px solid colorscheme('white');
@@ -616,10 +676,12 @@ $border-radius: 0.25rem;
           color: colorscheme('white');
           font-size: 1.5rem;
         }
-        border-radius: 20%;
+        //border-radius: 20%;
         color: colorscheme('white');
-        background: colorscheme('cyan');
+        border-bottom: 1px solid colorscheme('white');
+        //background: colorscheme('cyan');
         &:hover {
+          background: none;
           .icon {
             color: colorscheme('lime');
           }

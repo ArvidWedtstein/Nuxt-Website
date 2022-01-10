@@ -21,10 +21,10 @@
         <small class="form-text">
           Password must contain 
           <ul class="requirements">
-            <li class="text-danger" v-if="!registerData.has_lowercase">One lowercase letter</li>
-            <li class="text-danger" v-if="!registerData.has_uppercase">One uppercase letter</li>
-            <li class="text-danger" v-if="!registerData.has_number">One number</li>
-            <li class="text-danger" v-if="!registerData.has_special">One special character.</li>
+            <li class="text-danger" v-if="!registerDataCheck.has_lowercase">One lowercase letter</li>
+            <li class="text-danger" v-if="!registerDataCheck.has_uppercase">One uppercase letter</li>
+            <li class="text-danger" v-if="!registerDataCheck.has_number">One number</li>
+            <li class="text-danger" v-if="!registerDataCheck.has_special">One special character.</li>
           </ul>
         </small>
         <br>
@@ -86,6 +86,20 @@ export default {
       emailRegex: /^\S+@\S+\.\S+$/,
       stringRegex: /[a-zA-Z0-9&_\.-]/
     };
+  },
+  computed: {
+    registerDataCheck() {
+      let has_special = /[!@#\$%\^\&*\)\(+=._-]/.test(this.registerData.password);
+      let has_uppercase = /[A-Z]/.test(this.registerData.password);
+      let has_lowercase = /[a-z]/.test(this.registerData.password);
+      let has_number = /\d/.test(this.registerData.password);
+      return {
+        has_special,
+        has_uppercase,
+        has_lowercase,
+        has_number
+      }
+    }
   },
   methods: {
     showSnackbar(message) {
