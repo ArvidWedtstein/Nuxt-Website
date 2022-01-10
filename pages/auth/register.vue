@@ -167,7 +167,7 @@ export default {
           const user = await this.$axios.$post("/api/auth/signin", {
             name: this.registerData.name,
             email: this.registerData.email,
-            password: hashedPassword
+            password: hashedPassword.hash
           }).then((response) => {
             alert(response.message)
             this.$auth.loginWith('local', {
