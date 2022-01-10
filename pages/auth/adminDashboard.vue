@@ -103,11 +103,11 @@
           </div>
         </div>
         <div class="jumbotron" v-for="(review, o) in reviews" :key="o">
-          <h1 class="display-4"><i style="color: yellow" v-for="x in review.rating" :key="x" class="fas fa-star" /></h1>
+          <h1 class="display-4"><i v-for="x in 5" :key="x" :class="{ 'text-warning': x <= review.rating }" class="fas fa-star" /></h1>
           <p class="lead">{{ review.author }}: "{{ review.review }}"</p>
-          <button v-if="editReview.active" class="lead link" @click="saveReview()">Save Review</button>
-          <button v-else class="lead link" @click="changeReview(review)">Edit Review</button>
-          <div v-if="editReview.active">
+          <button v-if="editReview.id == review._id && editReview.active" class="btn btn-success" @click="saveReview()">Save Review</button>
+          <button v-else class="btn btn-main" @click="changeReview(review)">Edit Review</button>
+          <div v-if="editReview.id == review._id && editReview.active">
             <div class="form-floating custom">
               <input type="text" class="form-control shadow-none" id="floatingReviewAuthor" placeholder="Author" v-model="editReview.user">
               <label for="floatingReviewAuthor">Edit Author</label>
@@ -185,14 +185,15 @@ export default {
         }, {
           "authorization": `Basic ${token}`
         });
-        this.editReview.active = false;
-        this.editReview.id = "";
-        this.editReview.user = "";
-        this.editReview.review = "";
-        this.editReview.rating = "";
+        
       } catch (err) {
         console.log(err)
       }
+      this.editReview.active = false;
+      this.editReview.id = "";
+      this.editReview.user = "";
+      this.editReview.review = "";
+      this.editReview.rating = "";
     },
     async rolesname(role, email) {
       try {
@@ -455,6 +456,9 @@ export default {
 
 </script>
 <style lang="scss">
+html, body {
+  height: 100%;
+}
 $colorpalette: (
   "moonlit": linear-gradient(to right, #0f2027, #203a43, #2c5364),
   "argon": linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9),

@@ -4,18 +4,21 @@
     <Nuxt/>
     <slot/>
     <Snackbar></Snackbar>
+    <!--<ArvidFooter></ArvidFooter>-->
   </div>
 </template>
 
 <script>
 //import Editor from '@tinymce/tinymce-vue'
 import Snackbar from '~/components/snackbar.vue'
+import ArvidFooter from '../components/ArvidFooter.vue'
 export default {
   template: "default",
   transition: "slide-bottom",
-  components: { 
+  components: {
     Snackbar,
-  },
+    ArvidFooter
+},
   methods: {
     /*scroll() {
       let lastKnownScrollPosition = 0;
@@ -86,8 +89,8 @@ html {
     0 100px 80px hsl(200 50% 3% / .3)
   ;
 }
-body {
-  height: 100%;
+body, html {
+  height: auto;
   background: #212529;
 }
 a {
@@ -200,6 +203,7 @@ $border-radius: 0.25rem;
   }
 }
 .btn {
+  margin: 0.1rem;
   &.btn-download {
     position: relative;
     bottom: 0;
