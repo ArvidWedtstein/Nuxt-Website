@@ -158,14 +158,16 @@ export default {
       }
     },
     async verifyuser() {
-      console.log(this.usercode, this.verificationcode)
+      //console.log(this.usercode, this.verificationcode)
       if (this.usercode === this.verificationcode.toString()) {
+        this.showSnackbar('verificationcode ok')
         console.log('verificationcode ok')
         try {
+          const hashedPassword = this.hashPassword(this.registerData.password)
           const user = await this.$axios.$post("/api/auth/signin", {
             name: this.registerData.name,
             email: this.registerData.email,
-            password: this.hashPassword(this.registerData.password)
+            password: hashedPassword
           }).then((response) => {
             alert(response.message)
             this.$auth.loginWith('local', {
