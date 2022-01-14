@@ -47,7 +47,7 @@
         </div>
       </Modal>
       <div class="row">
-        <div v-for="(project, x) in projectlist" :key="x" class="col-md-6">
+        <div v-for="(project, x) in projectlist" :key="x" class="col-md-6 flex-row">
           <div class="card flex-md-row mb-4 rad-shadow h-md-250 project">
             <div class="card-body d-flex flex-column align-items-start">
               <strong v-if="project.tags" class="d-inline-block mb-2 text-light"><i style="padding: 0 0.3rem" v-for="(tag, v) in project.tags" :key="v" :class="tag.icon"/></strong>
@@ -61,13 +61,13 @@
                 <NuxtLink v-if="project.projectLink" class="btn btn-main card-link" :to="project.projectLink">To Project</NuxtLink>
               </div>
               <div class="btn-group">
-                <button style="margin: 0.5rem 0rem" v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :class="'btn bg-'+ replace(lang.name)">
+                <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :class="'langtags btn bg-'+ replace(lang.name)">
                 {{lang.name}} <span>{{lang.percent}}%</span>
-                </button>
+                </div>
               </div>
             </div>
-            <a class="pop" href="#">
-              <img class="card-img-right flex-auto d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="thumbnail" style="width: 200px; height: 250px; object-fit: cover;" :src="'https://websiteapiarvidw.herokuapp.com' + project.thumbnail">	
+            <a href="#">
+              <img v-if="project.thumbnail" class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail">	
             </a>
           </div>
         </div>
@@ -292,7 +292,7 @@ $box-shadow: 0 12px 38px rgba(black, 0.4);
 		background: gradientscheme('bluegreen') !important;
 	}
 	// Old Project card
-    .card {	
+  .card {	
 		&.custom {
 			font-family: $titlefont;
 			width: 100%;
@@ -364,6 +364,7 @@ $box-shadow: 0 12px 38px rgba(black, 0.4);
 					clip-path: polygon(0% 10%, 100% calc(20% - 1px), 100% 100%, 0% calc(90% - 1px));  
 				}
 				&.maskimage {
+          border: none;
 					-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 					mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0));
 				}

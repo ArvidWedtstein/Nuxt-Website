@@ -9,7 +9,7 @@
               <h1 class="display-4">Well, Hello there</h1>
               <p class="lead">My name is Arvid Wedtstein</p>
               <hr class="my-4">
-              <p>I am currently studying: Informationteknology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><br>Progamming languages/Frameworks that i have learnt in the past:</p>
+              <p>I am currently studying: Informationtechnology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><br>Progamming languages/Frameworks that i have learnt in the past:</p>
               <div class="icon-bar icons">
                 <i class="python fab fa-python"></i>
                 <i class="js fab fa-js-square"></i>

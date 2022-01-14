@@ -503,9 +503,15 @@ $border-radius: 0.25rem;
   &.project {
     font-family: $titlefont;
     background-color: colorscheme('darkblue') !important;
+    min-height: 250px;
+    .langtags {
+      margin: 0.5rem 0;
+      font-size: 1.3ch;
+    }
     img {
       mix-blend-mode: normal;
       object-fit: cover;
+      height: 100%;
       filter: grayscale(100);
       border-radius: $border-radius;
       transition: all 0.2s ease-in-out !important;
