@@ -32,10 +32,8 @@
         </div>
       </div>
     </div>-->
-    <!--http://www.dollardreadful.com/ blog-->
-    <!--https://codepen.io/alekspopovic/pen/gzOJbq-->
     <div class="row">
-      <div class="col-md-4 d-flex blog" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
+      <div class="col-md-4 d-flex blog m-3" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
         <div class="card newspost">
           <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
           <div v-if="post.author" class="card-header" :id="'post' + i">
@@ -60,7 +58,7 @@
         </div>
       </div>
     </div>
-    <ArvidFooter></ArvidFooter>
+    <!-- <ArvidFooter></ArvidFooter> -->
   </div>
 </template>
 

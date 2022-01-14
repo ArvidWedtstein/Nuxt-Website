@@ -72,7 +72,6 @@
           </div>
         </div>
       </div>
-      <!--ᛞᛟᛜᛝᛚᛗᛖᛒᛏᛊᛋᛉᛈᛇᛃᛁᚾᚺᚻᚹᚷᚲᚱᚨᚦᚢᚠ-->
       <div class="jumbotron">
         <h1 class="display-4">Project timeline</h1>
         <hr class="my-4">

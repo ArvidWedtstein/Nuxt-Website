@@ -7,7 +7,7 @@
     <!-- new navbar?!?!?? https://codepen.io/MitchES/pen/dRMQdx -->
     <nav class="navbar navbar-expand-lg navbar-darkmode">
       <div class="container-fluid">
-        <NuxtLink to="./" class="navbar-brand"><img style="width: 60px;" src="/images/ArvidLogo.png" alt="logo"/></NuxtLink>
+        <NuxtLink to="./" class="navbar-brand"><img style="width: 30px;" src="/images/ArvidLogo.png" alt="logo"/></NuxtLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="box-shadow: none; border: none">
           <span class="navbar-toggler-icon" style="color: #ffffff"><i class="fas fa-bars"></i></span>
         </button>
@@ -17,10 +17,10 @@
               <NuxtLink class="nav-link link" to="/"><i class="fas fa-solid fa-home" /> Home</NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link link" to="/about"><i class="fas fa-id-card-alt"/>About Me</NuxtLink>
+              <NuxtLink class="nav-link link" to="/about"><i class="fas fa-id-card-alt"/> About Me</NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link link" to="/project/"><i class="fas fa-briefcase"/>Projects</NuxtLink>
+              <NuxtLink class="nav-link link" to="/project/"><i class="fas fa-briefcase"/> Projects</NuxtLink>
             </li>
             <li class="nav-item">
               <NuxtLink class="nav-link link" to="/contact"><i class="fas fa-id-card"/> Contact</NuxtLink>
@@ -39,7 +39,7 @@
               <li><NuxtLink v-if="!isAuthenticated" class="dropdown-item" to="/auth/login"><!--<i class="far fa-user"/>--><img width="30px" src="/images/login.png"/> Login</NuxtLink></li>
               <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" :to="'/auth/profile/' + getUserInfo.id"><i class="far fa-user"/> Profile</NuxtLink></li>
               <li><NuxtLink v-if="hasPermission('MODIFY_USERS')" class="dropdown-item" to="/auth/admindashboard"><i class="fas fa-user-cog"/> Hacker Dashboard</NuxtLink></li>
-              <li><NuxtLink class="dropdown-item" to="/chat"><i class="fas fa-user-cog"/> Chat</NuxtLink></li>
+              <!-- <li><NuxtLink class="dropdown-item" to="/chat"><i class="fas fa-user-cog"/> Chat</NuxtLink></li> -->
               <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" @click="logout" to="/"><img width="30px" src="/images/logout.png"/> Logout</NuxtLink></li>
             </ul>
           </div>
@@ -126,7 +126,8 @@ export default {
       return !isNaN(parseFloat(n)) && isFinite(n);
     },
     async logout() {
-      console.log('logout')
+      
+      //console.log('logout')
       this.$store.$auth.logout()
     },
     hasPermission(permission) {
@@ -147,22 +148,18 @@ export default {
 <style lang="scss">
 
 @font-face {
-  font-family: "medieval";
-  src: url('https://fonts.gstatic.com/s/unifrakturmaguntia/v7/7KWy3ymCVR_xfAvvcIXm3wh3zWhftzIdHBsuU0JwdCQ.woff2');
-}
-@font-face {
   font-family: "bodytext";  
   src: url('https://fonts.gstatic.com/s/unifrakturcook/v8/ASwh69ykD8iaoYijVEU6RpMdj8Gkv7ccSfgBBVtwm5Y.woff2');
 }
 
 @mixin hover {
   text-decoration: none;
-  color: $hovercolor !important;
+  color: colorscheme('lime') !important;
   /*box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
     inset 3px 3px 10px rgba(0,0,0,0.3),
     inset -3px -3px 10px rgba(0,0,0,0.1);*/
   box-shadow: 0 15px 35px rgb(0 0 0 / 50%);
-  border-bottom: 0.2rem solid $hovercolor;
+  border-bottom: 0.2rem solid colorscheme('lime');
   // Optional
   //animation: hover 2s forwards infinite;
 }
@@ -179,8 +176,8 @@ $maincolors: (
 }
 @mixin active {
   text-decoration: none;
-  color: $hovercolor !important;
-  border-bottom: 0.2rem solid $hovercolor;
+  color: colorscheme('lime') !important;
+  border-bottom: 0.2rem solid colorscheme('lime');
   box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2), 
     inset 3px 3px 10px rgba(0,0,0,0.3),
     inset -3px -3px 10px rgba(0,0,0,0.1);
@@ -208,7 +205,6 @@ $maincolors: (
 }
 $titlefont: "Montserrat";
 $textfont: "Quicksand";
-$hovercolor: colorscheme('lime');
 .title {
   font-family: $titlefont;
 }
@@ -221,16 +217,18 @@ $hovercolor: colorscheme('lime');
     background: linear-gradient(to right, colorscheme('blue'), colorscheme('darkblue'));
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 0 !important;
-
+    margin: 0;
     .navbar-nav {
       .nav-item {
         position: relative;
+        padding: 0;
         .nav-link {
           padding: 1rem 2rem;
           font-size: 2.3ch;
+          margin: 0;
           text-align: center;
           transition: all 0.3s ease;
-          font-family: 'bodytext';
+          font-family: $textfont;
           span {
             cursor: pointer;
             display: inline-block;
@@ -259,9 +257,10 @@ $hovercolor: colorscheme('lime');
     }
     .dropdown {
       transition: all 0.3s ease;
+      font-family: $textfont;
       .dropdown-header {
         font-size: 1.2rem;
-        color: $hovercolor;
+        color: colorscheme('lime');
         text-align: center;
         transition: all 0.1s ease;
       }
@@ -275,7 +274,8 @@ $hovercolor: colorscheme('lime');
         background: inherit;
         background: none;
         @include hover;
-        color: $hovercolor;
+        color: colorscheme('lime');
+        
       }
       .dropdown-menu {
         background: darken(colorscheme('cyan'), 10);
@@ -339,6 +339,7 @@ $hovercolor: colorscheme('lime');
   z-index: 5;
   padding: 0.8rem 1rem;
   margin-bottom: 0rem;
+  font-family: $textfont;
   list-style: none;
   border-top: 0.05rem solid #ffffff;
   //background: var(--navitemcolor) !important;
@@ -348,7 +349,7 @@ $hovercolor: colorscheme('lime');
   
   .breadcrumb-item {
     .nuxt-link-exact-active, :active {
-      color: lighten($hovercolor, 10);
+      color: lighten(colorscheme('lime'), 10);
       box-shadow: none !important;
       border: none;
       font-weight: 600;

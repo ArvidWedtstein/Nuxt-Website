@@ -4,8 +4,8 @@ require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - ⚜",
-    title: "Arvid's Website",
+    titleTemplate: "%s",
+    title: "Website Of Arvid",
     script: [
         {
           type: 'text/javascript',
@@ -75,16 +75,12 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "~/assets/css/style.scss",
-    //"@fortawesome/fontawesome-svg-core/styles.css"
   ],
 
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    //"~/plugins/fontawesome.js"
-    //"~/plugins/canvasgradient"
     "~/plugins/notifier.js",
-    //"~/plugins/threex.domevents.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -97,8 +93,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    //"bootstrap-vue/nuxt",
     "@nuxt/image",
     "@nuxt/content",
     "@nuxtjs/auth-next",
@@ -135,7 +129,7 @@ export default {
           allposts: { url: "/api/auth/allnewsposts", method: "get" },
           getroles: { url: "/api/auth/getRoles", method: "get" }
         },
-        //autoLogout: false
+        autoLogout: false
       }
     },
   },
@@ -147,7 +141,7 @@ export default {
     github: process.env.GITHUB_TOKEN
   },
   axios: {
-    baseURL: "https://websiteapiarvidw.herokuapp.com/" 
+    baseURL: process.env.BASE_URL
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

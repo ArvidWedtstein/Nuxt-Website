@@ -57,14 +57,6 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
 @import url("https://use.typekit.net/gyz4ina.css");
 @import url("https://use.typekit.net/gyz4ina.css");
-@font-face {
-  font-family: "medieval";
-  src: url('https://fonts.gstatic.com/s/unifrakturmaguntia/v7/7KWy3ymCVR_xfAvvcIXm3wh3zWhftzIdHBsuU0JwdCQ.woff2');
-}
-@font-face {
-  font-family: "medieval-bodytext";  
-  src: url('https://fonts.gstatic.com/s/unifrakturcook/v8/ASwh69ykD8iaoYijVEU6RpMdj8Gkv7ccSfgBBVtwm5Y.woff2');
-}
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -191,7 +183,7 @@ $border-radius: 0.25rem;
 
 .nav-link, .nav-tabs {
   color: colorscheme('white');
-  &.show, &:hover, &:active, &:focus {
+  &.show, &:hover, &:active, &:focus, &.nuxt-link-exact-active {
     color: colorscheme('lime');
   }
 }
@@ -232,7 +224,6 @@ $border-radius: 0.25rem;
     font-size: 16px;
     text-transform: uppercase;
     text-decoration: none;
-    font-family: sans-serif;
     box-sizing: border-box;
     background: $rainbow-grad90;
     background-size: 400%;
@@ -539,6 +530,7 @@ $border-radius: 0.25rem;
     }
   }
   &.newspost {
+    font-family: $textfont;
     &:hover {
       .topleft {
         display: block;
@@ -574,11 +566,9 @@ $border-radius: 0.25rem;
     .card-title {
       border-bottom: 1px solid colorscheme('white');
       padding-bottom: 0.5rem;
-      font-family: 'MedievalSharp';
     }
     .card-text {
       &.description {
-        font-family: 'MedievalSharp';
         &::first-letter {
           position: relative;
           font-size: 3ch;
