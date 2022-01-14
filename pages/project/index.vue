@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="jumbotron">
+      <div class="jumbotron projtimeline">
         <h1 class="display-4">Project timeline</h1>
         <hr class="my-4">
         <Timeline :timeline="timeline"/>
@@ -278,11 +278,16 @@ $border-radius: 0.25rem;
 $titlefont: "Montserrat";
 $textfont: "Quicksand";
 $box-shadow: 0 12px 38px rgba(black, 0.4);
+@media screen and (max-width: 660px) {
+  .projtimeline {
+    display: none;
+  }
+}
 #project {
-    transition: box-shadow 0.3s linear 0.5s;
-    background: none;
+  transition: box-shadow 0.3s linear 0.5s;
+  background: none;
 	margin: 0.5rem 0rem;
-    border: none;
+  border: none;
 	.newProject {
 		background: gradientscheme('bluegreen') !important;
 	}

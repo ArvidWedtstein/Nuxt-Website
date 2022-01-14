@@ -189,6 +189,7 @@ $maincolors: (
 }
 @media screen and (max-width: 660px) {
     .timeline {
+        display: none;
         width: 100%;
         padding: 4em 0 1em 0;
         li {
@@ -230,7 +231,8 @@ $maincolors: (
                 }
             }
             .time-wrapper {
-                display: block;
+                // display: block;
+                display: none;
                 position: relative;
                 margin: 4px 0 0 0;
                 z-index: 14;
