@@ -76,9 +76,6 @@ export default {
   css: [
     "~/assets/css/style.scss",
   ],
-  generate: {
-    fallback: true
-  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -153,7 +150,7 @@ export default {
     continuous: true,
     duration: 1000
   },
-  ssr: false,
+  //ssr: false,
   
   loadingIndicator: {
     name: 'cube-grid',
