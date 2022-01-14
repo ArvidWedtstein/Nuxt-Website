@@ -92,23 +92,9 @@ export default {
     nestedProperties: ['author.name']
   },
   async asyncData({ $content, params, $axios, $config }) {
-    const yr = await $axios.$get("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.4136&lon=5.2680");
-    console.log(yr.properties.timeseries[0].data.instant.details)
+    /*const yr = await $axios.$get("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.4136&lon=5.2680");
+    console.log(yr.properties.timeseries[0].data.instant.details)*/
     let baseURL = $config.baseURL;
-    /*if (!params.slug) {
-      const articles = await $axios.$get("api/news/getnewsposts");
-      return {
-        articles: articles.posts,
-        baseURL,
-      }
-    } else {
-      const articles = await $axios.$get("api/news/getnewspost/" + params.slug);
-      return {
-        articles: articles.posts,
-        baseURL,
-        params
-      }
-    }*/
     const articles = await $axios.$get("api/news/getnewsposts");
     return {
       articles: articles.posts,
