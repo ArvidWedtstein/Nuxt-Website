@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <ArvidFooter></ArvidFooter>
+    <!-- <ArvidFooter></ArvidFooter> -->
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
     let baseURL = $config.baseURL;
     console.log(params)
     const post = await $axios.$get("api/news/getnewspost/" + params.slug);
-    //console.log(post.posts[0])
+    console.log(post.posts[0])
     return {
       post: post.posts[0],
       baseURL,
