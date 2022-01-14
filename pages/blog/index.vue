@@ -98,7 +98,7 @@ export default {
     const articles = await $axios.$get("api/news/getnewsposts");
     return {
       articles: articles.posts,
-      weather: yr.properties,
+      // weather: yr.properties,
       baseURL,
     }
   },
