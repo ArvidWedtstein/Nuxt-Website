@@ -3,9 +3,6 @@ import path from 'path';
 require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  generate: {
-    fallback: true
-  },
   head: {
     titleTemplate: "%s",
     title: "Arvid's Website",
@@ -79,7 +76,9 @@ export default {
   css: [
     "~/assets/css/style.scss",
   ],
-
+  generate: {
+    fallback: true
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
