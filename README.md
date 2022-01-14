@@ -72,7 +72,7 @@ Mappe for Vuex filer
 
 [Nuxt Documentasjon](https://nuxtjs.org/docs/2.x/directory-structure/store).
 
+Preview av nettsiden:
 
-## Bugs / Security Issues
-
-Hindre bruk av emojis i passord/brukernavn??!?!?
+nuxtarvidw.netlify.app
+[![Netlify Status](https://api.netlify.com/api/v1/badges/97442c79-53d4-407e-b79c-2fc524c83347/deploy-status)](https://app.netlify.com/sites/nuxtarvidw/deploys)
