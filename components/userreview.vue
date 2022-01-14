@@ -115,8 +115,11 @@ $maincolors: (
   @return map-get($colorpalette, $color);
 }
 #userreview {
-  background: radial-gradient(colorscheme('cyan'), transparent 60%);
-  margin-top: 4rem;
+  //background: radial-gradient(colorscheme('cyan'), transparent 60%);
+  background: colorscheme('blue');
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin: 4rem 0;
   .rating {
     display: flex;
     width: 100%;

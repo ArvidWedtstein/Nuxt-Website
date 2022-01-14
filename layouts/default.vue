@@ -636,10 +636,10 @@ $iconcolors: (
     opacity: 1;
     & > * {
       @each $color, $value in $iconcolors {
-          &.#{$color}  {
-              color: $value;
-              border: 1mm outset $value;
-          }
+        &.#{$color}  {
+          color: $value;
+          border: 1mm outset $value;
+        }
       }
       &:hover {
           opacity: 1;
@@ -655,7 +655,8 @@ $iconcolors: (
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
       &:hover {
         box-shadow: none;
-        font-size: 1.8rem;
+        font-size: 1.3rem;
+        transform: translateY(4px);
       }
     }
   }

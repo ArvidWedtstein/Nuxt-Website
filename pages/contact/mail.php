@@ -176,7 +176,7 @@ $message = $_POST['message'];
 
 $formcontent="From: $name \n Message: $message \n $yourbrowser";
 
-$recipient = "bassgamer03@gmail.com";
+$recipient = "spamarvid0310@gmail.com";
 
 $subject = "$subject";
 

@@ -1,13 +1,14 @@
 <template>
-   <div id='review' style="margin-bottom: 10rem">
+   <div id='review'>
      <div id="carouselIndicator" class="carousel slide" data-bs-ride="carousel">
+      <h3 class="text-center">Reviews</h3>
       <div class="carousel-indicators">
         <button v-for="(review, i) in reviewuser" :key="i" :class="{'active': i === 0}" type="button" data-bs-target="#carouselIndicator" :data-bs-slide-to="i" aria-current="true" :aria-label="'Slide ' + i"></button>
       </div>
       <div class="carousel-inner">
         <div v-for="(review, i) in reviewuser" :key="i" class="carousel-item" :class="{'active': i === 0}">
           <div class='jumbotron'>
-            <h6 class='display-6'>Review</h6>
+            <h6 class='display-6' v-if="review.author != 'undefined'">{{ review.author }}</h6>
 
             <img v-if="review.author.profileimg" :src="review.author.profileimg" :alt="review.author.name">
             <p class='lead'>{{ review.review }}</p>
@@ -80,7 +81,7 @@ $maincolors: (
         width: 30%;
         border-radius: 50%;
       }
-      padding: 1rem 8rem !important;
+      padding: 1rem 4rem !important;
     }
     background: colorscheme('blue');
     .carousel-indicators {

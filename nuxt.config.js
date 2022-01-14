@@ -5,7 +5,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "%s",
-    title: "Website Of Arvid",
+    title: "Arvid's Website",
     script: [
         {
           type: 'text/javascript',

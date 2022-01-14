@@ -57,6 +57,7 @@ export default {
 <style lang="scss" scoped>
 #commingsoon {
     z-index: 0;
+    height: 100%;
     margin-top: 8rem;
     .bgimg {
         z-index: -2;

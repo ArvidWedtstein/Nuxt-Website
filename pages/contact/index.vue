@@ -1,7 +1,7 @@
 <template>
     <div id="contact">
-        <CommingSoon releasedate="24.12.2022" name="Contact Page. Comming Soon"></CommingSoon>
-        <!--<div class="container-fluid">
+        <!-- <CommingSoon releasedate="24.12.2022" name="Contact Page. Comming Soon"></CommingSoon> -->
+        <div class="container-fluid">
             <div class="contactFormBx">
                 <p v-if="errors.length">
                     <b>Please correct the following error(s):</b>
@@ -39,7 +39,7 @@
                     </div>
                 </form>
             </div>
-	    </div>-->
+	    </div>
     </div>
 </template>
 
@@ -93,7 +93,12 @@ export default {
 <style lang="scss">
 $rainbow-grad90: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 /* Contact Me page form css*/
+html {
+    height: 100%;
+}
 #contact {
+    margin-top: 3rem;
+    height: 100%;
     .contactFormBx {
         display: flex;
         width: 100%;

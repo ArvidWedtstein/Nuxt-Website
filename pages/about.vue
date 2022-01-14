@@ -9,7 +9,7 @@
               <h1 class="display-4">Well, Hello there</h1>
               <p class="lead">My name is Arvid Wedtstein</p>
               <hr class="my-4">
-              <p>I currently study: Informationteknology and Media<br>Age: 17<br>I'm interested in: 3D-Design, Game development<br><br>Progamming languages/Framework:</p>
+              <p>I am currently studying: Informationteknology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><br>Progamming languages/Frameworks that i have learnt in the past:</p>
               <div class="icon-bar icons">
                 <i class="python fab fa-python"></i>
                 <i class="js fab fa-js-square"></i>
@@ -22,13 +22,13 @@
               <br>
               <div class="icon-bar social">
                 <!--<a href="https://www.facebook.com/profile.php?id=100022120962542" target="_blank animate__bounceIn" class="facebook"><i class="fa fa-facebook"></i></a>--> 
-                <a href="https://github.com/ArvidWedtstein" target="_blank" class="bg-github animate__bounceIn"><i class="fab fa-github"/></a> 
+                <a href="https://github.com/ArvidWedtstein" title="My Github" target="_blank" class="bg-github"><i class="fab fa-github"/></a> 
                 <!--<a href="https://twitter.com/ArvidWedtstein" target="_blank" class="twitter animate__bounceIn"><i class="fa fa-twitter"></i></a> 
                 <a href="https://www.twitch.tv/bass_gamer03" target="_blank" class="twitch animate__bounceIn"><i class="fa fa-twitch"></i></a> 
                 <a href="https://steamcommunity.com/id/arviwed/" target="_blank" class="steam animate__bounceIn"><i class="fa fa-steam"></i></a>-->
-                <a href="https://discord.gg/5hMtxNW" target="_blank" class="bg-discord animate__bounceIn"><i class="fab fa-discord"/></a> 
-                <a href="https://www.linkedin.com/in/arvid-wedtstein-7498a21b7" target="_blank" class="bg-linkedin animate__bounceIn"><i class="fab fa-linkedin"/></a>
-                <a href="../CV/" class="bg-cv animate__bounceIn">CV</a>
+                <a href="https://discord.gg/5hMtxNW" target="_blank" class="bg-discord"><i class="fab fa-discord"/></a> 
+                <a href="https://www.linkedin.com/in/arvid-wedtstein-7498a21b7" target="_blank" class="bg-linkedin"><i class="fab fa-linkedin"/></a>
+                <a href="/CV.pdf" class="bg-cv animate__bounceIn">CV</a>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <Review v-if="reviews" :reviewuser="reviews"></Review>
+    <Review class="reviews" v-if="reviews" :reviewuser="reviews"></Review>
   </div>
 </template>
 
@@ -179,7 +179,11 @@ $maincolors: (
   padding-left: 0rem;
   font-size: 5rem;
 }
-
+.reviews {
+  position: relative;
+  bottom: 0;
+  margin-bottom: 0;
+}
 
 @media (max-width: 992px) {
   .text .aboutMe {
