@@ -59,6 +59,7 @@ export default {
   },
   async asyncData({ $content, params, $axios, $config }) {
     let baseURL = $config.baseURL;
+    console.log(params)
     const post = await $axios.$get("api/news/getnewspost/" + params.slug);
     //console.log(post.posts[0])
     return {
