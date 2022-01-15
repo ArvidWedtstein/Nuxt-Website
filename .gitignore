@@ -96,11 +96,10 @@ sw.*
 #Environment variables
 .env
 
-*.pdf
+
 
 .github
-.zip
-dist.zip
+*.zip
 terms-and-conditions.txt
 /static/scene
 *.glb

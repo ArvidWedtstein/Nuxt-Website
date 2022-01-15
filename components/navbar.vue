@@ -68,9 +68,9 @@
 
 
 <script lang="text/javascript">
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+// $(function () {
+//   $('[data-toggle="tooltip"]').tooltip()
+// })
 export default {
   name: "Navbar",
   middleware: "isAuthenticated",
