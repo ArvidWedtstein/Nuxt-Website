@@ -228,7 +228,7 @@ $textfont: "Quicksand";
           margin: 0;
           text-align: center;
           transition: all 0.3s ease;
-          font-family: $textfont;
+          font-family: 'Quicksand';
           span {
             cursor: pointer;
             display: inline-block;

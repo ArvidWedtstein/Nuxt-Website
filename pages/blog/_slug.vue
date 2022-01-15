@@ -1,7 +1,6 @@
 <template>
   <div class="news">
-    <p>{{params}}</p>
-    <!--<div class="container">
+    <div class="container">
       <div class="row">
         <div class="col-md-8 post-main">
           <h3 class="pb-3 mb-4 border-bottom">Test Post</h3>
@@ -34,7 +33,7 @@
           </div>
         </div>
       </div>
-    </div>-->
+    </div>
     <!-- <ArvidFooter></ArvidFooter> -->
   </div>
 </template>
@@ -63,9 +62,9 @@ export default {
     let baseURL = $config.baseURL;
     //console.log(params)
     const post = await $axios.$get("api/news/getnewspost/" + params.slug);
-    console.log(post)
+    //console.log(post)
     return {
-      //post: await post.posts[0],
+      post: post.posts[0],
       baseURL,
       params
     }
