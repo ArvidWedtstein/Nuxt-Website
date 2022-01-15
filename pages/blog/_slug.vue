@@ -61,7 +61,7 @@ export default {
     let baseURL = $config.baseURL;
     //console.log(params)
     const post = await $axios.$get("api/news/getnewspost/" + params.slug);
-    console.log(post])
+    console.log(post)
     return {
       post: post.posts[0],
       baseURL,
