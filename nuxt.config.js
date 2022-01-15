@@ -150,7 +150,7 @@ export default {
     continuous: true,
     duration: 1000
   },
-  ssr: false,
+  ssr: true,
   
   loadingIndicator: {
     name: 'cube-grid',
