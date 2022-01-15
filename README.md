@@ -77,3 +77,6 @@ Preview av nettsiden:
 [Nettside](https://nuxtarvidw.netlify.app).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/97442c79-53d4-407e-b79c-2fc524c83347/deploy-status)](https://app.netlify.com/sites/nuxtarvidw/deploys)
+
+
+![Stats](https://github-readme-stats.vercel.app/api?username=arvidwedtstein&show_icons=true)
