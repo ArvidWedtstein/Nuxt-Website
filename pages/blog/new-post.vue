@@ -128,7 +128,7 @@ export default {
       let json = {
         title: title,
         description: description,
-        author: this.$store.getters.getUserInfo,
+        author: this.$store.getters.getUserInfo.id,
         tags: tags
       }
       // Remove Empty Keys

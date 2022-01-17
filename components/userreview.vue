@@ -61,6 +61,7 @@ export default {
       if (this.isAuthenticated) {
         const rating = await this.$axios.post('/api/project/newRating', {
           author: this.$store.getters.getUserInfo,
+          // author: this.$store.getters.getUserInfo.id,
           rating: this.rating,
           review: this.feedbacktxt
         })
