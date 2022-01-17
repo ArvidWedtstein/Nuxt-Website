@@ -56,7 +56,10 @@
           <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Edit Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab" href="#tab2">Review</a>
+          <a class="nav-link" data-bs-toggle="tab" href="#tab2" title="Your Reviews">Review</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#tab3" title="Your Timeline">Timeline</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -84,6 +87,9 @@
           </div>
         </div>
         <div id="tab2" class="tab-pane fade">
+          
+        </div>
+        <div id="tab3" class="tab-pane fade">
           
         </div>
       </div>
@@ -167,12 +173,12 @@ export default {
     async editProfilepicture() {
         const data = new FormData();
         data.append("profileimg", document.getElementById('profileimg').files[0])
-        if (!$auth.strategy.token.get().split(" ")[1]) {
+        if (!this.$auth.strategy.token.get().split(" ")[1]) {
           return
         }
         const user = await this.$axios.$post("/api/auth/changeProfileimg", data, {
           headers: {
-            "authorization": `Basic ${$auth.strategy.token.get().split(" ")[1]}`
+            "authorization": `Basic ${this.$auth.strategy.token.get().split(" ")[1]}`
           }
         }).then(async (res) => {
             this.showSnackbar(res.message)
@@ -195,7 +201,7 @@ export default {
       try {
         const user = await this.$axios.$post("/api/auth/changePassword", json, {
           headers: {
-            "authorization": `Basic ${$auth.strategy.token.get().split(" ")[1]}`
+            "authorization": `Basic ${this.$auth.strategy.token.get().split(" ")[1]}`
           }
         }).then(async (res) => {
             this.showSnackbar(res.message, "success")

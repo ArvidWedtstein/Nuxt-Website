@@ -46,7 +46,7 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div class="row">
+      <div class="row p-3">
         <div v-for="(project, x) in projectlist" :key="x" class="col-md-6 flex-row">
           <div class="card flex-md-row mb-4 rad-shadow h-md-250 project">
             <div class="card-body d-flex flex-column align-items-start">
@@ -56,9 +56,10 @@
               </h3>
               <div v-if="project.gitlink" class="mb-1 text-muted">{{project.github.name}}</div>
               <p class="card-text mb-auto">{{ project.description }}</p>
-              <div class="btn-group">
+              <div class="btn-group space">
                 <a v-if="project.github" class="btn btn-github" :href="project.github.html_url" target="_blank"><i class="fab fa-github"/></a>
                 <NuxtLink v-if="project.projectLink" class="btn btn-main card-link" :to="project.projectLink">To Project</NuxtLink>
+                <button v-if="userPerm('HIDE_PROJECT')" type="button" class="btn btn-main" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip" @click="hideProject"><i class="fas fa-eye"/></button>
               </div>
               <div class="btn-group">
                 <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :class="'langtags btn bg-'+ replace(lang.name)">
@@ -69,6 +70,7 @@
             <a href="#">
               <img v-if="project.thumbnail" class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail">	
             </a>
+            
           </div>
         </div>
       </div>
@@ -171,6 +173,9 @@ export default {
   methods: {
     replace(string) {
       return string.toLowerCase().replaceAll("#", "sharp").replaceAll("+", "plus").replaceAll(".", "dot");
+    },
+    hideProject() {
+
     },
     async createproject() {
       let json = {

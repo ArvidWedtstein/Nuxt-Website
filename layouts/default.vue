@@ -42,9 +42,16 @@ export default {
         }
       });
     }*/
+    enableTooltips() {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    }
   },
   mounted() {
     //this.scroll()
+    this.enableTooltips()
   },
   computed: {
     
@@ -189,9 +196,13 @@ $border-radius: 0.25rem;
 }
 /* Define buttons here */
 
-.btn-group {
-  &.space > .btn:first-child {
-    margin-right: 0.4rem;
+.list-group {
+  &.custom {
+    .list-group-item {
+      color: colorscheme('white');
+      border-color: colorscheme('white');
+      background: none;
+    }
   }
 }
 .btn {
@@ -267,7 +278,7 @@ $border-radius: 0.25rem;
     &.btn-#{$item} {
       background: map-get($btncolors, $item);
       position: relative;
-      margin: 0.2rem;
+      margin: 0.4rem;
       color: colorscheme('white');
       border-radius: 0.25rem;
       border: 2px solid transparent;

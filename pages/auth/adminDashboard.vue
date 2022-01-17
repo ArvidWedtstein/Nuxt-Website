@@ -5,6 +5,7 @@
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab1" class="nav-link link active">Dashboard</a></li>
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link link ">Users</a></li>
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link link">Ratings</a></li>
+      <li class="nav-item"><a data-bs-toggle="tab" href="#tab4" class="nav-link link">Roles</a></li>
     </ul>
 
     <div class="tab-content">
@@ -47,7 +48,7 @@
               </div>
               <hr class="line">
               <div class="role">
-                <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
+                <!-- <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p> -->
               </div>
             </a>
           </div>
@@ -64,15 +65,15 @@
                       <input class="form-check-input" type="checkbox" value="" :id="perm" :checked="user.role.permissions.includes(perm)">
                       <label class="form-check-label" :for="perm">{{ perm }}</label>
                     </div>-->
-                    <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
+                    <!-- <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
                       <input class="form-check-input" :id="perm" :checked="user.role.permissions.includes(perm)" type="checkbox">
                       <label class="form-check-label" :for="perm">{{ perm }}</label>
                     </div>
-                    <button class="btn btn-🤯" type="submit">Submit</button>
+                    <button class="btn btn-🤯" type="submit">Submit</button> -->
                   </form>
                 </div>
                 <div class="btn-group">
-                  <button class="btn btn-🤯" type="button">{{ user.role.name }}</button>
+                  <!-- <button class="btn btn-🤯" type="button">{{ user.role.name }}</button> -->
                   <button type="button" class="btn btn-🤯 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
@@ -126,6 +127,50 @@
           <hr class="my-4">
         </div>
       </div>
+      <div id="tab4" class="tab-pane fade">
+        <button type="checkbox" class="btn btn-main" @click="createrolescreen=true">Create New Role</button>
+        <div v-if="createrolescreen">
+          <form @submit.prevent="newRole($event)">
+            <div class="form-floating custom">
+              <input type="text" class="form-control shadow-none" id="floatingNewRolename" placeholder="Name" v-model="newroledata.name">
+              <label for="floatingNewRolename">Role Name</label>
+            </div>
+            <div class="form-floating custom">
+              <input type="text" class="form-control shadow-none" id="floatingNewRoleicon" placeholder="Icon" v-model="newroledata.icon">
+              <label for="floatingNewRoleicon">Role Icon (font-awesome class)</label>
+            </div>
+            <div class="form-floating custom">
+              <input type="color" class="form-control shadow-none" id="floatingNewRolecolor" placeholder="Color" v-model="newroledata.color">
+              <label for="floatingNewRolecolor">Role Color</label>
+            </div>
+            <div class="form-floating custom dropdown">
+              <button class="btn btn-🤯 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Permissions</button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside">
+                <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
+                  <input class="form-check-input" :id="perm" type="checkbox">
+                  <label class="form-check-label" :for="perm">{{ perm }}</label>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-success" type="submit">Create</button>
+          </form>
+        </div>
+        <div class="row p-3">
+          <div v-for="(role, x) in roles" :key="x" class="col-md-6 flex-row">
+            <div class="card flex-md-row mb-4 rad-shadow h-md-250 project">
+              <div class="card-body d-flex flex-column align-items-start">
+                {{role}}
+                <h3 class="mb-0">{{ role.name }}</h3>
+                <div class="mb-1 text-muted"><i :class="role.icon"/></div>
+                <p class="card-text mb-auto h4 btn bg-white"><i :style="'color: ' + role.color" :class="role.icon"/></p>
+                <ul class="list-group list-group-flush custom">
+                  <li class="list-group-item" v-for="(perm, l) in role.permissions" :key="l">{{perm}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -148,7 +193,14 @@ export default {
         user: "",
         review: "",
         rating: ""
-      }
+      },
+      newroledata: {
+        name: "",
+        icon: "",
+        color: "",
+        permissions: []
+      },
+      createrolescreen: false
     };
   },
   async asyncData({ $axios, $store, $config }) {
@@ -194,6 +246,30 @@ export default {
       this.editReview.user = "";
       this.editReview.review = "";
       this.editReview.rating = "";
+    },
+    async newRole(e) {
+      for (let i = 0; i < e.target.length; i++) {
+        if (e.target[i].checked) {
+          this.newroledata.permissions.push(e.target[i].id)
+        }
+      }
+      await console.log(this.newroledata)
+      
+      try {
+        let token = this.$auth.strategy.token.get().split(" ")[1];
+        await this.$axios.$post("/api/auth/newRole", this.newroledata, {
+          headers: {
+            "authorization": `Basic ${token}`
+          }
+        });
+      } catch (err) {
+        console.log(err)
+      }
+      this.createrolescreen = false;
+      this.newroledata.name = "";
+      this.newroledata.icon = "";
+      this.newroledata.color = "";
+      this.newroledata.permissions = [];
     },
     async rolesname(role, email) {
       try {
@@ -320,7 +396,8 @@ export default {
       const rolesdata = [];
       const rolesname = [];
       const userroles = [];
-      this.users.users.forEach(user => userroles.push(user.role.name))
+      console.log(this.users)
+      this.users.forEach(user => userroles.push(user.role.name))
 
       this.roles.forEach(role => {
         rolesname.push(role.name)

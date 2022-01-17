@@ -111,7 +111,7 @@ export default {
       return crumbs
     },
     isAuthenticated() {
-      this.$auth.refreshTokens()
+      //this.$auth.refreshTokens()
       return this.$store.getters.isAuthenticated;  
     },
     getUserInfo() {
@@ -132,7 +132,6 @@ export default {
     },
     hasPermission(permission) {
       if (this.isAuthenticated) {
-        //console.log(this.$auth.hasScope('admin'))
         if (this.$store.getters.getUserInfo.role.permissions.includes(permission)) {
           return true;  
         } else {
