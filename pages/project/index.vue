@@ -147,7 +147,7 @@ export default {
         projects = projects.concat(projectss)
         const unsortedTimeline = []
         projectss.forEach(async (project) => {
-          moment.lang("de");
+          moment.lang("en");
           if (project.github) {
             unsortedTimeline.push({
               message: project.name,

@@ -1,9 +1,9 @@
 
 <template>
   <div id="admin-dashboard" class="container-fluid">
-    <ul class="nav nav-tabs nav-justified">
+    <ul class="nav nav-tabs nav-justified topnavbar">
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab1" class="nav-link link active">Dashboard</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link link ">Users</a></li>
+      <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link link">Users</a></li>
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link link">Ratings</a></li>
       <li class="nav-item"><a data-bs-toggle="tab" href="#tab4" class="nav-link link">Roles</a></li>
     </ul>
@@ -17,7 +17,7 @@
               <div class="infobox rad-shadow">
                 <div class="ms-3">
                   <div class="d-flex align-items-center">
-                    <h3 class="mb-0">{{ users.users.length }}</h3><span class="d-block ms-2">Users</span>
+                    <h3 class="mb-0">{{ users.length }}</h3><span class="d-block ms-2">Users</span>
                   </div>
                   <p class="mb-0">Now that's a lotta users</p>
                 </div>
@@ -41,55 +41,20 @@
               </div>
               <input type="text" v-model="searchbar" name='search' class="form-control" placeholder="" aria-label="">
             </div>
-            <a v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
+            <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
               <div class="name">
                 <img class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
                 <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
               </div>
               <hr class="line">
               <div class="role">
-                <!-- <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p> -->
+                <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
               </div>
-            </a>
+            </div>
           </div>
           <div class="tab-content">
             <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
-              <div class='jumbotron'>
-                <h1 class='display-4'>{{ user.name }}'s Profile</h1>
-                <hr class='my-4'>
-                <p class='lead'>{{ user.email }}</p>
-                <div class="dropdown">
-                  <button class="btn btn-🤯 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Permissions</button>
-                  <form class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside" @submit.prevent="changePerms($event, user)">
-                    <!--<div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check">
-                      <input class="form-check-input" type="checkbox" value="" :id="perm" :checked="user.role.permissions.includes(perm)">
-                      <label class="form-check-label" :for="perm">{{ perm }}</label>
-                    </div>-->
-                    <!-- <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
-                      <input class="form-check-input" :id="perm" :checked="user.role.permissions.includes(perm)" type="checkbox">
-                      <label class="form-check-label" :for="perm">{{ perm }}</label>
-                    </div>
-                    <button class="btn btn-🤯" type="submit">Submit</button> -->
-                  </form>
-                </div>
-                <div class="btn-group">
-                  <!-- <button class="btn btn-🤯" type="button">{{ user.role.name }}</button> -->
-                  <button type="button" class="btn btn-🤯 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right" data-bs-auto-close="outside">
-                    <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.name, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
-                  </div>
-                </div>
-                <p class="lead">Creation Date: {{ formatDate(user.createdAt) }}
-                  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                    99+
-                    <span class="visually-hidden">New alerts</span>
-                  </span>
-                </p>
-                <button v-if="!user.banned" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Ban ' + user.name" v-on:click="banUser(user)" class="btn btn-red"><i class="fas fa-gavel"/></button>
-                <button v-else v-on:click="unbanUser(user)" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Unban ' + user.name" class="btn btn-success"><i style="transform: rotate(135deg)" class="fas fa-gavel"/></button>
-              </div>
+              <AdmindashboardUserView :user="user"></AdmindashboardUserView>
             </div>
           </div>
         </div>
@@ -128,45 +93,18 @@
         </div>
       </div>
       <div id="tab4" class="tab-pane fade">
-        <button type="checkbox" class="btn btn-main" @click="createrolescreen=true">Create New Role</button>
-        <div v-if="createrolescreen">
-          <form @submit.prevent="newRole($event)">
-            <div class="form-floating custom">
-              <input type="text" class="form-control shadow-none" id="floatingNewRolename" placeholder="Name" v-model="newroledata.name">
-              <label for="floatingNewRolename">Role Name</label>
-            </div>
-            <div class="form-floating custom">
-              <input type="text" class="form-control shadow-none" id="floatingNewRoleicon" placeholder="Icon" v-model="newroledata.icon">
-              <label for="floatingNewRoleicon">Role Icon (font-awesome class)</label>
-            </div>
-            <div class="form-floating custom">
-              <input type="color" class="form-control shadow-none" id="floatingNewRolecolor" placeholder="Color" v-model="newroledata.color">
-              <label for="floatingNewRolecolor">Role Color</label>
-            </div>
-            <div class="form-floating custom dropdown">
-              <button class="btn btn-🤯 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Permissions</button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside">
-                <div v-for="(perm, l) in roles[roles.length-1].permissions" :key="l" class="dropdown-item form-check form-switch">
-                  <input class="form-check-input" :id="perm" type="checkbox">
-                  <label class="form-check-label" :for="perm">{{ perm }}</label>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-success" type="submit">Create</button>
-          </form>
-        </div>
-        <div class="row p-3">
-          <div v-for="(role, x) in roles" :key="x" class="col-md-6 flex-row">
-            <div class="card flex-md-row mb-4 rad-shadow h-md-250 project">
+        <AdmindashboardCreaterolefield></AdmindashboardCreaterolefield>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div v-for="(role, x) in roles" :key="x" class="col flex-row card-group">
+            <div class="card mb-4 h-md-250 project">
+              <div class="card-header">{{ role.name }}</div>
               <div class="card-body d-flex flex-column align-items-start">
-                {{role}}
-                <h3 class="mb-0">{{ role.name }}</h3>
-                <div class="mb-1 text-muted"><i :class="role.icon"/></div>
                 <p class="card-text mb-auto h4 btn bg-white"><i :style="'color: ' + role.color" :class="role.icon"/></p>
                 <ul class="list-group list-group-flush custom">
                   <li class="list-group-item" v-for="(perm, l) in role.permissions" :key="l">{{perm}}</li>
                 </ul>
               </div>
+              <div class="card-footer text-muted">test</div>
             </div>
           </div>
         </div>
@@ -193,14 +131,7 @@ export default {
         user: "",
         review: "",
         rating: ""
-      },
-      newroledata: {
-        name: "",
-        icon: "",
-        color: "",
-        permissions: []
-      },
-      createrolescreen: false
+      }
     };
   },
   async asyncData({ $axios, $store, $config }) {
@@ -210,8 +141,8 @@ export default {
     const reviews = await $axios.get("/api/project/getRatings");
     let baseURL = $config.baseURL;
     return {
-      users,
-      posts,
+      users: users.users,
+      posts: posts.posts,
       roles: roles.roles,
       baseURL,
       reviews: reviews.data.reviews
@@ -228,7 +159,7 @@ export default {
     async saveReview() {
       try {
         let token = this.$auth.strategy.token.get().split(" ")[1];
-        console.log(token)
+        //console.log(token)
         const { id, user, review, rating } = this.editReview;
         await this.$axios.$post("/api/project/editRating/" + id, {
           user: user,
@@ -246,30 +177,6 @@ export default {
       this.editReview.user = "";
       this.editReview.review = "";
       this.editReview.rating = "";
-    },
-    async newRole(e) {
-      for (let i = 0; i < e.target.length; i++) {
-        if (e.target[i].checked) {
-          this.newroledata.permissions.push(e.target[i].id)
-        }
-      }
-      await console.log(this.newroledata)
-      
-      try {
-        let token = this.$auth.strategy.token.get().split(" ")[1];
-        await this.$axios.$post("/api/auth/newRole", this.newroledata, {
-          headers: {
-            "authorization": `Basic ${token}`
-          }
-        });
-      } catch (err) {
-        console.log(err)
-      }
-      this.createrolescreen = false;
-      this.newroledata.name = "";
-      this.newroledata.icon = "";
-      this.newroledata.color = "";
-      this.newroledata.permissions = [];
     },
     async rolesname(role, email) {
       try {
@@ -364,7 +271,7 @@ export default {
       grad.addColorStop(0.65, "rgba(58, 44, 31, 1)");
       let postdays = [];
       let lastdays = this.lastDays(5);
-      this.posts.posts.forEach(post => {
+      this.posts.forEach(post => {
         let formatteddate = this.formatDate(post.createdAt);
         postdays.push(formatteddate);
       })
@@ -396,7 +303,7 @@ export default {
       const rolesdata = [];
       const rolesname = [];
       const userroles = [];
-      console.log(this.users)
+      
       this.users.forEach(user => userroles.push(user.role.name))
 
       this.roles.forEach(role => {
@@ -521,7 +428,7 @@ export default {
     filteredList() {
       if (!this.users)
         return;
-      return this.users.users.filter(user => {
+      return this.users.filter(user => {
         return user.name.toLowerCase().includes(this.searchbar.toLowerCase()) ||
         user._id.toLowerCase().includes(this.searchbar.toLowerCase()) ||
         user.email.toLowerCase().includes(this.searchbar.toLowerCase()) ||
@@ -656,23 +563,24 @@ $border-radius: 0.25rem;
     }
   }
   .nav {
-    
-    margin-bottom: 0;
-    .nav-item {
-      margin: 0rem 0;
-      padding: 0;
-      .nav-link {
-        padding: 1rem 0;
-        color: colorscheme('white');
-        //border-top: 2px solid transparent;
-        border-radius: none;
-        &.active, &.show {
-          background: none;
-          border: none;
-          color: colorscheme('lime');
-          border-top: 2px solid colorscheme('lime');
-          border-left: 2px solid colorscheme('lime');
-          border-right: 2px solid colorscheme('lime');
+    &.topnavbar {
+      margin-bottom: 0;
+      .nav-item {
+        margin: 0rem 0;
+        padding: 0;
+        .nav-link {
+          padding: 1rem 0;
+          color: colorscheme('white');
+          //border-top: 2px solid transparent;
+          border-radius: none;
+          &.active, &.show {
+            background: none;
+            border: none;
+            color: colorscheme('lime');
+            border-top: 2px solid colorscheme('lime');
+            border-left: 2px solid colorscheme('lime');
+            border-right: 2px solid colorscheme('lime');
+          }
         }
       }
     }

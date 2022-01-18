@@ -42,17 +42,17 @@
           </div>
           <div class="card-body" :id="'post' + i">
             <a :href="'/blog/' + post._id" v-if="post.title" class="card-title">{{ post.title }}</a>
-            <p v-if="post.description" class="card-text description">{{ post.description }}</p>
+            <p v-if="post.description" class="card-text description text-truncate">{{ post.description }}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small>
+            <!-- <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small> -->
             <small v-if="post.tags" class="badge bg-success m-1" style="text-align: right;"><i v-for="(tag, v) in post.tags" :key="v" :class="tag.icon"/></small>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a :href="'/blog/'+ post._id" class="btn btn-sm btn-outline-secondary">View</a>
                 <a v-if="userPerm('MODIFY_POST')" href="/blog/new-post" class="btn btn-sm btn-outline-secondary">Edit</a>
               </div>
-              <small class="text-muted">{{ timeSince(post.updatedAt) }} ago</small>
+              <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small>
             </div>
           </div>
         </div>

@@ -48,12 +48,11 @@ export default {
   transition: "slide-bottom",
   data() {
     return {
-      images: null
+      images: null,
     };
   },
   mounted() {
     this.importImg();
-    //this.hashPassword("test123")
   },
   methods: {
     async importImg() {
@@ -76,6 +75,9 @@ export default {
 </script>
 
 <style lang="scss">
+#snake {
+  border: solid 1px red;
+}
 $hex-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 $colorpalette: (
   "moonlit": linear-gradient(to right, #0f2027, #203a43, #2c5364),

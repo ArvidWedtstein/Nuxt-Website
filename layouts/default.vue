@@ -515,6 +515,9 @@ $border-radius: 0.25rem;
     font-family: $titlefont;
     background-color: colorscheme('darkblue') !important;
     min-height: 250px;
+    .card-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.225)
+    }
     .langtags {
       margin: 0.5rem 0;
       font-size: 1.3ch;
