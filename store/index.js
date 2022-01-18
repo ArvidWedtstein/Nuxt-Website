@@ -1,3 +1,4 @@
+import Vue from "vue";
 
 export const getters = {
   isAuthenticated(state) {
@@ -7,3 +8,4 @@ export const getters = {
     return state.auth.user;
   }
 };
+
