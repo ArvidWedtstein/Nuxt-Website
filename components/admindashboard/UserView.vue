@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div class="container">
      <div class='jumbotron'>
       <h1 class='display-4'>{{ user.name }}'s Profile</h1>
       <hr class='my-4'>
@@ -10,7 +10,7 @@
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu dropdown-menu-right" data-bs-auto-close="outside">
-          <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.name, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
+          <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.id, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
         </div>
       </div>
       <p class="lead">
@@ -35,7 +35,11 @@ export default {
   template: '<Userview/>',
   transition: 'slide-bottom',
   props: {
-    user: {}
+    user: {},
+    roles: []
+  },
+  async asyncData({ $auth }) {
+
   },
   methods: {
     formatDate(date) {
@@ -52,6 +56,26 @@ export default {
         console.log(err)
       }
       this.$nuxt.refresh();
+    },
+    async rolesname(role, email) {
+      try {
+        let token = this.$auth.strategy.token.get().split(" ")[1];
+        let json = {
+          email: email,
+          role: role
+        }
+        //console.log(token)
+        await this.$axios.$post("/api/auth/postUpdateuser", json, {
+          headers: {
+            "authorization": `Basic ${token}`
+          }
+        });
+      } catch (err) {
+        this.showSnackbar(err)
+      }
+    },
+    showSnackbar(message) {
+      this.$notifier.showMessage({ content: message, color: 'success' })
     },
   },
   mounted() {

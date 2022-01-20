@@ -31,21 +31,13 @@
           <button type="button" class="btn btn-red" data-bs-dismiss="offcanvas" aria-label="Close">&times;</button>
         </div>
         <div class="offcanvas-body">
-          <div class="form-floating custom mt-3">
-            <input type="password" class="form-control shadow-none" v-model="password.new" required="required" :class="{'is-valid': password.new.match(this.stringRegex), 'is-invalid': !password.new.match(this.stringRegex) || password.new.length == 0}">
-            <label for="floatingPassword">New Password</label>
-          </div>
-          <div class="form-floating custom mt-3">
-            <input type="password" class="form-control shadow-none" v-model="password.repNew" required="required" :class="{'is-valid': password.repNew.match(this.stringRegex), 'is-invalid': !password.repNew.match(this.stringRegex) || password.new !== password.repNew || password.new.length == 0}">
-            <label for="floatingPassword">Repeat Password</label>
-          </div>
-          <button @click="changePassword" class="btn btn-main">Change Password</button>
+          <ProfileChangePassword></ProfileChangePassword>
 
-          <div class="form-floating custom mt-3">
+          <!-- <div class="form-floating custom mt-3">
             <input type="password" class="form-control shadow-none" v-model="password.email" :class="{'is-valid': password.email.match(this.emailRegex), 'is-invalid': !password.email.match(this.emailRegex) || password.email.length == 0}">
             <label for="floatingPassword">Change Email</label>
           </div>
-          <button @click="changePassword" class="btn btn-main">Change Email</button>
+          <button @click="changePassword" class="btn btn-main">Change Email</button> -->
         </div>
       </div>
       <ul class="nav nav-tabs bg-dark">
@@ -104,11 +96,6 @@ export default {
   //middleware: "isAuthenticated",
   data() {
     return {
-      password: {
-          new: '',
-          repNew: '',
-          email: ''
-      },
       profilePicture: null,
       emailRegex: /^\S+@\S+\.\S+$/,
       stringRegex: /^[a-zA-Z0-9]*$/,
@@ -171,49 +158,19 @@ export default {
       return moment(date).fromNow(true)
     },
     async editProfilepicture() {
-        const data = new FormData();
-        data.append("profileimg", document.getElementById('profileimg').files[0])
-        if (!this.$auth.strategy.token.get().split(" ")[1]) {
-          return
+      const data = new FormData();
+      data.append("profileimg", document.getElementById('profileimg').files[0])
+      if (!this.$auth.strategy.token.get().split(" ")[1]) {
+        return
+      }
+      const user = await this.$axios.$post("/api/auth/changeProfileimg", data, {
+        headers: {
+          "authorization": `Basic ${this.$auth.strategy.token.get().split(" ")[1]}`
         }
-        const user = await this.$axios.$post("/api/auth/changeProfileimg", data, {
-          headers: {
-            "authorization": `Basic ${this.$auth.strategy.token.get().split(" ")[1]}`
-          }
-        }).then(async (res) => {
-            this.showSnackbar(res.message)
-        })
-        return user;
-    },
-    async changePassword() {
-      if (this.password.new !== this.password.repNew) {
-        return this.showSnackbar("Passwords are not the same", "danger")
-      }
-      let json = {
-        
-      }
-      if (this.password.new !== "" && this.password.repNew !== "") {
-        Object.assign(json, {password: this.hashPassword(this.password.new)})
-      }
-      if (this.password.email !== "") {
-        Object.assign(json, {email: this.password.email})
-      }
-      try {
-        const user = await this.$axios.$post("/api/auth/changePassword", json, {
-          headers: {
-            "authorization": `Basic ${this.$auth.strategy.token.get().split(" ")[1]}`
-          }
-        }).then(async (res) => {
-            this.showSnackbar(res.message, "success")
-        })
-        return user;
-      } catch (err) {
-        this.showSnackbar(err, "danger");
-      }
-      this.$nuxt.refresh()
-      this.password.new = "";
-      this.password.repNew = "";
-      this.password.email = "";
+      }).then(async (res) => {
+          this.showSnackbar(res.message)
+      })
+      return user;
     },
     showSnackbar(message, type) {
       this.$notifier.showMessage({ content: message, color: type })

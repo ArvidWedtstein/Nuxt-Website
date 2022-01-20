@@ -6,7 +6,7 @@
     </div>-->
     <div class="jumbotron">
       <h1 class="display-4">Log In</h1>
-      <div @submit.prevent="login">
+      <form @submit.prevent="login">
         <div class="form-floating custom">
           <input type="email" v-model="loginData.email" class="form-control shadow-none" id="floatingEmail" placeholder="Email" name="email" :class="{'is-valid': loginData.email.match(this.emailRegex), 'is-invalid': !loginData.email.match(this.emailRegex)}">
           <label for="floatingEmail">Email</label>
@@ -20,9 +20,9 @@
         <NuxtLink to="register"><small class="text-muted">Don't have an account yet? Create one here!</small></NuxtLink>
         <div class="inputBox">
           <!--<input type="submit" value="Login" id="submit" data-target="#modal" data-toggle="modal">-->
-          <input class="btn btn-main" type="submit" value="Login" @click="login" id="submit" >
+          <input class="btn btn-main" type="submit" value="Login" id="submit" > <!--@click="login"-->
         </div>
-      </div>
+      </form>
       <nuxt-link to="forgotPassword">Forgot your password? Click here!</nuxt-link>
       <!--<Modal>
         <div slot="header">

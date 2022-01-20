@@ -43,7 +43,8 @@
             </div>
             <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
               <div class="name">
-                <img class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
+                <img v-if="user.profileimg" class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
+                <img v-else class="img-fluid" width="50px" src="/images/logo.svg"/>
                 <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
               </div>
               <hr class="line">
@@ -54,7 +55,7 @@
           </div>
           <div class="tab-content">
             <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
-              <AdmindashboardUserView :user="user"></AdmindashboardUserView>
+              <AdmindashboardUserView :user="user" :roles="roles"></AdmindashboardUserView>
             </div>
           </div>
         </div>
@@ -176,20 +177,6 @@ export default {
       this.editReview.user = "";
       this.editReview.review = "";
       this.editReview.rating = "";
-    },
-    async rolesname(role, email) {
-      try {
-        let token = this.$auth.strategy.token.get().split(" ")[1];
-        //console.log(token)
-        await this.$axios.$post("/api/auth/postUpdateuser", {
-          email: email,
-          role: role
-        }, {
-          "authorization": `Basic ${token}`
-        });
-      } catch (err) {
-        console.log(err)
-      }
     },
     async changePerms(e, user) {
       let userperms = []
@@ -329,6 +316,9 @@ export default {
           inflateAmount: 1,
         }]
       };
+      const footer = () => {
+        return "test"
+      }
       const optionsRoles = {
         responsive: true,
         //events: ['hover'],
@@ -354,6 +344,13 @@ export default {
         legend: {
           display: false
         },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              footer: footer
+            }
+          }
+        }
       };
       const optionsPosts = {
         responsive: true,
