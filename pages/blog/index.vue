@@ -1,7 +1,7 @@
 <template>
   <div class="news container-fluid">
     <div class="row">
-      <div class="col-md-4 d-flex blog m-3" v-for="(post, i) in articles" :key="i" data-match-height="news-items">
+      <div class="col-md-4 d-flex blog m-3" v-for="(post, i) in this.$store.state.newspost.news" :key="i" data-match-height="news-items">
         <div class="card newspost">
           <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
           <div v-if="post.author" class="card-header" :id="'post' + i">
@@ -89,9 +89,10 @@ export default {
       //post.appendChild(savebtn)
     },
     async deletePost(i) {
-      console.log(this.articles[i])
-      this.$store.commit('newspost/delete', this.articles[i]._id)
-      const post = await this.$axios.$delete("api/news/deletenewspost", {id: this.articles[i]._id}).then((res) => {
+      console.log(this.$store.state.newspost.news[i])
+      let deletepost = this.$store.state.newspost.news[i]
+      this.$store.commit('newspost/delete', this.$store.state.newspost.news[i]._id)
+      const post = await this.$axios.$delete("api/news/deletenewspost", {id: deletepost._id}).then((res) => {
         this.showSnackbar(res.message, 'success')
       })
     },

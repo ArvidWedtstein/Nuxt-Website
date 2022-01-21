@@ -1,6 +1,6 @@
 
 <template>
-  <div v-bind:class="{shake: ragemode2}" id="about">
+  <div v-bind:class="{shake: ragemode2}" id="aboutpage">
     <div class="container-fluid">	
       <div class="row aboutbackground">
         <div class="col-xl-6 about">

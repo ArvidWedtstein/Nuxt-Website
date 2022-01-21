@@ -12,7 +12,7 @@
         <li><a class="text-muted" href="#">Terms And Conditions</a></li>
         <li><a class="text-muted" href="#">Terms And Conditions</a></li>
         <li><a class="text-muted" href="#">Terms And Conditions</a></li>
-        <li><a class="text-muted" href="#">Terms And Conditions</a></li>
+        <li><a class="text-muted" href="/auth/data-and-protection">Terms And Conditions</a></li>
         <li v-if="isAuthenticated"><NuxtLink class="text-muted" to="/auth/data-and-protection">Data & Protection</NuxtLink></li>
       </ul>
     </div>
@@ -51,7 +51,7 @@ $maincolors: (
   @return map-get($maincolors, $color);
 }
 .footer {
-  position: fixed;
+  position: relative;
   bottom: -10% !important;
   width: 100%;
   background: colorscheme('blue');

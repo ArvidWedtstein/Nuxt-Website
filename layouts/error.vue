@@ -44,7 +44,7 @@
 .container {
   &.error-container {
     
-    position: absolute;
+    position: relative;
     padding: 5rem;
     top: 0;
     left: 0;
@@ -67,7 +67,7 @@
         position: relative;
         font-size: 30ch;
         transform: rotate(10deg);
-        z-index: -3;
+        z-index: 2;
         //top: 15%;
         text-shadow: 1px 1px 1px #919191,
             1px 2px 1px #919191,

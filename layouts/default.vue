@@ -4,7 +4,7 @@
     <Nuxt/>
     <slot/>
     <Snackbar></Snackbar>
-    <!--<ArvidFooter></ArvidFooter>-->
+    <ArvidFooter></ArvidFooter>
   </div>
 </template>
 
@@ -12,13 +12,15 @@
 //import Editor from '@tinymce/tinymce-vue'
 import Snackbar from '~/components/snackbar.vue'
 import ArvidFooter from '../components/ArvidFooter.vue'
+import axios from 'axios'
+
 export default {
   template: "default",
   transition: "slide-bottom",
   components: {
     Snackbar,
     ArvidFooter
-},
+  },
   methods: {
     /*scroll() {
       let lastKnownScrollPosition = 0;
@@ -47,11 +49,18 @@ export default {
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
       })
-    }
+    },
+    async getNewspost() {
+      const articles = await this.$axios.$get("api/news/getnewsposts");
+      this.$store.commit('newspost/init', articles.posts)
+      console.log('FETCHED POSTS')
+
+    },
   },
   mounted() {
     //this.scroll()
     this.enableTooltips()
+    this.getNewspost()
   },
   computed: {
     

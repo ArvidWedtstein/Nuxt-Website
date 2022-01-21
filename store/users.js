@@ -2,7 +2,7 @@ import axios from 'axios';
 import Vue from "vue";
 
 export const state = () => ({
-  news: []
+  users: []
 })
   
 export const mutations = {

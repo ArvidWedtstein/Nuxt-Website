@@ -131,18 +131,17 @@ export default {
         user: "",
         review: "",
         rating: ""
-      }
+      },
+      posts: []
     };
   },
   async asyncData({ $axios, $store, $config }) {
     const users = await $axios.$get("/api/auth/allusers");
     const roles = await $axios.$get("/api/auth/getRoles");
-    const posts = await $axios.$get("/api/news/getnewsposts");
     const reviews = await $axios.get("/api/project/getRatings");
     let baseURL = $config.baseURL;
     return {
       users: users.users,
-      posts: posts.posts,
       roles: roles.roles,
       baseURL,
       reviews: reviews.data.reviews
@@ -256,8 +255,8 @@ export default {
       grad.addColorStop(0.45, "rgba(255, 236, 180, 1)");
       grad.addColorStop(0.65, "rgba(58, 44, 31, 1)");
       let postdays = [];
-      let lastdays = this.lastDays(5);
-      this.posts.forEach(post => {
+      let lastdays = this.lastDays(5).reverse()
+      this.$store.state.newspost.news.forEach(post => {
         let formatteddate = this.formatDate(post.createdAt);
         postdays.push(formatteddate);
       })
@@ -419,6 +418,8 @@ export default {
     if (document.getElementById("rolesChart")) {
       this.chart();
     }
+    this.posts = this.$store.state.newspost.news
+    console.log(this.posts)
   },
   computed: {
     filteredList() {

@@ -81,6 +81,22 @@ export default {
   mounted() {
 
   },
+  computed: {
+    getUserInfo() {
+      if (this.isAuthenticated) {
+        if (this.params == this.$store.getters.getUserInfo.id) {
+          return this.$store.getters.getUserInfo;
+        } else {
+          return this.user.user;
+        }
+      } else {
+        return this.user.user;
+      }
+    },
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;  
+    },
+  }
 }
 </script>
 <style lang="scss">

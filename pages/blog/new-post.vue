@@ -62,7 +62,6 @@
       </div>
       <button class="m-3 btn btn-github" v-on:click="createpost">Publish</button>
     </div>
-    <ArvidFooter></ArvidFooter>
   </div>
 </template>
 
@@ -84,7 +83,7 @@ export default {
     nestedProperties: ['author.name']
   },
   async asyncData({ $content, params, $axios, $config }) {
-
+    if (!this.isAuthenticated) return this.$router.push("/blog");
   },
   methods: {
     addSectionBlock() {
@@ -110,9 +109,12 @@ export default {
         } else {
           return false;
         }
+      } else {
+        return false;
       }
     },
     async createpost() {
+      if (!this.isAuthenticated) return this.showSnackbar('cannot create post. not logged in', 'danger');
       let newblocks = []
       console.log(this.description)
       console.log(tinymce.get("description").getContent())
@@ -147,10 +149,10 @@ export default {
       //data.append("image", document.getElementById('image').files[0]);
       data.append('json', JSON.stringify(json));
       
-      
-      const post = await this.$axios.$post("api/news/newspost", data).then((res) => {
+      const post = await this.$axios.$post("api/news/newspost", json).then((res) => {
         this.showSnackbar(res.message)
       })
+      this.$store.commit('newspost/add', post)
       this.$router.push("/blog");
       this.title = '';
       this.description = '';

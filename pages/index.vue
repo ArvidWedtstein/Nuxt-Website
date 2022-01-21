@@ -1,6 +1,6 @@
 
 <template>
-  <div id="app">
+  <div id="apppage">
     <div class="container">  
       <!--Jumbotron-->
       <div class="jumbotron bg-img">
@@ -81,9 +81,6 @@ $maincolors: (
 );
 @function colorscheme($color) {
   @return map-get($maincolors, $color);
-}
-#app {
-  margin-top: 2rem;
 }
 
 .orange-fade {

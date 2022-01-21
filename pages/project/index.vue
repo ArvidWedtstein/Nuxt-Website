@@ -147,7 +147,7 @@ export default {
         projects = projects.concat(projectss)
         const unsortedTimeline = []
         projectss.forEach(async (project) => {
-          moment.lang("en");
+          moment.locale("en");
           if (project.github) {
             unsortedTimeline.push({
               message: project.name,
@@ -155,13 +155,13 @@ export default {
               date: project.github.created_at
             })
           }
-          console.log(project.github)
+          // console.log(project.github)
         })
         const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
         timeline = timeline.concat(sortedTimeline);
       })
     } catch (err) {
-      console.log(err)
+      this.showSnackbar(err, 'danger')
     }
     //console.log(projects)
     return {
@@ -193,7 +193,7 @@ export default {
       //data.append('json', JSON.stringify(json));
             
       const project = await this.$axios.$post("api/project/newProject", json).then((res) => {
-        this.showSnackbar(res.message)
+        this.showSnackbar(res.message, 'success')
       })
         
       this.$nuxt.refresh()
@@ -204,8 +204,8 @@ export default {
       this.project.gitrepo = ''
       this.project.tags = []
     },
-    showSnackbar(message) {
-      this.$notifier.showMessage({ content: message, color: 'success' })
+    showSnackbar(message, type) {
+      this.$notifier.showMessage({ content: message, color: type })
     },
     async importProjects() {
       this.projects = [];
