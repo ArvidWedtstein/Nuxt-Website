@@ -1,9 +1,9 @@
 <template>
-  <div class="news">
+  <div v-if="isAuthenticated" class="news">
     <div class="container">
       <div class="row">
         <div class="col-md-8 post-main">
-          <h3 class="pb-3 mb-4 border-bottom">TestPost</h3>
+          <h3 class="pb-3 mb-4 border-bottom">New Post</h3>
           <div class="blog-post">
             <div class='inputBox bg-github p-3'>
               <input id="title" type='text' name='title' class="blog-post-title" placeholder="Title" v-model="title"/>
@@ -206,7 +206,8 @@ $maincolors: (
       border-radius: 0.5rem;
       padding: 3rem;
       .blog-post-title {
-        font-family: 'MedievalSharp';
+        // font-family: 'MedievalSharp';
+        font-family: 'Montserrat';
         &::first-letter {
           position: relative;
           font-size: 3ch;

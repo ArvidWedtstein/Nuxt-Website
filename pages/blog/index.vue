@@ -1,32 +1,11 @@
 <template>
   <div class="news container-fluid">
-    <div class="row">
+    <div v-if="isAuthenticated && userPerm('VIEW_POST')" class="row">
       <div class="col-md-4 d-flex blog m-3" v-for="(post, i) in this.$store.state.newspost.news" :key="i" data-match-height="news-items">
-        <div class="card newspost">
-          <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
-          <div v-if="post.author" class="card-header" :id="'post' + i">
-            <p v-if="post.author.name">{{ post.author.name }}</p>
-            <img style="width: 50px" class="profileImg" v-if="post.author.profileimg" :src="baseURL + post.author.profileimg"/>
-          </div>
-          <div class="card-body" :id="'post' + i">
-            <a :href="'/blog/' + post._id" v-if="post.title" class="card-title">{{ post.title }}</a>
-            <p v-if="post.description" class="card-text description text-truncate">{{ post.description }}</p>
-          </div>
-          <div class="card-footer">
-            <small v-if="post.tags" class="badge bg-success m-1" style="text-align: right;"><i v-for="(tag, v) in post.tags" :key="v" :class="tag.icon"/></small>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <a :href="'/blog/'+ post._id" class="btn btn-sm btn-outline-secondary">View</a>
-                <a v-if="userPerm('MODIFY_POST')" href="/blog/new-post" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <a v-if="userPerm('MODIFY_POST')" @click="deletePost(i)" class="btn btn-sm btn-outline-danger">Delete</a>
-              </div>
-              <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small>
-            </div>
-          </div>
-        </div>
+        <NewsNewscard :post="post" :i="i"></NewsNewscard>
       </div>
     </div>
-    <!-- <ArvidFooter></ArvidFooter> -->
+    <h1 v-else class="p-5"><a class="link" href="/auth/login">Log in to view newspost</a></h1>
   </div>
 </template>
 
@@ -40,11 +19,6 @@ export default {
       author: '',
       title: '',
       description: '',
-      ownarticle: {
-        title: '',
-        description: '',
-        tags: []
-      },
       articles: [],
       days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -70,32 +44,9 @@ export default {
     }
   },
   methods: {
-    timeSince(date) {
-      return moment(date).fromNow(true)
-    },
-    tagSelect(tag) {
-      console.log(this.$auth.user)
-      if (!this.ownarticle.tags.includes(tag)) {
-        this.ownarticle.tags.push(tag);
-      }
-    },
     showSnackbar(message, type) {
 			this.$notifier.showMessage({ content: message, color: type })
 		},
-    editPost(i) {
-      //var post = document.getElementById(`post${i}`)
-      this.currenteditpost = i
-      //post.contentEditable = true;
-      //post.appendChild(savebtn)
-    },
-    async deletePost(i) {
-      console.log(this.$store.state.newspost.news[i])
-      let deletepost = this.$store.state.newspost.news[i]
-      this.$store.commit('newspost/delete', this.$store.state.newspost.news[i]._id)
-      const post = await this.$axios.$delete("api/news/deletenewspost", {id: deletepost._id}).then((res) => {
-        this.showSnackbar(res.message, 'success')
-      })
-    },
     userPerm(perm) {
       if (this.isAuthenticated) {
         if (this.$store.getters.getUserInfo.role.permissions.includes(perm)) {

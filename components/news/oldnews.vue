@@ -44,8 +44,7 @@ export default {
   template: '<oldnews/>',
   transition: 'slide-bottom',
   props: {
-    user: {},
-    roles: []
+    articles: [],
   },
   async asyncData({ $auth }) {
     const yr = await $axios.$get("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.4136&lon=5.2680");
