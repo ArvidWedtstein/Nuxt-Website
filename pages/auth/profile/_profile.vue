@@ -7,25 +7,8 @@
       </div>
       <h3 class="display-6">Well, hello there</h3>
       <h4 class="display-4 name unselectable">{{ getUserInfo.name }}</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Rank</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ getUserInfo.id }}</td>
-            <td>{{ getUserInfo.name }}</td>
-            <td>{{ getUserInfo.email }}</td>
-            <td>{{ getUserInfo.role.name }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div v-if="isAuthenticated" class="offcanvas offcanvas-start text-light bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <Table :head="['ID', 'Name', 'Email', 'Rank']" :body="[getUserInfo.id, getUserInfo.name, getUserInfo.email, getUserInfo.role.name]"></Table>
+      <div v-if="isAuthenticated" class="offcanvas offcanvas-start text-light bg-dark" tabindex="-1" id="offcanvasEditProfile" aria-labelledby="offcanvasEditProfileLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Edit Profile</h5>
           <button type="button" class="btn btn-red" data-bs-dismiss="offcanvas" aria-label="Close">&times;</button>
@@ -45,7 +28,7 @@
           <a class="nav-link active" data-bs-toggle="tab" href="#tab1">Posts</a>
         </li>
         <li v-if="isAuthenticated && profile" class="nav-item">
-          <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Edit Profile</a>
+          <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditProfile" aria-controls="offcanvasEditProfile">Edit Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="tab" href="#tab2" title="Your Reviews">Review</a>
@@ -56,26 +39,8 @@
       </ul>
       <div class="tab-content">
         <div id="tab1" class="tab-pane fade active show">
-          <div v-for="(post, l) in userposts" :key="l" class="card newspost">
-            <img v-if="post.image" class="card-img-top" :src="baseURL + post.image" :alt="post.name" height="400">
-            <div v-if="post.author" class="card-header" :id="'post' + i">
-              <p v-if="post.author.name">{{ post.author.name }}</p>
-              <img style="width: 50px" class="profileImg" v-if="post.author.profileimg" :src="baseURL + post.author.profileimg"/>
-            </div>
-            <div class="card-body" :id="'post' + i">
-              <h5 v-if="post.title" class="card-title">{{ post.title }}</h5>
-              <p v-if="post.description" class="card-text description">{{ post.description }}</p>
-            </div>
-            <div class="card-footer">
-              <small v-if="post.tags" class="badge bg-success" style="text-align: right;"><i v-for="(tag, v) in post.tags" :key="v" :class="tag.icon"/></small>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">Last updated {{timeSince(post.updatedAt)}} ago <i class="fab fa-accessible-icon"/></small>
-              </div>
-            </div>
+          <div class="" v-for="(post, i) in userposts" :key="i" data-match-height="news-items">
+            <NewsNewscard :post="post" :i="i"></NewsNewscard>
           </div>
         </div>
         <div id="tab2" class="tab-pane fade">
@@ -234,18 +199,7 @@ $maincolors: (
 html {
   height: auto;
 }
-.table {
-  color: colorscheme('white');
-  thead {
-    th {
-      border-block-color: #777 !important;
-      color: #888;
-    }
-  }
-  td, th {
-    border-block-color: #444 !important;
-  }
-}
+
 .nav {
   margin: 0rem 0;
   margin-bottom: 0;
