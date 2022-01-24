@@ -93,6 +93,7 @@ $maincolors: (
 @function gradientscheme($color) {
   @return map-get($colorpalette, $color);
 }
+
 .news {
   //margin-top: 1rem;
   list-style-type: none;

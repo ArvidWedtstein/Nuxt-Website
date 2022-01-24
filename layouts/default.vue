@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="body">
     <Navbar/>
     <Nuxt/>
     <slot/>
     <Snackbar></Snackbar>
-    <ArvidFooter></ArvidFooter>
+    <!-- <ArvidFooter class="footer"></ArvidFooter> -->
   </div>
 </template>
 
@@ -51,16 +51,27 @@ export default {
       })
     },
     async getNewspost() {
-      const articles = await this.$axios.$get("api/news/getnewsposts");
+      const articles = await this.$axios.$get("/api/news/getnewsposts");
       this.$store.commit('newspost/init', articles.posts)
       console.log('FETCHED POSTS')
+
+    },
+    async getUsers() {
+      const users = await this.$axios.$get("/api/auth/allusers");
+      this.$store.commit('users/init', users.users)
+
+    },
+    async getRatings() {
+      const reviews = await this.$axios.$get("/api/project/getRatings");
+      this.$store.commit('ratings/init', reviews.data.reviews)
 
     },
   },
   mounted() {
     //this.scroll()
     this.enableTooltips()
-    this.getNewspost()
+    this.getNewspost();
+    this.getUsers();
   },
   computed: {
     
@@ -73,7 +84,18 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
 @import url("https://use.typekit.net/gyz4ina.css");
 @import url("https://use.typekit.net/gyz4ina.css");
-
+$maincolors: (
+  "grey": #212529,
+  "darkblue": #192D40,
+  "blue": #21303A,
+  "cyan": #375D72,
+  "lime": #7FCD8A,
+  "white": #F4F0E7,
+  "lightblue": #5DACB6
+);
+@function colorscheme($color) {
+    @return map-get($maincolors, $color);
+}
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -85,6 +107,14 @@ html {
   --titlefont: "Montserrat";
   --textfont: "Quicksand";
 }
+body {
+  min-height: 100%;
+  background: colorscheme('grey');
+}
+#__nuxt, #__layout {
+  height: 100% !important;
+}
+
 .rad-shadow {
   border: 1px solid hsl(200 10% 50% / 15%);
   box-shadow: 0 1rem .5rem -.5rem;
@@ -96,10 +126,6 @@ html {
     0 41.8px 33.4px hsl(200 50% 3% / calc(.3 + .03)),
     0 100px 80px hsl(200 50% 3% / .3)
   ;
-}
-body, html {
-  height: auto;
-  background: #212529;
 }
 a {
   &.column {
@@ -165,19 +191,15 @@ a {
 	border-radius: 10px;
 	box-shadow: 0px 0px 0px 100000vh black;
 }*/
+.footer {
+  position: relative;
+  border-top: 1px solid #fff;
+  bottom: 0;
+  width: 100%;
+  background: colorscheme('blue');
 
-$maincolors: (
-  "grey": #212529,
-  "darkblue": #192D40,
-  "blue": #21303A,
-  "cyan": #375D72,
-  "lime": #7FCD8A,
-  "white": #F4F0E7,
-  "lightblue": #5DACB6
-);
-@function colorscheme($color) {
-    @return map-get($maincolors, $color);
 }
+
 $rainbow-grad0: linear-gradient(0deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 $rainbow-grad90: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 $titlefont: "Montserrat";

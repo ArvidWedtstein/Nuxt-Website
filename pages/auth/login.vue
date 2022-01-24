@@ -156,19 +156,19 @@ $maincolors: (
     "lightblue": #5DACB6
 );
 #login {
-    position: relative;
-    margin-top: 3rem;
-    
-    .my-4 {
-        &.valid {
-            background: #00ff00;
-            box-shadow: 0 0 0.25rem #00ff00, 0 0 0.50rem #00ff00, 0 0 1rem #00ff00;
-        }
-        &.invalid {
-            background: #ff0000;
-            box-shadow: 0 0 0.25rem #ff0000, 0 0 0.50rem #ff0000, 0 0 1rem #ff0000;
-        }
+  position: relative;
+  margin-top: 3rem;
+  min-height: 100%;
+  .my-4 {
+    &.valid {
+        background: #00ff00;
+        box-shadow: 0 0 0.25rem #00ff00, 0 0 0.50rem #00ff00, 0 0 1rem #00ff00;
     }
+    &.invalid {
+        background: #ff0000;
+        box-shadow: 0 0 0.25rem #ff0000, 0 0 0.50rem #ff0000, 0 0 1rem #ff0000;
+    }
+  }
 }
 
 

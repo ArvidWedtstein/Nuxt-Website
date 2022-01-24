@@ -135,7 +135,8 @@ export default {
     github: process.env.GITHUB_TOKEN
   },
   axios: {
-    baseURL: process.env.BASE_URL
+    // baseURL: process.env.BASE_URL
+    baseURL: "http://localhost:8080/"
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

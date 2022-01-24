@@ -2,18 +2,18 @@ import axios from 'axios';
 import Vue from "vue";
 
 export const state = () => ({
-  users: []
+  ratings: []
 })
   
 export const mutations = {
   async init(state, data) {
-    state.users = data
+    state.ratings = data
   },
   async add(state, data) {
-    state.users.push(data)
+    state.ratings.push(data)
   },
   async delete(state, data) {
-    let deluser = state.users.find(p => p.id === data);
-    state.users.splice(state.users.indexOf(deluser), 1);
+    let delrating = state.ratings.find(p => p.id === data);
+    state.ratings.splice(state.ratings.indexOf(delrating), 1);
   }
 }

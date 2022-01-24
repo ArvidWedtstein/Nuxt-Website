@@ -50,14 +50,5 @@ $maincolors: (
 @function colorscheme($color) {
   @return map-get($maincolors, $color);
 }
-.footer {
-  position: relative;
-  bottom: -10% !important;
-  width: 100%;
-  background: colorscheme('blue');
-  &.container {
-    
-  }
-}
 
 </style>

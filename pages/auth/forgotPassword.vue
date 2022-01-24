@@ -10,7 +10,7 @@
            </div>
            <input style="display: none" name="name" value="there">
            <input style="display: none;" name="message" :value="verificationcode">
-           <button type="submit" @click="sendEmail">Send Email</button>
+           <button type="submit" class="btn btn-main" @click="sendEmail">Send Email</button>
        </form>
        <form v-if="newpass" id="forgotPassword" @submit.prevent="newPassword()"> 
            <div class='inputBox'>

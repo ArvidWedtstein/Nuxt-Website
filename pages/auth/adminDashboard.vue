@@ -108,15 +108,16 @@ export default {
     };
   },
   async asyncData({ $axios, $store, $config }) {
-    const users = await $axios.$get("/api/auth/allusers");
+    //const users = await $axios.$get("/api/auth/allusers");
     const roles = await $axios.$get("/api/auth/getRoles");
     const reviews = await $axios.get("/api/project/getRatings");
     let baseURL = $config.baseURL;
     return {
-      users: users.users,
+      users: this.$store.state.users.users,
       roles: roles.roles,
       baseURL,
-      reviews: reviews.data.reviews
+      // reviews: reviews.data.reviews
+      reviews: this.$store.state.ratings.ratings
     };
   },
   methods: {
