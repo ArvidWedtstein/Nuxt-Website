@@ -136,7 +136,7 @@ export default {
   },
   axios: {
     // baseURL: process.env.BASE_URL
-    baseURL: "http://localhost:8080/"
+    baseURL: process.env.ALTERNATIVE_BASE_URL
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
