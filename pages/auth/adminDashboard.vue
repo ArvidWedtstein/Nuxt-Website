@@ -39,7 +39,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-filter"/></span>
               </div>
-              <input type="text" v-model="searchbar" name='search' class="form-control" placeholder="" aria-label="">
+              <input type="text" v-model="filter" name='search' class="form-control" placeholder="" aria-label="" @change="search">
             </div>
             <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
               <div class="name">
@@ -101,7 +101,7 @@ export default {
   data() {
     return {
       role: "",
-      searchbar: "",
+      filter: "",
       loaded: false,
       
       posts: [],
@@ -117,6 +117,9 @@ export default {
     };
   },
   methods: {
+    async search() {
+      this.$router.replace({query: {filter: this.filter.toLowerCase()}})
+    },
     async changePerms(e, user) {
       let userperms = []
       for (let i = 0; i < e.target.length; i++) {

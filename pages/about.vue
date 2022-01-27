@@ -104,11 +104,11 @@ export default {
   },
   methods: {
     play: function (event) {
-      this.$refs.audioElm.play();
-      this.ragemode = true;
-      setTimeout(() => {
-        this.ragemode2 = true;
-      }, 9000);
+      // this.$refs.audioElm.play();
+      // this.ragemode = true;
+      // setTimeout(() => {
+      //   this.ragemode2 = true;
+      // }, 9000);
     },
   },
   mounted() {
