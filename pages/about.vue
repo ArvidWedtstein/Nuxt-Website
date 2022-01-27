@@ -9,7 +9,7 @@
               <h1 class="display-4">Well, Hello there</h1>
               <p class="lead">My name is Arvid Wedtstein</p>
               <hr class="my-4">
-              <p>I am currently studying: Informationtechnology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><br>Progamming languages/Frameworks that i have learnt in the past:</p>
+              <p>I am currently studying: Informationtechnology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><a href="mailto: arvidw0310@gmail.com">Email: arvidw0310@gmail.com</a><br>Progamming languages/Frameworks that i have learnt in the past:</p>
               <div class="icon-bar icons">
                 <i class="python fab fa-python"></i>
                 <i class="js fab fa-js-square"></i>
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <Review class="reviews" v-if="reviews" :reviewuser="reviews"></Review>
+    <Review class="reviews" v-if="this.$store.state.ratings.ratings" :reviewuser="this.$store.state.ratings.ratings"></Review>
   </div>
 </template>
 
@@ -61,13 +61,13 @@ export default {
     return route.fullPath;
   },
   async asyncData({ $axios }) {
-    const rev = await $axios.get("/api/project/getRatings").then(async (res) => {
-      return res.data.reviews
-    });
-    let reviews = rev.slice(0, 5);
-    return {
-      reviews
-    }
+    // const rev = await $axios.get("/api/project/getRatings").then(async (res) => {
+    //   return res.data.reviews
+    // });
+    // let reviews = rev.slice(0, 5);
+    // return {
+    //   reviews
+    // }
   },
   data() {
     return {

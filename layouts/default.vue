@@ -22,28 +22,6 @@ export default {
     ArvidFooter
   },
   methods: {
-    /*scroll() {
-      let lastKnownScrollPosition = 0;
-      let ticking = false;
-      function doSomething(scrollPos) {
-        const newPos = (scrollPos / 32)
-        document.body.style.setProperty("-webkit-transform", `rotate(${newPos}deg) rotate3d(0, 0, 0.5, 3.142rad)`, null);
-        //document.body.style.setProperty("-webkit-transform", `scale(${newPos}) translate(-100%, -100%);`, null);
-      }
-
-      document.addEventListener('scroll', function(e) {
-        lastKnownScrollPosition = window.scrollY;
-
-        if (!ticking) {
-          window.requestAnimationFrame(function() {
-            doSomething(lastKnownScrollPosition);
-            ticking = false;
-          });
-
-          ticking = true;
-        }
-      });
-    }*/
     enableTooltips() {
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -54,24 +32,32 @@ export default {
       const articles = await this.$axios.$get("/api/news/getnewsposts");
       this.$store.commit('newspost/init', articles.posts)
       console.log('FETCHED POSTS')
-
     },
     async getUsers() {
       const users = await this.$axios.$get("/api/auth/allusers");
       this.$store.commit('users/init', users.users)
-
     },
     async getRatings() {
       const reviews = await this.$axios.$get("/api/project/getRatings");
-      this.$store.commit('ratings/init', reviews.data.reviews)
-
+      this.$store.commit('ratings/init', reviews.reviews)
     },
+    async getProjects() {
+      const projects = await this.$axios.$get("/api/project/getProjects");
+      this.$store.commit('projects/init', projects.projects)
+    },
+    async getRoles() {
+      const roles = await this.$axios.$get("/api/auth/getRoles");
+      this.$store.commit('roles/init', roles.roles)
+    }
   },
   mounted() {
     //this.scroll()
     this.enableTooltips()
     this.getNewspost();
     this.getUsers();
+    this.getRatings();
+    this.getProjects();
+    this.getRoles();
   },
   computed: {
     
@@ -318,7 +304,7 @@ $border-radius: 0.25rem;
       box-sizing: border-box;
       &:hover {
         @if map-get($btncolors, $item) == #ff0000 {
-          i {
+          .ban {
             transform: rotate(45deg);
           }
         }

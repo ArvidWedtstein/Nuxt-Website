@@ -128,7 +128,8 @@ export default {
     },
   },
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
+    // baseURL: process.env.BASE_URL,
+    baseURL: process.env.ALTERNATIVE_BASE_URL,
     github: process.env.GITHUB_TOKEN
   },
   privateRuntimeConfig: {

@@ -20,7 +20,7 @@
           <span class="visually-hidden">New alerts</span>
         </span>
       </p>
-      <button v-if="!user.banned" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Ban ' + user.name" v-on:click="banUser(user)" class="btn btn-red"><i class="fas fa-gavel"/></button>
+      <button v-if="!user.banned" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Ban ' + user.name" v-on:click="banUser(user)" class="btn btn-red"><i class="ban fas fa-gavel"/></button>
       <button v-else v-on:click="unbanUser(user)" data-bs-toggle="tooltip" data-bs-placement="top" :title="'Unban ' + user.name" class="btn btn-success"><i style="transform: rotate(135deg)" class="fas fa-gavel"/></button>
     </div>
   </div>

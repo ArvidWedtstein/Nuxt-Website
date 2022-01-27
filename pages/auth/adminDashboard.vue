@@ -104,20 +104,16 @@ export default {
       searchbar: "",
       loaded: false,
       
-      posts: []
+      posts: [],
+      users: [],
+      roles: [],
+      reviews: []
     };
   },
   async asyncData({ $axios, $store, $config }) {
-    //const users = await $axios.$get("/api/auth/allusers");
-    const roles = await $axios.$get("/api/auth/getRoles");
-    const reviews = await $axios.get("/api/project/getRatings");
     let baseURL = $config.baseURL;
     return {
-      users: this.$store.state.users.users,
-      roles: roles.roles,
       baseURL,
-      // reviews: reviews.data.reviews
-      reviews: this.$store.state.ratings.ratings
     };
   },
   methods: {
@@ -233,7 +229,9 @@ export default {
       const rolesname = [];
       const userroles = [];
       
-      this.users.forEach(user => userroles.push(user.role.name))
+      this.users.forEach(user => userroles.push(user.role.name));
+      console.log(this.users)
+      
 
       this.roles.forEach(role => {
         rolesname.push(role.name)
@@ -359,22 +357,28 @@ export default {
     },
   },
   mounted() {
+    
+    this.posts = this.$store.state.newspost.news
+    this.roles = this.$store.state.roles.roles;
+
+    this.reviews = this.$store.state.ratings.ratings;
+    this.users = this.$store.state.users.users;
     if (document.getElementById("rolesChart")) {
       this.chart();
     }
-    this.posts = this.$store.state.newspost.news
-    console.log(this.posts)
   },
   computed: {
     filteredList() {
-      if (!this.users)
+      if (!this.users) {
         return;
-      return this.users.filter(user => {
-        return user.name.toLowerCase().includes(this.searchbar.toLowerCase()) ||
-        user._id.toLowerCase().includes(this.searchbar.toLowerCase()) ||
-        user.email.toLowerCase().includes(this.searchbar.toLowerCase()) ||
-        user.role.name.toLowerCase().includes(this.searchbar.toLowerCase());
-      });
+      } else {
+        return this.users.filter(user => {
+          return user.name.toLowerCase().includes(this.searchbar.toLowerCase()) ||
+          user._id.toLowerCase().includes(this.searchbar.toLowerCase()) ||
+          user.email.toLowerCase().includes(this.searchbar.toLowerCase()) ||
+          user.role.name.toLowerCase().includes(this.searchbar.toLowerCase());
+        });
+      }
     }
   },
 };

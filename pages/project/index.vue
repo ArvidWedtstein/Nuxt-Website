@@ -47,31 +47,8 @@
         </div>
       </Modal>
       <div class="row p-3">
-        <div v-for="(project, x) in projectlist" :key="x" class="col-md-6 flex-row">
-          <div class="card flex-md-row mb-4 rad-shadow h-md-250 project">
-            <div class="card-body d-flex flex-column align-items-start">
-              <strong v-if="project.tags" class="d-inline-block mb-2 text-light"><i style="padding: 0 0.3rem" v-for="(tag, v) in project.tags" :key="v" :class="tag.icon"/></strong>
-              <h3 class="mb-0">
-                <a class="text-light" :href="project.projectLink">{{ project.name }}</a>
-              </h3>
-              <div v-if="project.gitlink" class="mb-1 text-muted">{{project.github.name}}</div>
-              <p class="card-text mb-auto">{{ project.description }}</p>
-              <div class="btn-group space">
-                <a v-if="project.github" class="btn btn-github" :href="project.github.html_url" target="_blank"><i class="fab fa-github"/></a>
-                <NuxtLink v-if="project.projectLink" class="btn btn-main card-link" :to="project.projectLink">To Project</NuxtLink>
-                <button v-if="userPerm('HIDE_PROJECT')" type="button" class="btn btn-main" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip" @click="hideProject"><i class="fas fa-eye"/></button>
-              </div>
-              <div class="btn-group">
-                <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :class="'langtags btn bg-'+ replace(lang.name)">
-                {{lang.name}} <span>{{lang.percent}}%</span>
-                </div>
-              </div>
-            </div>
-            <a href="#">
-              <img v-if="project.thumbnail" class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail">	
-            </a>
-            
-          </div>
+        <div v-for="(project, x) in projects" :key="x" class="col-md-6 flex-row">
+          <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
       </div>
       <div class="jumbotron projtimeline">
@@ -115,6 +92,8 @@ export default {
     return {
       //projects: null,
       categoryicons: null,
+      projects: [],
+      timeline: [],
       project: {
         name: "",
         description: "",
@@ -134,48 +113,27 @@ export default {
       ]
     };
   },
-  async asyncData({$axios, $config}) {
-    var timeline = [];
-    let projects = [];
-    let baseURL = $config.baseURL;
-    try {
-      await $axios({
-        method: "get",
-        url: "/api/project/getProjects"
-      }).then(async (res) => {
-        const projectss = await res.data.projects;
-        projects = projects.concat(projectss)
-        const unsortedTimeline = []
-        projectss.forEach(async (project) => {
-          moment.locale("en");
-          if (project.github) {
-            unsortedTimeline.push({
-              message: project.name,
-              description: project.description,
-              date: project.github.created_at
-            })
-          }
-          // console.log(project.github)
-        })
-        const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
-        timeline = timeline.concat(sortedTimeline);
-      })
-    } catch (err) {
-      this.showSnackbar(err, 'danger')
-    }
-    //console.log(projects)
-    return {
-      projectlist: projects,
-      timeline,
-      baseURL
-    }
-  },
   methods: {
+    async getProjects() {
+      let timeline = [];
+      const projects = await this.$store.state.projects.projects;
+      const unsortedTimeline = []
+      projects.forEach(async (project) => {
+        moment.locale("en");
+        if (project.github) {
+          unsortedTimeline.push({
+            message: project.name,
+            description: project.description,
+            date: project.github.created_at
+          })
+        }
+      })
+      const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
+      this.timeline = timeline.concat(sortedTimeline);
+      this.projects = projects;
+    },
     replace(string) {
       return string.toLowerCase().replaceAll("#", "sharp").replaceAll("+", "plus").replaceAll(".", "dot");
-    },
-    hideProject() {
-
     },
     async createproject() {
       let json = {
@@ -195,7 +153,6 @@ export default {
       const project = await this.$axios.$post("api/project/newProject", json).then((res) => {
         this.showSnackbar(res.message, 'success')
       })
-        
       this.$nuxt.refresh()
       this.project.name = ''
       this.project.description = ''
@@ -206,13 +163,6 @@ export default {
     },
     showSnackbar(message, type) {
       this.$notifier.showMessage({ content: message, color: type })
-    },
-    async importProjects() {
-      this.projects = [];
-      this.categoryicons = [];
-      const content = await this.$content("projects").fetch();
-      this.projects = content.projects;
-      this.categoryicons = content.categoryicons;
     },
     formatDate(date) {
       return moment(date).format('DD/MM/YY')
@@ -241,7 +191,7 @@ export default {
     },
   },
   mounted() {
-
+    this.getProjects();
   },
   computed: {
     isAuthenticated() {
