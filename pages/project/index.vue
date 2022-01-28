@@ -47,6 +47,7 @@
         </div>
       </Modal>
       <div class="row p-3">
+        <p v-cloak>{{projects}}</p>
         <div v-for="(project, x) in projects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
@@ -190,8 +191,12 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
     this.getProjects();
+    setTimeout(async () => {
+      console.log(this.$store.state.projects.projects.length)
+    }, 1000)
+    
   },
   computed: {
     isAuthenticated() {
@@ -233,6 +238,9 @@ $border-radius: 0.25rem;
 $titlefont: "Montserrat";
 $textfont: "Quicksand";
 $box-shadow: 0 12px 38px rgba(black, 0.4);
+[v-cloak] {
+  display: none;
+}
 @media screen and (max-width: 660px) {
   .projtimeline {
     display: none;

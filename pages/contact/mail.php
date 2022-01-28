@@ -182,11 +182,11 @@ $subject = "$subject";
 
 $mailheader = "From: noreply@arvidw.space \r\n";
 
-@mail($recipient, $subject, $formcontent, $mailheader);
+mail($recipient, $subject, $formcontent, $mailheader);
 
 if ($_POST['test'] == 'value1') {
 
-@mail($email, $subject, $formcontent, $mailheader); 
+mail($email, $subject, $formcontent, $mailheader); 
 
 }
 

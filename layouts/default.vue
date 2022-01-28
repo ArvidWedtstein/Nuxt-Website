@@ -21,43 +21,55 @@ export default {
     Snackbar,
     ArvidFooter
   },
+  async fetch() {
+    const roles = await this.$axios.$get("/api/auth/getRoles");
+    this.$store.commit('roles/init', roles.roles);
+    const projects = await this.$axios.$get("/api/project/getProjects");
+    this.$store.commit('projects/init', projects.projects);
+    const reviews = await this.$axios.$get("/api/project/getRatings");
+    this.$store.commit('ratings/init', reviews.reviews);
+    const users = await this.$axios.$get("/api/auth/allusers");
+    this.$store.commit('users/init', users.users);
+    const articles = await this.$axios.$get("/api/news/getnewsposts");
+    this.$store.commit('newspost/init', articles.posts);
+  },
   methods: {
     enableTooltips() {
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
+        return new bootstrap.Tooltip(tooltipTriggerEl);
       })
     },
     async getNewspost() {
       const articles = await this.$axios.$get("/api/news/getnewsposts");
-      this.$store.commit('newspost/init', articles.posts)
-      console.log('FETCHED POSTS')
+      this.$store.commit('newspost/init', articles.posts);
+      console.log('FETCHED POSTS');
     },
     async getUsers() {
       const users = await this.$axios.$get("/api/auth/allusers");
-      this.$store.commit('users/init', users.users)
+      this.$store.commit('users/init', users.users);
     },
     async getRatings() {
       const reviews = await this.$axios.$get("/api/project/getRatings");
-      this.$store.commit('ratings/init', reviews.reviews)
+      this.$store.commit('ratings/init', reviews.reviews);
     },
     async getProjects() {
       const projects = await this.$axios.$get("/api/project/getProjects");
-      this.$store.commit('projects/init', projects.projects)
+      this.$store.commit('projects/init', projects.projects);
     },
     async getRoles() {
       const roles = await this.$axios.$get("/api/auth/getRoles");
-      this.$store.commit('roles/init', roles.roles)
+      this.$store.commit('roles/init', roles.roles);
     }
   },
-  mounted() {
+  async mounted() {
     //this.scroll()
-    this.enableTooltips()
-    this.getNewspost();
-    this.getUsers();
-    this.getRatings();
-    this.getProjects();
-    this.getRoles();
+    await this.enableTooltips()
+    await this.getNewspost();
+    await this.getUsers();
+    await this.getRatings();
+    await this.getProjects();
+    await this.getRoles();
   },
   computed: {
     
