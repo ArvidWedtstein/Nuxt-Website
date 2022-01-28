@@ -30,7 +30,7 @@
           426: "Upgrade Required",
           429: "Drowning in Too Many Requests",
           451: "Unavailable For Legal Reasons",
-          500: "My Server F*cked Up",
+          500: "Something went wrong. ",
           507: "Oh shot. Insufficient Storage"
         }
       }

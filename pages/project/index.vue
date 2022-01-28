@@ -46,13 +46,13 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div class="row p-3">
-        <p v-cloak>{{projects}}</p>
+      <div v-if="projects" class="row p-3">
+        {{projects}}
         <div v-for="(project, x) in projects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
       </div>
-      <div class="jumbotron projtimeline">
+      <div v-if="timeline.length > 0" class="jumbotron projtimeline">
         <h1 class="display-4">Project timeline</h1>
         <hr class="my-4">
         <Timeline :timeline="timeline"/>
@@ -131,6 +131,7 @@ export default {
       })
       const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
       this.timeline = timeline.concat(sortedTimeline);
+      console.log(this.$store.state.projects.projects)
       this.projects = projects;
     },
     replace(string) {
@@ -193,9 +194,7 @@ export default {
   },
   async mounted() {
     this.getProjects();
-    setTimeout(async () => {
-      console.log(this.$store.state.projects.projects.length)
-    }, 1000)
+    console.log(this.$store.state.projects.projects)
     
   },
   computed: {

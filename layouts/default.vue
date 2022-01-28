@@ -21,18 +21,6 @@ export default {
     Snackbar,
     ArvidFooter
   },
-  async fetch() {
-    const roles = await this.$axios.$get("/api/auth/getRoles");
-    this.$store.commit('roles/init', roles.roles);
-    const projects = await this.$axios.$get("/api/project/getProjects");
-    this.$store.commit('projects/init', projects.projects);
-    const reviews = await this.$axios.$get("/api/project/getRatings");
-    this.$store.commit('ratings/init', reviews.reviews);
-    const users = await this.$axios.$get("/api/auth/allusers");
-    this.$store.commit('users/init', users.users);
-    const articles = await this.$axios.$get("/api/news/getnewsposts");
-    this.$store.commit('newspost/init', articles.posts);
-  },
   methods: {
     enableTooltips() {
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -64,12 +52,12 @@ export default {
   },
   async mounted() {
     //this.scroll()
-    await this.enableTooltips()
-    await this.getNewspost();
-    await this.getUsers();
-    await this.getRatings();
-    await this.getProjects();
-    await this.getRoles();
+    this.enableTooltips()
+    this.getNewspost();
+    this.getUsers();
+    this.getRatings();
+    this.getProjects();
+    this.getRoles();
   },
   computed: {
     
