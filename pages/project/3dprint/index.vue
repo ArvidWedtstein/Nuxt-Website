@@ -57,18 +57,20 @@
     </Modal>
     
     <div class="row" id="items">
-      <div class="col-md-4" v-for="(object, i) in filteredList" :key="i">
-        <div id=i class="printcard col-sm" v-if="filter === 'all' || object.category.includes(filter)">
-          <div class="box">
-            <div class="icon">
-              <!--<i class="fas fa-code"/>-->
-              <img v-if="object.image" class="printcard-img-top" height="100%" width="100%" v-bind:src="object.image" :alt="object.name">
-            </div>
-            <div class="content">
-              <h5 class="printcard-title">{{ object.name }}</h5>
-              <p class="printcard-text">{{ object.description }}</p>
-              <a v-bind:href="object.name">View model</a>
-              <a v-bind:href="object.stl" class="btn btn-download" download><i class="fas fa-download"/> Download</a>
+      <div v-for="(object, i) in filteredList" :key="i">
+        <div class="col-md-4" v-if="filter === 'all' || object.category.includes(filter)">
+          <div :id="i" class="printcard col-sm">
+            <div class="box">
+              <div class="icon">
+                <!--<i class="fas fa-code"/>-->
+                <img v-if="object.image" class="printcard-img-top" height="100%" width="100%" v-bind:src="object.image" :alt="object.name">
+              </div>
+              <div class="content">
+                <h5 class="printcard-title">{{ object.name }}</h5>
+                <p class="printcard-text">{{ object.description }}</p>
+                <a v-bind:href="object.name">View model</a>
+                <a v-bind:href="object.stl" class="btn btn-download" download><i class="fas fa-download"/> Download</a>
+              </div>
             </div>
           </div>
         </div>
