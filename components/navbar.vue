@@ -17,7 +17,7 @@
               <NuxtLink class="nav-link link" to="/"><i class="fas fa-solid fa-home" /> Home</NuxtLink>
             </li>
             <li class="nav-item">
-              <NuxtLink class="nav-link link" to="/about"><i class="fas fa-id-card-alt"/> About Me</NuxtLink>
+              <NuxtLink class="nav-link link" to="/about"><i class="fas fa-id-card-alt"/> About</NuxtLink>
             </li>
             <li class="nav-item">
               <NuxtLink class="nav-link link" to="/project/"><i class="fas fa-briefcase"/> Projects</NuxtLink>

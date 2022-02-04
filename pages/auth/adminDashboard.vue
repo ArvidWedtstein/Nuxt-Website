@@ -30,6 +30,10 @@
               <canvas class="chart rad-shadow" id="postsChart"></canvas>
             </div>
           </div>
+          <div class='btn btn-corner'>
+            <span class=''>test</span>
+            <div class='corner-cover'></div>
+          </div>
         </div>
       </div>
       <div id="tab2" class="tab-pane fade">
@@ -233,7 +237,7 @@ export default {
       const userroles = [];
       
       this.users.forEach(user => userroles.push(user.role.name));
-      console.log(this.users)
+      // console.log(this.users)
       
 
       this.roles.forEach(role => {
@@ -359,27 +363,27 @@ export default {
       this.$notifier.showMessage({ content: message, color: '#ff0000' })
     },
   },
-  mounted() {
+  async mounted() {
     
     this.posts = this.$store.state.newspost.news
     this.roles = this.$store.state.roles.roles;
 
     this.reviews = this.$store.state.ratings.ratings;
-    this.users = this.$store.state.users.users;
+    this.users = await this.$store.state.users.users;
+    console.log(this.users)
     if (document.getElementById("rolesChart")) {
       this.chart();
     }
   },
   computed: {
     filteredList() {
-      if (!this.users) {
-        return;
+      if (!this.$store.state.users.users) {
+        return
       } else {
-        return this.users.filter(user => {
-          return user.name.toLowerCase().includes(this.searchbar.toLowerCase()) ||
-          user._id.toLowerCase().includes(this.searchbar.toLowerCase()) ||
-          user.email.toLowerCase().includes(this.searchbar.toLowerCase()) ||
-          user.role.name.toLowerCase().includes(this.searchbar.toLowerCase());
+        return this.$store.state.users.users.filter(async (user) => {
+          return user.name.toLowerCase().includes(this.filter.toLowerCase()) ||
+          user.email.toLowerCase().includes(this.filter.toLowerCase()) ||
+          user.role.name.toLowerCase().includes(this.filter.toLowerCase());
         });
       }
     }

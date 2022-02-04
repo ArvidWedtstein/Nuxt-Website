@@ -36,6 +36,7 @@ export default {
     async getUsers() {
       const users = await this.$axios.$get("/api/auth/allusers");
       this.$store.commit('users/init', users.users);
+      console.log('FETCHED users');
     },
     async getRatings() {
       const reviews = await this.$axios.$get("/api/project/getRatings");
@@ -60,7 +61,7 @@ export default {
     this.getRoles();
   },
   computed: {
-    
+
   }
 }
 </script>
@@ -243,6 +244,37 @@ $border-radius: 0.25rem;
       animation: pixel 0.4s steps(8) forwards;
     }
   }
+  &.btn-corner {
+    position: relative;
+    background: rgba(0,0,0,.3);
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    color: white;
+    .corner-cover {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      right: -55px;
+      bottom: -55px;
+      background-color: #00edff;
+      background-size: cover;
+      -webkit-clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+      clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+      -webkit-box-shadow: 0 0 7px 0 #00edff;
+      box-shadow: 0 0 7px 0 #00edff;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+    }
+    &:hover {
+      .corner-cover {
+        right: 0px;
+        bottom: 0px;
+      }
+    }
+  }
+  // https://codepen.io/nickmerritt/pen/YpVPbx
   &.btn-rgb {
     --rgbshadowsize: -1px;
     position: relative;
