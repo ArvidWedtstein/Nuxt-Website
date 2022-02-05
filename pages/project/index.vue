@@ -116,7 +116,13 @@ export default {
   methods: {
     async getProjects() {
       let timeline = [];
-      const projects = await this.$store.state.projects.projects;
+      let projects = await this.$store.state.projects.projects;
+      if (!projects) {
+        setTimeout(() => {
+          projects = await this.$store.state.projects.projects;
+        }, 1000)
+        
+      }
       const unsortedTimeline = []
       projects.forEach(async (project) => {
         moment.locale("en");
