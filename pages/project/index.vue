@@ -1,7 +1,7 @@
 
 <template>
   <div id="project">
-    <div class="container-fluid" style="background: url('/images/galaxy.jpg'); background-size: cover; background-repeat: no-repeat;">  
+    <div class="container-fluid" style="background: url('/images/rdo.jpg'); background-size: cover; background-repeat: no-repeat;">  
       <button v-if="userPerm('CREATE_PROJECT')" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">New Project</button>
       <Modal>
         <div slot="header">
