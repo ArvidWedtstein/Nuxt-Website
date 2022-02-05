@@ -56,7 +56,7 @@ export default {
   methods: {
     async hideProject(project) {
       this.$store.commit('projects/hide', project._id);
-      await this.$axios.$post('/api/projects/hideProject', {
+      await this.$axios.$post('/api/project/hideProject', {
         id: project._id,
         isHidden: !project.hidden
       }).then(async (res) => {
@@ -65,7 +65,7 @@ export default {
     },
     async deleteProject(project) {
       this.$store.commit('projects/delete', project._id);
-      await this.$axios.$post('/api/projects/deleteProject', {
+      await this.$axios.$post('/api/project/deleteProject', {
         id: project._id,
       }).then(async (res) => {
         console.log(res)
