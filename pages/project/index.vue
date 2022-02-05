@@ -46,7 +46,7 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div v-if="projects" class="row p-3" style="padding: 6rem 1rem;">
+      <div v-if="projects" class="row p-3" style="padding: 6rem 1rem !important;">
         <div v-for="(project, x) in filterHiddenProjects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
@@ -117,12 +117,6 @@ export default {
     async getProjects() {
       let timeline = [];
       let projects = await this.$store.state.projects.projects;
-      if (!projects) {
-        setTimeout(() => {
-          projects = await this.$store.state.projects.projects;
-        }, 1000)
-        
-      }
       const unsortedTimeline = []
       projects.forEach(async (project) => {
         moment.locale("en");
@@ -136,7 +130,6 @@ export default {
       })
       const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
       this.timeline = timeline.concat(sortedTimeline);
-      // console.log(this.$store.state.projects.projects)
       this.projects = projects;
     },
     replace(string) {
