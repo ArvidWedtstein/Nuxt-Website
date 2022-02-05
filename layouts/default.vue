@@ -24,9 +24,6 @@ export default {
   async fetch() {
 
   },
-  watch: {
-    '$route.query': '$mounted'
-  },
   methods: {
     enableTooltips() {
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -58,6 +55,14 @@ export default {
     }
   },
   async mounted() {
+    if (!this.loaded) {
+      this.enableTooltips()
+      this.getNewspost();
+      this.getUsers();
+      this.getRatings();
+      this.getProjects();
+      this.getRoles();
+    }
     //this.scroll()
     this.enableTooltips()
     this.getNewspost();
