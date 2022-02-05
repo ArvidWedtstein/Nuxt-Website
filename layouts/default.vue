@@ -76,7 +76,7 @@ export default {
     this.getRatings();
     this.getProjects();
     this.getRoles();
-    if (!this.loaded) this.mounted();
+    if (!this.loaded) this.$fetch();
   },
   computed: {
 
