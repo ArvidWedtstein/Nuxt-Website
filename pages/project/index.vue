@@ -206,10 +206,10 @@ export default {
     filterHiddenProjects() {
       if (this.isAuthenticated) {
         if (this.$store.getters.getUserInfo.role.permissions.includes('HIDE_PROJECT')) {
-          return projects;
+          return this.projects;
         }
       } else {
-        return projects.filter(p => p.hidden === false);
+        return this.projects.filter(p => p.hidden === false);
       }
       
     },
