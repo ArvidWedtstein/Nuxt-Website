@@ -21,6 +21,12 @@ export default {
     Snackbar,
     ArvidFooter
   },
+  async fetch() {
+
+  },
+  watch: {
+    '$route.query': '$mounted'
+  },
   methods: {
     enableTooltips() {
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
