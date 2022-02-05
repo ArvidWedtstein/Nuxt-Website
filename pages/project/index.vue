@@ -201,7 +201,7 @@ export default {
     setTimeout(() => {
       this.getProjects();
 
-    })
+    }, 1000)
     // console.log(this.$store.state.projects.projects)
     
   },
