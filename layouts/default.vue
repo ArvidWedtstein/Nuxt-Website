@@ -21,6 +21,9 @@ export default {
     Snackbar,
     ArvidFooter
   },
+  async asyncData({ $axios, $store }) {
+
+  },
   async fetch() {
     const projects = await this.$axios.$get("/api/project/getProjects");
     this.$store.commit('projects/init', projects.projects);
