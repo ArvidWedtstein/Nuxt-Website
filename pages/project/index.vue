@@ -47,7 +47,7 @@
         </div>
       </Modal>
       <div v-if="projects" class="row p-3" style="padding: 6rem 1rem;">
-        <div v-for="(project, x) in projects" :key="x" class="col-md-6 flex-row">
+        <div v-for="(project, x) in filterHiddenProjects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
       </div>
@@ -203,6 +203,27 @@ export default {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;  
     },
+    filterHiddenProjects() {
+      let timeline = [];
+      const projects = await this.$store.state.projects.projects;
+      const unsortedTimeline = []
+      projects.forEach(async (project) => {
+        moment.locale("en");
+        if (project.github) {
+          unsortedTimeline.push({
+            message: project.name,
+            description: project.description,
+            date: project.github.created_at
+          })
+        }
+      })
+      const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
+      this.timeline = timeline.concat(sortedTimeline);
+      // console.log(this.$store.state.projects.projects)
+      this.projects = projects;
+      return projects.filter(p => p.hidden === false);
+    },
+
   },
   components: { Timeline, PainOMeter, Modal }
 }
