@@ -39,6 +39,8 @@ export default {
 
     const roles = await this.$axios.$get("/api/auth/getRoles");
     this.$store.commit('roles/init', roles.roles);
+
+    console.log('fetched')
   },
   methods: {
     enableTooltips() {
