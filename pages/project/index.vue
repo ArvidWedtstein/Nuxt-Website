@@ -46,13 +46,13 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div style="background: url('/images/rdo.jpg'); background-size: cover; background-repeat: no-repeat;">
-      <div v-if="projects" class="row p-3" style="margin: 0rem 6rem !important; background: rgb(46, 46, 46);">
+      <!-- <div style="background: url('/images/rdo.jpg'); background-size: cover; background-repeat: no-repeat;"> -->
+      <div v-if="projects" class="row p-3"><!-- style="margin: 0rem 6rem !important; background: rgb(46, 46, 46);"-->
         <div v-for="(project, x) in filterHiddenProjects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
       </div>
-      </div>
+      <!-- </div> -->
       <div v-if="timeline.length > 0" class="jumbotron projtimeline">
         <h1 class="display-4">Project timeline</h1>
         <hr class="my-4">
