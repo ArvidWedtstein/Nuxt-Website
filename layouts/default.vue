@@ -70,12 +70,12 @@ export default {
   async mounted() {
     
     //this.scroll()
-    this.enableTooltips()
-    this.getNewspost();
-    this.getUsers();
-    this.getRatings();
-    this.getProjects();
-    this.getRoles();
+    // this.enableTooltips()
+    // this.getNewspost();
+    // this.getUsers();
+    // this.getRatings();
+    // this.getProjects();
+    // this.getRoles();
     if (!this.loaded) this.$fetch();
   },
   computed: {
