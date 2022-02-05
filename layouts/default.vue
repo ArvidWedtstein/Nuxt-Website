@@ -88,18 +88,12 @@ export default {
   async mounted() {
     
     //this.scroll()
-    // this.enableTooltips()
-    // this.getNewspost();
-    // this.getUsers();
-    // this.getRatings();
-    // this.getProjects();
-    // this.getRoles();
-    if (!this.$store.state.projects.projects) {
-      this.$fetch();
-      console.log('data not loaded, refetch')
-    } else {
-      console.log(this.$store.state.projects.projects)
-    }
+    this.enableTooltips()
+    this.getNewspost();
+    this.getUsers();
+    this.getRatings();
+    this.getProjects();
+    this.getRoles();
   },
   computed: {
 
