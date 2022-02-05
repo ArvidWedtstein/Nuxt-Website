@@ -81,7 +81,10 @@ export default {
     // this.getRatings();
     // this.getProjects();
     // this.getRoles();
-    if (!this.loaded) this.$fetch();
+    if (!this.loaded) {
+      this.$fetch();
+      console.log('data not loaded, refetch')
+    }
   },
   computed: {
 
