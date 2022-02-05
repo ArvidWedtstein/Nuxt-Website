@@ -24,14 +24,14 @@
           <button type="button" class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" @click="deleteProject(project)"><i class="fas fa-trash-alt"/></button>
         </div>
       </div> -->
-      <div class="btn-group">
+      <div v-if="project.language.length > 0" class="btn-group">
         <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :class="'langtags btn bg-'+ replace(lang.name)">
         {{lang.name}} <span>{{lang.percent}}%</span>
         </div>
       </div>
     </div>
-    <a href="#">
-      <img v-if="project.thumbnail" class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail">	
+    <a href="#" v-if="project.thumbnail">
+      <img class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail">	
     </a>
   </div>
 </template>

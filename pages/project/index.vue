@@ -204,24 +204,14 @@ export default {
       return this.$store.getters.isAuthenticated;  
     },
     filterHiddenProjects() {
-      let timeline = [];
-      const projects = await this.$store.state.projects.projects;
-      const unsortedTimeline = []
-      projects.forEach(async (project) => {
-        moment.locale("en");
-        if (project.github) {
-          unsortedTimeline.push({
-            message: project.name,
-            description: project.description,
-            date: project.github.created_at
-          })
+      if (this.isAuthenticated) {
+        if (this.$store.getters.getUserInfo.role.permissions.includes('HIDE_PROJECT')) {
+          return projects;
         }
-      })
-      const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
-      this.timeline = timeline.concat(sortedTimeline);
-      // console.log(this.$store.state.projects.projects)
-      this.projects = projects;
-      return projects.filter(p => p.hidden === false);
+      } else {
+        return projects.filter(p => p.hidden === false);
+      }
+      
     },
 
   },
