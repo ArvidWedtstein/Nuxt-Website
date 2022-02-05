@@ -6,8 +6,8 @@
       <Modal>
         <div slot="header">
           <h5 class="modal-title" id="modalLabel">New Post</h5>
-          </div>
-          <div slot="body">
+        </div>
+        <div slot="body">
           <div class="form-floating custom">
             <input type="text" class="form-control shadow-none" id="projectname" v-model="project.name">
             <label for="projectname">Project Name</label>
@@ -46,7 +46,7 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div v-if="projects" class="row p-3">
+      <div v-if="projects" class="row px-24">
         <div v-for="(project, x) in projects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
@@ -130,7 +130,7 @@ export default {
       })
       const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
       this.timeline = timeline.concat(sortedTimeline);
-      console.log(this.$store.state.projects.projects)
+      // console.log(this.$store.state.projects.projects)
       this.projects = projects;
     },
     replace(string) {
@@ -196,7 +196,7 @@ export default {
       this.getProjects();
 
     })
-    console.log(this.$store.state.projects.projects)
+    // console.log(this.$store.state.projects.projects)
     
   },
   computed: {
