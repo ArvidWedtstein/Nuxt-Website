@@ -84,7 +84,7 @@ export default {
   ],
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
-
+  fetchOnServer: false,
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "@nuxt/image",

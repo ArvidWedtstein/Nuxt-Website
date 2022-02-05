@@ -198,10 +198,7 @@ export default {
     },
   },
   async mounted() {
-    setTimeout(() => {
-      this.getProjects();
-
-    }, 1000)
+    this.getProjects();
     // console.log(this.$store.state.projects.projects)
     
   },

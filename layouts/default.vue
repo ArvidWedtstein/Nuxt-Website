@@ -81,7 +81,7 @@ export default {
     // this.getRatings();
     // this.getProjects();
     // this.getRoles();
-    if (this.$store.state.projects.projects.length <= 0) {
+    if (!this.$store.state.projects.projects) {
       this.$fetch();
       console.log('data not loaded, refetch')
     } else {
