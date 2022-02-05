@@ -46,7 +46,7 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div v-if="projects" class="row px-24">
+      <div v-if="projects" class="row p-3" style="padding: 6rem 1rem;">
         <div v-for="(project, x) in projects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
