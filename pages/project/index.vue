@@ -343,52 +343,52 @@ $box-shadow: 0 12px 38px rgba(black, 0.4);
 				}
 			}
 		}
+  }
+  .icons {
+    display: inline-flex;
+    position: relative;
+    padding: 0.5rem;
+    vertical-align: middle;
+    & > * {
+        padding: 0.2rem;
+        margin: 0.1rem;
+        margin-bottom: 0.5rem;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
     }
-    .icons {
-        display: inline-flex;
-        position: relative;
-		padding: 0.5rem;
-        vertical-align: middle;
-        & > * {
-            padding: 0.2rem;
-            margin: 0.1rem;
-            margin-bottom: 0.5rem;
-            border-radius: $border-radius;
-            box-shadow: $box-shadow;
-        }
-    }
+  }
 	$iconcolors: (
-        "C":#3B5998,
-        "twitter":#55ACEE,
-        "twitch": rgba(145, 71, 255, 0.9),
-        "discord": #8697F6,
-        "github": #333333,
-        "steam": #173e58,
-        "linkedin":#007bb5,
-        "cv": #009bb5,
-        "js": #EFD81D,
-        "html": #D84B24,
-        "css": #3492CB,
-        "sass": #C45F92,
-        "vue": #49B180,
-        "ubuntu": #D24413,
-        "Python": #dddddd,
-		"python": "#FF0000"
-    );
-    .langicons {
-        opacity: 1;
-        & > * {
-            @each $color, $value in $iconcolors {
-                &.#{$color}  {
-                    color: $value !important;
-                    border: 1mm outset $value;
-                }
-            }
-            &:hover {
-                opacity: 1;
-            }
-        }
+    "C":#3B5998,
+    "twitter":#55ACEE,
+    "twitch": rgba(145, 71, 255, 0.9),
+    "discord": #8697F6,
+    "github": #333333,
+    "steam": #173e58,
+    "linkedin":#007bb5,
+    "cv": #009bb5,
+    "js": #EFD81D,
+    "html": #D84B24,
+    "css": #3492CB,
+    "sass": #C45F92,
+    "vue": #49B180,
+    "ubuntu": #D24413,
+    "Python": #dddddd,
+    "python": "#FF0000"
+  );
+  .langicons {
+    opacity: 1;
+    & > * {
+      @each $color, $value in $iconcolors {
+          &.#{$color}  {
+              color: $value !important;
+              border: 1mm outset $value;
+          }
+      }
+      &:hover {
+          opacity: 1;
+      }
     }
+  }
 }
 
 </style>

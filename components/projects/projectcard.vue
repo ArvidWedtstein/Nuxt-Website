@@ -9,10 +9,10 @@
       <p class="card-text mb-auto">{{ project.description }}</p>
       <div class="btn-group space">
         <a v-if="project.github" class="btn btn-github" :href="project.github.html_url" target="_blank"><i class="fab fa-github"/></a>
-          <NuxtLink v-if="project.projectLink" class="btn btn-main card-link" :to="project.projectLink">To Project</NuxtLink>
-          <button v-if="userPerm('HIDE_PROJECT') && !project.hidden" type="button" class="btn btn-main" data-bs-toggle="tooltip" data-bs-placement="top" title="Hide" @click="hideProject(project)"><i class="fas fa-eye"/></button>
-          <button v-else-if="project.hidden && userPerm('HIDE_PROJECT')" type="button" class="btn btn-main" data-bs-toggle="tooltip" data-bs-placement="top" title="Unhide" @click="hideProject(project)"><i class="fas fa-eye-slash"/></button>
-          <button v-if="userPerm('HIDE_PROJECT')" type="button" class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" @click="deleteProject(project)"><i class="fas fa-trash-alt"/></button>
+        <NuxtLink v-if="project.projectLink" class="btn btn-main card-link" :to="project.projectLink">To Project</NuxtLink>
+        <button v-if="userPerm('HIDE_PROJECT') && !project.hidden" type="button" class="btn btn-main" data-bs-toggle="tooltip" data-bs-placement="top" title="Hide" @click="hideProject(project)"><i class="fas fa-eye"/></button>
+        <button v-else-if="project.hidden && userPerm('HIDE_PROJECT')" type="button" class="btn btn-main" data-bs-toggle="tooltip" data-bs-placement="top" title="Unhide" @click="hideProject(project)"><i class="fas fa-eye-slash"/></button>
+        <button v-if="userPerm('HIDE_PROJECT')" type="button" class="btn btn-red" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" @click="deleteProject(project)"><i class="fas fa-trash-alt"/></button>
       </div>
       <!-- <div class="btn-group space">
         <a class="btn btn-github" @click="isActive = !isActive"><i class="fas fa-bars"/></a>
