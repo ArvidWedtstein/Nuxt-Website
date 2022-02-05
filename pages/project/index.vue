@@ -46,7 +46,7 @@
           <button type="button" v-on:click="createproject" class="btn btn-main" data-bs-dismiss="modal">Create Project</button>
         </div>
       </Modal>
-      <div v-if="projects" class="row p-3" style="padding: 1rem 6rem !important; background: grey;">
+      <div v-if="projects" class="row p-3" style="margin: 1rem 6rem !important; background: rgb(46, 46, 46);">
         <div v-for="(project, x) in filterHiddenProjects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
