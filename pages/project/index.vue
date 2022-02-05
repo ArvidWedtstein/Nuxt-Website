@@ -47,7 +47,6 @@
         </div>
       </Modal>
       <div v-if="projects" class="row p-3" style="padding: 6rem 1rem;">
-        {{projects}}
         <div v-for="(project, x) in filterHiddenProjects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>

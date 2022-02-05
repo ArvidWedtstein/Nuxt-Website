@@ -84,6 +84,8 @@ export default {
     if (this.$store.state.projects.projects.length <= 0) {
       this.$fetch();
       console.log('data not loaded, refetch')
+    } else {
+      console.log(this.$store.state.projects.projects)
     }
   },
   computed: {
