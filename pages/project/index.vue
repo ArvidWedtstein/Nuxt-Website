@@ -86,7 +86,6 @@ export default {
   },
   async asyncData({ $config, $store }) {
     let baseURL = $config.baseURL;
-    let projects = await $store.state.projects.projects;
     return {
       baseURL
     }
