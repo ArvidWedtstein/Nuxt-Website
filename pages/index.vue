@@ -10,9 +10,9 @@
       <!--Hexagon layouten med bildene-->
       <HexGrid :images="images"></HexGrid>
       <Userreview></Userreview>
-      <div id="threecontainer">
+      <!-- <div id="threecontainer">
         <canvas id="threejs"></canvas>
-      </div>
+      </div> -->
     </div>
     <!--<div id="particles-js"></div>-->
   </div>
@@ -30,11 +30,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
-import { EXRLoader } from "three/examples/jsm/loaders/EXRLoader.js";
-import THREEx from "three/examples/jsm/interactive/InteractiveGroup";
 import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflare";
 import Stats from "three/examples/jsm/libs/stats.module.js";
-import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js';
 
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { RoughnessMipmapper } from 'three/examples/jsm/utils/RoughnessMipmapper.js';
@@ -48,6 +45,7 @@ export default {
   },
   mounted() {
     this.importImg();
+    // this.three();
   },
   methods: {
     async importImg() {
@@ -65,7 +63,7 @@ export default {
     },
     async three() {
       let scene, pointer, raycaster, camera, renderer, controls, model, hemiLight, light, manager, gridHelper, stats, container, clock;
-      let gltfloader, objloader, textureLoader, roughnessMipmapper, effect;
+      let gltfloader, objloader, fbxloader, textureLoader, roughnessMipmapper, effect;
       let house, cabinet, sword;
       async function init() {
 
@@ -74,6 +72,7 @@ export default {
         textureLoader = new THREE.TextureLoader( manager );
         gltfloader = new GLTFLoader( manager );
         objloader = new OBJLoader( manager );
+        fbxloader = new FBXLoader( manager );
 
         clock = new THREE.Clock();
         manager.onProgress = function ( item, loaded, total ) {     
@@ -119,12 +118,12 @@ export default {
           lensflare.addElement( new LensflareElement( textureFlare3, 70, 1 ) );
           light.add( lensflare );
         }
-        new RGBELoader().setPath('/scene/').load('park_2k.hdr', async (texture) => {
-          texture.mapping = THREE.EquirectangularReflectionMapping;
+        // new RGBELoader().setPath('/scene/').load('park_2k.hdr', async (texture) => {
+        //   texture.mapping = THREE.EquirectangularReflectionMapping;
 
-          scene.background = texture;
-          scene.environment = texture;
-        });
+        //   scene.background = texture;
+        //   scene.environment = texture;
+        // });
       
 
         gridHelper = new THREE.GridHelper(200, 50);
@@ -146,49 +145,54 @@ export default {
         renderer.domElement.id = "threejs";
         container.appendChild( renderer.domElement );
 
-        gltfloader.load("/scene/House.glb", async (glb) => {
-          house = glb.scene;
-          glb.scene.traverse(async (child) => {
-            if (child.isMesh) {
-              roughnessMipmapper.generateMipmaps(child.material);
-            }
-          })
-          house.scale.set(1,1,1);
-          house.position.set(50,0,0);
-          scene.add(house);
-          roughnessMipmapper.dispose();
-        }, onProgress, onError);
-
-        /*gltfloader.load("/scene/cabinet.glb", async (glb) => {
-          roughnessMipmapper = new RoughnessMipmapper( renderer );
-          cabinet = glb.scene;
-          glb.scene.traverse(async (child) => {
-            if (child.isMesh) {
-              roughnessMipmapper.generateMipmaps(child.material);
-            }
-          })
-          cabinet.scale.set(2,2,2);
-          cabinet.position.set(0,-2,0);
-          scene.add(cabinet);
-          roughnessMipmapper.dispose();
-        })*/
         
-        objloader.load('/sword/LOTRSword.obj', async (obj) => {
+        // objloader.load('/sword/LOTRSword.obj', async (obj) => {
+        //   roughnessMipmapper = new RoughnessMipmapper( renderer );
+        //   const material = new THREE.MeshStandardMaterial({
+        //     map: textureLoader.load('/sword/Sting_Base_Color.PNG'),
+        //     bumpMap: textureLoader.load('/sword/Sting_Height.PNG'),
+        //     aoMap: textureLoader.load('/sword/Sting_Mixed_AO.PNG'),
+        //     emissiveMap: textureLoader.load('/sword/Sting_Emissive.PNG'),
+        //     emissiveIntensity: 1,
+        //     envMap: scene.environment,
+        //     envMapIntensity: 5,
+        //     metalnessMap: textureLoader.load('/sword/Sting_Metallic.PNG'),
+        //     metalness: 2,
+        //     roughnessMap: textureLoader.load('/sword/Sting_Roughness.PNG'),
+        //     normalMap: textureLoader.load('/sword/Sting_Normal.PNG'),
+        //     premultipliedAlpha: true
+        //   })
+        //   obj.traverse(async (child) => {
+        //     if (child.isMesh) {
+        //       child.material = material
+        //       roughnessMipmapper.generateMipmaps(child.material);
+        //     }
+        //   })
+        //   obj.rotateX(Math.PI / 2);
+        //   obj.position.set(0, 0, 0);
+        //   sword = obj;
+        //   scene.add(obj);
+        //   roughnessMipmapper.dispose();
+        // })
+        fbxloader.load('/scene/websiteFrontPage.fbx', async (obj) => {
           roughnessMipmapper = new RoughnessMipmapper( renderer );
           const material = new THREE.MeshStandardMaterial({
-            map: textureLoader.load('/sword/Sting_Base_Color.PNG'),
-            bumpMap: textureLoader.load('/sword/Sting_Height.PNG'),
-            aoMap: textureLoader.load('/sword/Sting_Mixed_AO.PNG'),
-            emissiveMap: textureLoader.load('/sword/Sting_Emissive.PNG'),
-            emissiveIntensity: 1,
-            envMap: scene.environment,
-            envMapIntensity: 5,
-            metalnessMap: textureLoader.load('/sword/Sting_Metallic.PNG'),
-            metalness: 2,
-            roughnessMap: textureLoader.load('/sword/Sting_Roughness.PNG'),
-            normalMap: textureLoader.load('/sword/Sting_Normal.PNG'),
-            premultipliedAlpha: true
+            color: "#ff0000"
           })
+          // const material = new THREE.MeshStandardMaterial({
+          //   map: textureLoader.load('/sword/Sting_Base_Color.PNG'),
+          //   bumpMap: textureLoader.load('/sword/Sting_Height.PNG'),
+          //   aoMap: textureLoader.load('/sword/Sting_Mixed_AO.PNG'),
+          //   emissiveMap: textureLoader.load('/sword/Sting_Emissive.PNG'),
+          //   emissiveIntensity: 1,
+          //   envMap: scene.environment,
+          //   envMapIntensity: 5,
+          //   metalnessMap: textureLoader.load('/sword/Sting_Metallic.PNG'),
+          //   metalness: 2,
+          //   roughnessMap: textureLoader.load('/sword/Sting_Roughness.PNG'),
+          //   normalMap: textureLoader.load('/sword/Sting_Normal.PNG'),
+          //   premultipliedAlpha: true
+          // })
           obj.traverse(async (child) => {
             if (child.isMesh) {
               child.material = material
@@ -196,6 +200,7 @@ export default {
             }
           })
           obj.rotateX(Math.PI / 2);
+          obj.scale.set(0.1);
           obj.position.set(0, 0, 0);
           sword = obj;
           scene.add(obj);
@@ -226,7 +231,7 @@ export default {
       }
       const render = () => {
         const delta = clock.getDelta();
-        sword.rotatation.z += 0.01;
+        // sword.rotatation.z += 0.01;
 				controls.update( delta );
 				renderer.render( scene, camera );
         //effect.render( scene, camera );
@@ -240,20 +245,6 @@ export default {
       }
       init();
 
-
-
-      function addStar() {
-        const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-        const material = new THREE.MeshStandardMaterial({color: 0xf6ff00})
-        const star = new THREE.Mesh( geometry, material );
-
-        const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
-        star.position.set(x, y, z);
-        scene.add(star);
-      }
-
-      Array(200).fill().forEach(addStar);
-
      
 
       function onProgress( xhr ) {
@@ -266,40 +257,8 @@ export default {
       }
 
       function onError() {}
-     
-      const _VS = `
+    
 
-      varying vec3 v_Normal;
-      void main() {
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        v_Normal = normal;
-      }
-      `;
-
-      const _FS = `
-      uniform vec3 sphereColor;
-
-      varying vec3 v_Normal;
-
-      void main() {
-        //gl_FragColor = vec4(v_Normal, 1.0);
-        gl_FragColor = vec4(sphereColor, 1.0);
-      }
-      `;
-
-
-      const ground = new THREE.Mesh(
-        new THREE.PlaneGeometry(100, 100, 10, 10),
-        new THREE.MeshPhongMaterial({
-          map: textureLoader.load("/sword/forest.jpg"),
-          specular: 0xffffff, 
-          shininess: 0
-        })
-      )
-      ground.rotateX(Math.PI * -0.5);
-      ground.position.set(0, -2, 0);
-      ground.castShadow = true;
-      ground.recieveShadow = true;
       //scene.add(ground)
      
   
@@ -321,7 +280,7 @@ export default {
       document.body.onscroll = moveCamera
     }
   },
-  components: { Userreview }
+  components: { Userreview },
 }
 
 </script>
