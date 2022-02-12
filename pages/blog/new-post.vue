@@ -69,6 +69,7 @@
 
 import moment from 'moment';
 export default {
+  middleware: "isAuthenticated",
   data() {
     return {
       author: '',

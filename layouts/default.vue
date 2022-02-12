@@ -129,6 +129,11 @@ html {
   --titlefont: "Montserrat";
   --textfont: "Quicksand";
 }
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
 body {
   min-height: 100%;
   background: colorscheme('grey');
@@ -149,77 +154,13 @@ body {
     0 100px 80px hsl(200 50% 3% / .3)
   ;
 }
-a {
-  &.column {
-    color: #2f2f2f;
-  }
-  transition: all 0.2s ease;
-  &:hover {
-    &:not(.link), &:not(.rgb-link) {
-      text-decoration: underline;
-    }
-    color: #7FCD8A;
-    &.column {
-      text-decoration: none;
-      color: #2f2f2f;
-    }
-    
-  }
-  color: #7FCD8A;
-  text-decoration: none;
-  background-color: none !important;
-  &.link {
-    &.active, &.nuxt-link-exact-active {
-      background-size: 300% 2px;
-    }
-    background: linear-gradient(90deg, #7FCD8A, #7FCD8A, #7FCD8A, #7FCD8A);
-    background-repeat: no-repeat;
-    background-size: 0% 2px;
-    background-position: left bottom;
-    text-decoration: none;
-    //font-weight: 900;
-    transition: background-size 600ms ease-in-out;
-    &:hover {
-      color: #7FCD8A;
-      background-size: 300% 2px;
-      text-decoration: none;
-    }
-  }
-  &.rgb-link {
-    background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-repeat: no-repeat;
-    background-size: 0% 3px;
-    background-position: left bottom;
-    text-decoration: none;
-    font-weight: 900;
-    transition: background-size 600ms ease;
-    &:hover {
-      background-size: 300% 3px;
-      -webkit-animation: rgb-link 10s ease infinite;
-      animation: rgb-link 3s linear infinite;
-    }
-  }
-}
 
-/*Egen Scrollbar*/
-/*::-webkit-scrollbar {
-	width: 1rem;
-}
-::-webkit-scrollbar-track {
-	background: $rainbow-grad0;
-}
-::-webkit-scrollbar-thumb {
-	background: transparent;
-	border-radius: 10px;
-	box-shadow: 0px 0px 0px 100000vh black;
-}*/
 .footer {
   position: relative;
   border-top: 1px solid #fff;
   bottom: 0;
   width: 100%;
   background: colorscheme('blue');
-
 }
 
 $rainbow-grad0: linear-gradient(0deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
@@ -241,13 +182,68 @@ $border-radius: 0.25rem;
   }
 }
 
+
+// ----------------------------
+// Nav Links & Links
+// ----------------------------
 .nav-link, .nav-tabs {
   color: colorscheme('white');
   &.show, &:hover, &:active, &:focus, &.nuxt-link-exact-active {
     color: colorscheme('lime');
   }
 }
-/* Define buttons here */
+a {
+  &.column {
+    color: #2f2f2f;
+  }
+  transition: all 0.2s ease;
+  &:hover {
+    &:not(.link), &:not(.rgb-link) {
+      text-decoration: underline;
+    }
+    color: colorscheme("lime");
+    &.column {
+      text-decoration: none;
+      color: #2f2f2f;
+    }
+    
+  }
+  color: colorscheme("lime");
+  text-decoration: none;
+  background-color: none !important;
+  &.link {
+    &.active, &.nuxt-link-exact-active {
+      background-size: 300% 2px;
+    }
+    background: linear-gradient(90deg, #7FCD8A, #7FCD8A, #7FCD8A, #7FCD8A);
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    background-position: left bottom;
+    text-decoration: none;
+    //font-weight: 900;
+    transition: background-size 600ms ease-in-out;
+    &:hover {
+      color: colorscheme("lime");
+      background-size: 300% 2px;
+      text-decoration: none;
+    }
+  }
+  &.rgb-link {
+    background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    background-position: left bottom;
+    text-decoration: none;
+    font-weight: 900;
+    transition: background-size 600ms ease;
+    &:hover {
+      background-size: 300% 3px;
+      -webkit-animation: rgb-link 10s ease infinite;
+      animation: rgb-link 3s linear infinite;
+    }
+  }
+}
+
 
 .list-group {
   &.custom {
@@ -258,33 +254,34 @@ $border-radius: 0.25rem;
     }
   }
 }
+
+// ----------------------------
+// Buttons
+// ----------------------------
 .btn {
   margin: 0.1rem;
+  color: colorscheme('white');
+  position: relative;
   &.btn-download {
-    position: relative;
     bottom: 0;
     width: 50%;
     font-size: 1rem;
     background: rgba(colorscheme('white'),0.3);
     text-decoration: none;
     padding: 1rem 1rem;
-    color: colorscheme('white');
     transition: 0.5s;
     &:hover {
       background: colorscheme('lime') url("/images/pixel.png");
       background-size: 180px;
       text-decoration: none;
       transition-delay: 0.8s;
-      color: colorscheme('white');
       animation: pixel 0.4s steps(8) forwards;
     }
   }
   &.btn-corner {
-    position: relative;
     background: rgba(0,0,0,.3);
     padding: 0.5rem 1rem;
     overflow: hidden;
-    color: white;
     .corner-cover {
       position: absolute;
       width: 50%;
@@ -310,47 +307,44 @@ $border-radius: 0.25rem;
     }
   }
   // https://codepen.io/nickmerritt/pen/YpVPbx
-  &.btn-rgb {
-    --rgbshadowsize: -1px;
-    position: relative;
-    text-align: center;
-    line-height: 30px;
-    color: colorscheme('white');
-    font-size: 16px;
-    text-transform: uppercase;
-    text-decoration: none;
-    box-sizing: border-box;
-    background: $rainbow-grad90;
-    background-size: 400%;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
-      rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
-    &::before {
-      content: '';
-      position: absolute;
-      top: var(--rgbshadowsize);
-      left: var(--rgbshadowsize);
-      right: var(--rgbshadowsize);
-      bottom: var(--rgbshadowsize);
-      z-index: -1;
-      background: $rainbow-grad90;
-      background-size: 400%;
-      box-shadow: 0 0 2px #13b3ff, 0 0 4px #13b3ff;
-      border-radius: 0.25rem;
-      opacity: 0;
-      transition: 0.3s;
-    }
-    &:hover {
-      animation: rgbscroll 8s linear infinite;
-	    filter: blur;
-      &::before {
-        filter: blur(calc(var(--rgbshadowsize) + 10px));
-        opacity: 1;
-        animation: rgbscroll 8s linear infinite;
-      }
-    }
-  }
+  // &.btn-rgb {
+  //   --rgbshadowsize: -1px;
+  //   text-align: center;
+  //   line-height: 30px;
+  //   font-size: 16px;
+  //   text-transform: uppercase;
+  //   text-decoration: none;
+  //   background: $rainbow-grad90;
+  //   background-size: 400%;
+  //   border-radius: 0.25rem;
+  //   cursor: pointer;
+  //   box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
+  //     rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+  //   &::before {
+  //     content: '';
+  //     position: absolute;
+  //     top: var(--rgbshadowsize);
+  //     left: var(--rgbshadowsize);
+  //     right: var(--rgbshadowsize);
+  //     bottom: var(--rgbshadowsize);
+  //     z-index: -1;
+  //     background: $rainbow-grad90;
+  //     background-size: 400%;
+  //     box-shadow: 0 0 2px #13b3ff, 0 0 4px #13b3ff;
+  //     border-radius: 0.25rem;
+  //     opacity: 0;
+  //     transition: 0.3s;
+  //   }
+  //   &:hover {
+  //     animation: rgbscroll 8s linear infinite;
+	//     filter: blur;
+  //     &::before {
+  //       filter: blur(calc(var(--rgbshadowsize) + 10px));
+  //       opacity: 1;
+  //       animation: rgbscroll 8s linear infinite;
+  //     }
+  //   }
+  // }
   $btncolors: (
     "red": #ff0000,
     "main": colorscheme('lightblue'),
@@ -361,14 +355,11 @@ $border-radius: 0.25rem;
   @each $item, $color in $btncolors {
     &.btn-#{$item} {
       background: map-get($btncolors, $item);
-      position: relative;
       margin: 0.4rem;
-      color: colorscheme('white');
       border-radius: 0.25rem;
       border: 2px solid transparent;
       box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
         rgba(0,0,0,0.5), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
-      box-sizing: border-box;
       &:hover {
         @if map-get($btncolors, $item) == #ff0000 {
           .ban {
@@ -384,16 +375,16 @@ $border-radius: 0.25rem;
     }
   }
 }
-@keyframes rgbscroll {
-	0%
-	{
-		background-position: 0%;
-	}
-	100%
-	{
-		background-position: 400%;
-	}
-}
+// @keyframes rgbscroll {
+// 	0%
+// 	{
+// 		background-position: 0%;
+// 	}
+// 	100%
+// 	{
+// 		background-position: 400%;
+// 	}
+// }
 @keyframes pixel {
   0% {
       background-position-y: 0px;
@@ -430,7 +421,9 @@ $border-radius: 0.25rem;
         background-position-x: left;
     }
 }
-/*InputBox*/
+// ----------------------------
+// Input
+// ----------------------------
 .form-floating {
   &.custom {
     margin: 1rem;
@@ -465,135 +458,11 @@ $border-radius: 0.25rem;
     }
   }
 }
-/* Old Input Box */
-.inputBox {
-  position: relative;
-  vertical-align: middle;
-  margin-bottom: 40px;
-  width: 100%;
-  //background: colorscheme('cyan');
-  border-radius: calc(0.25rem - 1px);
-  input, textarea {
-    &::placeholder {
-      color: colorscheme('white');
-    }
-    position: relative;
-    background: transparent;
-    text-align: left;
-    vertical-align: middle;
-    outline: none;
-    width: 100%;
-    border: none;
-    color: colorscheme('white');
-    padding-bottom: 10px;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    border-bottom: 2px solid colorscheme('white');
-    &[type="submit"] {
-      padding: 1rem;
-      margin-top: 10px;
-      cursor: pointer;
-      background: colorscheme('lightblue');
-      font-size: 1rem;
-      width: 30%;
-      align-items: center;
-      text-align: center;
-      align-content: center;
-      &:focus, &:focus-within {
-          background: colorscheme('lime');
-          color: #111111;
-      }
-    }
-    &[type="file"] {
-      display: none;
-    }
-    &[type="checkbox"] {
-      opacity: 0;
-      position: absolute;
-      height: 0;
-      width: 0;
-      &:hover ~ .checkBox {
-        background: red;
-      }
-      &:checked ~ .checkBox {
-        border: 3px solid colorscheme('lime');
-      }
-      &:checked ~ .checkBox:after {
-        display: block;
-      }
-    }
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover, 
-    &:-webkit-autofill:focus, 
-    &:-webkit-autofill:active {
-      -webkit-text-fill-color: colorscheme('white');
-      background: rgba(0,0,0,0);
-      transition: background-color 5000s ease-in-out 0s;
-    }
-    &:focus ~ .spantxt,
-    &:focus-within ~ .spantxt,
-    &:active ~ .spantxt,
-    &:not(:placeholder-shown) ~ .spantxt {
-      transform: translateY(-24px);
-    }
-  }
-  .checkBox {
-    position: absolute;
-    left: 0;
-    padding: 0.5rem;
-    background: gold;
-    &::after {
-      position: absolute;
-      display: none;
-      content: '';
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
-  }
-  .custom {
-    display: inline-block;
-    border-bottom: 2px solid colorscheme('white');
-    padding: 6px 12px;
-    cursor: progress !important;
-  }
-  .spantxt {
-    position: absolute;
-    font-size: auto;
-    left: 0px;
-    display: inline-block;
-    pointer-events: none;
-    letter-spacing: 1px;
-    color: lighten(colorscheme('lime'), 20);
-    transition: all 0.2s;
-    outline: none;
-    border: none;
-  }
-  .indicator {
-    position: relative;
-    width: 0.75rem;
-    height: 0.75rem;
-    background: #555555;
-    float: right;
-    border-radius: 50%;
-    display: inline-block;
-    pointer-events: none;
-    transition: all 0.2s;
-    outline: none;
-    border: none;
-    &.valid {
-      background: #00ff00;
-      box-shadow: 0 0 0.25rem #00ff00, 0 0 0.50rem #00ff00, 0 0 1rem #00ff00;
-    }
-    &.invalid {
-      background: #ff0000;
-      box-shadow: 0 0 0.25rem #ff0000, 0 0 0.50rem #ff0000, 0 0 1rem #ff0000;
-    }
-  }
-}
+.dropdown-toggle { outline: 0; }
 
+// ----------------------------
+// Cards
+// ----------------------------
 .card {
   &.project {
     font-family: $titlefont;

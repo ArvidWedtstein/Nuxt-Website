@@ -4,13 +4,6 @@
     <div class="container">  
       <!--Jumbotron-->
       <div class="jumbotron bg-img">
-        <!--<div class="RGBborder">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          
-        </div>-->
         <p class="display-4 rgb-link unselectable">Welcome</p>
         <p id="pos" class="lead unselectable">to my website</p>
       </div>

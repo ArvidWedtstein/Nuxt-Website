@@ -45,6 +45,11 @@ export default {
         {
           src: `https://cdn.tiny.cloud/1/${process.env.TINY_MCE_API_KEY}/tinymce/5/tinymce.min.js`,
           referrerpolicy: "origin"
+        },
+        {
+          src: "https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js",
+          integrity: "sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D",
+          crossorigin: "anonymous"
         }
     ],
     srcDir: "./",

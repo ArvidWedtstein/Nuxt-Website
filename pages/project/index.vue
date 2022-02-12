@@ -47,7 +47,7 @@
         </div>
       </Modal>
       <!-- <div style="background: url('/images/rdo.jpg'); background-size: cover; background-repeat: no-repeat;"> -->
-      <div v-if="projects" class="row p-3"><!-- style="margin: 0rem 6rem !important; background: rgb(46, 46, 46);"-->
+      <div v-if="projects" class="row p-3" data-masonry='{"percentPosition": true }'><!-- style="margin: 0rem 6rem !important; background: rgb(46, 46, 46);"-->
         <div v-for="(project, x) in filterHiddenProjects" :key="x" class="col-md-6 flex-row">
           <ProjectsProjectcard :project="project"></ProjectsProjectcard>
         </div>
@@ -84,8 +84,9 @@ export default {
       ]
     };
   },
-  asyncData({ $config }) {
+  async asyncData({ $config }) {
     let baseURL = $config.baseURL;
+    let projects = await this.$store.state.projects.projects;
     return {
       baseURL
     }
@@ -201,7 +202,7 @@ export default {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;  
     },
-    filterHiddenProjects() {
+    filterHiddenProjects() { // Checks if user has permission to view the hidden projects
       if (this.isAuthenticated) {
         if (this.$store.getters.getUserInfo.role.permissions.includes('HIDE_PROJECT')) {
           return this.projects;
