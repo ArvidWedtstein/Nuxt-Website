@@ -52,7 +52,7 @@ export default {
       this.images = [];
       let img = [];
       let r = require.context("~/static/images/Photoshop/", true, /\.(jpg|png|PNG)\b/);
-      let r2 = require.context("~/static/images/Unity/", true, /\.(jpg)\b/);
+      let r2 = require.context("~/static/images/Unity/", true, /\.(jpg|png|PNG)\b/);
       await r.keys().forEach(key => (img.push({ pathLong: r(key), pathShort: key })));
       await r2.keys().forEach(key => (img.push({ pathLong: r2(key), pathShort: key })));
       for (let i = 0; i < 14; i++) {

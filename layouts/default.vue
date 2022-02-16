@@ -36,6 +36,7 @@ export default {
 
     const roles = await $axios.$get("/api/auth/getRoles");
     $store.commit('roles/init', roles.roles);
+    
   },
   async fetch() {
     const projects = await this.$axios.$get("/api/project/getProjects");
@@ -88,12 +89,12 @@ export default {
   async mounted() {
     
     //this.scroll()
-    this.enableTooltips()
-    this.getNewspost();
-    this.getUsers();
-    this.getRatings();
-    this.getProjects();
-    this.getRoles();
+    // this.enableTooltips()
+    // this.getNewspost();
+    // this.getUsers();
+    // this.getRatings();
+    // this.getProjects();
+    // this.getRoles();
   },
   computed: {
 
@@ -135,6 +136,7 @@ html {
     box-sizing: border-box;
 }
 body {
+  // cursor: url('~/static/images/ArvidLogo.png'), auto;	
   min-height: 100%;
   background: colorscheme('grey');
 }
@@ -254,7 +256,6 @@ a {
     }
   }
 }
-
 // ----------------------------
 // Buttons
 // ----------------------------
@@ -306,45 +307,6 @@ a {
       }
     }
   }
-  // https://codepen.io/nickmerritt/pen/YpVPbx
-  // &.btn-rgb {
-  //   --rgbshadowsize: -1px;
-  //   text-align: center;
-  //   line-height: 30px;
-  //   font-size: 16px;
-  //   text-transform: uppercase;
-  //   text-decoration: none;
-  //   background: $rainbow-grad90;
-  //   background-size: 400%;
-  //   border-radius: 0.25rem;
-  //   cursor: pointer;
-  //   box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px
-  //     rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
-  //   &::before {
-  //     content: '';
-  //     position: absolute;
-  //     top: var(--rgbshadowsize);
-  //     left: var(--rgbshadowsize);
-  //     right: var(--rgbshadowsize);
-  //     bottom: var(--rgbshadowsize);
-  //     z-index: -1;
-  //     background: $rainbow-grad90;
-  //     background-size: 400%;
-  //     box-shadow: 0 0 2px #13b3ff, 0 0 4px #13b3ff;
-  //     border-radius: 0.25rem;
-  //     opacity: 0;
-  //     transition: 0.3s;
-  //   }
-  //   &:hover {
-  //     animation: rgbscroll 8s linear infinite;
-	//     filter: blur;
-  //     &::before {
-  //       filter: blur(calc(var(--rgbshadowsize) + 10px));
-  //       opacity: 1;
-  //       animation: rgbscroll 8s linear infinite;
-  //     }
-  //   }
-  // }
   $btncolors: (
     "red": #ff0000,
     "main": colorscheme('lightblue'),
