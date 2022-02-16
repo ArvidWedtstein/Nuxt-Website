@@ -87,8 +87,8 @@
               <img src="/images/profilePicture.png" alt="mdo" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a v-if="isAuthenticated" class="dropdown-item" href="#">New project...</a></li>
+              <li><a v-if="isAuthenticated" class="dropdown-item" href="#">Settings</a></li>
               <li><NuxtLink v-if="hasPermission('MODIFY_USERS')" class="dropdown-item" to="/auth/admindashboard"><i class="fas fa-user-cog"/> Hacker Dashboard</NuxtLink></li>
               <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" :to="'/auth/profile/' + getUserInfo.id"><i class="far fa-user"/> Profile</NuxtLink></li>
               <li><hr class="dropdown-divider"></li>
@@ -97,16 +97,6 @@
               <li><NuxtLink v-if="!isAuthenticated" class="dropdown-item" to="/auth/login">Login</NuxtLink></li>
             </ul>
           </div>
-          <!-- <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="user" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="far fa-user"/></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li><NuxtLink v-if="!isAuthenticated" class="dropdown-item" to="/auth/register"><i class="far fa-user"/> Signup</NuxtLink></li>
-              <li><NuxtLink v-if="!isAuthenticated" class="dropdown-item" to="/auth/login"><img width="30px" src="/images/login.png"/> Login</NuxtLink></li>
-              <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" :to="'/auth/profile/' + getUserInfo.id"><i class="far fa-user"/> Profile</NuxtLink></li>
-              <li><NuxtLink v-if="hasPermission('MODIFY_USERS')" class="dropdown-item" to="/auth/admindashboard"><i class="fas fa-user-cog"/> Hacker Dashboard</NuxtLink></li>
-              <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" @click="logout" to="/"><img width="30px" src="/images/logout.png"/> Logout</NuxtLink></li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </nav>
