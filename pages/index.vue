@@ -1,4 +1,3 @@
-
 <template>
   <div id="apppage">
     <div class="container">  
