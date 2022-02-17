@@ -11,21 +11,16 @@
               <hr class="my-4">
               <p>I am currently studying: Informationtechnology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><a href="mailto: arvidw0310@gmail.com">Email: arvidw0310@gmail.com</a><br>Progamming languages/Frameworks that i have learnt in the past:</p>
               <div class="icon-bar icons">
-                <i class="python fab fa-python"></i>
-                <i class="js fab fa-js-square"></i>
-                <i class="html fab fa-html5"></i>
-                <i class="css fab fa-css3-alt"></i>
-                <i class="sass fab fa-sass"></i>
-                <i class="vue fab fa-vuejs"></i>
-                <!--<i class="ubuntu fab fa-ubuntu"></i>-->
+                <i class="php fab fa-php"/>
+                <i class="js fab fa-js-square"/>
+                <i class="html fab fa-html5"/>
+                <i class="css fab fa-css3-alt"/>
+                <i class="sass fab fa-sass"/>
+                <i class="vue fab fa-vuejs"/>
               </div>
               <br>
               <div class="icon-bar social">
-                <!--<a href="https://www.facebook.com/profile.php?id=100022120962542" target="_blank animate__bounceIn" class="facebook"><i class="fa fa-facebook"></i></a>--> 
                 <a href="https://github.com/ArvidWedtstein" title="My Github" target="_blank" class="bg-github"><i class="fab fa-github"/></a> 
-                <!--<a href="https://twitter.com/ArvidWedtstein" target="_blank" class="twitter animate__bounceIn"><i class="fa fa-twitter"></i></a> 
-                <a href="https://www.twitch.tv/bass_gamer03" target="_blank" class="twitch animate__bounceIn"><i class="fa fa-twitch"></i></a> 
-                <a href="https://steamcommunity.com/id/arviwed/" target="_blank" class="steam animate__bounceIn"><i class="fa fa-steam"></i></a>-->
                 <a href="https://discord.gg/5hMtxNW" target="_blank" class="bg-discord"><i class="fab fa-discord"/></a> 
                 <a href="https://www.linkedin.com/in/arvid-wedtstein-7498a21b7" target="_blank" class="bg-linkedin"><i class="fab fa-linkedin"/></a>
                 <a href="/CV.pdf" class="bg-cv animate__bounceIn">CV</a>
@@ -45,7 +40,7 @@
         </div>
       </div>
     </div>
-    <Review class="reviews" v-if="this.$store.state.ratings.ratings" :reviewuser="this.$store.state.ratings.ratings"></Review>
+    <Review class="reviews" v-if="this.$store.state.ratings.ratings.length > 0" :reviewuser="this.$store.state.ratings.ratings"/>
   </div>
 </template>
 
@@ -59,15 +54,6 @@ export default {
   transition: "slide-bottom",
   key(route) {
     return route.fullPath;
-  },
-  async asyncData({ $axios }) {
-    // const rev = await $axios.get("/api/project/getRatings").then(async (res) => {
-    //   return res.data.reviews
-    // });
-    // let reviews = rev.slice(0, 5);
-    // return {
-    //   reviews
-    // }
   },
   data() {
     return {

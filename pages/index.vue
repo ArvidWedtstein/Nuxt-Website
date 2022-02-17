@@ -2,7 +2,6 @@
 <template>
   <div id="apppage">
     <div class="container">  
-      <!--Jumbotron-->
       <div class="jumbotron bg-img">
         <p class="display-4 rgb-link unselectable">Welcome</p>
         <p id="pos" class="lead unselectable">to my website</p>
@@ -10,11 +9,7 @@
       <!--Hexagon layouten med bildene-->
       <HexGrid :images="images"></HexGrid>
       <Userreview></Userreview>
-      <!-- <div id="threecontainer">
-        <canvas id="threejs"></canvas>
-      </div> -->
     </div>
-    <!--<div id="particles-js"></div>-->
   </div>
 </template>
 
@@ -35,6 +30,7 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
 
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { RoughnessMipmapper } from 'three/examples/jsm/utils/RoughnessMipmapper.js';
+import Image from '../components/image.vue';
 export default {
   name: "App",
   transition: "slide-bottom",
@@ -280,7 +276,7 @@ export default {
       document.body.onscroll = moveCamera
     }
   },
-  components: { Userreview },
+  components: { Userreview, Image },
 }
 
 </script>
