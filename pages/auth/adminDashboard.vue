@@ -9,33 +9,33 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
+          <a data-bs-toggle="tab" href="#" class="nav-link active" aria-current="page">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
             Home
           </a>
         </li>
-        <li>
-          <a href="#" class="nav-link text-white">
+        <li class="nav-item">
+          <a data-bs-toggle="tab" href="#tab1" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
             Dashboard
           </a>
         </li>
-        <li>
-          <a href="#" class="nav-link text-white">
+        <li class="nav-item">
+          <a data-bs-toggle="tab" href="#tab2" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-            Orders
+            Users
           </a>
         </li>
-        <li>
-          <a href="#" class="nav-link text-white">
+        <li class="nav-item">
+          <a data-bs-toggle="tab" href="#tab3" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-            Products
+            Ratings
           </a>
         </li>
-        <li>
-          <a href="#" class="nav-link text-white">
+        <li class="nav-item">
+          <a data-bs-toggle="tab" href="#tab4" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-            Customers
+            Roles
           </a>
         </li>
       </ul>
@@ -54,12 +54,6 @@
         </ul>
       </div>
     </div>
-    <ul class="nav nav-tabs nav-justified topnavbar">
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab1" class="nav-link link active">Dashboard</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab2" class="nav-link link">Users</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab3" class="nav-link link">Ratings</a></li>
-      <li class="nav-item"><a data-bs-toggle="tab" href="#tab4" class="nav-link link">Roles</a></li>
-    </ul>
 
     <div class="tab-content">
       <div id="tab1" class="tab-pane fade active show">
