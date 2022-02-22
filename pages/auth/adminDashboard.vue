@@ -1,144 +1,140 @@
 
 <template>
   <div id="admin-dashboard">
-    <div class="row">
-      <div class="col-2">
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-red-500" style="width: 280px;">
-          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-4">Sidebars</span>
-          </a>
-          <hr>
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-              <a data-bs-toggle="tab" href="#" class="nav-link active" aria-current="page">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a data-bs-toggle="tab" href="#tab1" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a data-bs-toggle="tab" href="#tab2" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                Users
-              </a>
-            </li>
-            <li class="nav-item">
-              <a data-bs-toggle="tab" href="#tab3" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                Ratings
-              </a>
-            </li>
-            <li class="nav-item">
-              <a data-bs-toggle="tab" href="#tab4" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                Roles
-              </a>
-            </li>
-          </ul>
-          <hr>
-          <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-              <strong>mdo</strong>
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-red-500" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">Sidebars</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a data-bs-toggle="tab" href="#" class="nav-link active" aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+              Home
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-          </div>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="tab" href="#tab1" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="tab" href="#tab2" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="tab" href="#tab3" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+              Ratings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a data-bs-toggle="tab" href="#tab4" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+              Roles
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>mdo</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
         </div>
       </div>
-      <div class="col-12">
-        <div class="tab-content">
-          <div id="tab1" class="tab-pane fade active show">
-            <div class="jumbotron">
-              <h3 class="display-4">Admin Dashboard</h3>
-              <div class="row">
-                <div class="col-sm-4 d-flex">
-                  <div class="infobox rad-shadow">
-                    <div class="ms-3">
-                      <div class="d-flex align-items-center">
-                        <h3 class="mb-0">{{ users.length }}</h3><span class="d-block ms-2">Users</span>
-                      </div>
-                      <p class="mb-0">Now that's a lotta users</p>
+      <div class="tab-content">
+        <div id="tab1" class="tab-pane fade active show">
+          <div class="jumbotron">
+            <h3 class="display-4">Admin Dashboard</h3>
+            <div class="row">
+              <div class="col-sm-4 d-flex">
+                <div class="infobox rad-shadow">
+                  <div class="ms-3">
+                    <div class="d-flex align-items-center">
+                      <h3 class="mb-0">{{ users.length }}</h3><span class="d-block ms-2">Users</span>
                     </div>
+                    <p class="mb-0">Now that's a lotta users</p>
                   </div>
                 </div>
-                <div class="col-sm-4 d-flex">
-                  <canvas class="chart rad-shadow" id="rolesChart"></canvas>
-                </div>
-                <div class="col-sm-4 d-flex">
-                  <canvas class="chart rad-shadow" id="postsChart"></canvas>
-                </div>
               </div>
-              <div class='btn btn-corner'>
-                <span class=''>test</span>
-                <div class='corner-cover'></div>
+              <div class="col-sm-4 d-flex">
+                <canvas class="chart rad-shadow" id="rolesChart"></canvas>
+              </div>
+              <div class="col-sm-4 d-flex">
+                <canvas class="chart rad-shadow" id="postsChart"></canvas>
               </div>
             </div>
+            <div class='btn btn-corner'>
+              <span class=''>test</span>
+              <div class='corner-cover'></div>
+            </div>
           </div>
-          <div id="tab2" class="tab-pane fade">
-            <div class="users">
-              <div class="nav">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-filter"/></span>
-                  </div>
-                  <input type="text" v-model="filter" name='search' class="form-control" placeholder="" aria-label="" @change="search">
+        </div>
+        <div id="tab2" class="tab-pane fade">
+          <div class="users">
+            <div class="nav">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-filter"/></span>
                 </div>
-                <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
-                  <div class="name">
-                    <img v-if="user.profileimg" class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
-                    <img v-else class="img-fluid" width="50px" src="/images/logo.svg"/>
-                    <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
-                  </div>
-                  <hr class="line">
-                  <div class="role">
-                    <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
-                  </div>
-                </div>
+                <input type="text" v-model="filter" name='search' class="form-control" placeholder="" aria-label="" @change="search">
               </div>
-              <div class="tab-content">
-                <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
-                  <AdmindashboardUserView :user="user" :roles="roles"></AdmindashboardUserView>
+              <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
+                <div class="name">
+                  <img v-if="user.profileimg" class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
+                  <img v-else class="img-fluid" width="50px" src="/images/logo.svg"/>
+                  <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
+                </div>
+                <hr class="line">
+                <div class="role">
+                  <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
                 </div>
               </div>
             </div>
-          </div>
-          <div id="tab3" class="tab-pane fade">
-            <div class="jumbotron">
-              <h3 class="display-4">Reviews</h3>
-              <div class="row align-items-center justify-content-center">
-                <div class="col-sm-4 align-self-center">
-                  <canvas class="chart rad-shadow" id="reviewChart"></canvas>
-                </div>
+            <div class="tab-content">
+              <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
+                <AdmindashboardUserView :user="user" :roles="roles"></AdmindashboardUserView>
               </div>
             </div>
-            <AdmindashboardReviewlist :reviews="reviews"></AdmindashboardReviewlist>
           </div>
-          <div id="tab4" class="tab-pane fade">
-            <AdmindashboardCreaterolefield></AdmindashboardCreaterolefield>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-              <div v-for="(role, x) in roles" :key="x" class="col flex-row card-group">
-                <div class="card mb-4 h-md-250 project">
-                  <div class="card-header">{{ role.name }}</div>
-                  <div class="card-body d-flex flex-column align-items-start">
-                    <p class="card-text mb-auto h4 btn bg-white"><i :style="'color: ' + role.color" :class="role.icon"/></p>
-                    <ul class="list-group list-group-flush custom">
-                      <li class="list-group-item" v-for="(perm, l) in role.permissions" :key="l">{{perm}}</li>
-                    </ul>
-                  </div>
-                  <div class="card-footer text-muted">test</div>
+        </div>
+        <div id="tab3" class="tab-pane fade">
+          <div class="jumbotron">
+            <h3 class="display-4">Reviews</h3>
+            <div class="row align-items-center justify-content-center">
+              <div class="col-sm-4 align-self-center">
+                <canvas class="chart rad-shadow" id="reviewChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <AdmindashboardReviewlist :reviews="reviews"></AdmindashboardReviewlist>
+        </div>
+        <div id="tab4" class="tab-pane fade">
+          <AdmindashboardCreaterolefield></AdmindashboardCreaterolefield>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div v-for="(role, x) in roles" :key="x" class="col flex-row card-group">
+              <div class="card mb-4 h-md-250 project">
+                <div class="card-header">{{ role.name }}</div>
+                <div class="card-body d-flex flex-column align-items-start">
+                  <p class="card-text mb-auto h4 btn bg-white"><i :style="'color: ' + role.color" :class="role.icon"/></p>
+                  <ul class="list-group list-group-flush custom">
+                    <li class="list-group-item" v-for="(perm, l) in role.permissions" :key="l">{{perm}}</li>
+                  </ul>
                 </div>
+                <div class="card-footer text-muted">test</div>
               </div>
             </div>
           </div>
@@ -485,7 +481,7 @@ $maincolors: (
 }
 $border-radius: 0.25rem;
 #admin-dashboard {
-  
+  height: 100%;
   #tab2 {
     .users {
       overflow: hidden;
