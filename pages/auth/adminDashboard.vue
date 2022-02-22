@@ -489,29 +489,29 @@ $border-radius: 0.25rem;
       flex-direction: row;
       .tab-content {
         margin: 4rem;
-        // width: 100%;
+        width: 100%;
         .permlist {
           list-style-type: none;
           width: 10vw;
         }
       }
       .nav {
-        &::-webkit-scrollbar {
-          width: 0;  /* Remove scrollbar space */
-          background: transparent;  /* Optional: just make scrollbar invisible */
-        }
-        //background: colorscheme('lightblue');
-        border: 1px solid colorscheme('white');
-        padding: 1rem;
-        padding-right: 2rem;
-        margin-top: 0;
-        width: 20rem;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        height: 45rem;
-        overflow-x: hidden;
-        flex-direction: column;
-        flex-wrap: nowrap;
+        // &::-webkit-scrollbar {
+        //   width: 0;  /* Remove scrollbar space */
+        //   background: transparent;  /* Optional: just make scrollbar invisible */
+        // }
+        // //background: colorscheme('lightblue');
+        // border: 1px solid colorscheme('white');
+        // padding: 1rem;
+        // padding-right: 2rem;
+        // margin-top: 0;
+        // width: 20rem;
+        // overflow-y: scroll;
+        // -webkit-overflow-scrolling: touch;
+        // height: 45rem;
+        // overflow-x: hidden;
+        // flex-direction: column;
+        // flex-wrap: nowrap;
         .users-list {
           background: colorscheme('blue');
           padding: 0.5rem 1rem;
