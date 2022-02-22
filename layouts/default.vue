@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <Navbar/>
-    <Nuxt keep-alive/>
+    <Nuxt/>
     <slot/>
     <Snackbar></Snackbar>
     <!-- <ArvidFooter class="footer"></ArvidFooter> -->

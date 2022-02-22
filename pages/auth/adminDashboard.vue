@@ -1,6 +1,6 @@
 
 <template>
-  <div id="admin-dashboard" class="container">
+  <div id="admin-dashboard">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -54,86 +54,88 @@
         </ul>
       </div>
     </div>
-    <div class="tab-content">
-      <div id="tab1" class="tab-pane fade active show">
-        <div class="jumbotron">
-          <h3 class="display-4">Admin Dashboard</h3>
-          <div class="row">
-            <div class="col-sm-4 d-flex">
-              <div class="infobox rad-shadow">
-                <div class="ms-3">
-                  <div class="d-flex align-items-center">
-                    <h3 class="mb-0">{{ users.length }}</h3><span class="d-block ms-2">Users</span>
+    <div class="container-fluid">
+      <div class="tab-content">
+        <div id="tab1" class="tab-pane fade active show">
+          <div class="jumbotron">
+            <h3 class="display-4">Admin Dashboard</h3>
+            <div class="row">
+              <div class="col-sm-4 d-flex">
+                <div class="infobox rad-shadow">
+                  <div class="ms-3">
+                    <div class="d-flex align-items-center">
+                      <h3 class="mb-0">{{ users.length }}</h3><span class="d-block ms-2">Users</span>
+                    </div>
+                    <p class="mb-0">Now that's a lotta users</p>
                   </div>
-                  <p class="mb-0">Now that's a lotta users</p>
+                </div>
+              </div>
+              <div class="col-sm-4 d-flex">
+                <canvas class="chart rad-shadow" id="rolesChart"></canvas>
+              </div>
+              <div class="col-sm-4 d-flex">
+                <canvas class="chart rad-shadow" id="postsChart"></canvas>
+              </div>
+            </div>
+            <div class='btn btn-corner'>
+              <span class=''>test</span>
+              <div class='corner-cover'></div>
+            </div>
+          </div>
+        </div>
+        <div id="tab2" class="tab-pane fade">
+          <div class="users">
+            <div class="nav">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-filter"/></span>
+                </div>
+                <input type="text" v-model="filter" name='search' class="form-control" placeholder="" aria-label="" @change="search">
+              </div>
+              <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
+                <div class="name">
+                  <img v-if="user.profileimg" class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
+                  <img v-else class="img-fluid" width="50px" src="/images/logo.svg"/>
+                  <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
+                </div>
+                <hr class="line">
+                <div class="role">
+                  <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
                 </div>
               </div>
             </div>
-            <div class="col-sm-4 d-flex">
-              <canvas class="chart rad-shadow" id="rolesChart"></canvas>
-            </div>
-            <div class="col-sm-4 d-flex">
-              <canvas class="chart rad-shadow" id="postsChart"></canvas>
-            </div>
-          </div>
-          <div class='btn btn-corner'>
-            <span class=''>test</span>
-            <div class='corner-cover'></div>
-          </div>
-        </div>
-      </div>
-      <div id="tab2" class="tab-pane fade">
-        <div class="users">
-          <div class="nav">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-filter"/></span>
+            <div class="tab-content">
+              <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
+                <AdmindashboardUserView :user="user" :roles="roles"></AdmindashboardUserView>
               </div>
-              <input type="text" v-model="filter" name='search' class="form-control" placeholder="" aria-label="" @change="search">
-            </div>
-            <div v-for="(user, i) in filteredList" :key="i" class="users-list" data-bs-toggle="tab" :href="'#tab' + user._id" :class="{active: i === 0}">
-              <div class="name">
-                <img v-if="user.profileimg" class="img-fluid" width="50px" :src="baseURL + user.profileimg"/>
-                <img v-else class="img-fluid" width="50px" src="/images/logo.svg"/>
-                <p class="badge bg-dark rounded-pill">{{ user.name }}</p>
-              </div>
-              <hr class="line">
-              <div class="role">
-                <p class="badge rounded-pill" :class="'bg-' + user.role.name">{{ user.role.name }}</p>
-              </div>
-            </div>
-          </div>
-          <div class="tab-content">
-            <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
-              <AdmindashboardUserView :user="user" :roles="roles"></AdmindashboardUserView>
             </div>
           </div>
         </div>
-      </div>
-      <div id="tab3" class="tab-pane fade">
-        <div class="jumbotron">
-          <h3 class="display-4">Reviews</h3>
-          <div class="row align-items-center justify-content-center">
-            <div class="col-sm-4 align-self-center">
-              <canvas class="chart rad-shadow" id="reviewChart"></canvas>
+        <div id="tab3" class="tab-pane fade">
+          <div class="jumbotron">
+            <h3 class="display-4">Reviews</h3>
+            <div class="row align-items-center justify-content-center">
+              <div class="col-sm-4 align-self-center">
+                <canvas class="chart rad-shadow" id="reviewChart"></canvas>
+              </div>
             </div>
           </div>
+          <AdmindashboardReviewlist :reviews="reviews"></AdmindashboardReviewlist>
         </div>
-        <AdmindashboardReviewlist :reviews="reviews"></AdmindashboardReviewlist>
-      </div>
-      <div id="tab4" class="tab-pane fade">
-        <AdmindashboardCreaterolefield></AdmindashboardCreaterolefield>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-          <div v-for="(role, x) in roles" :key="x" class="col flex-row card-group">
-            <div class="card mb-4 h-md-250 project">
-              <div class="card-header">{{ role.name }}</div>
-              <div class="card-body d-flex flex-column align-items-start">
-                <p class="card-text mb-auto h4 btn bg-white"><i :style="'color: ' + role.color" :class="role.icon"/></p>
-                <ul class="list-group list-group-flush custom">
-                  <li class="list-group-item" v-for="(perm, l) in role.permissions" :key="l">{{perm}}</li>
-                </ul>
+        <div id="tab4" class="tab-pane fade">
+          <AdmindashboardCreaterolefield></AdmindashboardCreaterolefield>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div v-for="(role, x) in roles" :key="x" class="col flex-row card-group">
+              <div class="card mb-4 h-md-250 project">
+                <div class="card-header">{{ role.name }}</div>
+                <div class="card-body d-flex flex-column align-items-start">
+                  <p class="card-text mb-auto h4 btn bg-white"><i :style="'color: ' + role.color" :class="role.icon"/></p>
+                  <ul class="list-group list-group-flush custom">
+                    <li class="list-group-item" v-for="(perm, l) in role.permissions" :key="l">{{perm}}</li>
+                  </ul>
+                </div>
+                <div class="card-footer text-muted">test</div>
               </div>
-              <div class="card-footer text-muted">test</div>
             </div>
           </div>
         </div>
