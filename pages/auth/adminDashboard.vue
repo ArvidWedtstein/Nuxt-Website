@@ -1,7 +1,7 @@
 
 <template>
   <div id="admin-dashboard" class="container-fluid">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <div id="sidebarSupportedContent" class="collapse navbar-collapse d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         <span class="fs-4">Sidebars</span>
@@ -54,7 +54,7 @@
         </ul>
       </div>
     </div>
-
+    <button data-bs-toggle="collapseSidebar" data-bs-target="#sidebarSupportedContent" aria-controls="sidebarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Toggle</button>
     <div class="tab-content">
       <div id="tab1" class="tab-pane fade active show">
         <div class="jumbotron">
