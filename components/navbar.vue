@@ -73,7 +73,7 @@
               </NuxtLink>
             </li> -->
             <li class="nav-item">
-              <NuxtLink class="nav-link link text-white" to="/blog">
+              <NuxtLink class="nav-link link" to="/blog">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#news"/></svg>
                 News
               </NuxtLink>
