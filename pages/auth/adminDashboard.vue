@@ -4,7 +4,7 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4">Sidebarss</span>
+        <span class="fs-4">Sidebars</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
@@ -480,6 +480,7 @@ $maincolors: (
 }
 $border-radius: 0.25rem;
 #admin-dashboard {
+  
   #tab2 {
     .users {
       overflow: hidden;
@@ -561,29 +562,29 @@ $border-radius: 0.25rem;
       }
     }
   }
-  .nav {
-    &.topnavbar {
-      margin-bottom: 0;
-      .nav-item {
-        margin: 0rem 0;
-        padding: 0;
-        .nav-link {
-          padding: 1rem 0;
-          color: colorscheme('white');
-          //border-top: 2px solid transparent;
-          border-radius: none;
-          &.active, &.show {
-            background: none;
-            border: none;
-            color: colorscheme('lime');
-            border-top: 2px solid colorscheme('lime');
-            border-left: 2px solid colorscheme('lime');
-            border-right: 2px solid colorscheme('lime');
-          }
-        }
-      }
-    }
-  }
+  // .nav {
+  //   &.topnavbar {
+  //     margin-bottom: 0;
+  //     .nav-item {
+  //       margin: 0rem 0;
+  //       padding: 0;
+  //       .nav-link {
+  //         padding: 1rem 0;
+  //         color: colorscheme('white');
+  //         //border-top: 2px solid transparent;
+  //         border-radius: none;
+  //         &.active, &.show {
+  //           background: none;
+  //           border: none;
+  //           color: colorscheme('lime');
+  //           border-top: 2px solid colorscheme('lime');
+  //           border-left: 2px solid colorscheme('lime');
+  //           border-right: 2px solid colorscheme('lime');
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   .chart {
     background: colorscheme('blue');
     border-radius: 0.5rem / 0.5rem;
