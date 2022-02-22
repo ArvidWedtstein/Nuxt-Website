@@ -212,7 +212,6 @@ a {
   }
   color: colorscheme("lime");
   text-decoration: none;
-  background-color: none !important;
   &.link {
     &.active, &.nuxt-link-exact-active {
       background-size: 300% 2px;

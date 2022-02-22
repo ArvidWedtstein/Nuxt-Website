@@ -2,7 +2,7 @@
 <template>
   <div id="admin-dashboard">
     <div class="row">
-      <div class="col-sm">
+      <div class="col-4">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-red-500" style="width: 280px;">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12">
+      <div class="col-8">
         <div class="tab-content">
           <div id="tab1" class="tab-pane fade active show">
             <div class="jumbotron">
