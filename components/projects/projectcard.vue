@@ -56,7 +56,7 @@ export default {
   methods: {
     async langcolor(language) {
       const langcolors = await this.$content('languagecolors').fetch();
-      console.log(langcolors[language] || "#ffffff")
+      // console.log(langcolors[language] || "#ffffff")
       return langcolors[language] || "#ffffff"
     },
     async hideProject(project) {
