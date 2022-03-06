@@ -25,7 +25,7 @@
         </div>
       </div> -->
       <div v-if="project.language.length > 0" class="btn-group">
-        <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :style="'background-color: '+langcolor(lang.name)+' !important;'" class="langtags btn"> <!--bg-'+ replace(lang.name)-->
+        <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :style="'background: '+langcolor(lang.name)+' !important;'" class="langtags btn"> <!--bg-'+ replace(lang.name)-->
         {{lang.name}} <span>{{lang.percent}}%</span>
         </div>
       </div>
