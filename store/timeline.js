@@ -6,9 +6,8 @@ export const state = () => ({
 })
   
 export const mutations = {
-  async init(state) {
-    const timeline = await axios.get("/api/project/getTimelineEvents");
-    state.timeline = timeline.timeline
+  async init(state, data) {
+    state.timeline = data.timeline
   },
   async add(state, data) {
     state.timeline.push(data)

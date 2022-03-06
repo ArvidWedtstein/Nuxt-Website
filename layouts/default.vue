@@ -54,7 +54,8 @@ export default {
     const roles = await this.$axios.$get("/api/auth/getRoles");
     this.$store.commit('roles/init', roles.roles);
 
-    this.$store.commit('timeline/init');
+    const timeline = await axios.get("/api/project/getTimelineEvents");
+    this.$store.commit('timeline/init', timeline);
     console.log('fetched')
   },
   methods: {

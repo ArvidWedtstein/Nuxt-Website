@@ -98,28 +98,28 @@ export default {
       },
       timeline: [
         {
-          message: "Praksis",
+          name: "Praksis",
           description: "Begynte på Appex som praksiselev!",
           date: "01/09/2021",
-          dateend: "today"
+          enddate: "today"
         },
         {
-          message: "VG2",
+          name: "VG2",
           description: "Begynte på Informasjonsteknologi og Media VG2",
-          date: "16/08/2021",
-          dateend: "24/06/2022"
+          startdate: "16/08/2021",
+          enddate: "24/06/2022"
         },
         {
-          message: "VG1",
+          name: "VG1",
           description: "Begynte på Informasjonsteknologi og Media VG1. Dette året lærte jeg om Photoshop, Illustrator osv",
-          date: "16/08/2020",
-          dateend: "24/06/2021"
+          startdate: "16/08/2020",
+          enddate: "24/06/2021"
         },
         {
-          message: "Grunnskole",
+          name: "Grunnskole",
           description: "Tja, de første 10 årene med grunnskole i guess",
-          date: "16/08/2010",
-          dateend: "24/06/2020"
+          startdate: "16/08/2010",
+          enddate: "24/06/2020"
         }
       ]
     };
