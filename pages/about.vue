@@ -30,13 +30,40 @@
         </div>
         <div class="col-xl-6 about">
           <div class="aboutMe col-md-10">
-            <!--Unsavable image-->
             <button class="profileimage" v-on:click="play"><object class="img-fluid" id="profile" v-bind:class="{shake: ragemode}" data="/images/profilePicture.png"></object></button>
             <audio ref="audioElm" src="/lefishe.mp3"></audio>
           </div>
         </div>
         <div class="col-xl-12 about">
+          <button v-if="userPerm('MODIFY_PROJECTS')" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">Create New Timeline Event</button>
           <Timeline :timeline="timeline"/>
+          <Modal>
+            <div slot="header">
+              <h5 class="modal-title" id="modalLabel">New Timeline Event</h5>
+            </div>
+            <div slot="body">
+              <div class="form-floating custom">
+                <input type="text" class="form-control shadow-none" id="timelineeventname" v-model="timelineevent.name">
+                <label for="timelineeventname">Event Name</label>
+              </div>
+              <div class="form-floating custom">
+                <input type="text" class="form-control shadow-none" id="timelineeventdescription" v-model="timelineevent.description">
+                <label for="timelineeventdescription">Event Description</label>
+              </div>
+              <div class="form-floating custom">
+                <input type="datetime" class="form-control shadow-none" id="timelineeventstartdate" v-model="timelineevent.startdate">
+                <label for="timelineeventstartdate">Event Start Date</label>
+              </div>
+              <div class="form-floating custom">
+                <input type="datetime" class="form-control shadow-none" id="timelineeventenddate" v-model="timelineevent.enddate">
+                <label for="timelineeventenddate">Event End Date</label>
+              </div>
+            </div>
+            <div slot="footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" v-on:click="createtimelineevent" class="btn btn-main" data-bs-dismiss="modal">Create Timeline Event</button>
+            </div>
+          </Modal>
         </div>
       </div>
     </div>
@@ -47,6 +74,8 @@
 
 <script lang="text/javascript">
 import Review from '../components/review.vue';
+import Timeline from '../components/timeline.vue';
+import Modal from '../components/Modal.vue';
 const axios = require('axios');
 const moment = require('moment');
 export default {
@@ -60,6 +89,12 @@ export default {
       //reviews: [],
       ragemode: false,
       ragemode2: false,
+      timelineevent: {
+        name: "",
+        description: "",
+        startdate: "",
+        enddate: "",
+      },
       timeline: [
         {
           message: "Praksis",
@@ -96,11 +131,26 @@ export default {
       //   this.ragemode2 = true;
       // }, 9000);
     },
+    async createtimelineevent() {
+
+  
+      const timelineevent = await this.$axios.$post("api/project/newTimelineEvent", this.timelineevent).then((res) => {
+        this.showSnackbar(res.message, 'success');
+        this.$store.commit('timeline/add', res.data.timeline.timeline)
+        console.log(res.data)
+      })
+      console.log(timelineevent)
+      // this.$nuxt.refresh()
+      this.timelineevent.name = ''
+      this.timelineevent.description = ''
+      this.timelineevent.startdate = ""
+      this.timelineevent.enddate = ""
+    },
   },
   mounted() {
 
   },
-  components: { Review }
+  components: { Review, Timeline, Modal }
 }
 </script>
 <style lang="scss" scoped>

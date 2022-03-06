@@ -66,6 +66,7 @@
 <script lang="text/javascript">
 import Timeline from '../../components/timeline.vue';
 import PainOMeter from '../../components/pain-o-meter.vue';
+import ProjectsProjectcard from '../../components/projects/projectcard.vue';
 import Modal from '../../components/Modal.vue';
 const moment = require('moment');
 const axios = require('axios');
@@ -213,7 +214,7 @@ export default {
     },
 
   },
-  components: { Timeline, PainOMeter, Modal }
+  components: { Timeline, PainOMeter, Modal, ProjectsProjectcard }
 }
 
 

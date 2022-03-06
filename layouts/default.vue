@@ -22,20 +22,20 @@ export default {
     ArvidFooter
   },
   async asyncData({ $axios, $store }) {
-    const projects = await $axios.$get("/api/project/getProjects");
-    $store.commit('projects/init', projects.projects);
+    // const projects = await $axios.$get("/api/project/getProjects");
+    // $store.commit('projects/init', projects.projects);
 
-    const articles = await $axios.$get("/api/news/getnewsposts");
-    $store.commit('newspost/init', articles.posts);
+    // const articles = await $axios.$get("/api/news/getnewsposts");
+    // $store.commit('newspost/init', articles.posts);
 
-    const users = await $axios.$get("/api/auth/allusers");
-    $store.commit('users/init', users.users);
+    // const users = await $axios.$get("/api/auth/allusers");
+    // $store.commit('users/init', users.users);
 
-    const reviews = await $axios.$get("/api/project/getRatings");
-    $store.commit('ratings/init', reviews.reviews);
+    // const reviews = await $axios.$get("/api/project/getRatings");
+    // $store.commit('ratings/init', reviews.reviews);
 
-    const roles = await $axios.$get("/api/auth/getRoles");
-    $store.commit('roles/init', roles.roles);
+    // const roles = await $axios.$get("/api/auth/getRoles");
+    // $store.commit('roles/init', roles.roles);
     
   },
   async fetch() {
@@ -54,6 +54,7 @@ export default {
     const roles = await this.$axios.$get("/api/auth/getRoles");
     this.$store.commit('roles/init', roles.roles);
 
+    this.$store.commit('timeline/init');
     console.log('fetched')
   },
   methods: {
