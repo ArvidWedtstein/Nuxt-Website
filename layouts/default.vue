@@ -557,7 +557,11 @@ $iconcolors: (
   "objective-c": #1876D8,
   "c": #5766B6,
   "php": #687AAD,
-  "hack": #808080
+  "hack": #808080,
+  "cplusplus": #f34b7d,
+  "csharp": #178600,
+  "go": #00ADD8,
+  "procfile": #878787,
 );
 @each $item, $color in $iconcolors {
   .bg-#{$item} {
