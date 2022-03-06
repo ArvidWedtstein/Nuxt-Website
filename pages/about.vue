@@ -124,6 +124,15 @@ export default {
     };
   },
   methods: {
+    userPerm(perm) {
+      if (this.isAuthenticated) {
+        if (this.$store.getters.getUserInfo.role.permissions.includes(perm)) {
+          return true;  
+        } else {
+          return false;
+        }
+      }
+    },
     play: function (event) {
       // this.$refs.audioElm.play();
       // this.ragemode = true;
