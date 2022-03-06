@@ -125,13 +125,13 @@ export default {
         moment.locale("en");
         if (project.github) {
           unsortedTimeline.push({
-            message: project.name,
+            name: project.name,
             description: project.description,
-            date: project.github.created_at
+            startdate: project.github.created_at
           })
         }
       })
-      const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.date) - new moment(a.date))
+      const sortedTimeline = unsortedTimeline.sort((a,b) => new moment(b.startdate) - new moment(a.startdate))
       this.timeline = timeline.concat(sortedTimeline);
       this.projects = projects;
     },
