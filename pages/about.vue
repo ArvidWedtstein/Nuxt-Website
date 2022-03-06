@@ -150,8 +150,8 @@ export default {
       })
       console.log(timelineevent)
       // this.$nuxt.refresh()
-      this.timelineevent.name = ''
-      this.timelineevent.description = ''
+      this.timelineevent.name = ""
+      this.timelineevent.description = ""
       this.timelineevent.startdate = ""
       this.timelineevent.enddate = ""
     },
