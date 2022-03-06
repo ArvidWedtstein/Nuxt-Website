@@ -36,7 +36,7 @@
         </div>
         <div class="col-xl-12 about">
           <button v-if="userPerm('MODIFY_PROJECTS')" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">Create New Timeline Event</button>
-          <Timeline :timeline="timeline"/>
+          <Timeline :timeline="this.$store.state.timeline.timeline"/>
           <Modal>
             <div slot="header">
               <h5 class="modal-title" id="modalLabel">New Timeline Event</h5>

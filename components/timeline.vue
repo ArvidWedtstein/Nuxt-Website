@@ -4,8 +4,8 @@
             <li v-for="(event, i) in timeline" :key="i">
                 <div :class="{'direction-l': i % 2 === 0, 'direction-r': i % 2 !== 0}">
                     <div class="flag-wrapper">
-                        <span class="flag">{{event.message}}</span>
-                        <span class="time-wrapper"><span class="time">{{date(event.date)}}<span v-if="event.dateend"> - {{event.dateend}}</span></span></span>
+                        <span class="flag">{{event.name}}</span>
+                        <span class="time-wrapper"><span class="time">{{date(event.startdate)}}<span v-if="event.enddate"> - {{event.enddate}}</span></span></span>
                     </div>
                     <div class="desc">{{event.description}}</div>
                 </div>

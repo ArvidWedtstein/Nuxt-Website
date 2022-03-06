@@ -407,6 +407,7 @@ a {
       &:-webkit-autofill:active {
           transition: background-color 5000s ease-in-out 0s;
           -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+          box-shadow: 0 0 0px 1000px #fff inset;
           -webkit-text-fill-color: colorscheme('white');
       }
       background: none !important;
@@ -551,11 +552,9 @@ $iconcolors: (
   "ubuntu": #D24413,
   "python": #dddddd,
   "aspdotnet": #3460A6,
-  "csharp": #652076,
   "assembly": #E11F48,
   "makefile": #F27C26,
   "objective-c": #1876D8,
-  "cplusplus": #6092C7,
   "c": #5766B6,
   "php": #687AAD,
   "hack": #808080
