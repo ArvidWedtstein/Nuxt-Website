@@ -25,7 +25,7 @@
         </div>
       </div> -->
       <div v-if="project.language.length > 0" class="btn-group">
-        <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :style="'background-color: '+langcolor(lang.name)" :class="'langtags btn bg-'+ replace(lang.name)">
+        <div v-for="(lang, l) in project.language.slice(0, 3)" :key="l" type="button" :style="'background-color: '+langcolor(lang.name)" class="'langtags btn"> <!--bg-'+ replace(lang.name)-->
         {{lang.name}} <span>{{lang.percent}}%</span>
         </div>
       </div>
@@ -56,9 +56,7 @@ export default {
   methods: {
     async langcolor(language) {
       const langcolors = await this.$content('languagecolors').fetch();
-      console.log(language)
-      console.log(langcolors[language])
-      return langcolors[language]
+      return langcolors[language] || "#ffffff"
     },
     async hideProject(project) {
       this.$store.commit('projects/hide', project._id);
