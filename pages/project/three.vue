@@ -15,7 +15,7 @@ import THREEx from "three/examples/jsm/interactive/InteractiveGroup";
 import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflare";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js';
-
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { RoughnessMipmapper } from 'three/examples/jsm/utils/RoughnessMipmapper.js';
 //import THREEx from "~/threex.domevents";
