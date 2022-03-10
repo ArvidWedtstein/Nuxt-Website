@@ -189,7 +189,7 @@ export default {
       }
       const render = () => {
         const delta = clock.getDelta();
-        sword.rotatation.z += 0.01;
+        sword.rotateZ(0.01);
 				controls.update( delta );
 				renderer.render( scene, camera );
         //effect.render( scene, camera );
