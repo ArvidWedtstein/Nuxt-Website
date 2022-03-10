@@ -30,7 +30,7 @@ export default {
       let scene, pointer, raycaster, camera, renderer, controls, model, hemiLight, light, manager, gridHelper, stats, container, clock;
       let gltfloader, objloader, textureLoader, roughnessMipmapper, effect;
       let house, cabinet, sword;
-      async function init() {
+      const init = (async() => {
 
         // Define Loaders
         manager = new THREE.LoadingManager();
@@ -55,9 +55,6 @@ export default {
 
         stats = new Stats();
 				container.appendChild( stats.dom );
-
-
-  
 
         /* Lights */
 
@@ -180,7 +177,7 @@ export default {
         
         animate()
         window.addEventListener( 'resize', onWindowResize );
-      }
+      })
 
       const animate = () => {
         requestAnimationFrame( animate );
@@ -189,7 +186,7 @@ export default {
       }
       const render = () => {
         const delta = clock.getDelta();
-        sword.rotatation.z += 0.01;
+        sword.rotateZ(0.01);
 				controls.update( delta );
 				renderer.render( scene, camera );
         //effect.render( scene, camera );
