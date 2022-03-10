@@ -120,6 +120,10 @@ export default {
     async getProjects() {
       let timeline = [];
       let projects = await this.$store.state.projects.projects;
+      if (!projects) {
+        const projects = await this.$axios.$get("/api/project/getProjects");
+        this.$store.commit('projects/init', projects.projects);
+      }
       const unsortedTimeline = []
       projects.forEach(async (project) => {
         moment.locale("en");
@@ -135,7 +139,7 @@ export default {
       this.timeline = timeline.concat(sortedTimeline);
       this.projects = projects;
     },
-    replace(string) {
+    async replace(string) {
       return string.toLowerCase().replaceAll("#", "sharp").replaceAll("+", "plus").replaceAll(".", "dot");
     },
     async createproject() {

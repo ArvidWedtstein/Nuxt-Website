@@ -118,20 +118,6 @@ export default {
           scene.add(house);
           roughnessMipmapper.dispose();
         }, onProgress, onError);
-
-        /*gltfloader.load("/scene/cabinet.glb", async (glb) => {
-          roughnessMipmapper = new RoughnessMipmapper( renderer );
-          cabinet = glb.scene;
-          glb.scene.traverse(async (child) => {
-            if (child.isMesh) {
-              roughnessMipmapper.generateMipmaps(child.material);
-            }
-          })
-          cabinet.scale.set(2,2,2);
-          cabinet.position.set(0,-2,0);
-          scene.add(cabinet);
-          roughnessMipmapper.dispose();
-        })*/
         
         objloader.load('/sword/LOTRSword.obj', async (obj) => {
           roughnessMipmapper = new RoughnessMipmapper( renderer );
@@ -176,7 +162,7 @@ export default {
         controls.maxDistance = 1500;
         
         animate()
-        window.addEventListener( 'resize', onWindowResize );
+        window.addEventListener('resize', onWindowResize );
       })
 
       const animate = () => {
