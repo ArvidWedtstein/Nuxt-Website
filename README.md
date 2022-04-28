@@ -10,8 +10,12 @@
 |Register       |
 |Profile        |
 |Admin-Dashboard|
-|
-....
+
+
+
+![Stats](https://arvidgithubembed.herokuapp.com/project?user=arvidwedtstein&repo=nuxt-website)
+
+
 ## Build Setup
 
 ```bash
