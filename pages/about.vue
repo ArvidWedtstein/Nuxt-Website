@@ -9,7 +9,7 @@
               <h1 class="display-4">Well, Hello there</h1>
               <p class="lead">My name is Arvid Wedtstein</p>
               <hr class="my-4">
-              <p>I am currently studying: Informationtechnology and Media<br>Age: 17<br>I'm interested in: 3D-Printing, Webdevelopment<br><a href="mailto: arvidw0310@gmail.com">Email: arvidw0310@gmail.com</a><br>Progamming languages/Frameworks that i have learnt in the past:</p>
+              <p>I am currently studying: Informationtechnology and Media<br>Age: {{ calculateAge() }}<br>I'm interested in: 3D-Printing, Webdevelopment<br><a href="mailto: arvidw0310@gmail.com">Email: arvidw0310@gmail.com</a><br>Progamming languages/Frameworks that i have learnt in the past:</p>
               <div class="icon-bar icons">
                 <i class="php fab fa-php"/>
                 <i class="js fab fa-js-square"/>
@@ -141,8 +141,6 @@ export default {
       // }, 9000);
     },
     async createtimelineevent() {
-
-  
       const timelineevent = await this.$axios.$post("api/project/newTimelineEvent", this.timelineevent).then((res) => {
         this.showSnackbar(res.message, 'success');
         this.$store.commit('timeline/add', res.data.timeline.timeline)
@@ -155,6 +153,18 @@ export default {
       this.timelineevent.startdate = ""
       this.timelineevent.enddate = ""
     },
+    async calculateAge() {
+      let birthday = "2004-10-04"
+      let today = new Date();
+      let birthDate = new Date(dateString);
+      let age = today.getFullYear() - birthDate.getFullYear();
+
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+      }
+      return age;
+    }
   },
   mounted() {
 
