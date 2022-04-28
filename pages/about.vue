@@ -159,10 +159,10 @@ export default {
       this.timelineevent.startdate = ""
       this.timelineevent.enddate = ""
     },
-    async calculateAge() {
+    calculateAge() {
       let birthday = "2004-10-04"
       let today = new Date();
-      let birthDate = new Date(dateString);
+      let birthDate = new Date(birthday);
       let age = today.getFullYear() - birthDate.getFullYear();
 
       let m = today.getMonth() - birthDate.getMonth();
