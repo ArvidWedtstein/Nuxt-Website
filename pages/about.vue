@@ -36,7 +36,7 @@
         </div>
         <div class="col-xl-12 about">
           <button v-if="userPerm('MODIFY_PROJECTS')" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">Create New Timeline Event</button>
-          <Timeline :timeline="this.$store.state.timeline.timeline || this.timeline"/>
+          <Timeline :timeline="this.timeline || this.$store.state.timeline.timeline"/>
           <Modal>
             <div slot="header">
               <h5 class="modal-title" id="modalLabel">New Timeline Event</h5>
@@ -96,6 +96,12 @@ export default {
         enddate: "",
       },
       timeline: [
+        {
+          name: "Lærlingsplass",
+          description: "Fikk lærlingsplass hos Ohm-egg-a",
+          date: "28/02/2022",
+          enddate: "27/06/2024"
+        },
         {
           name: "Praksis",
           description: "Begynte på Appex som praksiselev!",
