@@ -1,6 +1,6 @@
 <template>
   <div id="apppage">
-    <div class="container">  
+    <div class="container" v-cloak>  
       <div class="jumbotron bg-img">
         <p class="display-4 rgb-link unselectable">Welcome</p>
         <p id="pos" class="lead unselectable">to my website</p>
@@ -8,6 +8,7 @@
       <!--Hexagon layouten med bildene-->
       <HexGrid :images="images"></HexGrid>
       <Userreview></Userreview>
+      <h2 v-can="'insert'">I have permission to use this</h2>
     </div>
   </div>
 </template>
@@ -29,7 +30,7 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
 
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { RoughnessMipmapper } from 'three/examples/jsm/utils/RoughnessMipmapper.js';
-import Image from '../components/image.vue';
+import PopupImage from '../components/PopupImage.vue';
 export default {
   name: "App",
   transition: "slide-bottom",
@@ -275,7 +276,7 @@ export default {
       document.body.onscroll = moveCamera
     }
   },
-  components: { Userreview, Image },
+  components: { Userreview, PopupImage },
 }
 
 </script>
@@ -302,11 +303,19 @@ $maincolors: (
 @function colorscheme($color) {
   @return map-get($maincolors, $color);
 }
+.cyberfont-mode {
+  font-family: 'VT323', monospace;
+  transform: skewx(0.1deg);
+  color: rgba(125, 213, 130, 0.5);
+  text-shadow: 0 0 2px rgba(125, 213, 130, 1),
+    0 0 12px rgba(125, 213, 130, 1);
+}
 
 .orange-fade {
   font-family: Helvetica,Arial,sans-serif;
   font-weight: 100; 
   background: -webkit-linear-gradient(#ff9000,#F5CE95);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

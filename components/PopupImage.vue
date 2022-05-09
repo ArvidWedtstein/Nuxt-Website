@@ -32,8 +32,8 @@
 
 <script>
 export default {
-  name: "Image",
-  template: '<Image/>',
+  name: "PopupImage",
+  template: '<PopupImage/>',
   transition: 'slide-bottom',
   props: {
     image: "",

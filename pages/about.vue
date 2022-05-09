@@ -30,7 +30,10 @@
         </div>
         <div class="col-xl-6 about">
           <div class="aboutMe col-md-10">
-            <button class="profileimage" v-on:click="play"><object class="img-fluid" id="profile" v-bind:class="{shake: ragemode}" data="/images/profilePicture.png"></object></button>
+            <button class="profileimage" v-on:click="play">
+              <object class="img-fluid" id="profile" v-bind:class="{shake: ragemode}" data="/images/profilePicture.png">
+              </object>
+            </button>
             <audio ref="audioElm" src="/lefishe.mp3"></audio>
           </div>
         </div>
@@ -193,21 +196,23 @@ $maincolors: (
 .profileimage {
   position: relative;
   transition: 0.5s;
-  padding: 1.5rem;
+  padding: 0.5rem;
   background: url('/images/UI/PlayerAvatarUI.png');
   background-size: cover;
   background-position: center;
   outline: none;
   border: none;
-  border-radius: 50%;
+  border-radius: 100%;
+
+  box-shadow: 0 0 55px 1px hsl(200, 100%, 50%, 0.5); // Special shadow
   &:hover {
-    background-size: 110%;
-    transform: scale(1.1);
-    box-shadow: inset -5px -5px 10px rgba(255,255,255,0.05),
-      inset 5px 5px 15px rgba(0,0,0,0.5);
+    background-size: 100%;
+    // transform: scale(1);
+    // box-shadow: inset -5px -5px 10px rgba(255,255,255,0.05),
+    //   inset 5px 5px 15px rgba(0,0,0,0.5);
   }
   #profile {
-    border-radius: 50%;
+    border-radius: 100%;
     //background: transparent;
     mask-image: -webkit-gradient(linear, top, bottom, 
     color-stop(0.00,  rgba(0,0,0,1)),
@@ -235,7 +240,7 @@ $maincolors: (
   background: none;
   text-align: left;
   display: -ms-flexbox;
-    display: flex;
+  display: flex;
   position: relative;
   padding-left: 0rem;
   font-size: 5rem;

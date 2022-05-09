@@ -3,7 +3,8 @@
     <div class="card-body d-flex flex-column align-items-start">
       <strong v-if="project.tags" class="d-inline-block mb-2 text-light"><i style="padding: 0 0.3rem" v-for="(tag, v) in project.tags" :key="v" :class="tag.icon"/></strong>
       <h3 class="mb-0">
-        <a class="text-light" :href="project.projectLink">{{ project.name }}</a>
+        <a v-if="project.projectLink" class="text-light" :href="project.projectLink">{{ project.name }}</a>
+        <p v-else class="text-light">{{ project.name }}</p>
       </h3>
       <div v-if="project.gitlink" class="mb-1 text-muted">{{ project.github.name }}</div>
       <p class="card-text mb-auto">{{ project.description }}</p>

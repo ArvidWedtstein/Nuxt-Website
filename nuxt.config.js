@@ -80,6 +80,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~/plugins/notifier.js",
+    "~/plugins/permissions.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -133,7 +134,7 @@ export default {
   },
   publicRuntimeConfig: {
     // baseURL: process.env.BASE_URL,
-    baseURL: process.env.ALTERNATIVE_BASE_URL,
+    baseURL: process.env.ALTERNATIVE_BASE_URL2,
     github: process.env.GITHUB_TOKEN
   },
   privateRuntimeConfig: {
@@ -141,7 +142,7 @@ export default {
   },
   axios: {
     // baseURL: process.env.BASE_URL
-    baseURL: process.env.ALTERNATIVE_BASE_URL
+    baseURL: process.env.ALTERNATIVE_BASE_URL2
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
