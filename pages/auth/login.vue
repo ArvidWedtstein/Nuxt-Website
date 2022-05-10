@@ -8,11 +8,11 @@
       <h1 class="display-4">Log In</h1>
       <form @submit.prevent="login">
         <div class="form-floating custom">
-          <input type="email" v-model="loginData.email" class="form-control shadow-none" id="floatingEmail" placeholder="Email" name="email" :class="{'is-valid': loginData.email.match(this.emailRegex), 'is-invalid': !loginData.email.match(this.emailRegex)}">
+          <input autocomplete="email" type="email" v-model="loginData.email" class="form-control shadow-none" id="floatingEmail" placeholder="Email" name="email" :class="{'is-valid': loginData.email.match(this.emailRegex), 'is-invalid': !loginData.email.match(this.emailRegex)}">
           <label for="floatingEmail">Email</label>
         </div>
         <div class="form-floating custom">
-          <input type="password" class="form-control shadow-none" id="floatingPassword" placeholder="Password" v-model="loginData.password" @change="generatecode()" required="required">
+          <input autocomplete="current-password" type="password" class="form-control shadow-none" id="floatingPassword" placeholder="Password" v-model="loginData.password" @change="generatecode()" required="required">
           <label for="floatingPassword">Password</label>
         </div>
         <input style="display: none" name="code" :value="verificationcode">

@@ -8,7 +8,7 @@
       <!--Hexagon layouten med bildene-->
       <HexGrid :images="images"></HexGrid>
       <Userreview></Userreview>
-      <h2 v-can="'insert'">I have permission to use this</h2>
+      <!-- <h2 v-can="'insert'">I have permission to use this</h2> -->
     </div>
   </div>
 </template>

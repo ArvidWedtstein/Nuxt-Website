@@ -11,4 +11,4 @@ Vue.directive('can', {
         }
       }
     }
-  })
+})

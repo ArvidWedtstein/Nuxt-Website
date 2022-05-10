@@ -1,61 +1,10 @@
 
 <template>
   <div id="admin-dashboard">
-    <div class="d-flex flex-row w-100">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-red-500" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-          <span class="fs-4">Sidebars</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a data-bs-toggle="tab" href="#" class="nav-link active" aria-current="page">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a data-bs-toggle="tab" href="#tab1" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a data-bs-toggle="tab" href="#tab2" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-              Users
-            </a>
-          </li>
-          <li class="nav-item">
-            <a data-bs-toggle="tab" href="#tab3" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-              Ratings
-            </a>
-          </li>
-          <li class="nav-item">
-            <a data-bs-toggle="tab" href="#tab4" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-              Roles
-            </a>
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>mdo</strong>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="flex-auto tab-content">
+    <div class="d-flex">
+      <!-- Sidebar -->
+      <Sidebar/>
+      <div class="flex-auto w-100 tab-content">
         <div id="tab1" class="tab-pane fade active show">
           <div class="jumbotron">
             <h3 class="display-4">Admin Dashboard</h3>
@@ -63,7 +12,7 @@
               <div class="col-sm-4 d-flex">
                 <div class="infobox rad-shadow">
                   <div class="ms-3">
-                    <div class="d-flex align-items-center">
+                    <div class="align-items-center">
                       <h3 class="mb-0">{{ users.length }}</h3><span class="d-block ms-2">Users</span>
                     </div>
                     <p class="mb-0">Now that's a lotta users</p>
@@ -71,16 +20,16 @@
                 </div>
               </div>
               <div class="col-sm-4 d-flex">
-                <canvas class="chart rad-shadow" id="rolesChart"></canvas>
+                <canvas class="chart p-3 rad-shadow" id="rolesChart"></canvas>
               </div>
               <div class="col-sm-4 d-flex">
                 <canvas class="chart rad-shadow" id="postsChart"></canvas>
               </div>
             </div>
-            <div class='btn btn-corner'>
+            <!-- <div class='btn btn-corner'>
               <span class=''>test</span>
               <div class='corner-cover'></div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="tab2" class="tab-pane fade">
@@ -106,7 +55,7 @@
             </div>
             <div class="tab-content">
               <div v-for="(user, i) in filteredList" :key="i" :id="'tab' + user._id" class="tab-pane fade" :class="{'show active': i === 0}">
-                <AdmindashboardUserView :user="user" :roles="roles"></AdmindashboardUserView>
+                <UserView :user="user" :roles="roles"></UserView>
               </div>
             </div>
           </div>
@@ -120,10 +69,10 @@
               </div>
             </div>
           </div>
-          <AdmindashboardReviewlist :reviews="reviews"></AdmindashboardReviewlist>
+          <Reviewlist :reviews="reviews"></Reviewlist>
         </div>
         <div id="tab4" class="tab-pane fade">
-          <AdmindashboardCreaterolefield></AdmindashboardCreaterolefield>
+          <Createrolefield></Createrolefield>
           <div class="row row-cols-1 row-cols-md-2 g-4">
             <div v-for="(role, x) in roles" :key="x" class="col flex-row card-group">
               <div class="card mb-4 h-md-250 project">
@@ -144,6 +93,10 @@
   </div>
 </template>
 <script>
+import Sidebar from '../../components/admindashboard/Sidebar.vue';
+import Createrolefield from '../../components/admindashboard/Createrolefield.vue';
+import Reviewlist from '../../components/admindashboard/reviewlist.vue';
+import UserView from '../../components/admindashboard/UserView.vue';
 
 const axios = require('axios');
 const moment = require('moment');
@@ -155,7 +108,6 @@ export default {
       role: "",
       filter: "",
       loaded: false,
-      
       posts: [],
       users: [],
       roles: [],
@@ -163,286 +115,266 @@ export default {
     };
   },
   async asyncData({ $axios, $store, $config }) {
-    let baseURL = $config.baseURL;
-    return {
-      baseURL,
-    };
+      let baseURL = $config.baseURL;
+      return {
+          baseURL,
+      };
   },
   methods: {
-    async search() {
-      this.$router.replace({query: {filter: this.filter.toLowerCase()}})
-    },
-    async changePerms(e, user) {
-      let userperms = []
-      for (let i = 0; i < e.target.length; i++) {
-        if (e.target[i].checked) {
-          userperms.push(e.target[i].id)
-        }
-      }
-      try {
-        let token = this.$auth.strategy.token.get().split(" ")[1]
-        await this.$axios.$post("/api/auth/changePerms/" + user._id, {
-          permissions: userperms,
-          user: user
-        }, {
-          Headers: {
-            "authorization": `Basic ${token}`
+      async search() {
+        this.$router.replace({ query: { filter: this.filter.toLowerCase() } });
+      },
+      async changePerms(e, user) {
+        let userperms = [];
+        for (let i = 0; i < e.target.length; i++) {
+          if (e.target[i].checked) {
+            userperms.push(e.target[i].id);
           }
-        }).then((res) => {
-          console.log(res)
-        })
-      } catch (err) {
-        // console.log(err)
-      }
-      
-    },
-    async banUser(user) {
-      try {
-        let token = this.$auth.strategy.token.get().split(" ")[1]
+        }
+        try {
+          let token = this.$auth.strategy.token.get().split(" ")[1];
+          await this.$axios.$post("/api/auth/changePerms/" + user._id, {
+            permissions: userperms,
+            user: user
+          }, {
+            Headers: {
+                "authorization": `Basic ${token}`
+            }
+          }).then((res) => {
+              console.log(res);
+          });
+        }
+        catch (err) {
+          // console.log(err)
+        }
+      },
+      async banUser(user) {
+        try {
+          let token = this.$auth.strategy.token.get().split(" ")[1];
+          await this.$axios.$post("/api/auth/banUser", user, {
+              "authorization": `Basic ${token}`
+          });
+        }
+        catch (err) {
+          console.log(err);
+        }
+        this.$nuxt.refresh();
+      },
+      async unbanUser(user) {
+        try {
+          let token = this.$auth.strategy.token.get().split(" ")[1];
+          await this.$axios.$post("/api/auth/unbanUser", user, {
+              "authorization": `Basic ${token}`
+          });
+        }
+        catch (err) {
+          console.log(err);
+        }
+        this.$nuxt.refresh();
+      },
+      formatDate(date) {
+          return moment(date).format("DD/MM/YY");
+      },
+      async chart() {
+        const rolesCTX = document.getElementById("rolesChart").getContext("2d");
+        const reviewCTX = document.getElementById("reviewChart").getContext("2d");
+        const postsCTX = document.getElementById("postsChart").getContext("2d");
+        const reviews = this.reviews.map((review) => {
+            return review.rating;
+        });
+
+        const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+        const dataReview = {
+          labels: ["1⭐", "2⭐", "3⭐", "4⭐", "5⭐"],
+          datasets: [
+            {
+              label: "Dataset 1",
+              data: [countOccurrences(reviews, 1), countOccurrences(reviews, 2), countOccurrences(reviews, 3), countOccurrences(reviews, 4), countOccurrences(reviews, 5)],
+              backgroundColor: ["red", "green", "blue", "red", "gold"],
+            }
+          ]
+        };
+        let grad = rolesCTX.createLinearGradient(0, 0, 0, 400);
+        grad.addColorStop(0.24, "rgba(207, 193, 159, 1)");
+        grad.addColorStop(0.26, "rgba(82, 79, 44, 1)");
+        grad.addColorStop(0.28, "rgba(207, 193, 159, 1)");
+        grad.addColorStop(0.29, "rgba(207, 193, 159, 1)");
+        grad.addColorStop(0.45, "rgba(255, 236, 180, 1)");
+        grad.addColorStop(0.65, "rgba(58, 44, 31, 1)");
+        let postdays = this.$store.state.newspost.news.map((post) => {
+          return this.formatDate(post.createdAt)
+        });
+        let lastdays = this.lastDays(5).reverse();
         
-        await this.$axios.$post("/api/auth/banUser", user, {
-          "authorization": `Basic ${token}`
-        });
-      } catch (err) {
-        console.log(err)
-      }
-      this.$nuxt.refresh();
-    },
-    async unbanUser(user) {
-      try {
-        let token = this.$auth.strategy.token.get().split(" ")[1]
-        await this.$axios.$post("/api/auth/unbanUser", user, {
-          "authorization": `Basic ${token}`
-        });
-      } catch (err) {
-        console.log(err)
-      }
-      this.$nuxt.refresh();
-    },
-    formatDate(date) {
-      return moment(date).format("DD/MM/YY");
-    },
-    async chart() {
-      const rolesCTX = document.getElementById("rolesChart").getContext("2d");
-      const reviewCTX = document.getElementById("reviewChart").getContext("2d");
-      const postsCTX = document.getElementById("postsChart").getContext("2d");
+        let postsdata = lastdays.map((day) => {
+          return postdays.filter(x => x == day).length
+        })
 
-      const reviews = [];
-      this.reviews.forEach(async (review) => {
-        reviews.push(review.rating)
-      })
-      const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
-      const dataReview = {
-        labels: ["1⭐", "2⭐", "3⭐", "4⭐", "5⭐"],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: [countOccurrences(reviews, 1), countOccurrences(reviews, 2), countOccurrences(reviews, 3), countOccurrences(reviews, 4), countOccurrences(reviews, 5)],
-            backgroundColor: ["red", "green", "blue", "red", "gold"],
-          }
-        ]
-      };
-      let grad = rolesCTX.createLinearGradient(0, 0, 0, 400);
-      grad.addColorStop(0.24, "rgba(207, 193, 159, 1)");
-      grad.addColorStop(0.26, "rgba(82, 79, 44, 1)");
-      grad.addColorStop(0.28, "rgba(207, 193, 159, 1)");
-      grad.addColorStop(0.29, "rgba(207, 193, 159, 1)");
-      grad.addColorStop(0.45, "rgba(255, 236, 180, 1)");
-      grad.addColorStop(0.65, "rgba(58, 44, 31, 1)");
-      let postdays = [];
-      let lastdays = this.lastDays(5).reverse()
-      this.$store.state.newspost.news.forEach(post => {
-        let formatteddate = this.formatDate(post.createdAt);
-        postdays.push(formatteddate);
-      })
-      let postsdata = [];
-      lastdays.forEach(day => {
-        postsdata.push(postdays.filter(x => x == day).length);
-      })
-      const dataPosts = {
-        labels: lastdays,
-        datasets: [{
-          label: "Posts",
-          data: postsdata,
-          borderWidth: 1,
-          backgroundColor: "rgba(0, 0, 0, 0.05)",
-          borderColor: "#fff",
-          pointStyle: "rectRounded",
-          pointBorderColor: "#F4F0E7",
-          tooltipFillColor: "rgba(0,0,0,0.8)",
-          tooltipFontStyle: "bold",
-          tension: 0,
-          fill: false,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#5DACB6",
-          hoverBorderWidth: 3,
-          hoverBorderColor: "blue",
-          inflateAmount: 1,
-        }]
-      };
-      const rolesdata = [];
-      const rolesname = [];
-      const userroles = [];
-      
-      this.users.forEach(user => userroles.push(user.role.name));
-      // console.log(this.users)
-      
-
-      this.roles.forEach(role => {
-        rolesname.push(role.name)
-        rolesdata.push(userroles.filter(x => x == role.name).length);
-      })
-      const dataRoles = {
-        labels: rolesname,
-        datasets: [{
-          label: "Users",
-          data: rolesdata,
-          borderWidth: 1,
-          //backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          backgroundColor: "rgba(0, 0, 0, 0.1)",
-          //borderColor: grad,
-          borderColor: "#fff",
-          hoverBackgroundColor: "rgba(255,255,255,0.3)",
-          pointStyle: "rectRounded",
-          pointBorderColor: "#F4F0E7",
-          tooltipFillColor: "rgba(255,255,255,0.8)",
-          tooltipFontStyle: "bold",
-          color: "rgba(255,255,255,1)",
-          tension: 0,
-          inflateAmount: 1,
-        }]
-      };
-      const footer = () => {
-        return "test"
-      }
-      const optionsRoles = {
-        responsive: true,
-        //events: ['hover'],
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              stepValue: 1
-            },
-            scaleLabel: {
-              display: true,
-              labelString: "Amount"
-            }
+        const dataPosts = {
+          labels: lastdays,
+          datasets: [{
+            label: "Posts",
+            data: postsdata,
+            borderWidth: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.05)",
+            borderColor: "#fff",
+            pointStyle: "rectRounded",
+            pointBorderColor: "#F4F0E7",
+            tooltipFillColor: "rgba(0,0,0,0.8)",
+            tooltipFontStyle: "bold",
+            tension: 0,
+            fill: false,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#5DACB6",
+            hoverBorderWidth: 3,
+            hoverBorderColor: "blue",
+            inflateAmount: 1,
           }]
-        },
-        hover: {
-          mode: "label"
-        },
-        title: {
-          display: true,
-          text: "Roles"
-        },
-        legend: {
-          display: false
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              footer: footer
-            }
-          }
-        }
-      };
-      const optionsPosts = {
-        responsive: true,
-        //events: ['hover'],
-        scales: {
-          yAxes: [{
-            /*gridLines: {
-              display: true,
-              color: "rgba(255,255,255,0.05)"
-            },*/
-            ticks: {
-              beginAtZero: true,
-              stepValue: 1
-            },
-            scaleLabel: {
-              display: true,
-              labelString: "Users"
-            }
-          }],
-          xAxes: [{
-          /*gridLines: {
-            display: true,
-            color: "rgba(255,255,255,0.05)"
-          },*/
+        };
+        const rolesdata = [];
+        const rolesname = [];
+        const userroles = [];
+        this.users.forEach(user => userroles.push(user.role.name));
+        this.roles.forEach(role => {
+          rolesname.push(role.name);
+          rolesdata.push(userroles.filter(x => x == role.name).length);
+        });
+        const dataRoles = {
+          labels: rolesname,
+          datasets: [{
+            label: "Users",
+            data: rolesdata,
+            borderWidth: 1,
+            //backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            backgroundColor: "rgba(0, 0, 0, 0.1)",
+            //borderColor: grad,
+            borderColor: "#fff",
+            hoverBackgroundColor: "rgba(255,255,255,0.3)",
+            pointStyle: "rectRounded",
+            pointBorderColor: "#F4F0E7",
+            tooltipFillColor: "rgba(255,255,255,0.8)",
+            tooltipFontStyle: "bold",
+            color: "rgba(255,255,255,1)",
+            tension: 0,
+            inflateAmount: 1,
           }]
-        },
-        title: {
-          display: true,
-          text: "Posts"
-        },
-        legend: {
-          display: false
-        }
-      };
-      const optionsReview = {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Chart.js Doughnut Chart'
+        };
+        const optionsRoles = {
+            responsive: true,
+            scales: {
+              yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    stepValue: 1
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Amount"
+                }
+              }]
+            },
+            hover: {
+              mode: "label"
+            },
+            title: {
+              display: true,
+              text: "Roles"
+            },
+            legend: {
+              display: false
+            }
+        };
+        const optionsPosts = {
+            responsive: true,
+            scales: {
+              yAxes: [{
+                /*gridLines: {
+                  display: true,
+                  color: "rgba(255,255,255,0.05)"
+                },*/
+                ticks: {
+                    beginAtZero: true,
+                    stepValue: 1
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Users"
+                }
+              }],
+              xAxes: [{
+              /*gridLines: {
+                display: true,
+                color: "rgba(255,255,255,0.05)"
+              },*/
+              }]
+            },
+            title: {
+              display: true,
+              text: "Posts"
+            },
+            legend: {
+              display: false
+            }
+        };
+        const optionsReview = {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            title: {
+              display: true,
+              text: "Chart.js Doughnut Chart"
+            }
           }
-        }
-      };
-      const rolesChart = new Chart(rolesCTX, { type: "bar", data: dataRoles, options: optionsRoles });
-      const postsChart = new Chart(postsCTX, { type: "line", data: dataPosts, options: optionsPosts });
-      const reviewChart = new Chart(reviewCTX, { type: "doughnut", data: dataReview, options: optionsReview });
-    },
-    lastDays(days, date) {
-      var result = [];
-      for (var i = 0; i < days; i++) {
-        let d = new Date();
-        d.setDate(d.getDate() - i);
-        d = this.formatDate(d);
-        result.push(d);
-      }
-      return (result);
-    },
-    showSnackbar(message) {
-      this.$notifier.showMessage({ content: message, color: '#ff0000' })
-    },
+        };
+        const rolesChart = new Chart(rolesCTX, { type: "bar", data: dataRoles, options: optionsRoles });
+        const postsChart = new Chart(postsCTX, { type: "line", data: dataPosts, options: optionsPosts });
+        const reviewChart = new Chart(reviewCTX, { type: "doughnut", data: dataReview, options: optionsReview });
+      },
+      lastDays(days, date) {
+          var result = [];
+          for (var i = 0; i < days; i++) {
+            let d = new Date();
+            d.setDate(d.getDate() - i);
+            d = this.formatDate(d);
+            result.push(d);
+          }
+          return (result);
+      },
+      showSnackbar(message) {
+        this.$notifier.showMessage({ content: message, color: "#ff0000" });
+      },
   },
   async mounted() {
-    
-    this.posts = this.$store.state.newspost.news
-    this.roles = this.$store.state.roles.roles;
-
-    this.reviews = this.$store.state.ratings.ratings;
-    this.users = await this.$store.state.users.users;
-    console.log(this.users)
-    if (document.getElementById("rolesChart")) {
-      this.chart();
-    }
+      this.posts = this.$store.state.newspost.news;
+      this.roles = this.$store.state.roles.roles;
+      this.reviews = this.$store.state.ratings.ratings;
+      this.users = await this.$store.state.users.users;
+      if (document.getElementById("rolesChart")) {
+          this.chart();
+      }
   },
   computed: {
     filteredList() {
       if (!this.$store.state.users.users) {
-        return
-      } else {
+        return;
+      }
+      else {
         return this.$store.state.users.users.filter(async (user) => {
           return user.name.toLowerCase().includes(this.filter.toLowerCase()) ||
-          user.email.toLowerCase().includes(this.filter.toLowerCase()) ||
-          user.role.name.toLowerCase().includes(this.filter.toLowerCase());
+              user.email.toLowerCase().includes(this.filter.toLowerCase()) ||
+              user.role.name.toLowerCase().includes(this.filter.toLowerCase());
         });
       }
     }
   },
+  components: { Sidebar, Createrolefield, Reviewlist, UserView }
 };
 
 </script>
 <style lang="scss">
-html, body {
-  height: 100%;
-}
+
 $colorpalette: (
   "moonlit": linear-gradient(to right, #0f2027, #203a43, #2c5364),
   "argon": linear-gradient(to right, #03001e, #7303c0, #ec38bc, #fdeff9),
@@ -455,6 +387,19 @@ $colorpalette: (
 $maincolors: (
   "grey": #212529,
   "darkblue": #192D40,
+  // "blue": radial-gradient(circle, #375D72 0%, #192D40 100%),
+  "purple": (
+    radial-gradient(
+      at bottom left,
+      rgba(255, 0, 255, 0.5), 
+      transparent 400px
+    ),
+    radial-gradient(
+      at bottom right,
+      rgba(255, 100, 100, 0.5), 
+      transparent 400px
+    )
+  ),
   "blue": #21303A,
   "cyan": #375D72,
   "lime": #7FCD8A,
@@ -482,13 +427,13 @@ $maincolors: (
 $border-radius: 0.25rem;
 #admin-dashboard {
   height: 100%;
-  #tab2 {
+  #tab2 { // Users list
     .users {
       overflow: hidden;
       display: flex;
       flex-direction: row;
       .tab-content {
-        margin: 4rem;
+        margin: 8rem;
         width: 100%;
         .permlist {
           list-style-type: none;
@@ -496,22 +441,6 @@ $border-radius: 0.25rem;
         }
       }
       .nav {
-        // &::-webkit-scrollbar {
-        //   width: 0;  /* Remove scrollbar space */
-        //   background: transparent;  /* Optional: just make scrollbar invisible */
-        // }
-        // //background: colorscheme('lightblue');
-        // border: 1px solid colorscheme('white');
-        // padding: 1rem;
-        // padding-right: 2rem;
-        // margin-top: 0;
-        // width: 20rem;
-        // overflow-y: scroll;
-        // -webkit-overflow-scrolling: touch;
-        // height: 45rem;
-        // overflow-x: hidden;
-        // flex-direction: column;
-        // flex-wrap: nowrap;
         .users-list {
           background: colorscheme('blue');
           padding: 0.5rem 1rem;
@@ -563,29 +492,6 @@ $border-radius: 0.25rem;
       }
     }
   }
-  // .nav {
-  //   &.topnavbar {
-  //     margin-bottom: 0;
-  //     .nav-item {
-  //       margin: 0rem 0;
-  //       padding: 0;
-  //       .nav-link {
-  //         padding: 1rem 0;
-  //         color: colorscheme('white');
-  //         //border-top: 2px solid transparent;
-  //         border-radius: none;
-  //         &.active, &.show {
-  //           background: none;
-  //           border: none;
-  //           color: colorscheme('lime');
-  //           border-top: 2px solid colorscheme('lime');
-  //           border-left: 2px solid colorscheme('lime');
-  //           border-right: 2px solid colorscheme('lime');
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
   .chart {
     background: colorscheme('blue');
     border-radius: 0.5rem / 0.5rem;
@@ -751,6 +657,9 @@ $border-radius: 0.25rem;
     }
   }
 }
+
+
+
 
 
 </style>

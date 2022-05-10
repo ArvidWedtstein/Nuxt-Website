@@ -215,7 +215,7 @@ html {
           border: none;
           
           color: colorscheme('lime');
-          border-top: 2px solid colorscheme('lime');
+          border-bottom: 2px solid colorscheme('lime');
       }
     }
   }

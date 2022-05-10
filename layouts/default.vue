@@ -124,9 +124,9 @@ $maincolors: (
 }
 html {
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
-  height: 100%;
+  // height: 100%;
   /*& > * {
     //transform: rotate3d(0, 0, 0.5, 3.142rad) !important;
   }*/
@@ -140,11 +140,11 @@ html {
 }
 body {
   // cursor: url('~/static/images/ArvidLogo.png'), auto;	
-  min-height: 100%;
+  // min-height: 100%;
   background: colorscheme('grey');
 }
 #__nuxt, #__layout {
-  height: 100% !important;
+  height: 100vh !important;
 }
 
 .rad-shadow {
@@ -258,6 +258,8 @@ a {
     }
   }
 }
+
+
 // ----------------------------
 // Buttons
 // ----------------------------

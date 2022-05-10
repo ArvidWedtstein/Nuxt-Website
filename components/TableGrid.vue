@@ -18,8 +18,8 @@ const axios = require('axios');
 const moment = require('moment');
 
 export default {
-  name: 'table',
-  template: '<table/>',
+  name: 'tablegrid',
+  template: '<tablegrid/>',
   transition: 'slide-bottom',
   props: {
     head: [],

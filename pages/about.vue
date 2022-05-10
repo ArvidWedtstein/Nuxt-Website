@@ -30,16 +30,25 @@
         </div>
         <div class="col-xl-6 about">
           <div class="aboutMe col-md-10">
-            <button class="profileimage" v-on:click="play">
-              <object class="img-fluid" id="profile" v-bind:class="{shake: ragemode}" data="/images/profilePicture.png">
-              </object>
+            <button class="profileimage">
+              <object class="img-fluid" id="profile" data="/images/profilePicture.png"></object>
+              <svg id="gradring" xmlns="http://www.w3.org/2000/svg">
+                <filter id="filter">
+                  <feTurbulence baseFrequency="0.30"></feTurbulence>
+                  <feColorMatrix values="0 0 0 1 -.5
+                                        0 0 0 1 -.5
+                                        0 0 0 1 -.5
+                                        0 0 0 0 1" />
+                </filter>
+                <rect width="100%" height="100%" filter="url(#filter)"></rect>
+              </svg>
             </button>
             <audio ref="audioElm" src="/lefishe.mp3"></audio>
           </div>
         </div>
-        <div class="col-xl-12 about">
+        <div class="col-xl-12 m-3 about">
           <button v-if="userPerm('MODIFY_PROJECTS')" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#modal">Create New Timeline Event</button>
-          <Timeline :timeline="this.timeline || this.$store.state.timeline.timeline"/>
+          <Timeline :timeline="this.$store.state.timeline.timeline || this.timeline"/>
           <Modal>
             <div slot="header">
               <h5 class="modal-title" id="modalLabel">New Timeline Event</h5>
@@ -142,13 +151,6 @@ export default {
         }
       }
     },
-    play: function (event) {
-      // this.$refs.audioElm.play();
-      // this.ragemode = true;
-      // setTimeout(() => {
-      //   this.ragemode2 = true;
-      // }, 9000);
-    },
     async createtimelineevent() {
       const timelineevent = await this.$axios.$post("api/project/newTimelineEvent", this.timelineevent).then((res) => {
         this.showSnackbar(res.message, 'success');
@@ -196,21 +198,16 @@ $maincolors: (
 .profileimage {
   position: relative;
   transition: 0.5s;
-  padding: 0.5rem;
-  background: url('/images/UI/PlayerAvatarUI.png');
-  background-size: cover;
-  background-position: center;
+  padding: 0rem;
+  background: transparent;
+  // background: url('/images/UI/PlayerAvatarUI.png');
+  // background-size: cover;
+  // background-position: center;
   outline: none;
   border: none;
   border-radius: 100%;
 
   box-shadow: 0 0 55px 1px hsl(200, 100%, 50%, 0.5); // Special shadow
-  &:hover {
-    background-size: 100%;
-    // transform: scale(1);
-    // box-shadow: inset -5px -5px 10px rgba(255,255,255,0.05),
-    //   inset 5px 5px 15px rgba(0,0,0,0.5);
-  }
   #profile {
     border-radius: 100%;
     //background: transparent;
@@ -236,15 +233,6 @@ $maincolors: (
     clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
   }
 }
-.text .aboutMe {
-  background: none;
-  text-align: left;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  padding-left: 0rem;
-  font-size: 5rem;
-}
 .reviews {
   position: relative;
   bottom: 0;
@@ -255,7 +243,6 @@ $maincolors: (
   .text .aboutMe {
     font-size: 20px;
     text-align: center;
-    float: left;
     padding: 0;
   }
   .about {
@@ -266,5 +253,110 @@ $maincolors: (
 }
 
 
+#gradring {
+  position: fixed;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  opacity: 0.6;
+}
+
+// The circle around my profilepicture
+.aboutMe {
+  width: 400px;
+  aspect-ratio: 1;
+  background-color:black;
+  border-radius: 100%;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 55px 1px hsl(200, 100%, 50%, 0.5);
+  margin: 0 8rem;
+  &::before,
+  &::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    z-index:-1;
+    filter:blur(60px);
+    opacity:0.9;
+    mix-blend-mode:multiply;
+  }
+  &::before {
+    background-color:hsl(290, 100%, 50%);
+    animation: rotate 13s linear infinite;
+  }
+  &::after {
+    background-color:hsl(195, 100%, 50%);
+    animation:rotateReverse 13s linear infinite;
+  }
+}
+@keyframes rotate { 
+  0% {
+    transform:translate(0, 0);
+    filter:blur(60px);
+  }
+   25% {
+    transform:translate(15%, 15%);
+    filter:blur(80px);
+  }
+   50% {
+    transform:translate(15%, 0);
+    filter:blur(100px);
+  }
+  75% {
+    transform:translate(15%, -15%);
+    filter:blur(80px);
+  }
+  100% {
+    transform:translate(0, 0);
+     filter:blur(60px);
+  }
+}
+@keyframes rotateReverse {
+  0% {
+    transform:translate(0, 0);
+    filter:blur(60px);
+  }
+  25% {
+    transform:translate(-15%, -15%);
+    filter:blur(80px);
+  }
+  50% {
+    transform:translate(-15%, 0);
+    filter:blur(100px);
+  }
+  75% {
+    transform:translate(-15%, 15%);
+    filter:blur(80px);
+  }
+   100% {
+    transform:translate(0, 0);
+    filter:blur(60px);
+  }
+}
+
+
+@keyframes rotate-reverse {
+  0% {
+    transform:translate(0, 0);
+  }
+  20% {
+    transform:translate(-15%, -15%);
+  }
+  40% {
+    transform:translate(-15%, -5%);
+  }
+  60% {
+    transform:translate(-15%, 10%);
+  }
+  80% {
+    transform:translate(-15%, 5%);
+  }
+  100% {
+    transform:translate(0, 0);
+  }
+}
 
 </style>
