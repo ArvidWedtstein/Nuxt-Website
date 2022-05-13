@@ -38,9 +38,6 @@ export default {
     user: {},
     roles: []
   },
-  async asyncData({ $auth }) {
-
-  },
   methods: {
     formatDate(date) {
       return moment(date).format("DD/MM/YY");

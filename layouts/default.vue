@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <Navbar/>
-    <Nuxt/>
+    <!-- <Nuxt/> -->
     <slot/>
     <Snackbar></Snackbar>
     <!-- <ArvidFooter class="footer"></ArvidFooter> -->
@@ -10,17 +10,20 @@
 
 
 <script setup>
-const title = ref('My App')
-const description = ref('My App Description')
+  const title = ref('My App')
+  const description = ref('My App Description')
 
-// This will be reactive even you change title/description above
-useHead({
-  title,
-  meta: [{
-    name: 'description',
-    content: description
-  }]
-})
+  // This will be reactive even you change title/description above
+  useHead({
+    title,
+    meta: [{
+      name: 'description',
+      content: description
+    }]
+  })
+
+  const { data } = await useAsyncData('get', () => $fetch(`/api/project/getProjects`) )
+  this.$store.commit('projects/init', data);
 </script>
 <script>
 //import Editor from '@tinymce/tinymce-vue'
@@ -35,7 +38,7 @@ export default {
     Snackbar,
     ArvidFooter
   },
-  async asyncData({ $axios, $store }) {
+  async useAsyncData({ $axios, $store }) {
     // const projects = await $axios.$get("/api/project/getProjects");
     // $store.commit('projects/init', projects.projects);
 

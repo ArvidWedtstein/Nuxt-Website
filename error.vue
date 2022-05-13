@@ -5,9 +5,17 @@
       <h1>{{ errortext[error.statusCode] }}</h1>
       <NuxtLink to="/">Home page</NuxtLink>
     </div>  
+    <button @click="handleError">Clear errors</button>
   </div>
 </template>
 
+<script setup>
+const props = defineProps({
+  error: Object
+})
+
+const handleError = () => clearError({ redirect: '/' })
+</script>
 <script>
   export default {
     props: ['error'],

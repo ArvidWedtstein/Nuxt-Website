@@ -25,8 +25,9 @@ export default {
     head: [],
     body: []
   },
-  async asyncData({ $auth, $config }) {
-    let baseURL = $config.baseURL;
+  async useAsyncData({ $auth, $config }) {
+    const config = useRuntimeConfig().public;
+    let baseURL = config.baseURL;
     return {
       baseURL
     }

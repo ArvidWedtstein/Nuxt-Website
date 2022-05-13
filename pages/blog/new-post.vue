@@ -84,7 +84,8 @@ export default {
     nestedProperties: ['author.name']
   },
   async asyncData({ $content, params, $axios, $config }) {
-    if (!this.isAuthenticated) return this.$router.push("/blog");
+    // if (!this.isAuthenticated) return this.$router.push("/blog");
+    if (!this.isAuthenticated) return useRouter.push("/blog");
   },
   methods: {
     addSectionBlock() {
@@ -154,7 +155,8 @@ export default {
         this.showSnackbar(res.message)
       })
       this.$store.commit('newspost/add', post)
-      this.$router.push("/blog");
+      // this.$router.push("/blog");
+      useRouter.push("/blog");
       this.title = '';
       this.description = '';
       this.sectionBlocks = [];

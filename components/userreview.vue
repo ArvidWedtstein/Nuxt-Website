@@ -41,9 +41,6 @@
 export default {
   name: 'userreview',
   transition: 'slide-bottom',
-  asyncData({ $axios }) {
-
-  },
   data() {
     return {
       rating: "",

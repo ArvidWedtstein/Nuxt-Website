@@ -122,7 +122,8 @@ export default {
   },
   methods: {
       async search() {
-        this.$router.replace({ query: { filter: this.filter.toLowerCase() } });
+        // this.$router.replace({ query: { filter: this.filter.toLowerCase() } });
+        useRouter.replace({ query: { filter: this.filter.toLowerCase() } });
       },
       async changePerms(e, user) {
         let userperms = [];

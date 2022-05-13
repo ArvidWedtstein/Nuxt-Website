@@ -59,8 +59,8 @@ export default {
       r.keys().forEach(async (key) => {
         let name = key.split('./').join('').replace('.png', '').replace('.PNG', '').replace('Fan-Cover/', '');
 
-        //if (name === await this.$route.params.print) {
-        if (name === this.$route.params.print) {
+        // if (name === this.$route.params.print) {
+        if (name === useRoute.params.print) {
           let stl = await prints[name.toLowerCase()].path;
           let description = await prints[name.toLowerCase()].description;
           let category = await prints[name.toLowerCase()].category;

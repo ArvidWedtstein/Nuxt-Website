@@ -17,9 +17,6 @@ export default {
     user: {},
     roles: []
   },
-  async asyncData({ $auth }) {
-
-  },
   methods: {
     showSnackbar(message) {
       this.$notifier.showMessage({ content: message, color: 'success' })

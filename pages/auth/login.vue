@@ -88,7 +88,8 @@ export default {
         //this.$auth.$storage.setState(user, val)
         this.loginData.email = "";
         this.loginData.password = "";
-        this.$router.push("/");
+        // this.$router.push("/");
+        useRouter().push("/");
         /*emailjs.sendForm('service_5s4j6tk', 'template_y8bo3vr', e.target, 'user_iJj06RAflifrwnzoXxkoy',{
           code: this.verificationcode,
           email: this.loginData.email,

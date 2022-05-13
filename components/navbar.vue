@@ -138,7 +138,8 @@ export default {
   },
   computed: {
     crumbs() {
-      const fullPath = this.$route.fullPath
+      // const fullPath = this.$route.fullPath
+      const fullPath = useRoute.fullPath
       const params = fullPath.startsWith('/')
         ? fullPath.substring(1).split('/')
         : fullPath.split('/')
@@ -148,7 +149,8 @@ export default {
 
       params.forEach((param, index) => {
         path = `${path}/${param}`
-        const match = this.$router.match(path)
+        // const match = this.$router.match(path)
+        const match = useRouter.match(path)
         var isId = param.match(/\d+/g);
 
         if (match.name !== null && isId === null) {

@@ -143,9 +143,6 @@ export default {
   props: {
     reviews: []
   },
-  async asyncData({ $auth }) {
-
-  },
   methods: {
     async changeReview(review) {
       this.editReview.active = true

@@ -173,7 +173,8 @@ export default {
             await this.$auth.loginWith('local', {
               data: this.registerData
             })
-            this.$router.push("/");
+            // this.$router.push("/");
+            useRouter.push("/");
           });
         } catch (err) {
           console.log(err);

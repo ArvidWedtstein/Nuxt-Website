@@ -34,14 +34,6 @@ export default {
   transition: 'slide-bottom',
   props: {
     reviewuser: ''
-  },
-  async asyncData({ $axios }) {
-    /*const reviews = await $axios.get("/api/project/getRatings").then(async (res) => {
-      return res.data.reviews
-    });
-    return {
-      //reviews
-    }*/
   }
 }
 </script>
