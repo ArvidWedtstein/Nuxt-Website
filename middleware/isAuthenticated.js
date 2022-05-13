@@ -5,7 +5,11 @@
 // }
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  if (!store.state.auth.loggedIn) {
-    return redirect("/auth/login");
+  const auth = useState('auth')
+  if (!auth.value.authenticated) {
+    return navigateTo('/login')
   }
+  // if (!store.state.auth.loggedIn) {
+  //   return redirect("/auth/login");
+  // }
 })
