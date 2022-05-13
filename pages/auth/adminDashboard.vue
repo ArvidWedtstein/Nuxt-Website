@@ -3,7 +3,7 @@
   <div id="admin-dashboard">
     <div class="d-flex">
       <!-- Sidebar -->
-      <Sidebar/>
+      <Sidebar class="flex-auto" />
       <div class="flex-auto w-100 tab-content">
         <div id="tab1" class="tab-pane fade active show">
           <div class="jumbotron">
@@ -347,13 +347,13 @@ export default {
       },
   },
   async mounted() {
-      this.posts = this.$store.state.newspost.news;
-      this.roles = this.$store.state.roles.roles;
-      this.reviews = this.$store.state.ratings.ratings;
-      this.users = await this.$store.state.users.users;
-      if (document.getElementById("rolesChart")) {
-          this.chart();
-      }
+    this.posts = this.$store.state.newspost.news;
+    this.roles = this.$store.state.roles.roles;
+    this.reviews = this.$store.state.ratings.ratings;
+    this.users = await this.$store.state.users.users;
+    if (document.getElementById("rolesChart")) {
+        this.chart();
+    }
   },
   computed: {
     filteredList() {
@@ -426,7 +426,6 @@ $maincolors: (
 }
 $border-radius: 0.25rem;
 #admin-dashboard {
-  height: 100%;
   #tab2 { // Users list
     .users {
       overflow: hidden;

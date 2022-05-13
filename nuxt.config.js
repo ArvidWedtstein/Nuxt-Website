@@ -138,6 +138,7 @@ export default {
     github: process.env.GITHUB_TOKEN
   },
   privateRuntimeConfig: {
+    baseURL: process.env.ALTERNATIVE_BASE_URL2,
     github: process.env.GITHUB_TOKEN
   },
   axios: {

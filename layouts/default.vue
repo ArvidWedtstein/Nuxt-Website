@@ -138,14 +138,25 @@ html {
 *::before {
     box-sizing: border-box;
 }
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   // cursor: url('~/static/images/ArvidLogo.png'), auto;	
-  // min-height: 100%;
   background: colorscheme('grey');
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-y: auto;
 }
-#__nuxt, #__layout {
-  height: 100vh !important;
+#__nuxt {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
 }
+
+
+
 
 .rad-shadow {
   border: 1px solid hsl(200 10% 50% / 15%);
