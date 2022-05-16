@@ -27,6 +27,8 @@
             <li class="text-danger" v-if="!registerDataCheck.has_special">One special character.</li>
           </ul>
         </small>
+        <recaptcha />
+
         <br>
         <NuxtLink to="login"><small class="text-muted">Already have an account? Login here</small></NuxtLink>
         <div class="inputBox">
@@ -121,7 +123,11 @@ export default {
       if (!this.registerData.email.match(this.emailRegex)) {
         return this.showSnackbar("Invalid email")
       }
+
       try {
+        const token = await this.$recaptcha.getResponse()
+        console.log('ReCaptcha token:', token)
+
         $('#modal').modal('toggle');
         emailjs.send("service_5s4j6tk","template_2v29ddt", {
           email: this.registerData.email,
@@ -153,6 +159,8 @@ export default {
           console.alert(response)
         })
         console.log(user);*/
+
+        await this.$recaptcha.reset()
       } catch (err) {
         console.log(err);
       }

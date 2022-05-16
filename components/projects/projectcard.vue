@@ -23,7 +23,7 @@
       </div>
     </div>
     <a href="#" v-if="project.thumbnail">
-      <img class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail">	
+      <nuxt-img class="card-img-right d-none d-lg-block maskimage" data-src="holder.js/200x250?theme=thumb" alt="" style="width: 200px;" :src="baseURL + project.thumbnail" sizes="sm:100vw md:50vw lg:400px" />	
     </a>
   </div>
 </template>

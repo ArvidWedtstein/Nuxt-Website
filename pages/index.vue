@@ -41,9 +41,9 @@ export default {
   },
   mounted() {
     this.importImg();
-    // this.three();
   },
   methods: {
+    
     async importImg() {
       this.images = [];
       let img = [];

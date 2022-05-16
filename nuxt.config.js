@@ -3,6 +3,7 @@ import path from 'path';
 require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: true,
   head: {
     titleTemplate: "%s",
     title: "Arvid's Website",
@@ -95,7 +96,8 @@ export default {
     "@nuxt/image",
     "@nuxt/content",
     "@nuxtjs/auth-next",
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    '@nuxtjs/recaptcha'
   ],
   auth: {
     strategies: {
@@ -131,6 +133,16 @@ export default {
         autoLogout: false
       }
     },
+  },
+  image: {
+
+  },
+  recaptcha: {
+    hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
+    language: 'english',   // Recaptcha language (v2)
+    siteKey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,    // Site key for requests
+    version: 2,     // Version
+    size: 'normal'      // Size: 'compact', 'normal', 'invisible' (v2)
   },
   publicRuntimeConfig: {
     // baseURL: process.env.BASE_URL,

@@ -55,7 +55,7 @@ export default {
     this.$store.commit('roles/init', roles.roles);
 
     const timeline = await this.$axios.$get("/api/project/getTimelineEvents");
-    this.$store.commit('timeline/init', timeline);
+    this.$store.commit('timeline/init', timeline.events);
 
     console.log('fetched')
   },
@@ -65,39 +65,12 @@ export default {
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
       })
-    },
-    async getNewspost() {
-      const articles = await this.$axios.$get("/api/news/getnewsposts");
-      this.$store.commit('newspost/init', articles.posts);
-      console.log('FETCHED POSTS');
-    },
-    async getUsers() {
-      const users = await this.$axios.$get("/api/auth/allusers");
-      this.$store.commit('users/init', users.users);
-      console.log('FETCHED users');
-    },
-    async getRatings() {
-      const reviews = await this.$axios.$get("/api/project/getRatings");
-      this.$store.commit('ratings/init', reviews.reviews);
-    },
-    async getProjects() {
-      const projects = await this.$axios.$get("/api/project/getProjects");
-      this.$store.commit('projects/init', projects.projects);
-    },
-    async getRoles() {
-      const roles = await this.$axios.$get("/api/auth/getRoles");
-      this.$store.commit('roles/init', roles.roles);
     }
   },
   async mounted() {
     
     //this.scroll()
     // this.enableTooltips()
-    // this.getNewspost();
-    // this.getUsers();
-    // this.getRatings();
-    // this.getProjects();
-    // this.getRoles();
   },
   computed: {
 
@@ -171,21 +144,13 @@ body {
   ;
 }
 
-.footer {
-  position: relative;
-  border-top: 1px solid #fff;
-  bottom: 0;
-  width: 100%;
-  background: colorscheme('blue');
-}
-
 $rainbow-grad0: linear-gradient(0deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 $rainbow-grad90: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 $titlefont: "Montserrat";
 $textfont: "Quicksand";
 $border-radius: 0.25rem;
 .jumbotron {
-  background: none;
+  // background: none;
   text-align: center;
   margin: 2rem;
   &.newspost {

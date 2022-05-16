@@ -18,6 +18,8 @@
         <input style="display: none" name="code" :value="verificationcode">
         <label style="display: none" name=""></label>
         <NuxtLink to="register"><small class="text-muted">Don't have an account yet? Create one here!</small></NuxtLink>
+        <recaptcha />
+
         <div class="inputBox">
           <!--<input type="submit" value="Login" id="submit" data-target="#modal" data-toggle="modal">-->
           <input class="btn btn-main" type="submit" value="Login" id="submit" > <!--@click="login"-->
@@ -76,7 +78,10 @@ export default {
     },
     async login(e) {
       try {
-        
+        const token = await this.$recaptcha.getResponse()
+        console.log('ReCaptcha token:', token)
+
+
         let response = await this.$auth.loginWith("local", {
           data: this.loginData
         }).then((res) => {
@@ -85,7 +90,7 @@ export default {
           //console.log(res)
         })
 
-        //this.$auth.$storage.setState(user, val)
+        this.$auth.$storage.setState(user, val)
         this.loginData.email = "";
         this.loginData.password = "";
         this.$router.push("/");
@@ -98,12 +103,14 @@ export default {
           this.showSnackbar("An email has been send to you with a verification code")
           document.getElementById("submit").toggleAttribute("modal");
         })*/
+
+        await this.$recaptcha.reset()
       } catch (err) {
         //console.log(err.message)
-        if (err.message.includes('418')) {
+        if (err.message && err.message.includes('418')) {
           this.showSnackbar('User is banned!', "danger")
         } else {
-          this.showSnackbar(err.message, "danger")
+          this.showSnackbar(err, "danger")
         }
       }
     },
