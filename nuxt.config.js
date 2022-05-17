@@ -3,7 +3,7 @@ import path from 'path';
 require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  ssr: true,
+  ssr: false,
   head: {
     titleTemplate: "%s",
     title: "Arvid's Website",
@@ -27,9 +27,9 @@ export default {
           integrity: "sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p", 
           crossorigin: "anonymous"
         },
-        {
-          src: "https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"
-        },
+        // {
+        //   src: "https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"
+        // },
         {
           src: "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"
         },
@@ -106,14 +106,14 @@ export default {
         token: {
           //property: "access_token",
           property: "token",
-          global: false,
+          global: true,
           required: true,
           //maxAge: 1800,
           type: "Bearer"
         },
         user: {
           property: "user",
-          //autoFetch: true
+          // autoFetch: false
         },
         /*refreshToken: {  
           property: "refresh_token",
@@ -124,19 +124,27 @@ export default {
         endpoints: {
           login: { url: "/api/auth/login", method: "post" },
           refresh: { url: "/api/auth/refresh", method: "post" },
-          logout: { url: "/api/auth/logout", method: "delete" },
+          logout: { url: "/api/auth/logout", method: "post" },
           user: { url: "/api/auth/getUser", method: "get" },
           allusers: { url: "/api/auth/allusers", method: "get" },
           allposts: { url: "/api/auth/allnewsposts", method: "get" },
           getroles: { url: "/api/auth/getRoles", method: "get" }
         },
         autoLogout: false
+        //https://discord.com/api/oauth2/authorize?client_id=976135846086471720&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=code&scope=identify
+      },
+      discord: {
+        clientId: process.env.DISCORD_AUTH_CLIENT_ID,
+        clientSecret: process.env.DISCORD_AUTH_CLIENT_SECRET,
       }
     },
   },
   image: {
 
   },
+  // router: {
+  //   middleware: ['auth']
+  // },
   recaptcha: {
     hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
     language: 'english',   // Recaptcha language (v2)
@@ -165,7 +173,6 @@ export default {
     continuous: true,
     duration: 1000
   },
-  ssr: false,
   
   loadingIndicator: {
     name: 'cube-grid',

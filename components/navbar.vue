@@ -89,10 +89,11 @@
             <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownUser1">
               <li><a v-if="isAuthenticated" class="dropdown-item" href="#">New project...</a></li>
               <li><a v-if="isAuthenticated" class="dropdown-item" href="#">Settings</a></li>
+              <li><a v-if="isAuthenticated" class="dropdown-item" href="/chat">Chat</a></li>
               <li><NuxtLink v-if="hasPermission('MODIFY_USERS')" class="dropdown-item" to="/auth/admindashboard"><i class="fas fa-user-cog"/> Hacker Dashboard</NuxtLink></li>
               <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" :to="'/auth/profile/' + getUserInfo.id"><i class="far fa-user"/> Profile</NuxtLink></li>
               <li><hr class="dropdown-divider"></li>
-              <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" @click="logout" to="/">Sign out</NuxtLink></li>
+              <li><a v-if="isAuthenticated" class="dropdown-item" v-on:click="logout()" to="/">Sign out</a></li>
               <li><NuxtLink v-if="!isAuthenticated" class="dropdown-item" to="/auth/register">Signup</NuxtLink></li>
               <li><NuxtLink v-if="!isAuthenticated" class="dropdown-item" to="/auth/login">Login</NuxtLink></li>
             </ul>
@@ -170,15 +171,14 @@ export default {
     },
     
   }, 
-  mounted() {
-  },
   methods: {
     isNumeric(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
     },
     async logout() {
       
-      //console.log('logout')
+      console.log('logout')
+      console.log(this)
       this.$store.$auth.logout()
     },
     hasPermission(permission) {

@@ -6,7 +6,7 @@
         <p id="pos" class="lead unselectable">to my website</p>
       </div>
       <!--Hexagon layouten med bildene-->
-      <HexGrid :images="images"></HexGrid>
+      <LazyHexGrid :images="images"></LazyHexGrid>
       <Userreview></Userreview>
       <!-- <h2 v-can="'insert'">I have permission to use this</h2> -->
     </div>

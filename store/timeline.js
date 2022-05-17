@@ -7,7 +7,8 @@ export const state = () => ({
   
 export const mutations = {
   async init(state, data) {
-    state.timeline = data.timeline
+    if (!data) return
+    this.timeline = data.timeline
   },
   async add(state, data) {
     state.timeline.push(data)

@@ -28,20 +28,17 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "chart.js": "^3.6.0",
-    "core-js": "^3.15.1",
+    "core-js": "^3.22.5",
     "emailjs-com": "^3.2.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "googleapis": "^89.0.0",
     "moment": "^2.29.1",
-    "mysql": "^2.18.1",
     "nuxt": "^2.15.8",
     "sequelize": "^6.7.0",
     "sharp": "^0.29.2",
-    "socket.io-client": "^4.3.2",
-    "three": "^0.135.0",
-    "threex.domevents": "^1.0.1",
-    "vue-chartjs": "^3.5.1"
+    "socket.io-client": "^4.5.0",
+    "three": "^0.135.0"
   },
   "devDependencies": {
     "@nuxt/image": "^0.6.0",

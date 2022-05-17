@@ -12,7 +12,7 @@
           <label for="floatingEmail">Email</label>
         </div>
         <div class="form-floating custom">
-          <input type="password" class="form-control shadow-none" id="floatingPassword" @change="generatecode()" placeholder="Password" v-model="registerData.password" required="required" name="password">
+          <input autocomplete="current-password" type="password" class="form-control shadow-none" id="floatingPassword" @change="generatecode()" placeholder="Password" v-model="registerData.password" required="required" name="password">
           <label for="floatingPassword">Password</label>
           <div class="valid-feedback">Looks good!</div>
           <div class="invalid-feedback">Invalid</div>
@@ -137,6 +137,7 @@ export default {
           this.showSnackbar("An email has been send to you with a verification code")
           document.getElementById("submit").toggleAttribute("modal");
         });
+        await this.$recaptcha.reset()
         /*emailjs.sendForm('service_5s4j6tk', 'template_2v29ddt', e.target, 'user_iJj06RAflifrwnzoXxkoy',{
           email: this.registerData.email,
           name: this.registerData.name,
@@ -159,8 +160,6 @@ export default {
           console.alert(response)
         })
         console.log(user);*/
-
-        await this.$recaptcha.reset()
       } catch (err) {
         console.log(err);
       }

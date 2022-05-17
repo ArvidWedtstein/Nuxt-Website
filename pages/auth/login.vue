@@ -48,7 +48,17 @@
 
 <script>
 import emailjs from 'emailjs-com';
+import socket from "~/assets/js/socket";
+
 export default {
+  head: {
+    script: [
+      {
+        src: "https://www.google.com/recaptcha/api.js",
+        defer: true
+      }
+    ]
+  },
   data() {
     return {
       usercode: "",
@@ -58,17 +68,23 @@ export default {
         password: ""
       },
       emailRegex: /^\S+@\S+\.\S+$/,
-      stringRegex: /^[a-zA-Z0-9]*$/
+      stringRegex: /^[a-zA-Z0-9]*$/,
+      usernameAlreadySelected: false,
     };
   },
   methods: {
-    onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    onUsernameSelection(username) {
+      this.usernameAlreadySelected = true;
+      socket.auth = { username };
+      socket.connect();
     },
+    // onSignIn(googleUser) {
+    //   var profile = googleUser.getBasicProfile();
+    //   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //   console.log('Name: ' + profile.getName());
+    //   console.log('Image URL: ' + profile.getImageUrl());
+    //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    // },
     generatecode() {
       const verificationgenerator = Math.floor(100000 + Math.random() * 900000)
       this.verificationcode = verificationgenerator
@@ -79,20 +95,51 @@ export default {
     async login(e) {
       try {
         const token = await this.$recaptcha.getResponse()
-        console.log('ReCaptcha token:', token)
+        // console.log('ReCaptcha token:', token)
 
+        // let response = await this.$auth.loginWith("discord")
+
+        // console.log(response)
 
         let response = await this.$auth.loginWith("local", {
           data: this.loginData
         }).then((res) => {
           this.showSnackbar(res.data.message, "success")
 
-          //console.log(res)
+          // console.log(res)
+          this.$auth.$storage.setState(res.data.user.name, res.data.user)
         })
+        
 
-        this.$auth.$storage.setState(user, val)
+        const sessionID = localStorage.getItem("sessionID");
+
+        if (sessionID) {
+          this.usernameAlreadySelected = true;
+          socket.auth = { sessionID };
+          socket.connect();
+        }
+
+        socket.on("session", ({ sessionID, userID }) => {
+          // attach the session ID to the next reconnection attempts
+          socket.auth = { sessionID };
+          // store it in the localStorage
+          localStorage.setItem("sessionID", sessionID);
+          // save the ID of the user
+          socket.userID = userID;
+        });
+
+        socket.on("connect_error", (err) => {
+          if (err.message === "invalid username") {
+            this.usernameAlreadySelected = false;
+          }
+        });
+
         this.loginData.email = "";
         this.loginData.password = "";
+
+
+
+        await this.$recaptcha.reset()
         this.$router.push("/");
         /*emailjs.sendForm('service_5s4j6tk', 'template_y8bo3vr', e.target, 'user_iJj06RAflifrwnzoXxkoy',{
           code: this.verificationcode,
@@ -104,7 +151,7 @@ export default {
           document.getElementById("submit").toggleAttribute("modal");
         })*/
 
-        await this.$recaptcha.reset()
+        
       } catch (err) {
         //console.log(err.message)
         if (err.message && err.message.includes('418')) {
@@ -122,7 +169,7 @@ export default {
             data: this.loginData
           }).then((res) => {
             this.showSnackbar(res.data.message, "success")
-            this.$auth.$storage.setState(res.data.user.name, res.data.user)
+            // this.$auth.$storage.setState(res.data.user.name, res.data.user)
             console.log(this.$auth.$storage.getState(res.data.user.name))
           });
           
@@ -145,9 +192,9 @@ export default {
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     }*/
   },
-  mounted() {
-
-  }
+  destroyed() {
+    socket.off("connect_error");
+  },
 };
 </script>
 

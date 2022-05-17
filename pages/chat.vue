@@ -1,212 +1,222 @@
-
 <template>
-    <div id="chat">
-        <div class="container-fluid">	
-            <textarea>Chat</textarea>
-        </div>
+  <div>
+    <div class="left">
+      <ul class="people">
+        <User 
+          v-for="user in users"
+          :key="user._id"
+          :user="user"
+          :selected="selectedUser === user"
+          @select="onSelectUser(user)"
+        />
+        <!-- <User 
+          v-for="user in users2"
+          :key="user.userID"
+          :user="user"
+          :selected="selectedUser === user"
+          @select="onSelectUser(user)"
+        /> -->
+      </ul>
     </div>
+    <MessagePanel
+      v-if="selectedUser"
+      :user="selectedUser"
+      @input="onMessage"
+      class="right"
+    />
+  </div>
 </template>
 
+<script>
+import socket from "~/assets/js/socket";
+import User from "~/components/chat/User";
+import MessagePanel from "~/components/chat/MessagePanel";
 
-<script lang="text/javascript">
-const axios = require('axios');
-const { io } = require('socket.io-client')
-const moment = require('moment');
 export default {
-    name: "chat",
-    transition: 'slide-bottom',
-    key(route) {
-        return route.fullPath
+  name: "chat",
+  components: { User, MessagePanel },
+  data() {
+    return {
+      selectedUser: null,
+      users: [],
+      usernameAlreadySelected: false,
+    };
+  },
+  methods: {
+    onMessage(content) {
+      if (this.selectedUser) {
+        socket.emit("private message", {
+          content,
+          to: this.selectedUser.userID,
+        });
+        this.selectedUser.messages.push({
+          content,
+          fromSelf: true,
+        });
+      }
     },
-    data() {
-        return {
-            messages: []
-        }
+    onSelectUser(user) {
+      this.selectedUser = user;
+      user.hasNewMessages = false;
     },
-    methods: {
-        play: function(event) {
-            this.$refs.audioElm.play();
-            this.ragemode = true;
-            setTimeout(() => {
-                this.ragemode2 = true;
-            }, 9000);
-        },
-        chat() {
-            const socket = io("ws://localhost:6969");
-
-            socket.on("connect", () => {
-
-            // or with emit() and custom event names
-            socket.emit("salutations", "Hello!", { "mr": "john" }, Uint8Array.from([1, 2, 3, 4]));
-            });
-
-            // handle the event sent with socket.send()
-            socket.on("message", data => {
-            console.log(data);
-            });
-
-            // handle the event sent with socket.emit()
-            socket.on("greetings", (elem1, elem2, elem3) => {
-            console.log(elem1, elem2, elem3);
-            });
-        }
-    },
-    mounted() {
-        //this.chat()
-    },
-    computed: {
-        
+  },
+  mounted() {
+    if (this.$store.getters.isAuthenticated && !this.usernameAlreadySelected) {
+      this.usernameAlreadySelected = true;
+      socket.auth = { username: this.$store.getters.getUserInfo.name, id: this.$store.getters.getUserInfo.id };
+      socket.connect();
     }
-}
+  },
+  destroyed() {
+    console.log(socket)
+    socket.off("connect_error");
+  },
+  created() {
+    const sessionID = localStorage.getItem("sessionID");
+
+    if (sessionID) {
+      this.usernameAlreadySelected = true;
+      socket.auth = { sessionID };
+      socket.connect();
+    }
+
+    socket.on("session", ({ sessionID, userID }) => {
+      // attach the session ID to the next reconnection attempts
+      socket.auth = { sessionID };
+      // store it in the localStorage
+      localStorage.setItem("sessionID", sessionID);
+      // save the ID of the user
+      socket.userID = userID;
+    });
+
+    socket.on("connect_error", (err) => {
+      if (err.message === "invalid username") {
+        this.usernameAlreadySelected = false;
+      }
+    });
+
+    socket.on("connect", () => {
+      this.users.forEach((user) => {
+        if (user.self) {
+          user.connected = true;
+        }
+      });
+    });
+
+    socket.on("disconnect", () => {
+      this.users.forEach((user) => {
+        if (user.self) {
+          user.connected = false;
+        }
+      });
+    });
+
+    const initReactiveProperties = (user) => {
+      user.messages = [];
+      user.hasNewMessages = false;
+    };
+
+    socket.on("users", (users) => {
+      users.forEach((user) => {
+        for (let i = 0; i < this.users.length; i++) {
+          const existingUser = this.users[i];
+          if (existingUser.userID === user.userID) {
+            existingUser.connected = user.connected;
+            existingUser.messages = user.messages;
+            return;
+          }
+        }
+        user.self = user.userID === socket.userID;
+        initReactiveProperties(user);
+        this.users.push(user);
+      });
+      // put the current user first, and sort by username
+      this.users.sort((a, b) => {
+        if (a.self) return -1;
+        if (b.self) return 1;
+        if (a.username < b.username) return -1;
+        return a.username > b.username ? 1 : 0;
+      });
+    });
+
+    socket.on("user connected", (user) => {
+      for (let i = 0; i < this.users.length; i++) {
+        const existingUser = this.users[i];
+        if (existingUser.userID === user.userID) {
+          existingUser.connected = true;
+          return;
+        }
+      }
+      initReactiveProperties(user);
+      this.users.push(user);
+    });
+
+    socket.on("user disconnected", (id) => {
+      for (let i = 0; i < this.users.length; i++) {
+        const user = this.users[i];
+        if (user.userID === id) {
+          user.connected = false;
+          break;
+        }
+      }
+    });
+
+    socket.on("private message", ({ content, from, to }) => {
+      for (let i = 0; i < this.users.length; i++) {
+        const user = this.users[i];
+        const fromSelf = socket.userID === from;
+        if (user.userID === (fromSelf ? to : from)) {
+          user.messages.push({
+            content,
+            fromSelf,
+          });
+          if (user !== this.selectedUser) {
+            user.hasNewMessages = true;
+          }
+          break;
+        }
+      }
+    });
+  },
+  destroyed() {
+    socket.off("connect");
+    socket.off("disconnect");
+    socket.off("users");
+    socket.off("user connected");
+    socket.off("user disconnected");
+    socket.off("private message");
+  },
+}; 
 </script>
-<style lang="scss" scoped>
+
+<style scoped lang="scss">
+
 $maincolors: (
-    "darkblue": #192D40,
-    "blue": #21303A,
-    "cyan": #375D72,
-    "lime": #7FCD8A,
-    "white": #F4F0E7,
-    "lightblue": #5DACB6
+  "grey": #212529,
+  "darkblue": #192D40,
+  "blue": #21303A,
+  "cyan": #375D72,
+  "lime": #7FCD8A,
+  "white": #F4F0E7,
+  "lightblue": #5DACB6
 );
 @function colorscheme($color) {
-    @return map-get($maincolors, $color);
-}
-.profileimage {
-    position: relative;
-    transition: 0.5s;
-    padding: 2rem;
-    background: url('/images/UI/PlayerAvatarUI.png');
-    background-size: cover;
-    background-position: center;
-    outline: none;
-    border: none;
-    border-radius: 50%;
-    &:hover {
-        background-size: 110%;
-        transform: scale(1.1);
-        box-shadow: inset -5px -5px 10px rgba(255,255,255,0.05),
-            inset 5px 5px 15px rgba(0,0,0,0.5);
-    }
-    #profile {
-        border-radius: 50%;
-        //background: transparent;
-        mask-image: -webkit-gradient(linear, top, bottom, 
-        color-stop(0.00,  rgba(0,0,0,1)),
-        color-stop(0.35,  rgba(0,0,0,1)),
-        color-stop(0.50,  rgba(0,0,0,0)),
-        color-stop(0.65,  rgba(0,0,0,0)),
-        color-stop(1.00,  rgba(0,0,0,0)));
-    }
-}
-
-/* About Me page */
-.about { 
-    &:first-child {
-        background: #333333;
-        clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0% );
-    }
-    &:nth-child(2) {
-        //background: #333333; 
-        padding: 6rem;
-        background: none; 
-        clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
-    }
-}
-.text .aboutMe {
-    background: none;
-	text-align: left;
-	display: -ms-flexbox;
-  	display: flex;
-	position: relative;
-	padding-left: 0rem;
-	font-size: 5rem;
+  @return map-get($maincolors, $color);
 }
 
 
-@media (max-width: 992px) {
-	.text .aboutMe {
-		font-size: 20px;
-		text-align: center;
-		float: left;
-		padding: 0;
-	}
+.left {
+  float: left;
+  width: 20%;
+  height: 100%;
+  border: 1px solid colorscheme('lightblue');
+  background-color: colorscheme('lightblue');
 }
-
- /* About Me link bar */
- .icon-bar {
-    $iconcolors: (
-        "facebook":#3B5998,
-        "twitter":#55ACEE,
-        "twitch": rgba(145, 71, 255, 0.9),
-        "discord": #8697F6,
-        "github": #333333,
-        "steam": #173e58,
-        "linkedin":#007bb5,
-        "cv": #009bb5,
-        "js": #EFD81D,
-        "html": #D84B24,
-        "css": #3492CB,
-        "sass": #C45F92,
-        "vue": #49B180,
-        "ubuntu": #D24413,
-        "python": #dddddd
-    );
-    &.social {
-        font-size: 1.3rem;
-        & > * {
-            border-radius: 30% 30%;
-            opacity: 0.7;
-            @each $color, $value in $iconcolors {
-                &.#{$color}  {
-                    background: $value;
-                    color: white;
-                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,5.2);
-                }
-            }
-            &:hover {
-                box-shadow: none;
-                font-size: 1.8rem;
-                /*color: #333333;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;*/
-            }
-        }
-    }
-    &.icons {
-        font-size: 1.8rem;
-        opacity: 1;
-        & > * {
-            @each $color, $value in $iconcolors {
-                &.#{$color}  {
-                    //background: url('/images/UI/UIPanel.png');
-                    //background-size: cover;
-                    color: $value;
-                    border: 1mm outset $value;
-                }
-            }
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
-    & > * {
-        justify-content: center;
-        align-items: center;
-        display: inline-flex;
-        align-items: center;
-        align-content: center;
-        vertical-align: middle;
-        -webkit-transition: all 0.5s ease-in-out;
-        text-align: center;
-        border: 1px solid transparent;
-        padding: 1rem;
-        width: 4rem;
-        height: 4rem;
-        transition: all 0.3s ease;
-        margin: 5px 2px;
-        line-height: 4rem;
-        position: relative;
-    }
+.right {
+  position: relative;
+  float: left;
+  width: 80%;
+  height: 100%;
 }
 
 </style>

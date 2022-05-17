@@ -36,7 +36,7 @@ export default {
 
     // const roles = await $axios.$get("/api/auth/getRoles");
     // $store.commit('roles/init', roles.roles);
-    
+     console.log('asyncdata')
   },
   async fetch() {
     const projects = await this.$axios.$get("/api/project/getProjects");
@@ -105,28 +105,28 @@ html {
   }*/
   --titlefont: "Montserrat";
   --textfont: "Quicksand";
+  height: -webkit-fill-available;
+  min-height: 100vh;
 }
 *,
 *::after,
 *::before {
     box-sizing: border-box;
 }
-html {
-  height: -webkit-fill-available;
-}
+
 
 body {
   // cursor: url('~/static/images/ArvidLogo.png'), auto;	
   background: colorscheme('grey');
-  min-height: 100vh;
+  min-height: 100%;
   min-height: -webkit-fill-available;
-  overflow-y: auto;
+  // overflow-y: auto;
 }
-#__nuxt {
-  height: 100vh;
-  height: -webkit-fill-available;
-  max-height: 100vh;
-}
+// #__nuxt {
+//   height: 100vh;
+//   height: -webkit-fill-available;
+//   min-height: 100vh;
+// }
 
 
 
