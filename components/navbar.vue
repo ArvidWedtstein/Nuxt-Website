@@ -178,7 +178,7 @@ export default {
     async logout() {
       
       console.log('logout')
-      console.log(this)
+      // console.log(this)
       this.$store.$auth.logout()
     },
     hasPermission(permission) {

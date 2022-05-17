@@ -78,13 +78,6 @@ export default {
       socket.auth = { username };
       socket.connect();
     },
-    // onSignIn(googleUser) {
-    //   var profile = googleUser.getBasicProfile();
-    //   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //   console.log('Name: ' + profile.getName());
-    //   console.log('Image URL: ' + profile.getImageUrl());
-    //   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    // },
     generatecode() {
       const verificationgenerator = Math.floor(100000 + Math.random() * 900000)
       this.verificationcode = verificationgenerator
@@ -109,30 +102,11 @@ export default {
           // console.log(res)
           this.$auth.$storage.setState(res.data.user.name, res.data.user)
         })
-        
 
-        const sessionID = localStorage.getItem("sessionID");
 
-        if (sessionID) {
-          this.usernameAlreadySelected = true;
-          socket.auth = { sessionID };
-          socket.connect();
-        }
-
-        socket.on("session", ({ sessionID, userID }) => {
-          // attach the session ID to the next reconnection attempts
-          socket.auth = { sessionID };
-          // store it in the localStorage
-          localStorage.setItem("sessionID", sessionID);
-          // save the ID of the user
-          socket.userID = userID;
-        });
-
-        socket.on("connect_error", (err) => {
-          if (err.message === "invalid username") {
-            this.usernameAlreadySelected = false;
-          }
-        });
+        // this.usernameAlreadySelected = true;
+        // socket.auth = { username: this.$store.getters.getUserInfo.name, id: this.$store.getters.getUserInfo.id };
+        // socket.connect();
 
         this.loginData.email = "";
         this.loginData.password = "";
@@ -192,9 +166,9 @@ export default {
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     }*/
   },
-  destroyed() {
-    socket.off("connect_error");
-  },
+  // destroyed() {
+  //   socket.off("connect_error");
+  // },
 };
 </script>
 

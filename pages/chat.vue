@@ -2,7 +2,7 @@
   <div>
     <div class="left">
       <ul class="people">
-        <User 
+        <LazyUser 
           v-for="user in users"
           :key="user._id"
           :user="user"
@@ -61,20 +61,19 @@ export default {
     },
   },
   mounted() {
-    if (this.$store.getters.isAuthenticated && !this.usernameAlreadySelected) {
-      this.usernameAlreadySelected = true;
-      socket.auth = { username: this.$store.getters.getUserInfo.name, id: this.$store.getters.getUserInfo.id };
-      socket.connect();
-    }
-  },
-  destroyed() {
-    console.log(socket)
-    socket.off("connect_error");
+    // if (this.$store.getters.isAuthenticated && !this.usernameAlreadySelected) {
+    //   this.usernameAlreadySelected = true;
+    //   socket.auth = { username: this.$store.getters.getUserInfo.name, id: this.$store.getters.getUserInfo.id };
+    //   socket.connect();
+    // }
+    console.log(this.$store.getters.isAuthenticated, "AlreadySelected", this.usernameAlreadySelected)
   },
   created() {
+    
     const sessionID = localStorage.getItem("sessionID");
 
     if (sessionID) {
+      console.log('found sessionid')
       this.usernameAlreadySelected = true;
       socket.auth = { sessionID };
       socket.connect();
@@ -95,6 +94,7 @@ export default {
       }
     });
 
+
     socket.on("connect", () => {
       this.users.forEach((user) => {
         if (user.self) {
@@ -112,12 +112,14 @@ export default {
     });
 
     const initReactiveProperties = (user) => {
-      user.messages = [];
       user.hasNewMessages = false;
     };
 
     socket.on("users", (users) => {
       users.forEach((user) => {
+        user.messages.forEach((message) => {
+          message.fromSelf = message.from === socket.userID;
+        });
         for (let i = 0; i < this.users.length; i++) {
           const existingUser = this.users[i];
           if (existingUser.userID === user.userID) {
@@ -185,6 +187,7 @@ export default {
     socket.off("user connected");
     socket.off("user disconnected");
     socket.off("private message");
+    socket.off("connect_error");
   },
 }; 
 </script>
