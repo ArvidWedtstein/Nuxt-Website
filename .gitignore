@@ -91,12 +91,10 @@ sw.*
 .vscode
 # Package.json
 #package.json
-#package-lock.json
+package-lock.json
 
 #Environment variables
 .env
-
-
 
 .github
 *.zip
