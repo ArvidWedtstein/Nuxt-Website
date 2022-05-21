@@ -85,3 +85,8 @@ Preview av nettsiden:
 
 
 mer dokumentasjon kommer når jeg får tid/orker
+
+
+### `TODO`
+
+Lag Tester (End-To-End)
