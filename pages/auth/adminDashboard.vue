@@ -148,30 +148,6 @@ export default {
           // console.log(err)
         }
       },
-      async banUser(user) {
-        try {
-          let token = this.$auth.strategy.token.get().split(" ")[1];
-          await this.$axios.$post("/api/auth/banUser", user, {
-              "authorization": `Basic ${token}`
-          });
-        }
-        catch (err) {
-          console.log(err);
-        }
-        this.$nuxt.refresh();
-      },
-      async unbanUser(user) {
-        try {
-          let token = this.$auth.strategy.token.get().split(" ")[1];
-          await this.$axios.$post("/api/auth/unbanUser", user, {
-              "authorization": `Basic ${token}`
-          });
-        }
-        catch (err) {
-          console.log(err);
-        }
-        this.$nuxt.refresh();
-      },
       formatDate(date) {
           return moment(date).format("DD/MM/YY");
       },

@@ -126,40 +126,28 @@ export default {
 
       try {
         const token = await this.$recaptcha.getResponse()
-        console.log('ReCaptcha token:', token)
+        // console.log('ReCaptcha token:', token)
 
         $('#modal').modal('toggle');
         emailjs.send("service_5s4j6tk","template_2v29ddt", {
           email: this.registerData.email,
           name: this.registerData.name,
           message: this.verificationcode
-        }).then((res) => {
+        }).then(async (res) => {
           this.showSnackbar("An email has been send to you with a verification code")
-          document.getElementById("submit").toggleAttribute("modal");
-        });
-        await this.$recaptcha.reset()
-        /*emailjs.sendForm('service_5s4j6tk', 'template_2v29ddt', e.target, 'user_iJj06RAflifrwnzoXxkoy',{
-          email: this.registerData.email,
-          name: this.registerData.name,
-          code: this.verificationcode
-        }).then((res) => {
-          this.showSnackbar("An email has been send to you with a verification code")
-          document.getElementById("submit").toggleAttribute("modal");
-        })*/
-        /*const user = await this.$axios.$post("/api/auth/signin", {
-          name: this.registerData.name,
-          email: this.registerData.email,
-          password: this.registerData.password
-        }).then((response) => {
-          alert(response)
-        });*/
+          document.getElementById("submit").toggleAttribute("modal")
 
-        /*const recaptcha = await this.$axios.$post("https://www.google.com/recaptcha/api/siteverify", {
-          secret: 'ånei du. ingen api key her'
-        }).then((response) => {
-          console.alert(response)
-        })
-        console.log(user);*/
+
+          const recaptcha = await this.$axios.$post("https://www.google.com/recaptcha/api/siteverify", {
+            secret: token
+          }).then((response) => {
+            console.alert(response)
+          })
+          console.log(recaptcha)
+          console.log(user);
+        });
+        this.$recaptcha.reset()
+        
       } catch (err) {
         console.log(err);
       }

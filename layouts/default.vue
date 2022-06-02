@@ -374,9 +374,8 @@ a {
     outline: none !important;
     .form-control, .form-select {
       &.form-select > * {
-        background: none !important;
+        // background: none !important;
         color: lime;
-        
       }
       border: 1px solid #ced4da !important;
       color: colorscheme('white');

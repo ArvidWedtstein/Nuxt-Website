@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-     <div class="jumbotron" v-for="(review, o) in reviews" :key="o">
+     <div class="jumbotron" v-for="(review, o) in review" :key="o">
       <h1 class="display-4"><i v-for="x in 5" :key="x" :class="{ 'text-warning': x <= review.rating }" class="fas fa-star" /></h1>
       <p class="lead">{{ review.author }}: "{{ review.review }}"</p>
       <button v-if="editReview.id == review._id && editReview.active" class="btn btn-success" @click="saveReview()">Save Review</button>
@@ -15,8 +15,8 @@
           <label for="floatingReview">Edit Review</label>
         </div>
         <div class="form-floating custom">
-          <select class="form-select" id="floatingReviewStar" aria-label="Star Rating">
-            <option v-for="i in 5" :key="i" value="i" :selected="editReview.rating == i">{{ i }}</option>
+          <select class="form-select" id="floatingReviewStar" v-model="editReview.rating" aria-label="Star Rating">
+            <option class="bg-dark" v-for="i in 5" :key="i" :value="i">{{ i }}</option>
           </select>
           <label for="floatingReviewStar">Edit Rating</label>
         </div>
@@ -36,6 +36,7 @@ export default {
   transition: 'slide-bottom',
   data() {
     return {
+      review: [],
       editReview: {
         active: false,
         id: "",
@@ -64,6 +65,7 @@ export default {
         let token = this.$auth.strategy.token.get().split(" ")[1];
         //console.log(token)
         const { id, user, review, rating } = this.editReview;
+        
         await this.$axios.$post("/api/project/editRating/" + id, {
           user: user,
           review: review,
@@ -71,15 +73,27 @@ export default {
         }, {
           "authorization": `Basic ${token}`
         });
-        
+
+
+        this.review = this.review.map(obj => {
+          if (obj._id === id) {
+            return { rating: this.editReview.rating, author: this.editReview.user, review: this.editReview.review };
+          }
+
+          return obj;
+        });
+
+        this.editReview = {
+          active: false,
+          id: "",
+          user: "",
+          review: "",
+          rating: ""
+        }
       } catch (err) {
         console.log(err)
       }
-      this.editReview.active = false;
-      this.editReview.id = "";
-      this.editReview.user = "";
-      this.editReview.review = "";
-      this.editReview.rating = "";
+      
     },
     formatDate(date) {
       return moment(date).format("DD/MM/YY");
@@ -88,8 +102,11 @@ export default {
       this.$notifier.showMessage({ content: message, color: 'success' })
     },
   },
+  created() {
+    this.review = this.reviews
+  },
   mounted() {
-
+    this.review = this.$store.state.ratings.ratings;
   },
   computed: {
     getUserInfo() {
@@ -105,7 +122,7 @@ export default {
     },
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;  
-    },
+    }
   }
 }
 </script>

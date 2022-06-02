@@ -10,7 +10,7 @@
           <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu dropdown-menu-right" data-bs-auto-close="outside">
-          <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="rolesname(rank.id, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
+          <button v-for="(rank, j) in roles" :key="j" class="dropdown-item" type="button" @click="changecole(rank._id, user.email)"><span class="icon"><i :class="rank.icon"/></span><span class="roletxt">{{ rank.name }}</span></button>
         </div>
       </div>
       <p class="lead">
@@ -47,24 +47,36 @@ export default {
     },
     async banUser(user) {
       try {
-        let token = this.$auth.strategy.token.get().split(" ")[1]
-        
+        let token = this.$auth.strategy.token.get().split(" ")[1];
         await this.$axios.$post("/api/auth/banUser", user, {
-          "authorization": `Basic ${token}`
+            "authorization": `Basic ${token}`
         });
-      } catch (err) {
-        console.log(err)
+      }
+      catch (err) {
+        console.log(err);
       }
       this.$nuxt.refresh();
     },
-    async rolesname(role, email) {
+    async unbanUser(user) {
+        try {
+          let token = this.$auth.strategy.token.get().split(" ")[1];
+          await this.$axios.$post("/api/auth/unbanUser", user, {
+              "authorization": `Basic ${token}`
+          });
+        }
+        catch (err) {
+          console.log(err);
+        }
+        this.$nuxt.refresh();
+      },
+    async changecole(role, email) {
       try {
         let token = this.$auth.strategy.token.get().split(" ")[1];
         let json = {
           email: email,
           role: role
         }
-        //console.log(token)
+        console.log(json)
         await this.$axios.$post("/api/auth/postUpdateuser", json, {
           headers: {
             "authorization": `Basic ${token}`

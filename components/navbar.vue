@@ -90,7 +90,7 @@
               <li><a v-if="isAuthenticated" class="dropdown-item" href="#">New project...</a></li>
               <li><a v-if="isAuthenticated" class="dropdown-item" href="#">Settings</a></li>
               <li><a v-if="isAuthenticated" class="dropdown-item" href="/chat">Chat</a></li>
-              <li><NuxtLink v-if="hasPermission('MODIFY_USERS')" class="dropdown-item" to="/auth/admindashboard"><i class="fas fa-user-cog"/> Hacker Dashboard</NuxtLink></li>
+              <li><NuxtLink v-if="hasPermission('MODIFY_USERS')" class="dropdown-item" to="/auth/admindashboard"><i class="fas fa-user-cog"/> Admin Dashboard</NuxtLink></li>
               <li><NuxtLink v-if="isAuthenticated" class="dropdown-item" :to="'/auth/profile/' + getUserInfo.id"><i class="far fa-user"/> Profile</NuxtLink></li>
               <li><hr class="dropdown-divider"></li>
               <li><a v-if="isAuthenticated" class="dropdown-item" v-on:click="logout()" to="/">Sign out</a></li>
