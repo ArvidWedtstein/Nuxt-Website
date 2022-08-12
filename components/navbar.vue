@@ -84,7 +84,7 @@
           </span>-->
           <div class="dropdown text-end">
             <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <nuxt-img src="/images/profilePicture.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+              <nuxt-img src="/images/Galaxy.jpg" alt="User" width="32" height="32" class="rounded-circle" />
             </a>
             <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownUser1">
               <li><a v-if="isAuthenticated" class="dropdown-item" href="#">New project...</a></li>
