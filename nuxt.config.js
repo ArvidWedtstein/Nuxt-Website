@@ -96,8 +96,8 @@ export default {
     "@nuxt/image",
     "@nuxt/content",
     "@nuxtjs/auth-next",
-    "@nuxtjs/axios",
-    "@nuxtjs/recaptcha"
+    "@nuxtjs/axios"
+    // "@nuxtjs/recaptcha"
   ],
   auth: {
     strategies: {
