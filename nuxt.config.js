@@ -96,8 +96,8 @@ export default {
     "@nuxt/image",
     "@nuxt/content",
     "@nuxtjs/auth-next",
-    "@nuxtjs/axios"
-    //'@nuxtjs/recaptcha'
+    "@nuxtjs/axios",
+    "@nuxtjs/recaptcha"
   ],
   auth: {
     strategies: {
@@ -145,13 +145,13 @@ export default {
   // router: {
   //   middleware: ['auth']
   // },
-  recaptcha: {
-    hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
-    language: 'english',   // Recaptcha language (v2)
-    siteKey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,    // Site key for requests
-    version: 2,     // Version
-    size: 'normal'      // Size: 'compact', 'normal', 'invisible' (v2)
-  },
+  // recaptcha: {
+  //   hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
+  //   language: 'english',   // Recaptcha language (v2)
+  //   siteKey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,    // Site key for requests
+  //   version: 2,     // Version
+  //   size: 'normal'      // Size: 'compact', 'normal', 'invisible' (v2)
+  // },
   publicRuntimeConfig: {
     // baseURL: process.env.BASE_URL,
     baseURL: process.env.ALTERNATIVE_BASE_URL2,
