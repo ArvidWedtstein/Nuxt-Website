@@ -13,7 +13,7 @@
 
 
 
-![Stats](https://arvidgithubembed.herokuapp.com/project?user=arvidwedtstein&repo=nuxt-website)
+![Stats](https://arvidgithubembed.herokuapp.com/project?user=arvidwedtstein&repo=nuxt-website&background=ff0000)
 
 
 ## Build Setup
