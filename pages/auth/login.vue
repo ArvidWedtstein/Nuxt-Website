@@ -87,7 +87,7 @@ export default {
     },
     async login(e) {
       try {
-        const token = await this.$recaptcha.getResponse()
+        // const token = await this.$recaptcha.getResponse()
         // console.log('ReCaptcha token:', token)
 
         // let response = await this.$auth.loginWith("discord")
@@ -113,7 +113,7 @@ export default {
 
 
 
-        await this.$recaptcha.reset()
+        // await this.$recaptcha.reset()
         this.$router.push("/");
         /*emailjs.sendForm('service_5s4j6tk', 'template_y8bo3vr', e.target, 'user_iJj06RAflifrwnzoXxkoy',{
           code: this.verificationcode,
