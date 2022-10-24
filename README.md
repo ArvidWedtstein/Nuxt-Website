@@ -188,7 +188,7 @@ Project Link: [https://github.com/ArvidWedtstein/Nuxt-Website](https://github.co
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-First of all i want to thank @[VictorBerland](https://github.com/victorberland) for helping me out during this project. Without him my grades would definitely be lower.
+First of all i want to thank [VictorBerland](https://github.com/victorberland) for helping me out during this project. Without him my grades would definitely be lower.
 
 I also want to thank [Appex](https://github.com/appex) for learning me Nuxt.js
 
