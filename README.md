@@ -190,7 +190,7 @@ Project Link: [https://github.com/ArvidWedtstein/Nuxt-Website](https://github.co
 
 First of all i want to thank @[VictorBerland](https://github.com/victorberland) for helping me out during this project. Without him my grades would definitely be lower.
 
-I also want to thank @appex for learning me Nuxt.js
+I also want to thank [Appex](https://github.com/appex) for learning me Nuxt.js
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
