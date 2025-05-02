@@ -9,21 +9,13 @@
               <h1 class="display-4">Well, Hello there</h1>
               <p class="lead">My name is Arvid Wedtstein</p>
               <hr class="my-4">
-              <p>I am currently studying: Informationtechnology and Media<br>Age: {{ calculateAge() }}<br>I'm interested in: 3D-Printing, Webdevelopment<br><a href="mailto: arvidw0310@gmail.com">Email: arvidw0310@gmail.com</a><br>Progamming languages/Frameworks that i have learnt in the past:</p>
-              <div class="icon-bar icons">
-                <i class="php fab fa-php"/>
-                <i class="js fab fa-js-square"/>
-                <i class="html fab fa-html5"/>
-                <i class="css fab fa-css3-alt"/>
-                <i class="sass fab fa-sass"/>
-                <i class="vue fab fa-vuejs"/>
-              </div>
+              <p>I am currently (acting) as a Software Engineer for Omega 365 Solutions<br>Age: {{ calculateAge() }} <br><a href="mailto: arvidw0310@gmail.com">Email: arvidw0310@gmail.com</a>/p>
               <br>
               <div class="icon-bar social">
                 <a href="https://github.com/ArvidWedtstein" title="My Github" target="_blank" class="bg-github"><i class="fab fa-github"/></a> 
                 <a href="https://discord.gg/5hMtxNW" target="_blank" class="bg-discord"><i class="fab fa-discord"/></a> 
                 <a href="https://www.linkedin.com/in/arvid-wedtstein-7498a21b7" target="_blank" class="bg-linkedin"><i class="fab fa-linkedin"/></a>
-                <a href="/CV.pdf" class="bg-cv animate__bounceIn">CV</a>
+                <a href="/CV.pdf" class="bg-cv animate__bounceIn">CV (prob. outdated)</a>
               </div>
             </div>
           </div>
